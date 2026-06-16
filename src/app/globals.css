@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* Astro Coach neo-brutalist astronomy color palette */
+:root {
+  --color-navy: #0b0f2e;
+  --color-space-blue: #131a4a;
+  --color-electric-blue: #3b82f6;
+  --color-purple: #7c3aed;
+  --color-yellow: #fde047;
+  --color-cream: #fdf6e3;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-navy);
+  font-family: Arial, Helvetica, sans-serif;
+}
