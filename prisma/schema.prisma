@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+// Prisma 7 moved connection URLs out of schema.prisma and into
+// prisma.config.ts (see that file for DATABASE_URL / DIRECT_URL).
+datasource db {
+  provider = "postgresql"
+}
+
+// One record per answer-checking attempt a logged-in user makes.
+// userId is the Supabase Auth user's UUID — we don't keep our own User
+// table because Supabase Auth already manages accounts.
+model UserAttempt {
+  id              String   @id @default(uuid())
+  userId          String
+  questionId      String
+  submittedAnswer String
+  isCorrect       Boolean
+  createdAt       DateTime @default(now())
+
+  @@index([userId])
+  @@index([questionId])
+}
+
+// One record per (user, question) pair, tracking whether the user has
+// ever gotten that question right. This is what powers the "35 / 40"
+// unique-correct score, separate from raw attempt counts.
+model UserQuestionProgress {
+  id                  String    @id @default(uuid())
+  userId              String
+  questionId          String
+  isCorrect           Boolean
+  firstCorrectAt      DateTime?
+  lastAttemptAt       DateTime  @default(now())
+  attemptCount        Int       @default(0)
+  correctAttemptCount Int       @default(0)
+
+  // One progress row per user+question — prevents duplicate rows and is
+  // what we upsert against every time the user checks an answer.
+  @@unique([userId, questionId])
+  @@index([userId])
+}

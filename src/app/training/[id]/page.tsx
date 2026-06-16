@@ -5,6 +5,7 @@ import BrutalCard from "@/components/BrutalCard";
 import McqPractice from "@/components/McqPractice";
 import FrqPractice from "@/components/FrqPractice";
 import { sampleQuestions } from "@/data/sampleQuestions";
+import { createClient } from "@/lib/supabase/server";
 
 // This is a Server Component (no "use client") because it only reads
 // data and renders text — it doesn't need any interactivity itself.
@@ -20,6 +21,10 @@ export default async function QuestionDetailPage({
   if (!question) {
     notFound();
   }
+
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getUser();
+  const isLoggedIn = data.user !== null;
 
   return (
     <PageContainer>
@@ -52,7 +57,7 @@ export default async function QuestionDetailPage({
       </BrutalCard>
 
       {question.type === "MCQ" ? (
-        <McqPractice question={question} />
+        <McqPractice question={question} isLoggedIn={isLoggedIn} />
       ) : (
         <FrqPractice question={question} />
       )}

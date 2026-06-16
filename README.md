@@ -339,24 +339,27 @@ Example file should be:
 .env.example
 ```
 
-Planned variables:
+Variables currently in use (see `.env.example`):
 
 ```bash
-DATABASE_URL=""
-DIRECT_URL=""
 NEXT_PUBLIC_SUPABASE_URL=""
 NEXT_PUBLIC_SUPABASE_ANON_KEY=""
+DATABASE_URL=""
+```
+
+Planned for later phases:
+
+```bash
 ADMIN_EMAILS=""
 ADMIN_SECRET=""
 ```
 
 Notes:
 
-* `DATABASE_URL` connects Prisma to Supabase Postgres.
-* `DIRECT_URL` may be needed by Prisma for migrations.
+* `DATABASE_URL` connects Prisma to Supabase Postgres — use the direct (Session) connection string, not the pooled one.
 * `NEXT_PUBLIC_SUPABASE_URL` is safe to expose to the browser.
 * `NEXT_PUBLIC_SUPABASE_ANON_KEY` is safe to expose when Supabase security rules are configured correctly.
-* Service-role keys should never be exposed to the browser.
+* Service-role keys should never be exposed to the browser, and Astro Coach does not use one.
 * `.env.local` must stay out of git.
 
 ---
@@ -432,36 +435,107 @@ permissionStatus
 
 ---
 
-## Future Supabase Setup
+## Supabase Setup (Auth + Progress Tracking)
 
-Later, create a Supabase project and copy the database connection string into `.env.local`.
+Astro Coach uses Supabase for user accounts (Auth) and a Postgres database
+(via Prisma) for tracking attempt history and progress. Follow these steps
+once to set up your own Supabase project for local development.
 
-Expected flow:
+### 1. Create a Supabase project
+
+1. Go to [supabase.com](https://supabase.com) and sign in.
+2. Click "New Project" and choose a name, password, and region.
+3. Wait for the project to finish provisioning (a couple of minutes).
+
+### 2. Get your Supabase URL and anon key
+
+1. In your Supabase project, go to **Project Settings → API**.
+2. Copy the **Project URL** — this is `NEXT_PUBLIC_SUPABASE_URL`.
+3. Copy the **anon public** key — this is `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+
+These two values are safe to expose in the browser (that's why they're
+prefixed `NEXT_PUBLIC_`). Never copy the **service_role** key into this
+project — that one must stay private and server-only, and Astro Coach
+doesn't need it.
+
+### 3. Get your database connection string
+
+1. Go to **Project Settings → Database**.
+2. Under "Connection string", copy the **Session** (direct) connection
+   string — not the pooled "Transaction" one. Prisma migrations need a
+   direct connection.
+3. This is your `DATABASE_URL`.
+
+### 4. Fill in your local environment file
 
 ```bash
 cp .env.example .env.local
 ```
 
-Then fill in:
+Then open `.env.local` and fill in the three values above:
 
 ```bash
-DATABASE_URL=""
-DIRECT_URL=""
 NEXT_PUBLIC_SUPABASE_URL=""
 NEXT_PUBLIC_SUPABASE_ANON_KEY=""
+DATABASE_URL=""
 ```
 
-Then run migrations:
+`.env.local` is already in `.gitignore` — never commit it.
+
+### 5. Configure Supabase Auth
+
+1. In Supabase, go to **Authentication → Sign In / Providers**.
+2. Make sure **Email** is enabled (it usually is by default) so
+   email/password signup and login work.
+3. Go to **Authentication → URL Configuration** and add this redirect URL
+   for local development:
+   ```
+   http://localhost:3000/auth/callback
+   ```
+   Add your production URL here too once the app is deployed.
+
+### 6. (Optional) Enable Google sign-in
+
+Google sign-in needs a Google Cloud OAuth Client ID and Secret — Astro
+Coach cannot generate these for you, and the app will not fake or invent
+credentials. To set it up:
+
+1. In [Google Cloud Console](https://console.cloud.google.com/), create
+   an OAuth 2.0 Client ID (Application type: Web application).
+2. Add this Authorized redirect URI (replace with your actual Supabase
+   project ref):
+   ```
+   https://<your-project-ref>.supabase.co/auth/v1/callback
+   ```
+3. Copy the generated **Client ID** and **Client Secret**.
+4. In Supabase, go to **Authentication → Sign In / Providers → Google**,
+   enable it, and paste in the Client ID and Client Secret.
+5. The "Continue with Google" button on `/login` and `/signup` will then
+   work automatically — no code changes needed.
+
+If you skip this step, email/password login still works fully; the
+Google button will just show a Supabase error until configured.
+
+### 7. Run the database migration
+
+Once `.env.local` has a real `DATABASE_URL`, create the database tables:
 
 ```bash
 npx prisma migrate dev
 ```
 
-Then seed the database:
+This creates the `UserAttempt` and `UserQuestionProgress` tables in your
+Supabase Postgres database. You only need to run this once (and again
+any time `prisma/schema.prisma` changes).
+
+### 8. Run the app locally
 
 ```bash
-npx prisma db seed
+npm install
+npm run dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000).
 
 ---
 

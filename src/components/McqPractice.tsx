@@ -2,15 +2,33 @@
 
 import { useState } from "react";
 import { Question } from "@/types/question";
+import { saveAttempt } from "@/lib/actions/progress";
 
 // Lets the user pick an MCQ answer, check it, and see the explanation.
 // Needs to be a Client Component because selecting a choice and clicking
 // "Check Answer" both update state live in the browser.
-export default function McqPractice({ question }: { question: Question }) {
+export default function McqPractice({
+  question,
+  isLoggedIn,
+}: {
+  question: Question;
+  isLoggedIn: boolean;
+}) {
   const [selected, setSelected] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
+  const [saving, setSaving] = useState(false);
 
   const isCorrect = selected === question.correctAnswer;
+
+  async function handleCheckAnswer() {
+    setChecked(true);
+
+    if (!isLoggedIn || selected === null) return;
+
+    setSaving(true);
+    await saveAttempt(question.id, selected, isCorrect);
+    setSaving(false);
+  }
 
   return (
     <div className="mt-6">
@@ -37,13 +55,19 @@ export default function McqPractice({ question }: { question: Question }) {
         })}
       </div>
 
+      {!isLoggedIn && (
+        <p className="mt-3 text-sm font-bold text-[var(--color-purple)]">
+          Sign in to save your progress.
+        </p>
+      )}
+
       <button
         type="button"
         disabled={selected === null}
-        onClick={() => setChecked(true)}
+        onClick={handleCheckAnswer}
         className="mt-4 rounded-lg border-4 border-black bg-[var(--color-yellow)] px-6 py-2 font-bold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
       >
-        Check Answer
+        {saving ? "Saving..." : "Check Answer"}
       </button>
 
       {checked && (
