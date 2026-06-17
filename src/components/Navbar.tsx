@@ -1,13 +1,12 @@
-import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
-import { signOut } from "@/lib/actions/auth";
+'use client';
 
-// This is an async Server Component (no "use client") so it can check
-// who is logged in directly from the request cookies before rendering.
-export default async function Navbar() {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getUser();
-  const user = data.user;
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/auth-context";
+
+export default function Navbar() {
+  const router = useRouter();
+  const { user, loading } = useAuth();
 
   const links = [
     { href: "/", label: "Home" },
@@ -15,6 +14,15 @@ export default async function Navbar() {
     { href: "/training", label: "Training" },
     { href: "/about", label: "About" },
   ];
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      router.push("/");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   return (
     <header className="border-b-4 border-black bg-[var(--color-navy)]">
@@ -36,7 +44,7 @@ export default async function Navbar() {
               </Link>
             </li>
           ))}
-          {user ? (
+          {!loading && user ? (
             <>
               <li>
                 <Link
@@ -47,17 +55,15 @@ export default async function Navbar() {
                 </Link>
               </li>
               <li>
-                <form action={signOut}>
-                  <button
-                    type="submit"
-                    className="rounded border-2 border-white px-3 py-1 text-white transition hover:bg-white hover:text-[var(--color-navy)]"
-                  >
-                    Log Out
-                  </button>
-                </form>
+                <button
+                  onClick={handleLogout}
+                  className="rounded border-2 border-white px-3 py-1 text-white transition hover:bg-white hover:text-[var(--color-navy)]"
+                >
+                  Log Out
+                </button>
               </li>
             </>
-          ) : (
+          ) : !loading ? (
             <li>
               <Link
                 href="/login"
@@ -66,7 +72,7 @@ export default async function Navbar() {
                 Login
               </Link>
             </li>
-          )}
+          ) : null}
         </ul>
       </nav>
     </header>

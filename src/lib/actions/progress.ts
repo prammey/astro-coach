@@ -1,6 +1,6 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { getPrisma } from "@/lib/prisma";
 import { createClient } from "@/lib/supabase/server";
 
 // Saves one MCQ attempt and updates that user's unique-correct progress
@@ -20,6 +20,8 @@ export async function saveAttempt(
   if (!user) {
     return { saved: false as const };
   }
+
+  const prisma = getPrisma();
 
   await prisma.userAttempt.create({
     data: {

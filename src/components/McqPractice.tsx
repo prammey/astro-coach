@@ -2,11 +2,9 @@
 
 import { useState } from "react";
 import { Question } from "@/types/question";
-import { saveAttempt } from "@/lib/actions/progress";
+import { useAuth } from "@/lib/auth-context";
+import { supabase } from "@/lib/auth";
 
-// Lets the user pick an MCQ answer, check it, and see the explanation.
-// Needs to be a Client Component because selecting a choice and clicking
-// "Check Answer" both update state live in the browser.
 export default function McqPractice({
   question,
   isLoggedIn,
@@ -14,20 +12,56 @@ export default function McqPractice({
   question: Question;
   isLoggedIn: boolean;
 }) {
+  const { user } = useAuth();
   const [selected, setSelected] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
 
   const isCorrect = selected === question.correctAnswer;
 
   async function handleCheckAnswer() {
     setChecked(true);
+    setSaveError("");
 
-    if (!isLoggedIn || selected === null) return;
+    if (!user || selected === null) return;
 
     setSaving(true);
-    await saveAttempt(question.id, selected, isCorrect);
-    setSaving(false);
+    try {
+      // Get auth token
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!session) {
+        setSaveError("Session expired. Please log in again.");
+        setSaving(false);
+        return;
+      }
+
+      // Call API to save attempt
+      const response = await fetch("/api/attempts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({
+          questionId: question.id,
+          submittedAnswer: selected,
+          isCorrect,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        setSaveError(error.error || "Failed to save attempt");
+      }
+    } catch (error) {
+      setSaveError(error instanceof Error ? error.message : "Error saving attempt");
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (
@@ -42,6 +76,7 @@ export default function McqPractice({
               onClick={() => {
                 setSelected(choice.label);
                 setChecked(false);
+                setSaveError("");
               }}
               className={`block w-full rounded-lg border-4 border-black px-4 py-3 text-left font-medium transition ${
                 isSelected
@@ -55,10 +90,14 @@ export default function McqPractice({
         })}
       </div>
 
-      {!isLoggedIn && (
+      {!user && (
         <p className="mt-3 text-sm font-bold text-[var(--color-purple)]">
           Sign in to save your progress.
         </p>
+      )}
+
+      {saveError && (
+        <p className="mt-3 text-sm text-red-700 font-bold">{saveError}</p>
       )}
 
       <button
