@@ -5,7 +5,14 @@
  * Internal database IDs are intentionally omitted; generate them in the database layer.
  * Questions explicitly omitted in the source files (for example, voided or canceled items)
  * remain omitted here.
+ *
+ * Media metadata:
+ * - questionMedia is displayed with the question prompt.
+ * - solutionMedia is displayed only after the learner checks or reveals the solution.
+ * - `required-missing` means the cited source contains required visual material,
+ *   but the corresponding asset has not yet been added to Astro Coach.
  */
+
 export const usaaaoMcqs = [
   // 2014–2015
 {
@@ -1921,6 +1928,14 @@ export const usaaaoMcqs = [
   correctAnswer: "B",
 
   explanation: "The source diagram shows Star B with the smaller annual parallax displacement. A smaller parallax corresponds to a greater distance.",
+
+  questionMedia: {
+
+    status: "required-missing",
+
+    assets: [],
+
+  },
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-exam.pdf",
@@ -4432,6 +4447,14 @@ export const usaaaoMcqs = [
 
   explanation: "For observer height h much smaller than Earth’s radius R, the horizon distance is approximately √(2Rh). Using h = 1.8 m gives about 4.8 km.",
 
+  solutionMedia: {
+
+    status: "required-missing",
+
+    assets: [],
+
+  },
+
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
   pageNumber: 2,
@@ -4620,6 +4643,14 @@ export const usaaaoMcqs = [
 
   explanation: "A source cannot vary coherently on a timescale shorter than its light-crossing time. One light-day is about 173 AU, so the best listed bound is 170 AU.",
 
+  solutionMedia: {
+
+    status: "required-missing",
+
+    assets: [],
+
+  },
+
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
   pageNumber: 5,
@@ -4666,6 +4697,23 @@ export const usaaaoMcqs = [
   correctAnswer: "B",
 
   explanation: "Using the spherical law of cosines for the coordinates of Caltech and MIT gives a central angle of about 37.35°, corresponding to approximately 4160 km.",
+
+  questionMedia: {
+
+    status: "required-missing",
+
+    assets: [],
+
+  },
+
+
+  solutionMedia: {
+
+    status: "required-missing",
+
+    assets: [],
+
+  },
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
@@ -4761,6 +4809,14 @@ export const usaaaoMcqs = [
 
   explanation: "Near the March equinox, the Sun is nearly overhead around local noon at the equator. The source photos show a nearly vanishing shadow, consistent with the Galapagos Islands near the equator.",
 
+  questionMedia: {
+
+    status: "required-missing",
+
+    assets: [],
+
+  },
+
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
   pageNumber: 8,
@@ -4855,6 +4911,23 @@ export const usaaaoMcqs = [
 
   explanation: "From the source image, the Moon’s apparent diameter is about one-third of the Sun’s 32′ diameter. Applying the small-angle relation to the Moon’s known diameter gives about 1.12 × 10⁶ km.",
 
+  questionMedia: {
+
+    status: "required-missing",
+
+    assets: [],
+
+  },
+
+
+  solutionMedia: {
+
+    status: "required-missing",
+
+    assets: [],
+
+  },
+
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
   pageNumber: 9,
@@ -4948,6 +5021,14 @@ export const usaaaoMcqs = [
   correctAnswer: "D",
 
   explanation: "The flat observed rotation curve at large distance indicates more gravitating mass than visible matter supplies; this is attributed to dark matter.",
+
+  questionMedia: {
+
+    status: "required-missing",
+
+    assets: [],
+
+  },
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
@@ -5089,6 +5170,14 @@ export const usaaaoMcqs = [
   correctAnswer: "B",
 
   explanation: "Identify the hydrogen lines in the source spectrum to set the wavelength scale, then apply Wien’s law to the two peak wavelengths. The temperatures are 6000 K and 8000 K.",
+
+  questionMedia: {
+
+    status: "required-missing",
+
+    assets: [],
+
+  },
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
@@ -5372,6 +5461,14 @@ export const usaaaoMcqs = [
 
   explanation: "The slope of the continuous best-fit line is about 500 km/s per Mpc, matching Hubble’s original estimate.",
 
+  questionMedia: {
+
+    status: "required-missing",
+
+    assets: [],
+
+  },
+
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
   pageNumber: 15,
@@ -5606,6 +5703,14 @@ export const usaaaoMcqs = [
   correctAnswer: "B",
 
   explanation: "Following the source precession diagram to 10,000 CE places the North Celestial Pole nearest Deneb.",
+
+  questionMedia: {
+
+    status: "required-missing",
+
+    assets: [],
+
+  },
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
@@ -10264,6 +10369,15 @@ export const usaaaoMcqs = [
     ],
     correctAnswer: "E",
     explanation: "The types must be read from the three circled objects in the supplied source image; the official solution selects the fifth classification sequence.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
+
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1.pdf",
     pageNumber: 5,
@@ -10602,6 +10716,10 @@ export const usaaaoMcqs = [
     ],
     correctAnswer: "C",
     explanation: "Apply the equinox solar geometry at an hour angle of three hours to the latitude-set gnomon; the official area is 2.5 m².",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1.pdf",
     pageNumber: 7,
@@ -11086,6 +11204,10 @@ export const usaaaoMcqs = [
     ],
     correctAnswer: "E",
     explanation: "Compare each of the five supplied galaxy images to the Hubble classification scheme; only the fifth sequence is consistent with all images.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_problems.pdf",
     pageNumber: 1,
@@ -11186,6 +11308,15 @@ export const usaaaoMcqs = [
     ],
     correctAnswer: "B",
     explanation: "The time fraction equals the red swept-area fraction in the source diagram, giving (e/π + 1/2)T.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
+
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_problems.pdf",
     pageNumber: 3,
@@ -11586,6 +11717,15 @@ export const usaaaoMcqs = [
     ],
     correctAnswer: "D",
     explanation: "The supplied sky image locates the celestial pole at the appropriate altitude; the official latitude is 20° N.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
+
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_problems.pdf",
     pageNumber: 6,
@@ -11736,6 +11876,10 @@ export const usaaaoMcqs = [
     ],
     correctAnswer: "A",
     explanation: "For the best Kp = 13.5 targets in the supplied CDPP plot, only the 0.5 Earth-radius case is below the 1σ detectability threshold.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_problems.pdf",
     pageNumber: 7,
@@ -11886,6 +12030,10 @@ export const usaaaoMcqs = [
     ],
     correctAnswer: "E",
     explanation: "Read the period from the supplied light curve and combine it with the 14.8 AU separation using Kepler's third law; the total is 46 M☉.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_problems.pdf",
     pageNumber: 8,
@@ -12336,6 +12484,15 @@ export const usaaaoMcqs = [
     ],
     correctAnswer: "D",
     explanation: "The supplied 11:59 pm sky image identifies the anti-solar sky direction; the official solution places the Sun in Cancer.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
+
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_problems.pdf",
     pageNumber: 12,
@@ -13336,6 +13493,15 @@ export const usaaaoMcqs = [
     ],
     correctAnswer: "E",
     explanation: "The source sky map contains Virgo, Crux, Lupus, and Libra; the official answer identifies Corona Borealis as absent.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
+
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023.pdf",
     pageNumber: 4,
@@ -13986,6 +14152,10 @@ export const usaaaoMcqs = [
     ],
     correctAnswer: "E",
     explanation: "The bridge's downriver bearing in the supplied map matches the relevant sunrise/sunset direction in late spring.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023.pdf",
     pageNumber: 8,
@@ -14036,6 +14206,10 @@ export const usaaaoMcqs = [
     ],
     correctAnswer: "A",
     explanation: "At the opposite azimuth later that day, the Sun remains above the horizon and is higher than in the morning.",
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023.pdf",
     pageNumber: 9,
@@ -14234,6 +14408,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "D",
     "explanation": "Telescope magnification is Fp/Fe. The second field is roughly 3–4 times more magnified than the first; only 6 m with a 30 mm eyepiece matches.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2024/02/usaaao_first_exam_2024-3.pdf",
     "pageNumber": 2,
@@ -14332,6 +14510,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "B",
     "explanation": "The official solution identifies √(15/2) as the angular-momentum ratio from the orbit geometry and mass ratio.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2024/02/usaaao_first_exam_2024-3.pdf",
     "pageNumber": 3,
@@ -14479,6 +14661,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "D",
     "explanation": "The maximum parallax distance scales with observing baseline, while accessible star count scales as distance cubed. The ratio is about 1.524³ ≈ 4.",
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2024/02/usaaao_first_exam_2024-3.pdf",
     "pageNumber": 4,
@@ -14675,6 +14861,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "D",
     "explanation": "The binary center of mass must lie at an ellipse focus. Only option D places the combined center of mass at a focus given the observed star’s location.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2024/02/usaaao_first_exam_2024-3.pdf",
     "pageNumber": 5,
@@ -14920,6 +15110,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "E",
     "explanation": "At local solar noon the Sun remains on the meridian in both seasons, so the noon lines match. At 6 PM in summer the Sun is north of west, giving α6 < β6.",
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2024/02/usaaao_first_exam_2024-3.pdf",
     "pageNumber": 7,
@@ -14969,6 +15163,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "C",
     "explanation": "The gnomon must point toward the North Celestial Pole. At latitude 40° N, that is 40° above the northern horizon, or 50° from vertical toward north.",
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2024/02/usaaao_first_exam_2024-3.pdf",
     "pageNumber": 7,
@@ -15655,6 +15853,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "B",
     "explanation": "For an ellipse, ℓ = a(1 − e²). With ℓ/a ≈ 0.01, e = √0.99 ≈ 0.995.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2025/02/exam_2025.pdf",
     "pageNumber": 2,
@@ -15704,6 +15906,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "A",
     "explanation": "The ecliptic is tilted 23.5° from the celestial equator; finite-distance satellite parallax adds about 14.5°, for a maximum difference near 38°.",
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2025/02/exam_2025.pdf",
     "pageNumber": 2,
@@ -15753,6 +15959,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "D",
     "explanation": "The spherical law of cosines gives a central angle about 1.922 rad; multiplying by Earth’s radius gives about 12,250 km.",
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2025/02/exam_2025.pdf",
     "pageNumber": 3,
@@ -15900,6 +16110,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "D",
     "explanation": "The official solution identifies line 1 as the local meridian, line 2 as the ecliptic, and line 3 as the celestial equator.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2025/02/exam_2025.pdf",
     "pageNumber": 4,
@@ -16194,6 +16408,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "B",
     "explanation": "The ball keeps its greater tangential inertial speed while moving inward, so relative to you it deflects in front of you.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2025/02/exam_2025.pdf",
     "pageNumber": 6,
@@ -16439,6 +16657,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "E",
     "explanation": "The two stars define a great circle. The zenith can lie on it for latitudes spanning approximately −55° to +55°, matching the official solution.",
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2025/02/exam_2025.pdf",
     "pageNumber": 7,
@@ -16488,6 +16710,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "C",
     "explanation": "At greatest elongation, Venus’s angular separation from the Sun gives a maximum evening visibility of about 3 h 20 m from the equator.",
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2025/02/exam_2025.pdf",
     "pageNumber": 8,
@@ -17076,6 +17302,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "D",
     "explanation": "Polaris is absent and Orion is in the northern half, placing the observer south of the equator. The Southern Cross points to a south celestial pole near the horizon, indicating about 20° S.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_2026.pdf",
     "pageNumber": 2,
@@ -17419,6 +17649,15 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "A",
     "explanation": "The official solution identifies α And, α CrB, β Her, and α PsA as the erased stars.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
+
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_2026.pdf",
     "pageNumber": 4,
@@ -17468,6 +17707,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "A",
     "explanation": "The correct curve must show magnitude change about 0.0115, total duration about 33 h, and ingress/egress about 3 h. The official solution identifies curve A.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_2026.pdf",
     "pageNumber": 5,
@@ -17517,6 +17760,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "C",
     "explanation": "The minimum separation is Algol’s ecliptic latitude. Converting its equatorial coordinates gives about 22°26′.",
+    solutionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_2026.pdf",
     "pageNumber": 7,
@@ -17909,6 +18156,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "E",
     "explanation": "Since M(r) ∝ v²r and v ∝ r, M(r) ∝ r³. This corresponds to roughly uniform three-dimensional density.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_2026.pdf",
     "pageNumber": 9,
@@ -17958,6 +18209,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "C",
     "explanation": "Enclosed mass scales as v². A velocity ratio near 3.5 implies total-to-baryonic mass near 12, so dark-to-baryonic mass near 11, closest to 10.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_2026.pdf",
     "pageNumber": 10,
@@ -18007,6 +18262,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "B",
     "explanation": "Dust is generally hotter at lower radii, not colder, and galaxy orbital speeds are far below relativistic. O/B-star UV ionization of nearby H-I clouds is the true assertion.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_2026.pdf",
     "pageNumber": 10,
@@ -18203,6 +18462,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "D",
     "explanation": "Kepler’s law gives period ratio (5.20/2.82)^(3/2) ≈ 2.50, corresponding to a 5:2 resonance.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_2026.pdf",
     "pageNumber": 11,
@@ -18252,6 +18515,10 @@ export const usaaaoMcqs = [
     ],
     "correctAnswer": "B",
     "explanation": "Region A is the main sequence, where core hydrogen fusion occurs. Region C is the red-giant-branch tip, where low-mass stars undergo helium flash.",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_2026.pdf",
     "pageNumber": 12,

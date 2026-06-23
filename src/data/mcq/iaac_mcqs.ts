@@ -518,6 +518,10 @@ export const iaacMcqs = [
     subtopic: "Nebulae",
     tags: ["Orion Nebula", "emission nebula", "NASA image"],
     type: "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     questionText: "The picture below shows a very famous nebula: What is the name of this nebula?",
     choices: [
       { label: "A", text: "Crab Nebula" },
@@ -1806,6 +1810,10 @@ export const iaacMcqs = [
     subtopic: "Nearby galaxies",
     tags: ["Triangulum Galaxy", "Local Group", "galaxy image"],
     type: "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     questionText: "The picture below shows a very close and well-known galaxy: What is the name of this galaxy?",
     choices: [
       { label: "A", text: "Pinwheel Galaxy" },
@@ -2814,6 +2822,10 @@ export const iaacMcqs = [
     subtopic: "Satellite galaxies",
     tags: ["Large Magellanic Cloud", "Milky Way satellite", "galaxy image"],
     type: "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     questionText: "The picture below shows a satellite galaxy of the Milky Way: What is the name of this satellite galaxy?",
     choices: [
       { label: "A", text: "Sagittarius Dwarf Spheroidal" },
@@ -3234,6 +3246,10 @@ export const iaacMcqs = [
     subtopic: "Telescope designs",
     tags: ["Newtonian telescope", "reflecting telescope", "optics diagram"],
     type: "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     questionText: "Below, you can see the rough sketch of a telescope. What type of telescope is drawn?",
     choices: [
       { label: "A", text: "Newtonian telescope" },
@@ -3379,6 +3395,10 @@ export const iaacMcqs = [
       "space telescope"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "What is the name of the JWST component highlighted in the official figure?",
     "choices": [
       {
@@ -3423,6 +3443,10 @@ export const iaacMcqs = [
       "spacecraft systems"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "What is the name of the JWST component highlighted in the official figure?",
     "choices": [
       {
@@ -3467,6 +3491,10 @@ export const iaacMcqs = [
       "space telescope"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "What is the name of the JWST component highlighted in the official figure?",
     "choices": [
       {
@@ -3644,6 +3672,10 @@ export const iaacMcqs = [
       "asteroids"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "Two asteroids with masses m₁, m₂ and velocities v₁, v₂ collide horizontally and merge into a single object. What is the velocity of the new asteroid?",
     "choices": [
       {
@@ -4613,6 +4645,10 @@ export const iaacMcqs = [
       "Galilean moons"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "What is the name of Jupiter’s moon shown in the official figure?",
     "choices": [
       {
@@ -4701,6 +4737,10 @@ export const iaacMcqs = [
       "galaxy shapes"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "Which one of these shapes in the official figure illustrates an elliptical galaxy?",
     "choices": [
       {
@@ -4745,6 +4785,10 @@ export const iaacMcqs = [
       "galaxy image"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "What is the class of the galaxy shown in the official figure?",
     "choices": [
       {
@@ -4789,6 +4833,10 @@ export const iaacMcqs = [
       "Hubble classification"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "Which class of galaxies does the shape in the official figure illustrate?",
     "choices": [
       {
@@ -4965,6 +5013,10 @@ export const iaacMcqs = [
       "orbital distance"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "Which one of the labeled points in the official ellipse diagram is the aphelion?",
     "choices": [
       {
@@ -5494,6 +5546,10 @@ export const iaacMcqs = [
       "Mars landing site"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "Where on Mars did the Zhurong rover of the Tianwen-1 mission land?",
     "choices": [
       {
@@ -6507,6 +6563,10 @@ export const iaacMcqs = [
       "galaxy diagram"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "What is the name of the region marked in the official horizontal Milky Way drawing?",
     "choices": [
       {
@@ -6551,6 +6611,10 @@ export const iaacMcqs = [
       "galaxy diagram"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "What is the name of the region marked in the official horizontal Milky Way drawing?",
     "choices": [
       {
@@ -7167,6 +7231,10 @@ export const iaacMcqs = [
       "reflector"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "What type of optical telescope is shown in the official image?",
     "choices": [
       {
@@ -7211,6 +7279,10 @@ export const iaacMcqs = [
       "lenses"
     ],
     "type": "MCQ",
+    questionMedia: {
+      status: "required-missing",
+      assets: [],
+    },
     "questionText": "What type of optical telescope is shown in the official image?",
     "choices": [
       {
