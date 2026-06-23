@@ -1,6 +1,6 @@
 import Link from "next/link";
 import BrutalCard from "./BrutalCard";
-import { Question } from "@/types/question";
+import { PublicQuestion } from "@/data/mcq/types";
 
 // Shortens long question text so the card preview stays a readable length.
 function previewText(text: string, maxLength: number) {
@@ -9,7 +9,11 @@ function previewText(text: string, maxLength: number) {
 }
 
 // One question's summary card on the Training page.
-export default function QuestionCard({ question }: { question: Question }) {
+export default function QuestionCard({ question }: { question: PublicQuestion }) {
+  // Show primary topic and up to 1 additional topic, with a +N indicator for more
+  const displayTopics = question.curriculumTopics.slice(0, 2);
+  const moreTopicsCount = Math.max(0, question.curriculumTopics.length - 2);
+
   return (
     <BrutalCard className="flex flex-col bg-[var(--color-cream)]">
       <div className="flex flex-wrap items-center gap-2 text-xs font-bold">
@@ -19,13 +23,23 @@ export default function QuestionCard({ question }: { question: Question }) {
         <span className="rounded bg-[var(--color-purple)] px-2 py-1 text-white">
           {question.difficulty}
         </span>
-        <span className="rounded bg-[var(--color-yellow)] px-2 py-1 text-[var(--color-navy)]">
-          {question.topic}
-        </span>
+        {displayTopics.map((topic) => (
+          <span
+            key={topic}
+            className="rounded bg-[var(--color-yellow)] px-2 py-1 text-[var(--color-navy)]"
+          >
+            {topic}
+          </span>
+        ))}
+        {moreTopicsCount > 0 && (
+          <span className="rounded bg-[var(--color-yellow)] px-2 py-1 text-[var(--color-navy)] font-bold">
+            +{moreTopicsCount}
+          </span>
+        )}
       </div>
 
       <h3 className="mt-3 text-lg font-extrabold text-[var(--color-navy)]">
-        {question.competition} — {question.year} {question.round}
+        {question.competition} — {question.year} {question.examName}
       </h3>
       <p className="text-sm text-black/60">Question {question.questionNumber}</p>
 

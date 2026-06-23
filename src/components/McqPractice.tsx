@@ -1,66 +1,71 @@
 "use client";
 
 import { useState } from "react";
-import { Question } from "@/types/question";
+import { PublicQuestion } from "@/data/mcq/types";
 import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/lib/auth";
 
-export default function McqPractice({
-  question,
-  isLoggedIn,
-}: {
-  question: Question;
-  isLoggedIn: boolean;
-}) {
+// What the server sends back after checking an answer. The correct
+// answer and explanation only ever arrive here, after submission —
+// they are never part of the question prop passed into this component.
+type CheckAnswerResult = {
+  isCorrect: boolean;
+  correctAnswer: string;
+  explanation: string;
+  solutionMediaMissing: boolean;
+};
+
+export default function McqPractice({ question }: { question: PublicQuestion }) {
   const { user } = useAuth();
   const [selected, setSelected] = useState<string | null>(null);
-  const [checked, setChecked] = useState(false);
-  const [saving, setSaving] = useState(false);
-  const [saveError, setSaveError] = useState("");
+  const [result, setResult] = useState<CheckAnswerResult | null>(null);
+  const [checking, setChecking] = useState(false);
+  const [checkError, setCheckError] = useState("");
 
-  const isCorrect = selected === question.correctAnswer;
-
+  // Sends the selected choice to the server, which looks up the real
+  // question and decides correctness — the browser never computes this.
   async function handleCheckAnswer() {
-    setChecked(true);
-    setSaveError("");
+    if (selected === null) return;
 
-    if (!user || selected === null) return;
+    setChecking(true);
+    setCheckError("");
+    setResult(null);
 
-    setSaving(true);
     try {
-      // Get auth token
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
 
-      if (!session) {
-        setSaveError("Session expired. Please log in again.");
-        setSaving(false);
-        return;
+      // Only attach a token if the user is logged in, so the server
+      // knows to save the attempt. Logged-out users still get feedback.
+      if (user) {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        if (session) {
+          headers.Authorization = `Bearer ${session.access_token}`;
+        }
       }
 
-      // Call API to save attempt
       const response = await fetch("/api/attempts", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${session.access_token}`,
-        },
+        headers,
         body: JSON.stringify({
           questionId: question.id,
           submittedAnswer: selected,
-          isCorrect,
         }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const error = await response.json();
-        setSaveError(error.error || "Failed to save attempt");
+        setCheckError(data.error || "Failed to check answer");
+        return;
       }
+
+      setResult(data);
     } catch (error) {
-      setSaveError(error instanceof Error ? error.message : "Error saving attempt");
+      setCheckError(error instanceof Error ? error.message : "Error checking answer");
     } finally {
-      setSaving(false);
+      setChecking(false);
     }
   }
 
@@ -75,8 +80,8 @@ export default function McqPractice({
               type="button"
               onClick={() => {
                 setSelected(choice.label);
-                setChecked(false);
-                setSaveError("");
+                setResult(null);
+                setCheckError("");
               }}
               className={`block w-full rounded-lg border-4 border-black px-4 py-3 text-left font-medium transition ${
                 isSelected
@@ -96,33 +101,38 @@ export default function McqPractice({
         </p>
       )}
 
-      {saveError && (
-        <p className="mt-3 text-sm text-red-700 font-bold">{saveError}</p>
-      )}
+      {checkError && <p className="mt-3 text-sm font-bold text-red-700">{checkError}</p>}
 
       <button
         type="button"
-        disabled={selected === null}
+        disabled={selected === null || checking}
         onClick={handleCheckAnswer}
         className="mt-4 rounded-lg border-4 border-black bg-[var(--color-yellow)] px-6 py-2 font-bold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {saving ? "Saving..." : "Check Answer"}
+        {checking ? "Checking..." : "Check Answer"}
       </button>
 
-      {checked && (
+      {result && (
         <div
           className={`mt-4 rounded-lg border-4 border-black p-4 font-bold ${
-            isCorrect ? "bg-green-200 text-green-900" : "bg-red-200 text-red-900"
+            result.isCorrect ? "bg-green-200 text-green-900" : "bg-red-200 text-red-900"
           }`}
         >
-          {isCorrect ? "Correct!" : `Incorrect. The correct answer is ${question.correctAnswer}.`}
+          {result.isCorrect
+            ? "Correct!"
+            : `Incorrect. The correct answer is ${result.correctAnswer}.`}
         </div>
       )}
 
-      {checked && (
+      {result && (
         <div className="mt-4 rounded-lg border-4 border-black bg-[var(--color-cream)] p-4">
           <h3 className="font-bold text-[var(--color-purple)]">Explanation</h3>
-          <p className="mt-1 text-[var(--color-navy)]">{question.explanation}</p>
+          <p className="mt-1 text-[var(--color-navy)]">{result.explanation}</p>
+          {result.solutionMediaMissing && (
+            <p className="mt-2 text-sm font-bold text-[var(--color-purple)]">
+              Solution figure coming soon.
+            </p>
+          )}
         </div>
       )}
     </div>
