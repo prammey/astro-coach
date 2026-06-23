@@ -11,9 +11,6 @@ const PLACEHOLDER_SOURCE = {
   permissionStatus: "original-placeholder" as const,
 };
 
-// 12 original placeholder questions: 8 MCQ + 4 FRQ.
-// These are NOT real olympiad questions — they exist only so the
-// training UI has something to display before a real database exists.
 export const sampleQuestions: Question[] = [
   {
     id: "q1",
