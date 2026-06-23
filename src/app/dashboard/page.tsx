@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/auth';
 
@@ -17,6 +18,7 @@ interface ProgressStats {
   totalAttempted: number;
   uniqueCorrect: number;
   accuracy: number;
+  totalQuestions: number;
   recentAttempts: UserAttempt[];
 }
 
@@ -133,7 +135,7 @@ export default function DashboardPage() {
               <div className="rounded-xl border-4 border-black bg-[var(--color-cream)] p-6 shadow-[6px_6px_0_0_#000]">
                 <p className="text-sm text-[var(--color-navy)]">Unique Correct</p>
                 <p className="mt-2 text-4xl font-extrabold text-[var(--color-yellow)]">
-                  {stats.uniqueCorrect}
+                  {stats.uniqueCorrect} / {stats.totalQuestions}
                 </p>
               </div>
 
@@ -194,12 +196,12 @@ export default function DashboardPage() {
 
             {/* CTA */}
             <div>
-              <a
+              <Link
                 href="/training"
                 className="inline-block rounded-lg border-4 border-black bg-[var(--color-electric-blue)] px-6 py-3 font-bold text-white shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
               >
                 Continue Training
-              </a>
+              </Link>
             </div>
           </div>
         ) : null}

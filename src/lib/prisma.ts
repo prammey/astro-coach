@@ -2,9 +2,13 @@ import { PrismaClient } from '@/generated/prisma';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
 
-let prisma: any;
+declare global {
+  var prismaClient: PrismaClient | undefined;
+}
 
-export function getPrisma() {
+export function getPrisma(): PrismaClient {
+  let prisma = global.prismaClient;
+
   if (!prisma) {
     if (!process.env.DATABASE_URL) {
       throw new Error('DATABASE_URL environment variable is not set');
@@ -16,9 +20,11 @@ export function getPrisma() {
 
     const adapter = new PrismaPg(pool);
 
-    prisma = new (PrismaClient as any)({
+    prisma = new PrismaClient({
       adapter,
-    }) as any;
+    });
+
+    global.prismaClient = prisma;
   }
 
   return prisma;
