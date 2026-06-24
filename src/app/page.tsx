@@ -25,8 +25,17 @@ const FEATURES = [
 export default function HomePage() {
   return (
     <>
-      {/* Hero section */}
-      <section className="border-b-4 border-black bg-[var(--color-navy)] text-white">
+      {/* Hero section with background image */}
+      <section
+        className="border-b-4 border-black text-white flex flex-col justify-center"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/hero/home-hero.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "500px",
+        }}
+      >
         <PageContainer>
           <h1 className="text-4xl font-extrabold sm:text-6xl">
             <span className="text-[var(--color-yellow)]">Astro Coach</span>
