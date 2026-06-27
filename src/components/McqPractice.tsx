@@ -15,7 +15,13 @@ type CheckAnswerResult = {
   solutionMediaMissing: boolean;
 };
 
-export default function McqPractice({ question }: { question: PublicQuestion }) {
+export default function McqPractice({
+  question,
+  onAnswerSubmitted,
+}: {
+  question: PublicQuestion;
+  onAnswerSubmitted?: () => void;
+}) {
   const { user } = useAuth();
   const [selected, setSelected] = useState<string | null>(null);
   const [result, setResult] = useState<CheckAnswerResult | null>(null);
@@ -62,6 +68,7 @@ export default function McqPractice({ question }: { question: PublicQuestion }) 
       }
 
       setResult(data);
+      onAnswerSubmitted?.();
     } catch (error) {
       setCheckError(error instanceof Error ? error.message : "Error checking answer");
     } finally {

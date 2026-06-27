@@ -9,13 +9,28 @@ function previewText(text: string, maxLength: number) {
 }
 
 // One question's summary card on the Training page.
-export default function QuestionCard({ question }: { question: PublicQuestion }) {
+export default function QuestionCard({
+  question,
+  isAnswered = false,
+}: {
+  question: PublicQuestion;
+  isAnswered?: boolean;
+}) {
   // Show primary topic and up to 1 additional topic, with a +N indicator for more
   const displayTopics = question.curriculumTopics.slice(0, 2);
   const moreTopicsCount = Math.max(0, question.curriculumTopics.length - 2);
 
   return (
-    <BrutalCard className="flex flex-col bg-[var(--color-cream)]">
+    <BrutalCard className="relative flex flex-col bg-[var(--color-cream)]">
+      {isAnswered && (
+        <div className="absolute top-3 right-3">
+          <img
+            src="/icons/eye.png"
+            alt="Question answered"
+            className="w-5 h-5 object-contain"
+          />
+        </div>
+      )}
       <div className="flex flex-wrap items-center gap-2 text-xs font-bold">
         <span className="rounded bg-[var(--color-electric-blue)] px-2 py-1 text-white">
           {question.type}

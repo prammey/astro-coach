@@ -1,17 +1,50 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import SearchInput from "@/components/SearchInput";
 import CollapsibleFilterPanel, { type FilterState } from "@/components/CollapsibleFilterPanel";
 import QuestionCard from "@/components/QuestionCard";
 import { PublicQuestion } from "@/data/mcq/types";
 import { CURRICULUM_TOPICS } from "@/data/mcq/topicTaxonomy";
+import { useAuth } from "@/lib/auth-context";
+import { useTrainingMode } from "@/lib/training-mode-context";
+import { supabase } from "@/lib/auth";
 
 // Client Component that owns the search/filter state for the Training
 // page. The question list itself comes from the server as a prop, so
 // no answer keys or explanations ever reach the browser here.
 export default function TrainingBrowser({ questions }: { questions: PublicQuestion[] }) {
   const [search, setSearch] = useState("");
+  const [answeredQuestionIds, setAnsweredQuestionIds] = useState<Set<string>>(new Set());
+  const { user } = useAuth();
+  const router = useRouter();
+  const { startTrainingMode } = useTrainingMode();
+
+  // Fetch the user's answered questions when component mounts
+  useEffect(() => {
+    if (!user) return;
+
+    const fetchAnsweredQuestions = async () => {
+      try {
+        const token = await supabase.auth.getSession().then((session) => session.data.session?.access_token);
+        if (!token) return;
+
+        const response = await fetch('/api/user/answered-questions', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setAnsweredQuestionIds(new Set(data.answeredQuestionIds));
+        }
+      } catch (error) {
+        console.error('Error fetching answered questions:', error);
+      }
+    };
+
+    fetchAnsweredQuestions();
+  }, [user]);
 
   // Calculate initial year range and competitions from questions
   const initialYearRange = useMemo(() => {
@@ -88,13 +121,32 @@ export default function TrainingBrowser({ questions }: { questions: PublicQuesti
         />
       </div>
 
+      {filteredQuestions.length > 0 && (
+        <div className="mt-6">
+          <button
+            onClick={() => {
+              const questionIds = filteredQuestions.map((q) => q.id);
+              startTrainingMode(questionIds);
+              router.push(`/training/mode`);
+            }}
+            className="w-full rounded-lg border-4 border-black bg-[var(--color-electric-blue)] px-6 py-4 text-center font-extrabold text-white shadow-[6px_6px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+          >
+            Start Training
+          </button>
+        </div>
+      )}
+
       <p className="mt-6 text-sm font-bold text-[var(--color-navy)]/70">
         {filteredQuestions.length} question{filteredQuestions.length === 1 ? "" : "s"} found
       </p>
 
       <div className="mt-4 grid gap-6 sm:grid-cols-2">
         {filteredQuestions.map((question) => (
-          <QuestionCard key={question.id} question={question} />
+          <QuestionCard
+            key={question.id}
+            question={question}
+            isAnswered={answeredQuestionIds.has(question.id)}
+          />
         ))}
       </div>
 

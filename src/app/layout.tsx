@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/lib/auth-context";
+import { TrainingModeProvider } from "@/lib/training-mode-context";
 
 export const metadata: Metadata = {
   title: "Astro Coach",
@@ -20,9 +21,11 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <body className="min-h-full flex flex-col">
         <AuthProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <TrainingModeProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </TrainingModeProvider>
         </AuthProvider>
       </body>
     </html>

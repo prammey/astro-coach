@@ -156,7 +156,7 @@ export default function DashboardPage() {
                     <thead className="bg-[var(--color-space-blue)]">
                       <tr>
                         <th className="px-6 py-3 text-left text-sm font-semibold text-white">Question</th>
-                        <th className="px-6 py-3 text-left text-sm font-semibold text-white">Answer</th>
+                        <th className="px-6 py-3 text-left text-sm font-semibold text-white">Your Answer</th>
                         <th className="px-6 py-3 text-left text-sm font-semibold text-white">Result</th>
                         <th className="px-6 py-3 text-left text-sm font-semibold text-white">When</th>
                       </tr>
@@ -164,11 +164,16 @@ export default function DashboardPage() {
                     <tbody className="divide-y-2 divide-black">
                       {stats.recentAttempts.map((attempt) => (
                         <tr key={attempt.id} className="hover:bg-[var(--color-electric-blue)]/10">
-                          <td className="px-6 py-3 text-sm font-semibold text-[var(--color-navy)]">
-                            {attempt.questionId.slice(0, 8)}...
+                          <td className="px-6 py-3 text-sm font-semibold">
+                            <Link
+                              href={`/training/${attempt.questionId}`}
+                              className="text-[var(--color-electric-blue)] underline hover:text-[var(--color-purple)] transition-colors"
+                            >
+                              {attempt.questionId}
+                            </Link>
                           </td>
-                          <td className="px-6 py-3 text-sm text-[var(--color-navy)]">
-                            {attempt.submittedAnswer.slice(0, 20)}...
+                          <td className="px-6 py-3 text-sm font-semibold text-[var(--color-navy)]">
+                            {attempt.submittedAnswer}
                           </td>
                           <td className="px-6 py-3">
                             <span

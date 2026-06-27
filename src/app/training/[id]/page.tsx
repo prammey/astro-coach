@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import PageContainer from "@/components/PageContainer";
 import BrutalCard from "@/components/BrutalCard";
 import McqPractice from "@/components/McqPractice";
+import QuestionAnsweredIndicator from "@/components/QuestionAnsweredIndicator";
+import SkipQuestionButton from "@/components/SkipQuestionButton";
 import { findCatalogQuestionById, toPublicQuestion } from "@/data/mcq/catalog.server";
 
 // Server Component: looks up the full question (with the correct answer)
@@ -43,9 +45,12 @@ export default async function QuestionDetailPage({
         </span>
       </div>
 
-      <h1 className="mt-3 text-2xl font-extrabold text-[var(--color-navy)] sm:text-3xl">
-        {publicQuestion.competition} — {publicQuestion.year} {publicQuestion.examName}
-      </h1>
+      <div className="flex items-center gap-2">
+        <h1 className="mt-3 text-2xl font-extrabold text-[var(--color-navy)] sm:text-3xl">
+          {publicQuestion.competition} — {publicQuestion.year} {publicQuestion.examName}
+        </h1>
+        <QuestionAnsweredIndicator questionId={publicQuestion.id} />
+      </div>
       <p className="text-sm text-black/60">Question {publicQuestion.questionNumber}</p>
 
       {publicQuestion.questionMediaMissing && (
@@ -60,6 +65,10 @@ export default async function QuestionDetailPage({
       </BrutalCard>
 
       <McqPractice question={publicQuestion} />
+
+      <div className="mt-6">
+        <SkipQuestionButton />
+      </div>
 
       <BrutalCard className="mt-8 bg-white">
         <h2 className="font-bold text-[var(--color-purple)]">Source Metadata</h2>
