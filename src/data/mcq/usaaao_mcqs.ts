@@ -1931,9 +1931,9 @@ export const usaaaoMcqs = [
 
   questionMedia: {
 
-    status: "required-missing",
+    status: "complete",
 
-    assets: [],
+    assets: ["/mcq-images/usaaao-images/2015-usaaao-first-round-images/usaaao-2015-first-round-q12.png"],
 
   },
 
@@ -4449,9 +4449,9 @@ export const usaaaoMcqs = [
 
   solutionMedia: {
 
-    status: "required-missing",
+    status: "complete",
 
-    assets: [],
+    assets: ["/mcq-images/usaaao-images/2017-usaaao-first-round-images/usaaao-2017-first-round-q5--solution.jpg"],
 
   },
 
@@ -4645,9 +4645,9 @@ export const usaaaoMcqs = [
 
   solutionMedia: {
 
-    status: "required-missing",
+    status: "complete",
 
-    assets: [],
+    assets: ["/mcq-images/usaaao-images/2017-usaaao-first-round-images/usaaao-2017-first-round-q9-solution.jpg"],
 
   },
 
@@ -4700,18 +4700,18 @@ export const usaaaoMcqs = [
 
   questionMedia: {
 
-    status: "required-missing",
+    status: "complete",
 
-    assets: [],
+    assets: ["/mcq-images/usaaao-images/2017-usaaao-first-round-images/usaaao-2017-first-round-q10.png"],
 
   },
 
 
   solutionMedia: {
 
-    status: "required-missing",
+    status: "complete",
 
-    assets: [],
+    assets: ["/mcq-images/usaaao-images/2017-usaaao-first-round-images/usaaao-2017-first-round-q10--solution.jpg"],
 
   },
 
@@ -4811,9 +4811,9 @@ export const usaaaoMcqs = [
 
   questionMedia: {
 
-    status: "required-missing",
+    status: "complete",
 
-    assets: [],
+    assets: ["/mcq-images/usaaao-images/2017-usaaao-first-round-images/usaaao-2017-first-round-q12.jpg"],
 
   },
 
@@ -4913,9 +4913,9 @@ export const usaaaoMcqs = [
 
   questionMedia: {
 
-    status: "required-missing",
+    status: "complete",
 
-    assets: [],
+    assets: ["/mcq-images/usaaao-images/2017-usaaao-first-round-images/usaaao-2017-first-round-q14.jpg"],
 
   },
 
@@ -5024,9 +5024,9 @@ export const usaaaoMcqs = [
 
   questionMedia: {
 
-    status: "required-missing",
+    status: "complete",
 
-    assets: [],
+    assets: ["/mcq-images/usaaao-images/2017-usaaao-first-round-images/usaaao-2017-first-round-q16.png"],
 
   },
 
@@ -5173,9 +5173,9 @@ export const usaaaoMcqs = [
 
   questionMedia: {
 
-    status: "required-missing",
+    status: "complete",
 
-    assets: [],
+    assets: ["/mcq-images/usaaao-images/2017-usaaao-first-round-images/usaaao-2017-first-round-q19.jpg"],
 
   },
 
@@ -5463,9 +5463,9 @@ export const usaaaoMcqs = [
 
   questionMedia: {
 
-    status: "required-missing",
+    status: "complete",
 
-    assets: [],
+    assets: ["/mcq-images/usaaao-images/2017-usaaao-first-round-images/usaaao-2017-first-round-q25.jpg"],
 
   },
 
@@ -5706,9 +5706,9 @@ export const usaaaoMcqs = [
 
   questionMedia: {
 
-    status: "required-missing",
+    status: "complete",
 
-    assets: [],
+    assets: ["/mcq-images/usaaao-images/2017-usaaao-first-round-images/usaaao-2017-first-round-q30.jpg"],
 
   },
 
@@ -10370,8 +10370,8 @@ export const usaaaoMcqs = [
     correctAnswer: "E",
     explanation: "The types must be read from the three circled objects in the supplied source image; the official solution selects the fifth classification sequence.",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2021-usaaao-first-round-images/usaaao-2021-first-round-q14.png"]
     },
 
     solutionMedia: {
@@ -10717,8 +10717,8 @@ export const usaaaoMcqs = [
     correctAnswer: "C",
     explanation: "Apply the equinox solar geometry at an hour angle of three hours to the latitude-set gnomon; the official area is 2.5 m².",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2021-usaaao-first-round-images/usaaao-2021-first-round-q21.png"]
     },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1.pdf",
@@ -11205,8 +11205,8 @@ export const usaaaoMcqs = [
     correctAnswer: "E",
     explanation: "Compare each of the five supplied galaxy images to the Hubble classification scheme; only the fifth sequence is consistent with all images.",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2022-usaaao-first-round-images/usaaao-2022-first-round-q1.png"]
     },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_problems.pdf",
@@ -11309,13 +11309,13 @@ export const usaaaoMcqs = [
     correctAnswer: "B",
     explanation: "The time fraction equals the red swept-area fraction in the source diagram, giving (e/π + 1/2)T.",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2022-usaaao-first-round-images/usaaao-2022-first-round-q3.jpg"]
     },
 
     solutionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2022-usaaao-first-round-images/usaaao-2022-first-round-q3--solution.jpg"]
     },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_problems.pdf",
@@ -11718,13 +11718,13 @@ export const usaaaoMcqs = [
     correctAnswer: "D",
     explanation: "The supplied sky image locates the celestial pole at the appropriate altitude; the official latitude is 20° N.",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2022-usaaao-first-round-images/usaaao-2022-first-round-q11.jpg"]
     },
 
     solutionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2022-usaaao-first-round-images/usaaao-2022-first-round-q11--solution.jpg"]
     },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_problems.pdf",
@@ -11877,8 +11877,8 @@ export const usaaaoMcqs = [
     correctAnswer: "A",
     explanation: "For the best Kp = 13.5 targets in the supplied CDPP plot, only the 0.5 Earth-radius case is below the 1σ detectability threshold.",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2022-usaaao-first-round-images/usaaao-2022-first-round-q14.png"]
     },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_problems.pdf",
@@ -12031,8 +12031,8 @@ export const usaaaoMcqs = [
     correctAnswer: "E",
     explanation: "Read the period from the supplied light curve and combine it with the 14.8 AU separation using Kepler's third law; the total is 46 M☉.",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2022-usaaao-first-round-images/usaaao-2022-first-round-q17.png"]
     },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_problems.pdf",
@@ -12485,13 +12485,13 @@ export const usaaaoMcqs = [
     correctAnswer: "D",
     explanation: "The supplied 11:59 pm sky image identifies the anti-solar sky direction; the official solution places the Sun in Cancer.",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2022-usaaao-first-round-images/usaaao-2022-first-round-q26.png"]
     },
 
     solutionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2022-usaaao-first-round-images/usaaao-2022-first-round-q26--solution.png"]
     },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_problems.pdf",
@@ -13494,13 +13494,13 @@ export const usaaaoMcqs = [
     correctAnswer: "E",
     explanation: "The source sky map contains Virgo, Crux, Lupus, and Libra; the official answer identifies Corona Borealis as absent.",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2023-usaaao-first-round-images/usaaao-2023-first-round-q16.jpg"]
     },
 
     solutionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2023-usaaao-first-round-images/usaaao-2023-first-round-q16--solution.jpg"]
     },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023.pdf",
@@ -14153,8 +14153,8 @@ export const usaaaoMcqs = [
     correctAnswer: "E",
     explanation: "The bridge's downriver bearing in the supplied map matches the relevant sunrise/sunset direction in late spring.",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2023-usaaao-first-round-images/usaaao-2023-first-round-q29.png"]
     },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023.pdf",
@@ -14207,8 +14207,8 @@ export const usaaaoMcqs = [
     correctAnswer: "A",
     explanation: "At the opposite azimuth later that day, the Sun remains above the horizon and is higher than in the morning.",
     solutionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2023-usaaao-first-round-images/usaaao-2023-first-round-q30--solution.png"]
     },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023.pdf",

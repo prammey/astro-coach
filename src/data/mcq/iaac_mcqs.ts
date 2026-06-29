@@ -519,8 +519,8 @@ export const iaacMcqs = [
     tags: ["Orion Nebula", "emission nebula", "NASA image"],
     type: "MCQ",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/iaac-images/2019-iaac-final-round-images/iaac-2019-final-round-q19.png"],
     },
     questionText: "The picture below shows a very famous nebula: What is the name of this nebula?",
     choices: [
@@ -1811,8 +1811,8 @@ export const iaacMcqs = [
     tags: ["Triangulum Galaxy", "Local Group", "galaxy image"],
     type: "MCQ",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/iaac-images/2020-iaac-final-round-images/iaac-2020-final-round-q25.png"],
     },
     questionText: "The picture below shows a very close and well-known galaxy: What is the name of this galaxy?",
     choices: [
@@ -2823,8 +2823,8 @@ export const iaacMcqs = [
     tags: ["Large Magellanic Cloud", "Milky Way satellite", "galaxy image"],
     type: "MCQ",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/iaac-images/2021-iaac-final-round-images/iaac-2021-final-round-q11.png"],
     },
     questionText: "The picture below shows a satellite galaxy of the Milky Way: What is the name of this satellite galaxy?",
     choices: [
@@ -3247,8 +3247,8 @@ export const iaacMcqs = [
     tags: ["Newtonian telescope", "reflecting telescope", "optics diagram"],
     type: "MCQ",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/iaac-images/2021-iaac-final-round-images/iaac-2021-final-round-q26.png"],
     },
     questionText: "Below, you can see the rough sketch of a telescope. What type of telescope is drawn?",
     choices: [
