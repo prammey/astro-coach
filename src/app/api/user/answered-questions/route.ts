@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Error fetching answered questions:', error);
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Failed to fetch answered questions' },
+      { error: 'Failed to fetch answered questions. Please try again.' },
       { status: 500 }
     );
   }

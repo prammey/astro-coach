@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error checking answer:', error);
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Failed' },
+      { error: 'Failed to check answer. Please try again.' },
       { status: 500 }
     );
   }

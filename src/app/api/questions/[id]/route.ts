@@ -18,7 +18,7 @@ export async function GET(
   } catch (error) {
     console.error('Error fetching question:', error);
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Failed to fetch question' },
+      { error: 'Failed to fetch question. Please try again.' },
       { status: 500 }
     );
   }

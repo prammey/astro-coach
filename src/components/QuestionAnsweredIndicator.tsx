@@ -6,17 +6,15 @@ import { supabase } from '@/lib/auth';
 
 export default function QuestionAnsweredIndicator({ questionId }: { questionId: string }) {
   const [isAnswered, setIsAnswered] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuth();
 
   useEffect(() => {
-    if (!user) {
-      setIsLoading(false);
-      return;
-    }
+    if (!user) return;
 
     const checkIfAnswered = async () => {
       try {
+        setIsLoading(true);
         const token = await supabase.auth.getSession().then((session) => session.data.session?.access_token);
         if (!token) {
           setIsLoading(false);
@@ -30,9 +28,12 @@ export default function QuestionAnsweredIndicator({ questionId }: { questionId: 
         if (response.ok) {
           const data = await response.json();
           setIsAnswered(data.answeredQuestionIds.includes(questionId));
+        } else {
+          setIsAnswered(false);
         }
       } catch (error) {
         console.error('Error checking if question answered:', error);
+        setIsAnswered(false);
       } finally {
         setIsLoading(false);
       }

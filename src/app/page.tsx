@@ -292,7 +292,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <button className="mt-4 rounded-lg border-4 border-black bg-gray-400 px-6 py-2 font-bold text-white cursor-not-allowed opacity-60">
-                  You're Here
+                  You&rsquo;re Here
                 </button>
               </div>
             </div>

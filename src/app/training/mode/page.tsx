@@ -30,8 +30,6 @@ export default function TrainingModePage() {
       return;
     }
 
-    setIsAnswered(false);
-
     const fetchQuestion = async () => {
       try {
         setLoading(true);
@@ -47,6 +45,7 @@ export default function TrainingModePage() {
         setQuestion(null);
       } finally {
         setLoading(false);
+        setIsAnswered(false);
       }
     };
 
