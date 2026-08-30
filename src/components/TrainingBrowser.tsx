@@ -72,12 +72,15 @@ export default function TrainingBrowser({ questions }: { questions: PublicQuesti
     const lowerSearch = search.trim().toLowerCase();
 
     return questions.filter((question) => {
-      // Search: match question text, topic, subtopic, or tags
+      // Search: match question text, competition, year, topic, subtopic, curriculum topics, or tags
       const matchesSearch =
         lowerSearch === "" ||
         question.questionText.toLowerCase().includes(lowerSearch) ||
+        question.competition.toLowerCase().includes(lowerSearch) ||
+        question.year.toString().includes(lowerSearch) ||
         question.topic.toLowerCase().includes(lowerSearch) ||
         question.subtopic.toLowerCase().includes(lowerSearch) ||
+        question.curriculumTopics.some((topic) => topic.toLowerCase().includes(lowerSearch)) ||
         question.tags.some((tag) => tag.toLowerCase().includes(lowerSearch));
 
       // Competition filter: OR logic (match any selected competition)

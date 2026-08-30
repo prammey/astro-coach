@@ -5,6 +5,7 @@ import BrutalCard from "@/components/BrutalCard";
 import McqPractice from "@/components/McqPractice";
 import QuestionAnsweredIndicator from "@/components/QuestionAnsweredIndicator";
 import SkipQuestionButton from "@/components/SkipQuestionButton";
+import NextQuestionButton from "@/components/NextQuestionButton";
 import { findCatalogQuestionById, toPublicQuestion } from "@/data/mcq/catalog.server";
 
 // Server Component: looks up the full question (with the correct answer)
@@ -66,8 +67,9 @@ export default async function QuestionDetailPage({
 
       <McqPractice question={publicQuestion} />
 
-      <div className="mt-6">
+      <div className="mt-6 flex gap-4 justify-center">
         <SkipQuestionButton />
+        <NextQuestionButton currentQuestionId={publicQuestion.id} />
       </div>
 
       <BrutalCard className="mt-8 bg-white">

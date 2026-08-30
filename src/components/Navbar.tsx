@@ -44,7 +44,7 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
-          {!loading && user ? (
+          {user ? (
             <>
               <li>
                 <Link
@@ -63,7 +63,7 @@ export default function Navbar() {
                 </button>
               </li>
             </>
-          ) : !loading ? (
+          ) : (
             <li>
               <Link
                 href="/login"
@@ -72,7 +72,7 @@ export default function Navbar() {
                 Login
               </Link>
             </li>
-          ) : null}
+          )}
         </ul>
       </nav>
     </header>

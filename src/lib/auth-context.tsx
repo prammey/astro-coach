@@ -18,50 +18,81 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   // Initialize auth state on mount
   useEffect(() => {
-    // Check current session
+    let mounted = true;
+
     const initAuth = async () => {
       try {
-        const { data } = await supabase.auth.getSession();
-        setSession(data.session);
-        setUser(data.session?.user ?? null);
+        console.log('Checking session...');
+        const { data, error } = await supabase.auth.getSession();
+
+        if (!mounted) return;
+
+        if (error) {
+          console.error('Session check error:', error);
+        } else {
+          console.log('Session checked:', data?.session ? 'authenticated' : 'not authenticated');
+          setSession(data?.session ?? null);
+          setUser(data?.session?.user ?? null);
+        }
       } catch (error) {
-        console.error('Error initializing auth:', error);
-      } finally {
-        setLoading(false);
+        if (mounted) {
+          console.error('Auth init error:', error);
+        }
       }
     };
 
-    initAuth();
-
-    // Listen for auth state changes (login, logout, etc)
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
+    // Setup auth state listener first (synchronous)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (mounted) {
+        console.log('Auth state:', event, session ? 'logged in' : 'logged out');
+        setSession(session);
+        setUser(session?.user ?? null);
+      }
     });
 
-    return () => subscription?.unsubscribe();
+    // Then check session (may be slow)
+    initAuth();
+
+    return () => {
+      mounted = false;
+      subscription?.unsubscribe();
+    };
   }, []);
 
   const signUp = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-    });
-    if (error) throw error;
+    try {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+      if (error) {
+        console.error('SignUp error:', error);
+        throw new Error(error.message || 'Failed to sign up');
+      }
+    } catch (err) {
+      console.error('SignUp exception:', err);
+      throw err;
+    }
   };
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    if (error) throw error;
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) {
+        console.error('SignIn error:', error);
+        throw new Error(error.message || 'Failed to sign in');
+      }
+    } catch (err) {
+      console.error('SignIn exception:', err);
+      throw err;
+    }
   };
 
   const signOut = async () => {
