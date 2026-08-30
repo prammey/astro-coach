@@ -18,7 +18,8 @@ export default function Navbar() {
   const handleLogout = async () => {
     try {
       await fetch("/api/auth/logout", { method: "POST" });
-      router.push("/");
+      // Refresh page to ensure auth state is updated before navigation
+      window.location.href = "/";
     } catch (error) {
       console.error("Logout failed:", error);
     }
