@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
+import { useState } from "react";
 
 export default function Navbar() {
   const router = useRouter();
-  const { user, loading } = useAuth();
+  const { user, loading, signOut } = useAuth();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const links = [
     { href: "/", label: "Home" },
@@ -17,8 +19,10 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await fetch("/api/auth/logout", { method: "POST" });
-      // Refresh page to ensure auth state is updated before navigation
+      // Call signOut to clear session - this clears localStorage and triggers listener
+      await signOut();
+      // Use hard redirect to ensure complete page reload and fresh auth context initialization
+      // This guarantees the auth state is checked from scratch with no cached state
       window.location.href = "/";
     } catch (error) {
       console.error("Logout failed:", error);
