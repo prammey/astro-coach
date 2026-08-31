@@ -10,13 +10,8 @@ export const metadata: Metadata = {
   description:
     "Astro Coach is an independent training platform for astronomy olympiad students.",
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/star-icon.png", sizes: "any" },
-    ],
-    apple: [
-      { url: "/star-icon.png", sizes: "180x180" },
-    ],
+    icon: "/star-icon.png",
+    apple: "/star-icon.png",
     other: [
       {
         rel: "mask-icon",
