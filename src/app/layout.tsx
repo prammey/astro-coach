@@ -6,9 +6,12 @@ import { AuthProvider } from "@/lib/auth-context";
 import { TrainingModeProvider } from "@/lib/training-mode-context";
 
 export const metadata: Metadata = {
-  title: "Astro Coach",
+  title: "AstroCoach",
   description:
-    "Astro Coach is an independent training platform for astronomy olympiad students.",
+    "AstroCoach is an independent training platform for astronomy olympiad students.",
+  icons: {
+    icon: "/star-icon.svg",
+  },
 };
 
 // The root layout wraps every page with the shared Navbar and Footer.

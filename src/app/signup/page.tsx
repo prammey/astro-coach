@@ -71,7 +71,7 @@ export default function SignupPage() {
       <div className="w-full max-w-md">
         <div className="rounded-xl border-4 border-black bg-white p-8 shadow-[6px_6px_0_0_#000]">
           <h1 className="text-3xl font-extrabold text-[var(--color-navy)] mb-2">Sign Up</h1>
-          <p className="text-sm text-gray-600 mb-6">Create your Astro Coach account</p>
+          <p className="text-sm text-gray-600 mb-6">Create your AstroCoach account</p>
 
           {error && (
             <div className="mb-4 p-4 bg-red-100 border-2 border-red-500 rounded text-red-700 text-sm">

@@ -39,7 +39,7 @@ export type Question = {
 
   explanation: string;
 
-  // Source metadata (see Astro Coach source policy)
+  // Source metadata (see AstroCoach source policy)
   sourceUrl: string;
   pdfUrl: string;
   pageNumber: number | null;

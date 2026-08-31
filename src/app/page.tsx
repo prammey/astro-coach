@@ -39,7 +39,7 @@ export default function HomePage() {
       >
         <PageContainer>
           <h1 className="text-4xl font-extrabold sm:text-6xl">
-            <span className="text-[var(--color-yellow)]">Astro Coach</span>
+            <span className="text-[var(--color-yellow)]">AstroCoach</span>
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/80">
             A training platform for astronomy olympiad students. Learn which
@@ -66,7 +66,7 @@ export default function HomePage() {
       {/* Feature cards */}
       <PageContainer>
         <h2 className="text-2xl font-extrabold text-[var(--color-navy)]">
-          What Astro Coach Offers
+          What AstroCoach Offers
         </h2>
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           {FEATURES.map((feature) => (

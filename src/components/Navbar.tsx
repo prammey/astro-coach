@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 import { useState } from "react";
@@ -34,9 +35,16 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
         <Link
           href="/"
-          className="text-xl font-extrabold tracking-tight text-[var(--color-yellow)]"
+          className="flex items-center gap-2 text-xl font-extrabold tracking-tight text-[var(--color-yellow)]"
         >
-          Astro Coach
+          <Image
+            src="/star-icon.svg"
+            alt="AstroCoach"
+            width={28}
+            height={28}
+            className="h-7 w-7"
+          />
+          AstroCoach
         </Link>
         <ul className="flex items-center gap-4 text-sm font-bold sm:gap-6 sm:text-base">
           {links.map((link) => (

@@ -1,7 +1,7 @@
 /**
  * Consolidated USAAAO First Round multiple-choice question bank (2014–2026).
  *
- * Merged from the five verified source files previously generated for Astro Coach.
+ * Merged from the five verified source files previously generated for AstroCoach.
  * Internal database IDs are intentionally omitted; generate them in the database layer.
  * Questions explicitly omitted in the source files (for example, voided or canceled items)
  * remain omitted here.
@@ -10,7 +10,7 @@
  * - questionMedia is displayed with the question prompt.
  * - solutionMedia is displayed only after the learner checks or reveals the solution.
  * - `required-missing` means the cited source contains required visual material,
- *   but the corresponding asset has not yet been added to Astro Coach.
+ *   but the corresponding asset has not yet been added to AstroCoach.
  */
 
 export const usaaaoMcqs = [
