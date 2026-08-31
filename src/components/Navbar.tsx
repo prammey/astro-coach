@@ -32,7 +32,7 @@ export default function Navbar() {
 
   return (
     <header className="border-b-4 border-black bg-[var(--color-navy)]">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-6">
+      <nav className="flex items-center justify-between px-10 py-8">
         <Link
           href="/"
           className="flex items-center gap-2 text-2xl font-extrabold tracking-tight text-[var(--color-yellow)]"
