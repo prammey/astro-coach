@@ -1,21 +1,21 @@
 import PageContainer from "@/components/PageContainer";
 import BrutalCard from "@/components/BrutalCard";
 
-// Explains what AstroCoach is and its source/copyright policy.
+// Explains what Astro Coach is and its source/copyright policy.
 export default function AboutPage() {
   return (
     <PageContainer>
       <h1 className="text-3xl font-extrabold text-[var(--color-navy)] sm:text-4xl">
-        About AstroCoach
+        About Astro Coach
       </h1>
 
       <div className="mt-8 space-y-6">
         <BrutalCard className="bg-[var(--color-cream)]">
           <h2 className="text-xl font-bold text-[var(--color-purple)]">
-            What AstroCoach Is
+            What Astro Coach Is
           </h2>
           <p className="mt-2 text-[var(--color-navy)]">
-            AstroCoach is an independent educational project that helps
+            Astro Coach is an independent educational project that helps
             students prepare for astronomy olympiads by organizing
             competition guides and practice questions in one place.
           </p>
@@ -26,7 +26,7 @@ export default function AboutPage() {
             Independence Notice
           </h2>
           <p className="mt-2 text-[var(--color-navy)]">
-            AstroCoach is not affiliated with USAAAO, IAAC, IOAA, IAO,
+            Astro Coach is not affiliated with USAAAO, IAAC, IOAA, IAO,
             Science Olympiad, or any other official competition
             organization.
           </p>
@@ -42,7 +42,7 @@ export default function AboutPage() {
             round, source URL, and permission status. Only official or
             public sources will be used, and a public PDF being available
             online does not mean it is automatically free to rehost. Until
-            this system is ready, AstroCoach uses only original placeholder
+            this system is ready, Astro Coach uses only original placeholder
             questions written for practice purposes.
           </p>
         </BrutalCard>
@@ -52,7 +52,7 @@ export default function AboutPage() {
             Takedown and Contact Policy
           </h2>
           <p className="mt-2 text-[var(--color-navy)]">
-            If you believe any content on AstroCoach should be removed or
+            If you believe any content on Astro Coach should be removed or
             corrected, a contact and takedown process will be added here
             before public launch.
           </p>

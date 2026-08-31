@@ -6,11 +6,11 @@ import { AuthProvider } from "@/lib/auth-context";
 import { TrainingModeProvider } from "@/lib/training-mode-context";
 
 export const metadata: Metadata = {
-  title: "AstroCoach",
+  title: "Astro Coach",
   description:
-    "AstroCoach is an independent training platform for astronomy olympiad students.",
+    "Astro Coach is an independent training platform for astronomy olympiad students.",
   icons: {
-    icon: "/star-icon.svg",
+    icon: "/star-icon.png",
   },
 };
 

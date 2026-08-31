@@ -12,7 +12,7 @@ export type McqChoice = {
 
 // Media (image) metadata attached to a question or its solution.
 // "required-missing" means the source needs a figure that hasn't been
-// added to AstroCoach yet. "complete" means the figure has been added.
+// added to Astro Coach yet. "complete" means the figure has been added.
 export type MediaInfo = {
   status: "required-missing" | "complete";
   assets: unknown[];

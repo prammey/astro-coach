@@ -38,13 +38,13 @@ export default function Navbar() {
           className="flex items-center gap-2 text-xl font-extrabold tracking-tight text-[var(--color-yellow)]"
         >
           <Image
-            src="/star-icon.svg"
-            alt="AstroCoach"
+            src="/star-icon.png"
+            alt="Astro Coach"
             width={28}
             height={28}
             className="h-7 w-7"
           />
-          AstroCoach
+          Astro Coach
         </Link>
         <ul className="flex items-center gap-4 text-sm font-bold sm:gap-6 sm:text-base">
           {links.map((link) => (
