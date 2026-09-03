@@ -94,6 +94,10 @@ export default function DashboardPage() {
     );
   }
 
+  // Get greeting name from username, then first_name, with fallback to "Welcome!"
+  const username = user.user_metadata?.username || user.user_metadata?.first_name;
+  const greeting = username ? `Welcome, ${username}!` : 'Welcome!';
+
   return (
     <div className="min-h-screen bg-[var(--color-navy)] text-white">
       <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
@@ -109,7 +113,7 @@ export default function DashboardPage() {
           </button>
         </div>
 
-        <p className="text-white/70 mb-8">Welcome, {user.email}</p>
+        <p className="text-white/70 mb-8">{greeting}</p>
 
         {error && (
           <div className="mb-6 p-4 bg-red-100 border-2 border-red-500 rounded text-red-700">

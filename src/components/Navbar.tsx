@@ -2,14 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
-import { useState } from "react";
+import ProfileDropdown from "./ProfileDropdown";
 
 export default function Navbar() {
-  const router = useRouter();
-  const { user, loading, signOut } = useAuth();
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const { user } = useAuth();
 
   const links = [
     { href: "/", label: "Home" },
@@ -17,18 +14,6 @@ export default function Navbar() {
     { href: "/training", label: "Training" },
     { href: "/about", label: "About" },
   ];
-
-  const handleLogout = async () => {
-    try {
-      // Call signOut to clear session - this clears localStorage and triggers listener
-      await signOut();
-      // Use hard redirect to ensure complete page reload and fresh auth context initialization
-      // This guarantees the auth state is checked from scratch with no cached state
-      window.location.href = "/";
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
-  };
 
   return (
     <header className="border-b-4 border-black bg-[var(--color-navy)]">
@@ -58,24 +43,9 @@ export default function Navbar() {
             </li>
           ))}
           {user ? (
-            <>
-              <li>
-                <Link
-                  href="/dashboard"
-                  className="text-white transition hover:text-[var(--color-yellow)]"
-                >
-                  Dashboard
-                </Link>
-              </li>
-              <li>
-                <button
-                  onClick={handleLogout}
-                  className="rounded border-2 border-white px-3 py-1 text-white transition hover:bg-white hover:text-[var(--color-navy)]"
-                >
-                  Log Out
-                </button>
-              </li>
-            </>
+            <li>
+              <ProfileDropdown />
+            </li>
           ) : (
             <li>
               <Link

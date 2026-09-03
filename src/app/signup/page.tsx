@@ -8,6 +8,8 @@ import { useAuth } from '@/lib/auth-context';
 export default function SignupPage() {
   const router = useRouter();
   const { signUp, user, loading } = useAuth();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -27,6 +29,19 @@ export default function SignupPage() {
     setSuccess('');
     setIsSubmitting(true);
 
+    // Validate first and last name
+    if (!firstName.trim()) {
+      setError('Please enter your first name');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!lastName.trim()) {
+      setError('Please enter your last name');
+      setIsSubmitting(false);
+      return;
+    }
+
     // Validate passwords match
     if (password !== confirmPassword) {
       setError('Passwords do not match');
@@ -42,8 +57,10 @@ export default function SignupPage() {
     }
 
     try {
-      await signUp(email, password);
+      await signUp(email, password, firstName, lastName);
       setSuccess('Account created! Check your email to confirm.');
+      setFirstName('');
+      setLastName('');
       setEmail('');
       setPassword('');
       setConfirmPassword('');
@@ -86,6 +103,39 @@ export default function SignupPage() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="firstName" className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
+                  First Name
+                </label>
+                <input
+                  id="firstName"
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                  className="w-full px-4 py-2 border-2 border-black rounded focus:outline-none focus:ring-2 focus:ring-[var(--color-electric-blue)]"
+                  placeholder="John"
+                  disabled={isSubmitting}
+                />
+              </div>
+              <div>
+                <label htmlFor="lastName" className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
+                  Last Name
+                </label>
+                <input
+                  id="lastName"
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  required
+                  className="w-full px-4 py-2 border-2 border-black rounded focus:outline-none focus:ring-2 focus:ring-[var(--color-electric-blue)]"
+                  placeholder="Doe"
+                  disabled={isSubmitting}
+                />
+              </div>
+            </div>
+
             <div>
               <label htmlFor="email" className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
                 Email
