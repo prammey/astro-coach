@@ -21,49 +21,64 @@ Astro Coach is designed to help students:
 
 ## Tech Stack
 
-Planned stack:
+**Currently in use:**
 
-* Next.js App Router
-* React
-* TypeScript
+* Next.js App Router (16.2.9)
+* React 19
+* TypeScript (strict mode)
 * Tailwind CSS
-* shadcn/ui later
-* PostgreSQL through Supabase
-* Prisma ORM
-* Zod
-* Supabase Auth later
-* Vitest later
-* Playwright later
-* Vercel later
+* Supabase Auth (email/password)
+* Supabase Postgres with Prisma ORM
+* Supabase Storage (for profile pictures)
+* Zod for validation
+* Vercel for hosting
 
-This project intentionally avoids unnecessary complexity in v1. No Docker, Kubernetes, Redis, GraphQL, microservices, or separate Express backend are planned for the first version.
+**Planned for future:**
+
+* shadcn/ui
+* Vitest for unit tests
+* Playwright for end-to-end tests
+* Google OAuth sign-in
+
+This project intentionally avoids unnecessary complexity. No Docker, Kubernetes, Redis, GraphQL, microservices, or separate Express backend.
 
 ---
 
 ## Current Status
 
-Status: Planning / early build.
+**Status: Phase 5 — Authentication & User Profiles (Live)**
 
-The project should be built in phases:
+Completed phases:
 
-1. Static website shell
-2. Original placeholder question data
-3. Training/question-bank UI
-4. Individual question pages
-5. Improved olympiad guide
-6. Prisma database schema
-7. Seed data
-8. Supabase setup
-9. Database integration
-10. Admin question creation
-11. Authentication
-12. Bookmarks and attempt history
-13. Gamification
-14. Design polish
-15. Deployment prep
-16. Final review
+1. ✅ Static website shell (homepage, navbar, footer)
+2. ✅ Original placeholder question data
+3. ✅ Training/question-bank UI (search, filters)
+4. ✅ Individual question pages (MCQ, FRQ support)
+5. ✅ Improved olympiad guide
+6. ✅ Prisma database schema
+7. ✅ Seed data
+8. ✅ Supabase setup (Auth + Postgres + Storage)
+9. ✅ Database integration (Prisma client, migrations)
+10. ✅ Supabase Auth (email/password signup & login)
+11. ✅ User profiles (first name, last name, username, profile pictures)
+12. ✅ Dashboard with progress tracking (attempts, accuracy stats)
+13. ✅ Profile dropdown in navbar with settings
+14. ✅ Deployed to Vercel (https://astrocoach.vercel.app)
 
-Do not build all phases at once.
+Currently in progress:
+
+15. Gamification (XP, streaks, badges)
+16. Admin question management interface
+17. Bookmarks and favorites
+18. Design polish & responsive improvements
+
+Future phases:
+
+19. Google OAuth sign-in
+20. Email notifications
+21. Leaderboards
+22. Advanced search (by competition, year, round)
+23. Question explanations & discussion
 
 ---
 
@@ -137,6 +152,29 @@ Includes:
 * MCQ answer checking
 * FRQ answer box and solution reveal
 * Source information
+
+### `/dashboard`
+
+User progress dashboard (requires authentication).
+
+Includes:
+
+* User greeting with first name
+* Progress stats (questions attempted, accuracy, unique correct)
+* Recent attempt history
+* Link to continue training
+
+### `/profile/settings`
+
+User profile settings page (requires authentication).
+
+Includes:
+
+* Profile picture upload (to Supabase Storage)
+* Username editor (25 character limit)
+* First name and last name editors
+* Read-only email display
+* Save changes button
 
 ### `/about`
 
@@ -516,7 +554,23 @@ credentials. To set it up:
 If you skip this step, email/password login still works fully; the
 Google button will just show a Supabase error until configured.
 
-### 7. Run the database migration
+### 7. Set up Supabase Storage for profile pictures
+
+Profile pictures are stored in Supabase Storage (not in the database).
+
+1. In Supabase Console, go to **Storage**.
+2. Click **Create a new bucket**.
+3. Name it `profiles`.
+4. Check ✅ **"Public bucket"** (so profile picture URLs are publicly accessible).
+5. Click **Create**.
+
+You only need to do this once per Supabase project. The app will automatically create the `profile-pictures/` folder when users upload.
+
+When creating the bucket, optionally set:
+- **Restrict file size** to 5 MB
+- **Restrict MIME types** to `image/jpeg`, `image/png`, `image/gif`, `image/webp`, `image/avif`
+
+### 8. Run the database migration
 
 Once `.env.local` has a real `DATABASE_URL`, create the database tables:
 
@@ -528,7 +582,7 @@ This creates the `UserAttempt` and `UserQuestionProgress` tables in your
 Supabase Postgres database. You only need to run this once (and again
 any time `prisma/schema.prisma` changes).
 
-### 8. Run the app locally
+### 9. Run the app locally
 
 ```bash
 npm install
@@ -537,20 +591,80 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+Try signing up with email/password, creating a profile, and uploading a picture!
+
 ---
 
-## Future Deployment
+## Authentication & User Profiles
 
-The app will eventually deploy to Vercel.
+Astro Coach uses Supabase Auth for user accounts and Supabase Storage for profile pictures.
 
-Before deployment:
+### Features
 
-* Confirm `npm run build` works
-* Confirm environment variables are set in Vercel
-* Confirm Supabase database works
-* Confirm no `.env.local` or secrets are committed
-* Confirm source policy is visible
-* Confirm app is not using copyrighted material without review
+**Signup & Login:**
+- Email/password signup and login
+- Email confirmation required (users verify via link)
+- Session-based authentication via secure cookies
+- Password validation (min 6 characters)
+
+**User Profiles:**
+- First name and last name stored in Supabase user metadata
+- Custom username (up to 25 characters)
+- Profile picture upload to Supabase Storage (up to 5 MB)
+- Profile settings page at `/profile/settings`
+- Profile dropdown in navbar with sign-out option
+
+**Dashboard:**
+- Personalized greeting with user's first name or username
+- Progress stats (attempts, accuracy, unique correct)
+- Attempt history with timestamps
+- Link to continue training
+
+### User Metadata Schema
+
+User metadata stored in Supabase `auth.users.user_metadata`:
+
+```json
+{
+  "first_name": "John",
+  "last_name": "Doe",
+  "full_name": "John Doe",
+  "username": "johndoe",
+  "profile_image_url": "https://..."
+}
+```
+
+---
+
+## Deployment
+
+**Currently deployed to:**
+
+- **Production:** https://astrocoach.vercel.app
+- **Hosting:** Vercel
+- **Database:** Supabase Postgres
+- **Storage:** Supabase Storage (profile pictures)
+- **Auth:** Supabase Auth
+
+### Pre-Deployment Checklist
+
+Before deploying a new change:
+
+* ✅ `npm run lint` passes (0 errors)
+* ✅ `npx tsc --noEmit` passes (type-check)
+* ✅ `npm run build` succeeds
+* ✅ No `.env.local` or secrets in git
+* ✅ All database migrations applied
+* ✅ Supabase Storage bucket created (if adding profile features)
+* ✅ Environment variables set in Vercel
+
+### Auto-Deploy
+
+The app auto-deploys to Vercel when you push to `main` branch on GitHub. You can also manually deploy with:
+
+```bash
+vercel --prod
+```
 
 ---
 
