@@ -17,6 +17,10 @@ export default function ProfileSettingsPage() {
   const [success, setSuccess] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
+  const [showDeactivateModal, setShowDeactivateModal] = useState(false);
+  const [deactivatePassword, setDeactivatePassword] = useState('');
+  const [deactivateConfirmed, setDeactivateConfirmed] = useState(false);
+  const [isDeactivating, setIsDeactivating] = useState(false);
   const initRef = useRef(false);
 
   // Redirect if not authenticated
@@ -128,6 +132,55 @@ export default function ProfileSettingsPage() {
       setError(err instanceof Error ? err.message : 'Failed to update profile');
     } finally {
       setIsSaving(false);
+    }
+  };
+
+  const handleDeactivateAccount = async () => {
+    if (!user) {
+      setError('User not found');
+      return;
+    }
+
+    if (!deactivatePassword.trim()) {
+      setError('Please enter your password');
+      return;
+    }
+
+    if (!deactivateConfirmed) {
+      setError('Please agree to account deactivation');
+      return;
+    }
+
+    setIsDeactivating(true);
+    setError('');
+
+    try {
+      // Verify password by attempting to sign in
+      const { error: authError } = await supabase.auth.signInWithPassword({
+        email: user.email || '',
+        password: deactivatePassword,
+      });
+
+      if (authError) {
+        throw new Error('Password is incorrect');
+      }
+
+      // Delete the user account via API endpoint
+      const response = await fetch('/api/auth/deactivate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to deactivate account');
+      }
+
+      // Redirect to home page after successful deletion
+      window.location.href = '/';
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to deactivate account');
+    } finally {
+      setIsDeactivating(false);
     }
   };
 
@@ -276,7 +329,97 @@ export default function ProfileSettingsPage() {
             </button>
           </form>
         </div>
+
+        {/* Deactivate Account Button */}
+        <button
+          onClick={() => setShowDeactivateModal(true)}
+          className="w-full mt-6 rounded-lg border-4 border-red-600 bg-red-600 px-6 py-3 font-bold text-white shadow-[4px_4px_0_0_rgba(220,38,38,0.6)] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+        >
+          Deactivate Account
+        </button>
       </div>
+
+      {/* Deactivate Account Modal */}
+      {showDeactivateModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="rounded-xl border-4 border-black bg-white p-8 shadow-[8px_8px_0_0_#000] max-w-md w-full">
+            <h2 className="text-2xl font-extrabold text-red-600 mb-4">Deactivate Account</h2>
+
+            <div className="mb-6 space-y-3 text-sm text-[var(--color-navy)]">
+              <p className="font-semibold">⚠️ This action is irreversible!</p>
+              <p>Deactivating your account will:</p>
+              <ul className="list-disc list-inside space-y-1 ml-2">
+                <li>Delete all your profile data</li>
+                <li>Delete all your saved progress</li>
+                <li>Delete all your attempt history</li>
+                <li>Remove your account permanently</li>
+              </ul>
+              <p className="font-semibold text-red-600 mt-4">This cannot be undone.</p>
+            </div>
+
+            {error && (
+              <div className="mb-4 p-3 bg-red-100 border-2 border-red-500 rounded text-red-700 text-sm">
+                {error}
+              </div>
+            )}
+
+            {/* Password Input */}
+            <div className="mb-4">
+              <label htmlFor="deactivatePassword" className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
+                Enter your password to confirm
+              </label>
+              <input
+                id="deactivatePassword"
+                type="password"
+                value={deactivatePassword}
+                onChange={(e) => setDeactivatePassword(e.target.value)}
+                disabled={isDeactivating}
+                className="w-full px-4 py-2 border-2 border-black rounded focus:outline-none focus:ring-2 focus:ring-red-500"
+                placeholder="••••••••"
+              />
+            </div>
+
+            {/* Confirmation Checkbox */}
+            <div className="mb-6">
+              <label className="flex items-start gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={deactivateConfirmed}
+                  onChange={(e) => setDeactivateConfirmed(e.target.checked)}
+                  disabled={isDeactivating}
+                  className="mt-1 w-4 h-4 cursor-pointer"
+                />
+                <span className="text-sm text-[var(--color-navy)]">
+                  I understand this will permanently delete my account and all associated data. This cannot be undone.
+                </span>
+              </label>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  setShowDeactivateModal(false);
+                  setDeactivatePassword('');
+                  setDeactivateConfirmed(false);
+                  setError('');
+                }}
+                disabled={isDeactivating}
+                className="flex-1 rounded-lg border-2 border-gray-300 px-4 py-2 font-semibold text-[var(--color-navy)] hover:bg-gray-100 transition disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDeactivateAccount}
+                disabled={isDeactivating || !deactivatePassword.trim() || !deactivateConfirmed}
+                className="flex-1 rounded-lg border-2 border-red-600 bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isDeactivating ? 'Deactivating...' : 'Deactivate'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
