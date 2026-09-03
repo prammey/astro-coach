@@ -4,6 +4,7 @@ import PageContainer from "@/components/PageContainer";
 import BrutalCard from "@/components/BrutalCard";
 import McqPractice from "@/components/McqPractice";
 import QuestionAnsweredIndicator from "@/components/QuestionAnsweredIndicator";
+import BookmarkButtonWrapper from "@/components/BookmarkButtonWrapper";
 import SkipQuestionButton from "@/components/SkipQuestionButton";
 import NextQuestionButton from "@/components/NextQuestionButton";
 import { findCatalogQuestionById, toPublicQuestion } from "@/data/mcq/catalog.server";
@@ -50,7 +51,10 @@ export default async function QuestionDetailPage({
         <h1 className="mt-3 text-2xl font-extrabold text-[var(--color-navy)] sm:text-3xl">
           {publicQuestion.competition} — {publicQuestion.year} {publicQuestion.examName}
         </h1>
-        <QuestionAnsweredIndicator questionId={publicQuestion.id} />
+        <div className="flex gap-1">
+          <QuestionAnsweredIndicator questionId={publicQuestion.id} />
+          <BookmarkButtonWrapper questionId={publicQuestion.id} />
+        </div>
       </div>
       <p className="text-sm text-black/60">Question {publicQuestion.questionNumber}</p>
 

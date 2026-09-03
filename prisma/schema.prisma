@@ -45,3 +45,15 @@ model UserQuestionProgress {
   @@unique([userId, questionId])
   @@index([userId])
 }
+
+// One record per bookmarked question by a user.
+model Bookmark {
+  id         String   @id @default(uuid())
+  userId     String
+  questionId String
+  createdAt  DateTime @default(now())
+
+  // One bookmark per user+question — prevents duplicates.
+  @@unique([userId, questionId])
+  @@index([userId])
+}

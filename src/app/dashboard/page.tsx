@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/auth';
+import DashboardTabs from '@/components/DashboardTabs';
 
 interface UserAttempt {
   id: string;
@@ -151,56 +152,10 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* Recent Attempts */}
+            {/* Questions Tabs */}
             <div>
-              <h2 className="text-2xl font-extrabold text-white mb-4">Recent Attempts</h2>
-              {stats.recentAttempts.length > 0 ? (
-                <div className="rounded-xl border-4 border-black bg-[var(--color-cream)] overflow-hidden">
-                  <table className="w-full">
-                    <thead className="bg-[var(--color-space-blue)]">
-                      <tr>
-                        <th className="px-6 py-3 text-left text-sm font-semibold text-white">Question</th>
-                        <th className="px-6 py-3 text-left text-sm font-semibold text-white">Your Answer</th>
-                        <th className="px-6 py-3 text-left text-sm font-semibold text-white">Result</th>
-                        <th className="px-6 py-3 text-left text-sm font-semibold text-white">When</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y-2 divide-black">
-                      {stats.recentAttempts.map((attempt) => (
-                        <tr key={attempt.id} className="hover:bg-[var(--color-electric-blue)]/10">
-                          <td className="px-6 py-3 text-sm font-semibold">
-                            <Link
-                              href={`/training/${attempt.questionId}`}
-                              className="text-[var(--color-electric-blue)] underline hover:text-[var(--color-purple)] transition-colors"
-                            >
-                              {attempt.questionId}
-                            </Link>
-                          </td>
-                          <td className="px-6 py-3 text-sm font-semibold text-[var(--color-navy)]">
-                            {attempt.submittedAnswer}
-                          </td>
-                          <td className="px-6 py-3">
-                            <span
-                              className={`inline-block px-3 py-1 rounded font-semibold text-sm ${
-                                attempt.isCorrect
-                                  ? 'bg-green-200 text-green-800'
-                                  : 'bg-red-200 text-red-800'
-                              }`}
-                            >
-                              {attempt.isCorrect ? '✓ Correct' : '✗ Incorrect'}
-                            </span>
-                          </td>
-                          <td className="px-6 py-3 text-sm text-[var(--color-navy)]">
-                            {new Date(attempt.createdAt).toLocaleDateString()}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              ) : (
-                <p className="text-white/70">No attempts yet. Start training to see your progress!</p>
-              )}
+              <h2 className="text-2xl font-extrabold text-white mb-4">My Questions</h2>
+              <DashboardTabs />
             </div>
 
             {/* CTA */}

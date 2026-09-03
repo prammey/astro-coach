@@ -17,33 +17,46 @@ import { supabase } from "@/lib/auth";
 export default function TrainingBrowser({ questions }: { questions: PublicQuestion[] }) {
   const [search, setSearch] = useState("");
   const [answeredQuestionIds, setAnsweredQuestionIds] = useState<Set<string>>(new Set());
+  const [bookmarkedQuestionIds, setBookmarkedQuestionIds] = useState<Set<string>>(new Set());
   const { user } = useAuth();
   const router = useRouter();
   const { startTrainingMode } = useTrainingMode();
 
-  // Fetch the user's answered questions when component mounts
+  // Fetch the user's answered and bookmarked questions when component mounts
   useEffect(() => {
     if (!user) return;
 
-    const fetchAnsweredQuestions = async () => {
+    const fetchUserData = async () => {
       try {
-        const token = await supabase.auth.getSession().then((session) => session.data.session?.access_token);
+        const session = await supabase.auth.getSession();
+        const token = session.data.session?.access_token;
         if (!token) return;
 
-        const response = await fetch('/api/user/answered-questions', {
+        // Fetch answered questions
+        const answeredResponse = await fetch('/api/user/answered-questions', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        if (response.ok) {
-          const data = await response.json();
+        if (answeredResponse.ok) {
+          const data = await answeredResponse.json();
           setAnsweredQuestionIds(new Set(data.answeredQuestionIds));
         }
+
+        // Fetch bookmarked questions
+        const bookmarkedResponse = await fetch('/api/bookmarks', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (bookmarkedResponse.ok) {
+          const data = await bookmarkedResponse.json();
+          setBookmarkedQuestionIds(new Set(data.bookmarkedQuestionIds));
+        }
       } catch (error) {
-        console.error('Error fetching answered questions:', error);
+        console.error('Error fetching user data:', error);
       }
     };
 
-    fetchAnsweredQuestions();
+    fetchUserData();
   }, [user]);
 
   // Calculate initial year range and competitions from questions
@@ -149,6 +162,7 @@ export default function TrainingBrowser({ questions }: { questions: PublicQuesti
             key={question.id}
             question={question}
             isAnswered={answeredQuestionIds.has(question.id)}
+            isBookmarked={bookmarkedQuestionIds.has(question.id)}
           />
         ))}
       </div>

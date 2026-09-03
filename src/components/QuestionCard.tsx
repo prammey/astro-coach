@@ -1,5 +1,6 @@
 import Link from "next/link";
 import BrutalCard from "./BrutalCard";
+import BookmarkButton from "./BookmarkButton";
 import { PublicQuestion } from "@/data/mcq/types";
 
 // Shortens long question text so the card preview stays a readable length.
@@ -12,9 +13,11 @@ function previewText(text: string, maxLength: number) {
 export default function QuestionCard({
   question,
   isAnswered = false,
+  isBookmarked = false,
 }: {
   question: PublicQuestion;
   isAnswered?: boolean;
+  isBookmarked?: boolean;
 }) {
   // Show primary topic and up to 1 additional topic, with a +N indicator for more
   const displayTopics = question.curriculumTopics.slice(0, 2);
@@ -22,15 +25,19 @@ export default function QuestionCard({
 
   return (
     <BrutalCard className="relative flex flex-col bg-[var(--color-cream)]">
-      {isAnswered && (
-        <div className="absolute top-3 right-3">
+      <div className="absolute top-3 right-3 flex gap-2 items-center">
+        <BookmarkButton
+          questionId={question.id}
+          isBookmarked={isBookmarked}
+        />
+        {isAnswered && (
           <img
             src="/icons/eye.png"
             alt="Question answered"
             className="w-5 h-5 object-contain"
           />
-        </div>
-      )}
+        )}
+      </div>
       <div className="flex flex-wrap items-center gap-2 text-xs font-bold">
         <span className="rounded bg-[var(--color-electric-blue)] px-2 py-1 text-white">
           {question.type}
