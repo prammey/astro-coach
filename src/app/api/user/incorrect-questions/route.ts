@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
-import { publicQuestionCatalog } from '@/data/mcq/catalog.server';
 
-// GET: Fetch user's incorrect question IDs and metadata
+// GET: Fetch user's most recent incorrect attempt per question
 export async function GET(request: NextRequest) {
   try {
     const authHeader = request.headers.get('Authorization');
@@ -21,32 +20,22 @@ export async function GET(request: NextRequest) {
     const prisma = getPrisma();
     const userId = user.id;
 
-    // Get all incorrect attempts (where isCorrect = false)
+    // Most recent incorrect attempt per question
     const incorrectAttempts = await prisma.userAttempt.findMany({
-      where: {
-        userId,
-        isCorrect: false,
-      },
-      select: {
-        questionId: true,
-      },
+      where: { userId, isCorrect: false },
+      orderBy: { createdAt: 'desc' },
       distinct: ['questionId'],
+      take: 100,
     });
 
-    // Get unique incorrect question IDs
-    const incorrectQuestionIds = [...new Set(incorrectAttempts.map((a) => a.questionId))];
-
-    // Enrich with question metadata from catalog
-    const incorrectQuestions = incorrectQuestionIds
-      .map((qId: string) => {
-        const question = publicQuestionCatalog.find((q) => q.id === qId);
-        return question ? { ...question } : null;
-      })
-      .filter((q): q is typeof publicQuestionCatalog[0] => q !== null);
-
     return NextResponse.json({
-      incorrectQuestions,
-      count: incorrectQuestions.length,
+      attempts: incorrectAttempts.map((a) => ({
+        id: a.id,
+        questionId: a.questionId,
+        submittedAnswer: a.submittedAnswer,
+        isCorrect: a.isCorrect,
+        createdAt: a.createdAt.toISOString(),
+      })),
     });
   } catch (error) {
     console.error('Error fetching incorrect questions:', error);

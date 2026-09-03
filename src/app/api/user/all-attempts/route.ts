@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
-import { publicQuestionCatalog } from '@/data/mcq/catalog.server';
 
-// GET: Fetch user's attempted questions with full metadata
+// GET: Fetch all of the user's attempts (correct and incorrect), most recent first
 export async function GET(request: NextRequest) {
   try {
     const authHeader = request.headers.get('Authorization');
@@ -21,32 +20,25 @@ export async function GET(request: NextRequest) {
     const prisma = getPrisma();
     const userId = user.id;
 
-    // Get all attempted questions (unique)
     const attempts = await prisma.userAttempt.findMany({
       where: { userId },
-      select: { questionId: true },
-      distinct: ['questionId'],
+      orderBy: { createdAt: 'desc' },
+      take: 100,
     });
-
-    const attemptedQuestionIds = attempts.map((a) => a.questionId);
-
-    // Enrich with question metadata from catalog, limit to 20 for performance
-    const attemptedQuestions = attemptedQuestionIds
-      .slice(0, 20)
-      .map((qId: string) => {
-        const question = publicQuestionCatalog.find((q) => q.id === qId);
-        return question ? { ...question } : null;
-      })
-      .filter((q): q is typeof publicQuestionCatalog[0] => q !== null);
 
     return NextResponse.json({
-      attemptedQuestions,
-      count: attemptedQuestions.length,
+      attempts: attempts.map((a) => ({
+        id: a.id,
+        questionId: a.questionId,
+        submittedAnswer: a.submittedAnswer,
+        isCorrect: a.isCorrect,
+        createdAt: a.createdAt.toISOString(),
+      })),
     });
   } catch (error) {
-    console.error('Error fetching attempted questions:', error);
+    console.error('Error fetching all attempts:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch attempted questions' },
+      { error: 'Failed to fetch attempts' },
       { status: 500 }
     );
   }

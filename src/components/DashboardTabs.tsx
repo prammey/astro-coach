@@ -4,23 +4,29 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/auth';
-import { PublicQuestion } from '@/data/mcq/types';
 
 type TabType = 'all' | 'bookmarked' | 'incorrect';
 
-const TABS = [
-  { id: 'all', label: 'All Questions', icon: '📋' },
-  { id: 'bookmarked', label: 'Bookmarked', icon: '⭐' },
-  { id: 'incorrect', label: 'Incorrect', icon: '❌' },
-] as const;
+interface AttemptRow {
+  id: string;
+  questionId: string;
+  submittedAnswer: string | null;
+  isCorrect: boolean | null;
+  createdAt: string;
+}
+
+const TABS: { id: TabType; label: string }[] = [
+  { id: 'all', label: 'All Questions' },
+  { id: 'bookmarked', label: 'Bookmarked' },
+  { id: 'incorrect', label: 'Incorrect' },
+];
 
 export default function DashboardTabs() {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState<TabType>('all');
-  const [allQuestions, setAllQuestions] = useState<PublicQuestion[]>([]);
-  const [bookmarkedQuestions, setBookmarkedQuestions] = useState<PublicQuestion[]>([]);
-  const [incorrectQuestions, setIncorrectQuestions] = useState<PublicQuestion[]>([]);
-  const [answeredQuestionIds, setAnsweredQuestionIds] = useState<Set<string>>(new Set());
+  const [allAttempts, setAllAttempts] = useState<AttemptRow[]>([]);
+  const [bookmarkedAttempts, setBookmarkedAttempts] = useState<AttemptRow[]>([]);
+  const [incorrectAttempts, setIncorrectAttempts] = useState<AttemptRow[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -33,41 +39,17 @@ export default function DashboardTabs() {
         const token = session.data.session?.access_token;
         if (!token) return;
 
-        // Fetch answered questions IDs
-        const answeredResponse = await fetch('/api/user/answered-questions', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        if (answeredResponse.ok) {
-          const data = await answeredResponse.json();
-          setAnsweredQuestionIds(new Set(data.answeredQuestionIds));
-        }
+        const headers = { Authorization: `Bearer ${token}` };
 
-        // Fetch attempted questions with full metadata
-        const attemptedResponse = await fetch('/api/user/attempted-questions', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        if (attemptedResponse.ok) {
-          const data = await attemptedResponse.json();
-          setAllQuestions(data.attemptedQuestions);
-        }
+        const [allRes, bookmarkedRes, incorrectRes] = await Promise.all([
+          fetch('/api/user/all-attempts', { headers }),
+          fetch('/api/user/bookmarked-questions', { headers }),
+          fetch('/api/user/incorrect-questions', { headers }),
+        ]);
 
-        // Fetch bookmarked questions
-        const bookmarkedResponse = await fetch('/api/user/bookmarked-questions', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        if (bookmarkedResponse.ok) {
-          const data = await bookmarkedResponse.json();
-          setBookmarkedQuestions(data.bookmarkedQuestions);
-        }
-
-        // Fetch incorrect questions
-        const incorrectResponse = await fetch('/api/user/incorrect-questions', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        if (incorrectResponse.ok) {
-          const data = await incorrectResponse.json();
-          setIncorrectQuestions(data.incorrectQuestions);
-        }
+        if (allRes.ok) setAllAttempts((await allRes.json()).attempts);
+        if (bookmarkedRes.ok) setBookmarkedAttempts((await bookmarkedRes.json()).attempts);
+        if (incorrectRes.ok) setIncorrectAttempts((await incorrectRes.json()).attempts);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
       } finally {
@@ -78,96 +60,99 @@ export default function DashboardTabs() {
     fetchData();
   }, [user]);
 
-  const currentQuestions = (() => {
+  const currentRows = (() => {
     switch (activeTab) {
       case 'all':
-        return allQuestions;
+        return allAttempts;
       case 'bookmarked':
-        return bookmarkedQuestions;
+        return bookmarkedAttempts;
       case 'incorrect':
-        return incorrectQuestions;
-      default:
-        return [];
+        return incorrectAttempts;
     }
   })();
 
-  const currentCount = currentQuestions.length;
-
   return (
-    <div className="space-y-6">
-      {/* Tab Navigation */}
-      <div className="flex flex-wrap gap-2 border-b-4 border-black pb-2">
-        {TABS.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id as TabType)}
-            className={`px-4 py-2 font-bold transition rounded-lg ${
-              activeTab === tab.id
-                ? 'bg-[var(--color-navy)] text-white border-2 border-black'
-                : 'border-2 border-black bg-white text-[var(--color-navy)] hover:bg-[var(--color-cream)]'
-            }`}
-          >
-            <span>{tab.icon}</span> {tab.label}
-          </button>
-        ))}
+    <div>
+      {/* Chrome-style tab bar */}
+      <div className="flex w-full">
+        {TABS.map((tab) => {
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex-1 rounded-t-lg border-4 border-b-0 border-black px-4 py-3 text-lg font-extrabold text-[var(--color-yellow)] transition ${
+                isActive
+                  ? 'bg-[var(--color-cream)] relative z-10'
+                  : 'bg-[var(--color-space-blue)] hover:bg-[var(--color-space-blue)]/80'
+              }`}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Content Area */}
-      {isLoading ? (
-        <div className="py-12 text-center text-[var(--color-navy)]/60">
-          Loading {TABS.find((t) => t.id === activeTab)?.label.toLowerCase()}...
-        </div>
-      ) : currentCount === 0 ? (
-        <div className="rounded-lg border-4 border-black bg-[var(--color-cream)] p-8 text-center">
-          <p className="text-lg font-bold text-[var(--color-navy)]">
-            {activeTab === 'bookmarked' && '⭐ No bookmarked questions yet'}
-            {activeTab === 'incorrect' && '❌ No incorrect attempts yet'}
-            {activeTab === 'all' && '📋 No questions attempted yet'}
-          </p>
-          <p className="mt-2 text-sm text-[var(--color-navy)]/60">
-            {activeTab === 'bookmarked' && 'Save questions to review them here'}
-            {activeTab === 'incorrect' && 'Keep practicing to improve!'}
-            {activeTab === 'all' && 'Start training to see your attempted questions'}
-          </p>
-        </div>
-      ) : (
-        <div className="space-y-3">
-          <p className="text-sm font-bold text-[var(--color-navy)]/70">
-            {currentCount} question{currentCount === 1 ? '' : 's'}
-          </p>
-          <div className="rounded-lg border-4 border-black bg-[var(--color-cream)] overflow-hidden">
-            <div className="divide-y-2 divide-black">
-              {currentQuestions.map((q) => (
-                <div
-                  key={q.id}
-                  className="p-4 hover:bg-[var(--color-yellow)]/20 transition flex items-start justify-between gap-4"
-                >
-                  <div className="flex-1">
+      {/* Table content */}
+      <div className="rounded-b-xl rounded-tr-xl border-4 border-black bg-[var(--color-cream)] overflow-hidden -mt-1">
+        {isLoading ? (
+          <p className="p-6 text-[var(--color-navy)]/70">Loading...</p>
+        ) : currentRows.length > 0 ? (
+          <table className="w-full">
+            <thead className="bg-[var(--color-space-blue)]">
+              <tr>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-white">Question</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-white">Your Answer</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-white">Result</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-white">When</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y-2 divide-black">
+              {currentRows.map((row) => (
+                <tr key={row.id} className="hover:bg-[var(--color-electric-blue)]/10">
+                  <td className="px-6 py-3 text-sm font-semibold">
                     <Link
-                      href={`/training/${q.id}`}
-                      className="block text-sm font-bold text-[var(--color-electric-blue)] hover:underline"
+                      href={`/training/${row.questionId}`}
+                      className="text-[var(--color-electric-blue)] underline hover:text-[var(--color-purple)] transition-colors"
                     >
-                      {q.competition} — {q.year} Q{q.questionNumber}
+                      {row.questionId}
                     </Link>
-                    <p className="text-xs text-[var(--color-navy)]/60 mt-1">
-                      {q.topic}
-                      {q.difficulty && ` • ${q.difficulty}`}
-                    </p>
-                    <p className="text-sm text-[var(--color-navy)] mt-2 line-clamp-2">
-                      {q.questionText}
-                    </p>
-                  </div>
-                  {answeredQuestionIds.has(q.id) && (
-                    <div className="text-lg" title="Question attempted">
-                      ✓
-                    </div>
-                  )}
-                </div>
+                  </td>
+                  <td className="px-6 py-3 text-sm font-semibold text-[var(--color-navy)]">
+                    {row.submittedAnswer ?? '—'}
+                  </td>
+                  <td className="px-6 py-3">
+                    {row.isCorrect === null ? (
+                      <span className="inline-block px-3 py-1 rounded font-semibold text-sm bg-gray-200 text-gray-700">
+                        Not attempted
+                      </span>
+                    ) : (
+                      <span
+                        className={`inline-block px-3 py-1 rounded font-semibold text-sm ${
+                          row.isCorrect
+                            ? 'bg-green-200 text-green-800'
+                            : 'bg-red-200 text-red-800'
+                        }`}
+                      >
+                        {row.isCorrect ? '✓ Correct' : '✗ Incorrect'}
+                      </span>
+                    )}
+                  </td>
+                  <td className="px-6 py-3 text-sm text-[var(--color-navy)]">
+                    {new Date(row.createdAt).toLocaleDateString()}
+                  </td>
+                </tr>
               ))}
-            </div>
-          </div>
-        </div>
-      )}
+            </tbody>
+          </table>
+        ) : (
+          <p className="p-6 text-[var(--color-navy)]/70">
+            {activeTab === 'bookmarked' && 'No bookmarked questions yet.'}
+            {activeTab === 'incorrect' && 'No incorrect attempts yet.'}
+            {activeTab === 'all' && 'No attempts yet. Start training to see your progress!'}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

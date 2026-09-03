@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
-import { publicQuestionCatalog } from '@/data/mcq/catalog.server';
 
-// GET: Fetch user's bookmarked questions with metadata
+// GET: Fetch user's bookmarked questions, with their latest attempt (if any)
 export async function GET(request: NextRequest) {
   try {
     const authHeader = request.headers.get('Authorization');
@@ -21,25 +20,33 @@ export async function GET(request: NextRequest) {
     const prisma = getPrisma();
     const userId = user.id;
 
-    // Get user's bookmarks
     const bookmarks = await prisma.bookmark.findMany({
       where: { userId },
-      select: { questionId: true },
+      orderBy: { createdAt: 'desc' },
+      take: 100,
     });
 
-    const bookmarkedQuestionIds = bookmarks.map((b) => b.questionId);
+    const questionIds = bookmarks.map((b) => b.questionId);
 
-    // Enrich with question metadata from catalog
-    const bookmarkedQuestions = bookmarkedQuestionIds
-      .map((qId: string) => {
-        const question = publicQuestionCatalog.find((q) => q.id === qId);
-        return question ? { ...question } : null;
-      })
-      .filter((q): q is typeof publicQuestionCatalog[0] => q !== null);
+    // Latest attempt per bookmarked question, if the user has attempted it
+    const attempts = await prisma.userAttempt.findMany({
+      where: { userId, questionId: { in: questionIds } },
+      orderBy: { createdAt: 'desc' },
+      distinct: ['questionId'],
+    });
+    const attemptByQuestionId = new Map(attempts.map((a) => [a.questionId, a]));
 
     return NextResponse.json({
-      bookmarkedQuestions,
-      count: bookmarkedQuestions.length,
+      attempts: bookmarks.map((b) => {
+        const attempt = attemptByQuestionId.get(b.questionId);
+        return {
+          id: b.id,
+          questionId: b.questionId,
+          submittedAnswer: attempt?.submittedAnswer ?? null,
+          isCorrect: attempt?.isCorrect ?? null,
+          createdAt: b.createdAt.toISOString(),
+        };
+      }),
     });
   } catch (error) {
     console.error('Error fetching bookmarked questions:', error);
