@@ -25,8 +25,8 @@ export default function Navbar() {
           <Image
             src="/star-icon.png"
             alt="Astro Coach"
-            width={36}
-            height={36}
+            width={46}
+            height={46}
             className="h-9 w-9"
           />
           Astro Coach
