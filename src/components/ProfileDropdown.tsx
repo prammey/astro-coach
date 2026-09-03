@@ -11,8 +11,9 @@ export default function ProfileDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Get username from user metadata, with fallback to first_name, then "User"
+  // Get username and profile image from user metadata
   const username = user?.user_metadata?.username || user?.user_metadata?.first_name || 'User';
+  const profileImageUrl = user?.user_metadata?.profile_image_url;
 
   // Handle click outside dropdown
   useEffect(() => {
@@ -50,8 +51,16 @@ export default function ProfileDropdown() {
         className="flex items-center gap-3 rounded-lg border-2 border-[var(--color-yellow)] px-3 py-1 transition hover:bg-[var(--color-yellow)] hover:text-[var(--color-navy)]"
       >
         {/* Profile Avatar */}
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-electric-blue)] text-white font-bold text-sm">
-          {username.charAt(0).toUpperCase()}
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-electric-blue)] text-white font-bold text-sm overflow-hidden">
+          {profileImageUrl ? (
+            <img
+              src={profileImageUrl}
+              alt={username}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            username.charAt(0).toUpperCase()
+          )}
         </div>
         {/* Username */}
         <span className="text-sm font-semibold text-[var(--color-yellow)] hidden sm:inline">
