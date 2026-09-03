@@ -79,7 +79,7 @@ export default function ProfileDropdown() {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 rounded-lg border-2 border-black bg-white shadow-[6px_6px_0_0_#000] z-50">
+        <div className="absolute left-0 right-0 mt-2 rounded-lg border-2 border-black bg-white shadow-[6px_6px_0_0_#000] z-50">
           <div className="px-4 py-3 border-b-2 border-black">
             <p className="text-sm font-semibold text-[var(--color-navy)]">{username}</p>
             <p className="text-xs text-gray-600 truncate">{user.email}</p>
