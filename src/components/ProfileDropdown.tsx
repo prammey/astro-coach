@@ -48,10 +48,10 @@ export default function ProfileDropdown() {
     <div ref={dropdownRef} className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-3 rounded-lg border-2 border-[var(--color-yellow)] px-3 py-1 transition hover:bg-[var(--color-yellow)] hover:text-[var(--color-navy)]"
+        className="flex items-center gap-2 rounded-lg border-2 border-[var(--color-yellow)] px-3 py-2 transition hover:bg-[var(--color-yellow)] hover:text-[var(--color-navy)]"
       >
         {/* Profile Avatar */}
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-electric-blue)] text-white font-bold text-sm overflow-hidden">
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-electric-blue)] text-white font-bold text-sm overflow-hidden flex-shrink-0">
           {profileImageUrl ? (
             <img
               src={profileImageUrl}
@@ -63,7 +63,7 @@ export default function ProfileDropdown() {
           )}
         </div>
         {/* Username */}
-        <span className="text-sm font-semibold text-[var(--color-yellow)] hidden sm:inline">
+        <span className="text-base font-bold text-[var(--color-yellow)] hidden sm:inline truncate max-w-[180px]">
           {username}
         </span>
         {/* Dropdown Arrow */}

@@ -211,12 +211,13 @@ export default function ProfileSettingsPage() {
                 id="username"
                 type="text"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setUsername(e.target.value.slice(0, 25))}
+                maxLength={25}
                 className="w-full px-4 py-2 border-2 border-black rounded focus:outline-none focus:ring-2 focus:ring-[var(--color-electric-blue)]"
                 placeholder="Your username"
                 disabled={isSaving}
               />
-              <p className="text-xs text-gray-600 mt-2">This is the name shown in your profile and dashboard greeting</p>
+              <p className="text-xs text-gray-600 mt-2">Max 25 characters. Shown in navbar and dashboard greeting</p>
             </div>
 
             {/* First Name */}
