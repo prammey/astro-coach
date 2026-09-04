@@ -8,6 +8,7 @@ import BrutalCard from '@/components/BrutalCard';
 import McqPractice from '@/components/McqPractice';
 import QuestionAnsweredIndicator from '@/components/QuestionAnsweredIndicator';
 import QuestionFigure from '@/components/QuestionFigure';
+import { questionNumberLabel } from '@/lib/question-label';
 import { useTrainingMode } from '@/lib/training-mode-context';
 import { PublicQuestion } from '@/data/mcq/types';
 
@@ -170,6 +171,11 @@ function TrainingQuestion({
         <span className="rounded bg-[var(--color-yellow)] px-2 py-1 text-[var(--color-navy)]">
           {question.topic}
         </span>
+        {question.parts?.length ? (
+          <span className="rounded bg-[var(--color-navy)] px-2 py-1 text-[var(--color-yellow)]">
+            {question.parts.length} parts
+          </span>
+        ) : null}
       </div>
 
       <div className="flex items-center gap-2">
@@ -178,7 +184,7 @@ function TrainingQuestion({
         </h1>
         <QuestionAnsweredIndicator questionId={questionId} />
       </div>
-      <p className="text-sm text-black/60">Question {question.questionNumber}</p>
+      <p className="text-sm text-black/60">{questionNumberLabel(question)}</p>
 
       {question.questionMediaMissing && (
         <div className="mt-4 rounded-lg border-4 border-black bg-[var(--color-yellow)] p-3 text-sm font-bold text-[var(--color-navy)]">
@@ -186,13 +192,21 @@ function TrainingQuestion({
         </div>
       )}
 
-      <BrutalCard className="mt-6 bg-[var(--color-cream)]">
-        <p className="text-lg text-[var(--color-navy)]">{question.questionText}</p>
-        <QuestionFigure
-          assets={question.questionMedia?.assets as readonly string[] | undefined}
-          alt={`Figure for ${question.competition} ${question.year} question ${question.questionNumber}`}
-        />
-      </BrutalCard>
+      {question.parts?.length ? (
+        // Each part carries its own prompt, rendered with its own choices.
+        <div className="mt-6 rounded-lg border-4 border-black bg-[var(--color-yellow)] p-3 text-sm font-bold text-[var(--color-navy)]">
+          This question has {question.parts.length} parts that build on each other.
+          Answer both — it only counts as correct if every part is right.
+        </div>
+      ) : (
+        <BrutalCard className="mt-6 bg-[var(--color-cream)]">
+          <p className="text-lg text-[var(--color-navy)]">{question.questionText}</p>
+          <QuestionFigure
+            assets={question.questionMedia?.assets as readonly string[] | undefined}
+            alt={`Figure for ${question.competition} ${question.year} question ${question.questionNumber}`}
+          />
+        </BrutalCard>
+      )}
 
       <McqPractice question={question} onAnswerSubmitted={onAnswerSubmitted} />
 

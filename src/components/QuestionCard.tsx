@@ -2,6 +2,7 @@ import Link from "next/link";
 import BrutalCard from "./BrutalCard";
 import BookmarkButton from "./BookmarkButton";
 import { PublicQuestion } from "@/data/mcq/types";
+import { questionNumberLabel } from "@/lib/question-label";
 
 // Shortens long question text so the card preview stays a readable length.
 function previewText(text: string, maxLength: number) {
@@ -58,12 +59,17 @@ export default function QuestionCard({
             +{moreTopicsCount}
           </span>
         )}
+        {question.parts?.length ? (
+          <span className="rounded bg-[var(--color-navy)] px-2 py-1 text-[var(--color-yellow)]">
+            {question.parts.length} parts
+          </span>
+        ) : null}
       </div>
 
       <h3 className="mt-3 text-lg font-extrabold text-[var(--color-navy)]">
         {question.competition} — {question.year} {question.examName}
       </h3>
-      <p className="text-sm text-black/60">Question {question.questionNumber}</p>
+      <p className="text-sm text-black/60">{questionNumberLabel(question)}</p>
 
       <p className="mt-3 text-sm text-[var(--color-navy)]">
         {previewText(question.questionText, 120)}

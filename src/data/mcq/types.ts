@@ -45,6 +45,11 @@ export type RawMcqQuestion = {
   status: string;
   questionMedia?: MediaInfo;
   solutionMedia?: MediaInfo;
+  // Set on a question that builds directly on an earlier one in the same
+  // exam (e.g. "the comet from the previous question"). The catalog joins
+  // the two into a single multi-part item so the follow-up is never shown
+  // on its own, without the setup it depends on.
+  continuesFrom?: number;
 };
 
 // A raw question plus its deterministic, server-generated ID and curriculum topics.
@@ -54,6 +59,12 @@ export type CatalogQuestion = RawMcqQuestion & {
   id: string;
   primaryCurriculumTopic: CurriculumTopic;
   curriculumTopics: CurriculumTopic[];
+  // Present only on a multi-part item. Each entry is one part (A, B, ...)
+  // and carries its own prompt, choices, answer and explanation. When this
+  // is set, the item's own questionText/correctAnswer are the first part's
+  // and are used only for previews and search — grading always uses `parts`.
+  parts?: CatalogQuestion[];
+  partLabel?: string;
 };
 
 // The shape that is safe to send to the browser before the learner
@@ -62,10 +73,12 @@ export type CatalogQuestion = RawMcqQuestion & {
 // Includes curriculum topics for filtering and display.
 export type PublicQuestion = Omit<
   CatalogQuestion,
-  "correctAnswer" | "explanation" | "solutionMedia"
+  "correctAnswer" | "explanation" | "solutionMedia" | "parts"
 > & {
   questionMediaMissing: boolean;
   hasSolutionMedia: boolean;
   primaryCurriculumTopic: CurriculumTopic;
   curriculumTopics: CurriculumTopic[];
+  // Same stripping applied to each part of a multi-part item.
+  parts?: PublicQuestion[];
 };

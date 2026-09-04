@@ -50,8 +50,14 @@ for (const q of all) {
     const m = DOUBLE_PREP.exec(text);
     checks.droppedBlank.push(`${id}: "...${text.slice(Math.max(0, m.index - 40), m.index + 60)}..."`);
   }
-  if (/\b(previous|preceding|last|above)\s+(problem|question)\b/i.test(text)) {
-    checks.crossReference.push(`${id}: refers to another question`);
+  // A question that references an earlier one is only a problem when it is
+  // shown on its own. Once it declares `continuesFrom`, the catalog joins it
+  // to that question as a multi-part item, so the context travels with it.
+  if (
+    /\b(previous|preceding|last|above)\s+(problem|question)\b/i.test(text) &&
+    q.continuesFrom === undefined
+  ) {
+    checks.crossReference.push(`${id}: refers to another question, not grouped`);
   }
   if (/ {2,}/.test(text.replace(/\n/g, ''))) {
     checks.doubleSpace.push(`${id}`);

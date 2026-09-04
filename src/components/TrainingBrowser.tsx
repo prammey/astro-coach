@@ -85,10 +85,18 @@ export default function TrainingBrowser({ questions }: { questions: PublicQuesti
     const lowerSearch = search.trim().toLowerCase();
 
     return questions.filter((question) => {
-      // Search: match question text, competition, year, topic, subtopic, curriculum topics, or tags
+      // Search: match question text, competition, year, topic, subtopic, curriculum topics, or tags.
+      // For a multi-part item, every part's text is searchable.
+      const searchableText = [
+        question.questionText,
+        ...(question.parts?.map((part) => part.questionText) ?? []),
+      ]
+        .join(" ")
+        .toLowerCase();
+
       const matchesSearch =
         lowerSearch === "" ||
-        question.questionText.toLowerCase().includes(lowerSearch) ||
+        searchableText.includes(lowerSearch) ||
         question.competition.toLowerCase().includes(lowerSearch) ||
         question.year.toString().includes(lowerSearch) ||
         question.topic.toLowerCase().includes(lowerSearch) ||

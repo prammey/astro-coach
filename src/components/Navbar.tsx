@@ -14,11 +14,11 @@ export default function Navbar() {
 
   const links = [
     { href: homeHref, label: "Home" },
-    ...(user ? [{ href: "/dashboard", label: "Dashboard" }] : []),
     { href: "/olympiads", label: "Olympiads" },
     { href: "/training", label: "Training" },
     { href: "/pricing", label: "Pricing" },
     { href: "/about", label: "About" },
+    ...(user ? [{ href: "/dashboard", label: "Dashboard" }] : []),
   ];
 
   return (

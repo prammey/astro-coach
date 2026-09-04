@@ -6,6 +6,7 @@ import McqPractice from "@/components/McqPractice";
 import QuestionAnsweredIndicator from "@/components/QuestionAnsweredIndicator";
 import BookmarkButtonWrapper from "@/components/BookmarkButtonWrapper";
 import QuestionFigure from "@/components/QuestionFigure";
+import { questionNumberLabel } from "@/lib/question-label";
 import SkipQuestionButton from "@/components/SkipQuestionButton";
 import NextQuestionButton from "@/components/NextQuestionButton";
 import { findCatalogQuestionById, toPublicQuestion } from "@/data/mcq/catalog.server";
@@ -26,6 +27,7 @@ export default async function QuestionDetailPage({
   }
 
   const publicQuestion = toPublicQuestion(question);
+  const isMultiPart = Boolean(publicQuestion.parts?.length);
 
   return (
     <PageContainer>
@@ -46,6 +48,11 @@ export default async function QuestionDetailPage({
         <span className="rounded bg-[var(--color-yellow)] px-2 py-1 text-[var(--color-navy)]">
           {publicQuestion.topic}
         </span>
+        {isMultiPart && (
+          <span className="rounded bg-[var(--color-navy)] px-2 py-1 text-[var(--color-yellow)]">
+            {publicQuestion.parts!.length} parts
+          </span>
+        )}
       </div>
 
       <div className="flex items-center gap-2">
@@ -57,7 +64,7 @@ export default async function QuestionDetailPage({
           <BookmarkButtonWrapper questionId={publicQuestion.id} />
         </div>
       </div>
-      <p className="text-sm text-black/60">Question {publicQuestion.questionNumber}</p>
+      <p className="text-sm text-black/60">{questionNumberLabel(publicQuestion)}</p>
 
       {publicQuestion.questionMediaMissing && (
         <div className="mt-4 rounded-lg border-4 border-black bg-[var(--color-yellow)] p-3 text-sm font-bold text-[var(--color-navy)]">
@@ -66,13 +73,22 @@ export default async function QuestionDetailPage({
         </div>
       )}
 
-      <BrutalCard className="mt-6 bg-[var(--color-cream)]">
-        <p className="text-lg text-[var(--color-navy)]">{publicQuestion.questionText}</p>
-        <QuestionFigure
-          assets={publicQuestion.questionMedia?.assets as readonly string[] | undefined}
-          alt={`Figure for ${publicQuestion.competition} ${publicQuestion.year} question ${publicQuestion.questionNumber}`}
-        />
-      </BrutalCard>
+      {isMultiPart ? (
+        // Each part carries its own prompt, so they are rendered together
+        // with their choices rather than as one shared prompt up here.
+        <div className="mt-6 rounded-lg border-4 border-black bg-[var(--color-yellow)] p-3 text-sm font-bold text-[var(--color-navy)]">
+          This question has {publicQuestion.parts!.length} parts that build on each
+          other. Answer both — it only counts as correct if every part is right.
+        </div>
+      ) : (
+        <BrutalCard className="mt-6 bg-[var(--color-cream)]">
+          <p className="text-lg text-[var(--color-navy)]">{publicQuestion.questionText}</p>
+          <QuestionFigure
+            assets={publicQuestion.questionMedia?.assets as readonly string[] | undefined}
+            alt={`Figure for ${publicQuestion.competition} ${publicQuestion.year} question ${publicQuestion.questionNumber}`}
+          />
+        </BrutalCard>
+      )}
 
       <McqPractice question={publicQuestion} />
 

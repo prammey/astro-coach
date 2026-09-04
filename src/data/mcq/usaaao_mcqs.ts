@@ -7290,6 +7290,7 @@ export const usaaaoMcqs = [
   year: 2019,
   examName: "First Round",
   questionNumber: 4,
+  continuesFrom: 3,
 
   difficulty: "Advanced",
 
@@ -13564,6 +13565,7 @@ export const usaaaoMcqs = [
     year: 2023,
     examName: "First Round",
     questionNumber: 18,
+    continuesFrom: 17,
     difficulty: "Advanced",
     topic: "Celestial Coordinates & Time",
     subtopic: "Shadow Conics",
@@ -15723,6 +15725,7 @@ export const usaaaoMcqs = [
     "year": 2025,
     "examName": "First Round",
     "questionNumber": 3,
+    continuesFrom: 2,
     "difficulty": "Advanced",
     "topic": "Astrophysical Processes & Nuclear Physics",
     "subtopic": "Cooling-Law Integration",
@@ -17478,6 +17481,7 @@ export const usaaaoMcqs = [
     "year": 2026,
     "examName": "First Round",
     "questionNumber": 8,
+    continuesFrom: 7,
     "difficulty": "Advanced",
     "topic": "Cosmology & Universe",
     "subtopic": "Black Hole Evaporation Curve",
