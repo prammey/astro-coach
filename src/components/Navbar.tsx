@@ -16,15 +16,15 @@ export default function Navbar() {
   const onDashboard = pathname?.startsWith("/dashboard") ?? false;
   const logoHref = user && !onDashboard ? "/dashboard" : "/";
 
-  // Dashboard sits at the end of the nav for logged-in users; the Home link
-  // always goes to the marketing homepage.
+  // Dashboard leads the nav for logged-in users; the Home link always goes
+  // to the marketing homepage.
   const links = [
+    ...(user ? [{ href: "/dashboard", label: "Dashboard" }] : []),
     { href: "/", label: "Home" },
     { href: "/olympiads", label: "Olympiads" },
     { href: "/training", label: "Training" },
     { href: "/pricing", label: "Pricing" },
     { href: "/about", label: "About" },
-    ...(user ? [{ href: "/dashboard", label: "Dashboard" }] : []),
   ];
 
   return (
