@@ -926,7 +926,7 @@ export const baaoMcqs = [{
       "satellite"
     ],
     type: "MCQ",
-    questionText: "For a satellite in a circular orbit around the Earth, which of the arrows in the figure below describe the direction of the velocity and the resultant force?\n\n[Visual reference required: see page 4 of the official exam PDF.]",
+    questionText: "For a satellite in a circular orbit around the Earth, which of the arrows in the figure below describe the direction of the velocity and the resultant force?",
     choices: [
       {
         label: "A",
@@ -1295,7 +1295,7 @@ export const baaoMcqs = [{
       "stellar composition"
     ],
     type: "MCQ",
-    questionText: "Light from a star is split into a line spectrum of different colours. The line spectrum from the star is shown, along with the line spectra of some individual elements. Identify the elements present in the star.\n\n[Visual reference required: see page 6 of the official exam PDF.]",
+    questionText: "Light from a star is split into a line spectrum of different colours. The line spectrum from the star is shown, along with the line spectra of some individual elements. Identify the elements present in the star.",
     choices: [
       {
         label: "A",
@@ -1344,7 +1344,7 @@ export const baaoMcqs = [{
       "ellipsoid"
     ],
     type: "MCQ",
-    questionText: "'Oumuamua is an elongated interstellar comet. During an observation with a ground-based telescope whilst close to the Sun, the light curve displayed a sinusoidal variation in magnitude as shown below. If the comet is modelled as an ellipsoid with a shortest visible axis of 30 m, use the light curve to determine the approximate size of the longest visible axis. Assume that the major axis lies in the plane along the line of sight.\n\n[Visual reference required: see page 6 of the official exam PDF.]",
+    questionText: "'Oumuamua is an elongated interstellar comet. During an observation with a ground-based telescope whilst close to the Sun, the light curve displayed a sinusoidal variation in magnitude as shown below. If the comet is modelled as an ellipsoid with a shortest visible axis of 30 m, use the light curve to determine the approximate size of the longest visible axis. Assume that the major axis lies in the plane along the line of sight.",
     choices: [
       {
         label: "A",
@@ -1397,7 +1397,7 @@ export const baaoMcqs = [{
       "radio interferometry"
     ],
     type: "MCQ",
-    questionText: "The image below was released in April 2019 by the Event Horizon Telescope collaboration and is considered to be one of the most significant astronomical images ever made. What is it of?\n\n[Visual reference required: see page 4 of the official exam PDF.]",
+    questionText: "The image below was released in April 2019 by the Event Horizon Telescope collaboration and is considered to be one of the most significant astronomical images ever made. What is it of?",
     choices: [
       {
         label: "A",
@@ -2779,7 +2779,7 @@ export const baaoMcqs = [{
       "space telescopes"
     ],
     "type": "MCQ",
-    "questionText": "Below is one of the first images taken with the James Webb Space Telescope (JWST) released to the public on 12th July 2022. Which object is it from?\n\n[Visual reference required: see page 3 of the official exam PDF.]",
+    "questionText": "Below is one of the first images taken with the James Webb Space Telescope (JWST) released to the public on 12th July 2022. Which object is it from?",
     "choices": [
       {
         "label": "A",
@@ -3331,7 +3331,7 @@ export const baaoMcqs = [{
       "M101"
     ],
     "type": "MCQ",
-    "questionText": "The recent supernova SN 2023ixf was one of the closest to Earth of the past decade, reaching an apparent magnitude of 10.8 despite being in the galaxy M101, about 21 million light years away. What was the absolute magnitude of this supernova?\n\n[Visual reference required: see page 4 of the official exam PDF.]",
+    "questionText": "The recent supernova SN 2023ixf was one of the closest to Earth of the past decade, reaching an apparent magnitude of 10.8 despite being in the galaxy M101, about 21 million light years away. What was the absolute magnitude of this supernova?",
     "choices": [
       {
         "label": "A",
@@ -3474,7 +3474,7 @@ export const baaoMcqs = [{
       "open cluster"
     ],
     "type": "MCQ",
-    "questionText": "What is the Messier number of this object?\n\n[Visual reference required: see page 5 of the official exam PDF.]",
+    "questionText": "What is the Messier number of this object?",
     "choices": [
       {
         "label": "A",
@@ -3568,7 +3568,7 @@ export const baaoMcqs = [{
       "galaxy location"
     ],
     "type": "MCQ",
-    "questionText": "Which of these constellations contains the nearest (comparable size) galaxy to the Milky Way?\n\n[Visual reference required: see page 6 of the official exam PDF.]",
+    "questionText": "Which of these constellations contains the nearest (comparable size) galaxy to the Milky Way?",
     "choices": [
       {
         "label": "A",
@@ -3711,7 +3711,7 @@ export const baaoMcqs = [{
       "spacecraft landing"
     ],
     "type": "MCQ",
-    "questionText": "The year 2024 marks the 10th anniversary of the landing by which of the following spacecraft?\n\n[Visual reference required: see page 4 of the official exam PDF.]",
+    "questionText": "The year 2024 marks the 10th anniversary of the landing by which of the following spacecraft?",
     "choices": [
       {
         "label": "A",

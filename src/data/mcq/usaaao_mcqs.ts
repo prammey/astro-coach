@@ -10342,7 +10342,7 @@ export const usaaaoMcqs = [
       "galaxy"
     ],
     type: "MCQ",
-    questionText: "Take a look at the following image: Three Messier objects are circled in the image. Select the alternative that correctly matches each object with its type.\n\n[Visual reference required: see page 5 of the official exam PDF.]",
+    questionText: "Take a look at the following image: Three Messier objects are circled in the image. Select the alternative that correctly matches each object with its type.",
     choices: [
       {
         label: "A",
@@ -11174,7 +11174,7 @@ export const usaaaoMcqs = [
       "irregular galaxy"
     ],
     type: "MCQ",
-    questionText: "Classify the following galaxies according the Hubble galaxies classification: Figure 1: Galaxy 1 Figure 2: Galaxy 2 Figure 3: Galaxy 3 Figure 4: Galaxy 4 Figure 5: Galaxy 5\n\n[Visual reference required: see page 1 of the official exam PDF.]",
+    questionText: "Classify the following galaxies according the Hubble galaxies classification: Figure 1: Galaxy 1 Figure 2: Galaxy 2 Figure 3: Galaxy 3 Figure 4: Galaxy 4 Figure 5: Galaxy 5",
     choices: [
       {
         label: "A",
@@ -11278,7 +11278,7 @@ export const usaaaoMcqs = [
       "eccentricity"
     ],
     type: "MCQ",
-    questionText: "Consider the following elliptical orbit of a comet around a star: Which of the following expressions corresponds to the time that the comet takes to go from point A to point B as a function of the period of the comet (T) and the eccentricity of the orbit (e)? Assume that the direction of the orbit is counterclockwise.\n\n[Visual reference required: see page 3 of the official exam PDF.]",
+    questionText: "Consider the following elliptical orbit of a comet around a star: Which of the following expressions corresponds to the time that the comet takes to go from point A to point B as a function of the period of the comet (T) and the eccentricity of the orbit (e)? Assume that the direction of the orbit is counterclockwise.",
     choices: [
       {
         label: "A",
@@ -11687,7 +11687,7 @@ export const usaaaoMcqs = [
       "night-sky image"
     ],
     type: "MCQ",
-    questionText: "An astronomer took the following picture while observing the night sky: What is the latitude of the place where the astronomer took the picture?\n\n[Visual reference required: see page 6 of the official exam PDF.]",
+    questionText: "An astronomer took the following picture while observing the night sky: What is the latitude of the place where the astronomer took the picture?",
     choices: [
       {
         label: "A",
@@ -11846,7 +11846,7 @@ export const usaaaoMcqs = [
       "signal-to-noise"
     ],
     type: "MCQ",
-    questionText: "Figure 6 shows a 6-hr root-mean-square (rms) Combined Differential Photometric Precision (CDPP) curve for 150,000 stars observed by the Kepler space telescope. CDPP is a measure of the white noise contained in a light curve, so for a target with 6-hour CDPP of 100 parts per million (ppm), a 6-hour transit with depth 100 ppm would be considered a 1-σ detection. Figure 6: From Christiansen et al. (https://arxiv.org/abs/1208.0595). Original caption: The distri- bution of the 6-hour rms CDPP values with Kp magnitude for all Quarter 3 planetary targets. Consider a 1R☉ target with Kepler magnitude Kp = 13.5 that's among the best targets for its magnitude with respect to noise in Figure 6. Also consider three independent exoplanet scenarios for exoplanets with radii: • I. 0.5 R⊕ • II. 1 R⊕ • III. 10 R⊕ Using a 1 − σ detection threshold (and assuming 6-hour transit durations), which planet(s) transits would we likely fail to observe due to noise?\n\n[Visual reference required: see page 7 of the official exam PDF.]",
+    questionText: "Figure 6 shows a 6-hr root-mean-square (rms) Combined Differential Photometric Precision (CDPP) curve for 150,000 stars observed by the Kepler space telescope. CDPP is a measure of the white noise contained in a light curve, so for a target with 6-hour CDPP of 100 parts per million (ppm), a 6-hour transit with depth 100 ppm would be considered a 1-σ detection. Figure 6: From Christiansen et al. (https://arxiv.org/abs/1208.0595). Original caption: The distri- bution of the 6-hour rms CDPP values with Kp magnitude for all Quarter 3 planetary targets. Consider a 1R☉ target with Kepler magnitude Kp = 13.5 that's among the best targets for its magnitude with respect to noise in Figure 6. Also consider three independent exoplanet scenarios for exoplanets with radii: • I. 0.5 R⊕ • II. 1 R⊕ • III. 10 R⊕ Using a 1 − σ detection threshold (and assuming 6-hour transit durations), which planet(s) transits would we likely fail to observe due to noise?",
     choices: [
       {
         label: "A",
@@ -12000,7 +12000,7 @@ export const usaaaoMcqs = [
       "light curve"
     ],
     type: "MCQ",
-    questionText: "An astronomer observes an eclipsing binary star system from Earth, and he plots the following light curve. Suppose that both stars have circular orbits and the distance between the stars is 14.8 AU. What is the total mass of the binary star system in terms of solar masses?\n\n[Visual reference required: see page 8 of the official exam PDF.]",
+    questionText: "An astronomer observes an eclipsing binary star system from Earth, and he plots the following light curve. Suppose that both stars have circular orbits and the distance between the stars is 14.8 AU. What is the total mass of the binary star system in terms of solar masses?",
     choices: [
       {
         label: "A",
@@ -12054,7 +12054,7 @@ export const usaaaoMcqs = [
       "eclipse duration"
     ],
     type: "MCQ",
-    questionText: "Assume that the smaller star in the above binary star system is brighter than the larger star. What is the ratio of the radius of the smaller star to the radius of the larger star?\n\n[Visual reference required: see page 9 of the official exam PDF.]",
+    questionText: "Assume that the smaller star in the above binary star system is brighter than the larger star. What is the ratio of the radius of the smaller star to the radius of the larger star?",
     choices: [
       {
         label: "A",
@@ -12079,6 +12079,12 @@ export const usaaaoMcqs = [
     ],
     correctAnswer: "C",
     explanation: "The relative durations in the supplied light curve determine the chord geometry, giving a smaller-to-larger radius ratio of 0.82.",
+    // Shares Question 17's light curve: the source exam prints one plot for
+    // both questions, and "the above binary star system" refers to it.
+    questionMedia: {
+      status: "complete",
+      assets: ["/mcq-images/usaaao-images/2022-usaaao-first-round-images/usaaao-2022-first-round-q17.png"],
+    },
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_problems.pdf",
     pageNumber: 9,
@@ -12454,7 +12460,7 @@ export const usaaaoMcqs = [
       "ecliptic"
     ],
     type: "MCQ",
-    questionText: "Knowing that the following image was taken at 11:59pm, determine the name of which constellation was the sun passing in front of in that same day.\n\n[Visual reference required: see page 12 of the official exam PDF.]",
+    questionText: "Knowing that the following image was taken at 11:59pm, determine the name of which constellation was the sun passing in front of in that same day.",
     choices: [
       {
         label: "A",
@@ -13463,7 +13469,7 @@ export const usaaaoMcqs = [
       "Corona Borealis"
     ],
     type: "MCQ",
-    questionText: "Which of the following constellations is not on the sky map below?\n\n[Visual reference required: see page 4 of the official exam PDF.]",
+    questionText: "Which of the following constellations is not on the sky map below?",
     choices: [
       {
         label: "A",
@@ -14123,7 +14129,7 @@ export const usaaaoMcqs = [
       "season"
     ],
     type: "MCQ",
-    questionText: "Here is a map of MIT and the surrounding area, where North points directly upwards, as taken from https://whereis.mit.edu: Leo is biking along the Harvard Bridge (marked as =A\") when he stops and looks out at the river. Looking out downriver (to the right on this map) and parallel to the banks, he sees the Sun straight in front of him, peeking out from above the buildings, and has to avert his eyes to not be blinded. What part of the academic year is it?\n\n[Visual reference required: see page 8 of the official exam PDF.]",
+    questionText: "Here is a map of MIT and the surrounding area, where North points directly upwards, as taken from https://whereis.mit.edu: Leo is biking along the Harvard Bridge (marked as =A\") when he stops and looks out at the river. Looking out downriver (to the right on this map) and parallel to the banks, he sees the Sun straight in front of him, peeking out from above the buildings, and has to avert his eyes to not be blinded. What part of the academic year is it?",
     choices: [
       {
         label: "A",
@@ -14177,7 +14183,7 @@ export const usaaaoMcqs = [
       "diurnal motion"
     ],
     type: "MCQ",
-    questionText: "After a day spent showing a visiting friend around Boston, Leo is walking back along the bridge (see diagram in previous problem) to return to Next House. The time is such that the Sun now aligns with perfectly upriver, so it is in the opposite direction compared to the morning. How high in the sky is the Sun relative to the morning?\n\n[Visual reference required: see page 8 of the official exam PDF.]",
+    questionText: "After a day spent showing a visiting friend around Boston, Leo is walking back along the bridge (see diagram in previous problem) to return to Next House. The time is such that the Sun now aligns with perfectly upriver, so it is in the opposite direction compared to the morning. How high in the sky is the Sun relative to the morning?",
     choices: [
       {
         label: "A",
@@ -14385,7 +14391,7 @@ export const usaaaoMcqs = [
       "field image"
     ],
     "type": "MCQ",
-    "questionText": "Orion’s first telescope has primary-mirror focal length Fp = 2 m and eyepiece focal length Fe = 30 mm. The official PDF shows a full-field image from this telescope and a second, more magnified full-field image from a second telescope. Which specifications could belong to the second telescope? [Figure required; see official exam PDF page 2.]",
+    "questionText": "Orion’s first telescope has primary-mirror focal length Fp = 2 m and eyepiece focal length Fe = 30 mm. The official PDF shows a full-field image from this telescope and a second, more magnified full-field image from a second telescope. Which specifications could belong to the second telescope?",
     "choices": [
       {
         "label": "A",
@@ -14487,7 +14493,7 @@ export const usaaaoMcqs = [
       "two-body orbit"
     ],
     "type": "MCQ",
-    "questionText": "Planets DDP and CJ orbit a nearby star as shown in the official figure. CJ has a circular orbit of radius 2d. DDP has aphelion d, perihelion 5d, and is three times as massive as CJ. Their orbits intersect at B. What is the ratio of DDP’s angular momentum to CJ’s angular momentum at B? [Figure required; see official exam PDF page 3.]",
+    "questionText": "Planets DDP and CJ orbit a nearby star as shown in the official figure. CJ has a circular orbit of radius 2d. DDP has aphelion d, perihelion 5d, and is three times as massive as CJ. Their orbits intersect at B. What is the ratio of DDP’s angular momentum to CJ’s angular momentum at B?",
     "choices": [
       {
         "label": "A",
@@ -16088,7 +16094,7 @@ export const usaaaoMcqs = [
       "sky map"
     ],
     "type": "MCQ",
-    "questionText": "Match imaginary lines 1–3 on the official sky map to labels. [Map required; see official exam PDF page 4.]",
+    "questionText": "Match imaginary lines 1–3 on the official sky map to labels.",
     "choices": [
       {
         "label": "A",
@@ -17280,7 +17286,7 @@ export const usaaaoMcqs = [
       "night-sky map"
     ],
     "type": "MCQ",
-    "questionText": "An official sky map shows a remote-island night sky. What is the best estimate of your latitude? [Map required; see official exam PDF page 2.]",
+    "questionText": "An official sky map shows a remote-island night sky. What is the best estimate of your latitude?",
     "choices": [
       {
         "label": "A",
@@ -17333,7 +17339,7 @@ export const usaaaoMcqs = [
       "season"
     ],
     "type": "MCQ",
-    "questionText": "Using the same official night-sky map, what is the best estimate of the month of the year? [Map required; see official exam PDF page 2.]",
+    "questionText": "Using the same official night-sky map, what is the best estimate of the month of the year?",
     "choices": [
       {
         "label": "A",
@@ -17386,7 +17392,7 @@ export const usaaaoMcqs = [
       "local solar time"
     ],
     "type": "MCQ",
-    "questionText": "Using the same official night-sky map, what is the best estimate of time relative to local solar noon? [Map required; see official exam PDF page 2.]",
+    "questionText": "Using the same official night-sky map, what is the best estimate of time relative to local solar noon?",
     "choices": [
       {
         "label": "A",
@@ -17636,7 +17642,7 @@ export const usaaaoMcqs = [
       "stellar magnitudes"
     ],
     "type": "MCQ",
-    "questionText": "Four bright stars with magnitude below 3.0 were erased from the official sky map. Which set was erased? [Map required; see official exam PDF page 4.]",
+    "questionText": "Four bright stars with magnitude below 3.0 were erased from the official sky map. Which set was erased?",
     "choices": [
       {
         "label": "A",
@@ -17693,27 +17699,27 @@ export const usaaaoMcqs = [
       "photometry"
     ],
     "type": "MCQ",
-    "questionText": "An extraterrestrial observes a central transit of Jupiter across the Sun. Which official light curve could match the transit? The axes show hours from mid-transit and apparent bolometric magnitude. [All choices are visual plots; see official exam PDF pages 5–6.]",
+    "questionText": "An extraterrestrial observes a central transit of Jupiter across the Sun. Which official light curve could match the transit? The axes show hours from mid-transit and apparent bolometric magnitude.",
     "choices": [
       {
         "label": "A",
-        "text": "Light curve A (official PDF)"
+        "text": "Light curve A"
       },
       {
         "label": "B",
-        "text": "Light curve B (official PDF)"
+        "text": "Light curve B"
       },
       {
         "label": "C",
-        "text": "Light curve C (official PDF)"
+        "text": "Light curve C"
       },
       {
         "label": "D",
-        "text": "Light curve D (official PDF)"
+        "text": "Light curve D"
       },
       {
         "label": "E",
-        "text": "Light curve E (official PDF)"
+        "text": "Light curve E"
       }
     ],
     "correctAnswer": "A",
@@ -18448,7 +18454,7 @@ export const usaaaoMcqs = [
       "orbital resonance"
     ],
     "type": "MCQ",
-    "questionText": "An official asteroid-belt semimajor-axis plot marks a gap near 2.82 AU. Jupiter has semimajor axis 5.20 AU. Which resonance causes the marked Kirkwood gap? [Graph required; see official exam PDF page 11.]",
+    "questionText": "An official asteroid-belt semimajor-axis plot marks a gap near 2.82 AU. Jupiter has semimajor axis 5.20 AU. Which resonance causes the marked Kirkwood gap?",
     "choices": [
       {
         "label": "A",
@@ -18501,7 +18507,7 @@ export const usaaaoMcqs = [
       "red giant branch"
     ],
     "type": "MCQ",
-    "questionText": "An official Gaia DR3 globular-cluster HR diagram labels regions A–D. Identify 1) the region of core hydrogen burning and 2) the region where helium flash occurs. [Diagram required; see official exam PDF page 12.]",
+    "questionText": "An official Gaia DR3 globular-cluster HR diagram labels regions A–D. Identify 1) the region of core hydrogen burning and 2) the region where helium flash occurs.",
     "choices": [
       {
         "label": "A",

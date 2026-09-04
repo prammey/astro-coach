@@ -69,12 +69,15 @@ const findings = {
   missingMetadata: [],
   emptyExplanation: [],
   srcPublicDrift: [],
+  stalePdfNote: [],
+  impliesFigureNoMediaField: [],
 };
 
 // Deliberate exceptions: the source exam prints one figure that serves two
 // consecutive questions, so the second legitimately reuses the first's image.
 const SHARED_FIGURE_OK = new Set([
   'usaaao-2023-first-round-q30|/mcq-images/usaaao-images/2023-usaaao-first-round-images/usaaao-2023-first-round-q29.png',
+  'usaaao-2022-first-round-q18|/mcq-images/usaaao-images/2022-usaaao-first-round-images/usaaao-2022-first-round-q17.png',
 ]);
 
 const referenced = new Set();
@@ -143,6 +146,30 @@ for (const q of all) {
     /\b(figure|diagram|image below|image above|shown below|shown above|graph below|the graph|the plot|the chart|the picture|following diagram|below shows|above shows|the image)\b/i;
   if (!q.questionMedia && figureWords.test(q.questionText || '')) {
     findings.figureLanguageNoMedia.push(`${id}: "${(q.questionText || '').slice(0, 110)}..."`);
+  }
+
+  // Refers to a figure as already present ("the above binary star system",
+  // "the supplied light curve") but declares no questionMedia field at all,
+  // so nothing renders and nothing is flagged as missing either.
+  const assumesFigurePresent =
+    /\b(the above|shown above|as shown|the supplied|supplied (image|light curve|figure)|pictured)\b/i;
+  if (!q.questionMedia && assumesFigurePresent.test(q.questionText || '')) {
+    findings.impliesFigureNoMediaField.push(
+      `${id}: "${(q.questionText || '').slice(0, 110)}..."`
+    );
+  }
+
+  // A leftover "see the official exam PDF" pointer on a question whose
+  // figure now renders inline — it sends learners off to hunt for something
+  // already on screen.
+  const pdfPointer = /\[[^\]]*(required|see page|official exam pdf|visual plots)[^\]]*\]/i;
+  const hasFigure = q.questionMedia?.status === 'complete';
+  if (hasFigure && pdfPointer.test(q.questionText || '')) {
+    findings.stalePdfNote.push(`${id}: has figure but text still points at the PDF`);
+  }
+  const pdfChoice = (q.choices || []).find((c) => /official pdf|exam pdf/i.test(c.text));
+  if (hasFigure && pdfChoice) {
+    findings.stalePdfNote.push(`${id}: choice "${pdfChoice.text}" still cites the PDF`);
   }
 
   // --- data integrity ---
@@ -217,6 +244,8 @@ section('ORPHAN IMAGES (on disk, not referenced by any question)', findings.orph
 section('QUESTIONS MISSING REQUIRED QUESTION FIGURE', findings.missingQuestionMedia, { showAll: true });
 section('QUESTIONS MISSING REQUIRED SOLUTION FIGURE', findings.missingSolutionMedia, { showAll: true });
 section('FIGURE LANGUAGE BUT NO QUESTION MEDIA AT ALL', findings.figureLanguageNoMedia, { showAll: true });
+section('ASSUMES A FIGURE IS PRESENT BUT DECLARES NO MEDIA FIELD', findings.impliesFigureNoMediaField, { showAll: true });
+section('STALE "SEE THE PDF" POINTER (figure already renders)', findings.stalePdfNote, { showAll: true });
 section('DUPLICATE QUESTION IDs', findings.duplicateIds, { showAll: true });
 section('BAD / MISSING CORRECT ANSWER', findings.badCorrectAnswer, { showAll: true });
 section('BAD CHOICES', findings.badChoices, { showAll: true });
