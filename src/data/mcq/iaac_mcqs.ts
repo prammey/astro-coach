@@ -3278,7 +3278,7 @@ export const iaacMcqs = [
     subtopic: "Analemma",
     tags: ["analemma", "Sun", "mean solar time"],
     type: "MCQ",
-    questionText: "An Analemma is a diagram showing the position of from a fixed location and the same mean solar time over the course of a year.",
+    questionText: "An Analemma is a diagram showing the position of _____ from a fixed location and the same mean solar time over the course of a year.",
     choices: [
       { label: "A", text: "the Sun" },
       { label: "B", text: "the Moon" },
@@ -3476,7 +3476,7 @@ export const iaacMcqs = [
     type: "MCQ",
     questionMedia: {
       status: "complete",
-      assets: ["mcq/images/iaac-images/2021-iaac-final-round-images/iaac-2021-final-round-q34.png"],
+      assets: ["/mcq-images/iaac-images/2021-iaac-final-round-images/iaac-2021-final-round-q34.png"],
     },
     questionText: "The drawing below shows a comet in four positions around the Sun. For which position does the comet’s tail point in the correct direction?",
     choices: [
@@ -3680,7 +3680,7 @@ export const iaacMcqs = [
     "type": "MCQ",
     questionMedia: {
       status: "complete",
-      assets: ["/mcq/images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q1.png"]
+      assets: ["/mcq-images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q1.png"],
     },
     "questionText": "What is the name of the JWST component highlighted in the official figure?",
     "choices": [
@@ -3728,7 +3728,7 @@ export const iaacMcqs = [
     "type": "MCQ",
     questionMedia: {
       status: "complete",
-      assets: ["/mcq/images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q2.png"]
+      assets: ["/mcq-images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q2.png"],
     },
     "questionText": "What is the name of the JWST component highlighted in the official figure?",
     "choices": [
@@ -3776,7 +3776,7 @@ export const iaacMcqs = [
     "type": "MCQ",
     questionMedia: {
       status: "complete",
-      assets: ["src/data/mcq/images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q3.png"]
+      assets: ["/mcq-images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q3.png"],
     },
     "questionText": "What is the name of the JWST component highlighted in the official figure?",
     "choices": [
@@ -3957,7 +3957,7 @@ export const iaacMcqs = [
     "type": "MCQ",
     questionMedia: {
       status: "complete",
-      assets: ["src/data/mcq/images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q7.png"]
+      assets: ["/mcq-images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q7.png"],
     },
     "questionText": "Two asteroids with masses m₁, m₂ and velocities v₁, v₂ collide horizontally and merge into a single object. What is the velocity of the new asteroid?",
     "choices": [
@@ -4930,7 +4930,7 @@ export const iaacMcqs = [
     "type": "MCQ",
     questionMedia: {
       status: "complete",
-      assets: ["src/data/mcq/images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q29.png"]
+      assets: ["/mcq-images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q29.png"],
     },
     "questionText": "What is the name of Jupiter’s moon shown in the official figure?",
     "choices": [
@@ -5022,7 +5022,7 @@ export const iaacMcqs = [
     "type": "MCQ",
     questionMedia: {
       status: "complete",
-      assets: ["/mcq-images/iaac-images/2020-iaac-final-round-images/iaac-2020-final-round-q25.png"]
+      assets: ["/mcq-images/iaac-images/2023-iaac-final-round-images/iaac-2023-final-round-q1.png"],
     },
     "questionText": "Which one of these shapes in the official figure illustrates an elliptical galaxy?",
     "choices": [
@@ -5070,7 +5070,7 @@ export const iaacMcqs = [
     "type": "MCQ",
     questionMedia: {
       status: "complete",
-      assets: ["/mcq-images/iaac-images/2021-iaac-final-round-images/iaac-2021-final-round-q11.png"]
+      assets: ["/mcq-images/iaac-images/2023-iaac-final-round-images/iaac-2023-final-round-q2.png"],
     },
     "questionText": "What is the class of the galaxy shown in the official figure?",
     "choices": [
@@ -5118,7 +5118,7 @@ export const iaacMcqs = [
     "type": "MCQ",
     questionMedia: {
       status: "complete",
-      assets: ["/mcq-images/iaac-images/2021-iaac-final-round-images/iaac-2021-final-round-q26.png"]
+      assets: ["/mcq-images/iaac-images/2023-iaac-final-round-images/iaac-2023-final-round-q3.png"],
     },
     "questionText": "Which class of galaxies does the shape in the official figure illustrate?",
     "choices": [
@@ -5297,8 +5297,8 @@ export const iaacMcqs = [
     ],
     "type": "MCQ",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/iaac-images/2023-iaac-final-round-images/iaac-2023-final-round-q7.png"],
     },
     "questionText": "Which one of the labeled points in the official ellipse diagram is the aphelion?",
     "choices": [
@@ -5830,8 +5830,8 @@ export const iaacMcqs = [
     ],
     "type": "MCQ",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/iaac-images/2023-iaac-final-round-images/iaac-2023-final-round-q19.png"],
     },
     "questionText": "Where on Mars did the Zhurong rover of the Tianwen-1 mission land?",
     "choices": [
@@ -6847,8 +6847,8 @@ export const iaacMcqs = [
     ],
     "type": "MCQ",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/iaac-images/2024-iaac-final-round-images/iaac-2024-final-round-q12.png"],
     },
     "questionText": "What is the name of the region marked in the official horizontal Milky Way drawing?",
     "choices": [
@@ -6895,8 +6895,8 @@ export const iaacMcqs = [
     ],
     "type": "MCQ",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/iaac-images/2024-iaac-final-round-images/iaac-2024-final-round-q13.png"],
     },
     "questionText": "What is the name of the region marked in the official horizontal Milky Way drawing?",
     "choices": [
@@ -7515,8 +7515,8 @@ export const iaacMcqs = [
     ],
     "type": "MCQ",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/iaac-images/2025-iaac-final-round-images/iaac-2025-final-round-q1.png"],
     },
     "questionText": "What type of optical telescope is shown in the official image?",
     "choices": [
@@ -7563,8 +7563,8 @@ export const iaacMcqs = [
     ],
     "type": "MCQ",
     questionMedia: {
-      status: "required-missing",
-      assets: [],
+      status: "complete",
+      assets: ["/mcq-images/iaac-images/2025-iaac-final-round-images/iaac-2025-final-round-q2.png"],
     },
     "questionText": "What type of optical telescope is shown in the official image?",
     "choices": [

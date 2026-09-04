@@ -5,6 +5,7 @@ import BrutalCard from "@/components/BrutalCard";
 import McqPractice from "@/components/McqPractice";
 import QuestionAnsweredIndicator from "@/components/QuestionAnsweredIndicator";
 import BookmarkButtonWrapper from "@/components/BookmarkButtonWrapper";
+import QuestionFigure from "@/components/QuestionFigure";
 import SkipQuestionButton from "@/components/SkipQuestionButton";
 import NextQuestionButton from "@/components/NextQuestionButton";
 import { findCatalogQuestionById, toPublicQuestion } from "@/data/mcq/catalog.server";
@@ -67,6 +68,10 @@ export default async function QuestionDetailPage({
 
       <BrutalCard className="mt-6 bg-[var(--color-cream)]">
         <p className="text-lg text-[var(--color-navy)]">{publicQuestion.questionText}</p>
+        <QuestionFigure
+          assets={publicQuestion.questionMedia?.assets as readonly string[] | undefined}
+          alt={`Figure for ${publicQuestion.competition} ${publicQuestion.year} question ${publicQuestion.questionNumber}`}
+        />
       </BrutalCard>
 
       <McqPractice question={publicQuestion} />

@@ -71,6 +71,11 @@ export async function POST(request: NextRequest) {
       correctAnswer: question.correctAnswer,
       explanation: question.explanation,
       solutionMediaMissing,
+      // Solution figures are only revealed once an answer has been checked,
+      // which is why they are sent from here rather than with the question.
+      solutionMediaAssets: solutionMediaMissing
+        ? []
+        : ((question.solutionMedia?.assets ?? []) as string[]),
       saved,
     });
   } catch (error) {

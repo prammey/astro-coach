@@ -7,6 +7,7 @@ import PageContainer from '@/components/PageContainer';
 import BrutalCard from '@/components/BrutalCard';
 import McqPractice from '@/components/McqPractice';
 import QuestionAnsweredIndicator from '@/components/QuestionAnsweredIndicator';
+import QuestionFigure from '@/components/QuestionFigure';
 import { useTrainingMode } from '@/lib/training-mode-context';
 import { PublicQuestion } from '@/data/mcq/types';
 
@@ -187,6 +188,10 @@ function TrainingQuestion({
 
       <BrutalCard className="mt-6 bg-[var(--color-cream)]">
         <p className="text-lg text-[var(--color-navy)]">{question.questionText}</p>
+        <QuestionFigure
+          assets={question.questionMedia?.assets as readonly string[] | undefined}
+          alt={`Figure for ${question.competition} ${question.year} question ${question.questionNumber}`}
+        />
       </BrutalCard>
 
       <McqPractice question={question} onAnswerSubmitted={onAnswerSubmitted} />

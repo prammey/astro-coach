@@ -4,6 +4,7 @@ import { useState } from "react";
 import { PublicQuestion } from "@/data/mcq/types";
 import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/lib/auth";
+import QuestionFigure from "./QuestionFigure";
 
 // What the server sends back after checking an answer. The correct
 // answer and explanation only ever arrive here, after submission —
@@ -13,6 +14,7 @@ type CheckAnswerResult = {
   correctAnswer: string;
   explanation: string;
   solutionMediaMissing: boolean;
+  solutionMediaAssets?: string[];
 };
 
 export default function McqPractice({
@@ -135,6 +137,7 @@ export default function McqPractice({
         <div className="mt-4 rounded-lg border-4 border-black bg-[var(--color-cream)] p-4">
           <h3 className="font-bold text-[var(--color-purple)]">Explanation</h3>
           <p className="mt-1 text-[var(--color-navy)]">{result.explanation}</p>
+          <QuestionFigure assets={result.solutionMediaAssets} alt="Solution figure" />
           {result.solutionMediaMissing && (
             <p className="mt-2 text-sm font-bold text-[var(--color-purple)]">
               Solution figure coming soon.
