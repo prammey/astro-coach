@@ -10,6 +10,7 @@ interface AuthContextType {
   loading: boolean;
   signUp: (email: string, password: string, firstName?: string, lastName?: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
 }
 
@@ -104,13 +105,31 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // Hands off to Google, which sends the user back to /auth/callback with a
+  // one-time code. Using the live origin means the same code works on
+  // localhost and in production without an environment variable.
+  const signInWithGoogle = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+    if (error) {
+      console.error('Google sign-in error:', error);
+      throw new Error(error.message || 'Failed to sign in with Google');
+    }
+  };
+
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, loading, signUp, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ user, session, loading, signUp, signIn, signInWithGoogle, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

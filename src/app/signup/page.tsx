@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
+import GoogleSignInButton from '@/components/GoogleSignInButton';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -101,6 +102,14 @@ export default function SignupPage() {
               {success}
             </div>
           )}
+
+          <GoogleSignInButton label="Sign up with Google" />
+
+          <div className="my-6 flex items-center gap-3">
+            <span className="h-0.5 flex-1 bg-black/20" />
+            <span className="text-xs font-bold uppercase tracking-wide text-gray-500">or</span>
+            <span className="h-0.5 flex-1 bg-black/20" />
+          </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">

@@ -34,10 +34,14 @@ export default function ProfileSettingsPage() {
   useEffect(() => {
     if (user && !initRef.current) {
       initRef.current = true;
-      const fname = user.user_metadata?.first_name || '';
-      const lname = user.user_metadata?.last_name || '';
-      const uname = user.user_metadata?.username || fname || '';
-      const profileImg = user.user_metadata?.profile_image_url || '';
+      // Google's own metadata keys are read as a fallback, so the form is
+      // still filled in for anyone who signed in with Google before the
+      // callback started translating them into our own fields.
+      const meta = user.user_metadata ?? {};
+      const fname = meta.first_name || meta.given_name || '';
+      const lname = meta.last_name || meta.family_name || '';
+      const uname = meta.username || fname || '';
+      const profileImg = meta.profile_image_url || meta.avatar_url || meta.picture || '';
 
       setFirstName(fname);
       setLastName(lname);

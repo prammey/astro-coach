@@ -918,7 +918,10 @@ question bank, and the maintainer hears about it by email.
   marked resolved rather than living only in an inbox.
 * Basic abuse protection: rate limit per user per question.
 
-### 17.2 Continue with Google
+### 17.2 Continue with Google — BUILT (needs Supabase configuration)
+
+The app side is implemented. It stays inert until Google is enabled in the
+Supabase dashboard; see "Enable Google sign-in" in `README.md`.
 
 Google sign-in on both the login and signup pages, alongside
 email/password.
