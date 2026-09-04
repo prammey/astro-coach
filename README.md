@@ -485,16 +485,25 @@ once to set up your own Supabase project for local development.
 2. Click "New Project" and choose a name, password, and region.
 3. Wait for the project to finish provisioning (a couple of minutes).
 
-### 2. Get your Supabase URL and anon key
+### 2. Get your Supabase keys
 
 1. In your Supabase project, go to **Project Settings → API**.
 2. Copy the **Project URL** — this is `NEXT_PUBLIC_SUPABASE_URL`.
 3. Copy the **anon public** key — this is `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+4. Copy the **service_role** key — this is `SUPABASE_SERVICE_ROLE_KEY`.
 
-These two values are safe to expose in the browser (that's why they're
-prefixed `NEXT_PUBLIC_`). Never copy the **service_role** key into this
-project — that one must stay private and server-only, and Astro Coach
-doesn't need it.
+The first two are safe to expose in the browser (that's why they're
+prefixed `NEXT_PUBLIC_`).
+
+The **service_role** key is different: it bypasses Row Level Security and
+can administer accounts, so it must stay server-only. It is deliberately
+**not** prefixed with `NEXT_PUBLIC_`, and it is only ever read inside route
+handlers (`src/lib/supabase/admin.ts`). Never reference it from a Client
+Component, and never commit it. It is required for permanently deleting an
+account via "Deactivate Account" — without it that button fails.
+
+When deploying, add it in **Vercel → Project → Settings → Environment
+Variables** as well, or account deletion will fail in production only.
 
 ### 3. Get your database connection string
 

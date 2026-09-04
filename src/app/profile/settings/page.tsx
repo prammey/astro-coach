@@ -176,7 +176,10 @@ export default function ProfileSettingsPage() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to deactivate account');
+        // Surface the server's actual reason — a generic message here hid a
+        // real configuration failure and made it look like a user error.
+        const data = await response.json().catch(() => null);
+        throw new Error(data?.error || 'Failed to deactivate account');
       }
 
       // Redirect to home page after successful deletion
