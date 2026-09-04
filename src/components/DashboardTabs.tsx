@@ -26,7 +26,7 @@ const TABS: { id: TabType; label: string }[] = [
 // Applied as a mask so it scales non-uniformly to fill each flex-width tab.
 const TAB_SHAPE_SVG =
   "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 56' preserveAspectRatio='none'>" +
-  "<path d='M 0,56 L 18,14 A 14,14 0 0 1 32,0 L 168,0 A 14,14 0 0 1 182,14 L 200,56 Z' fill='white'/>" +
+  "<path d='M 0,56 L 4,24 A 24,24 0 0 1 22,0 L 178,0 A 24,24 0 0 1 196,24 L 200,56 Z' fill='white'/>" +
   '</svg>';
 const TAB_SHAPE_MASK = `url("data:image/svg+xml,${encodeURIComponent(TAB_SHAPE_SVG)}")`;
 const tabShapeStyle: CSSProperties = {
