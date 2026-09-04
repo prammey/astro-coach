@@ -73,24 +73,19 @@ export default function DashboardTabs() {
 
   return (
     <div>
-      {/* Chrome-style trapezoid tab bar */}
-      <div className="flex w-full" style={{ paddingBottom: 0 }}>
-        {TABS.map((tab, i) => {
+      {/* Chrome-style tab bar — soft rounded trapezoids */}
+      <div className="flex w-full gap-1.5">
+        {TABS.map((tab) => {
           const isActive = activeTab === tab.id;
           return (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 px-6 pt-3 pb-4 text-lg font-extrabold text-[var(--color-yellow)] transition-all duration-150 ${
+              className={`flex-1 rounded-t-2xl px-6 pt-4 pb-5 text-lg font-extrabold text-[var(--color-yellow)] transition-all duration-200 ${
                 isActive
-                  ? 'bg-[var(--color-cream)] z-20 shadow-[0_-4px_10px_rgba(0,0,0,0.15)]'
-                  : 'bg-[var(--color-space-blue)] hover:bg-[var(--color-space-blue)]/80 z-10'
+                  ? 'bg-[var(--color-cream)] z-20 shadow-[0_-4px_12px_rgba(0,0,0,0.15)]'
+                  : 'bg-[var(--color-space-blue)] hover:bg-[var(--color-space-blue)]/80 z-10 opacity-80 hover:opacity-100'
               }`}
-              style={{
-                clipPath: 'polygon(7% 0%, 93% 0%, 100% 100%, 0% 100%)',
-                marginLeft: i === 0 ? 0 : '-3%',
-                position: 'relative',
-              }}
             >
               {tab.label}
             </button>
@@ -99,7 +94,7 @@ export default function DashboardTabs() {
       </div>
 
       {/* Table content */}
-      <div className="relative z-10 rounded-b-xl rounded-tr-xl bg-[var(--color-cream)] overflow-hidden -mt-1 shadow-[0_6px_16px_rgba(0,0,0,0.15)]">
+      <div className="relative z-10 rounded-b-2xl rounded-tr-2xl bg-[var(--color-cream)] overflow-hidden -mt-1 shadow-[0_6px_16px_rgba(0,0,0,0.15)]">
         {isLoading ? (
           <p className="p-6 text-[var(--color-navy)]/70">Loading...</p>
         ) : (
