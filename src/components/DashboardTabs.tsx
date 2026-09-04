@@ -73,19 +73,24 @@ export default function DashboardTabs() {
 
   return (
     <div>
-      {/* Chrome-style tab bar */}
-      <div className="flex w-full">
-        {TABS.map((tab) => {
+      {/* Chrome-style trapezoid tab bar */}
+      <div className="flex w-full" style={{ paddingBottom: 0 }}>
+        {TABS.map((tab, i) => {
           const isActive = activeTab === tab.id;
           return (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 rounded-t-lg border-4 border-b-0 border-black px-4 py-3 text-lg font-extrabold text-[var(--color-yellow)] transition ${
+              className={`flex-1 px-6 pt-3 pb-4 text-lg font-extrabold text-[var(--color-yellow)] transition-all duration-150 ${
                 isActive
-                  ? 'bg-[var(--color-cream)] relative z-10'
-                  : 'bg-[var(--color-space-blue)] hover:bg-[var(--color-space-blue)]/80'
+                  ? 'bg-[var(--color-cream)] z-20 shadow-[0_-4px_10px_rgba(0,0,0,0.15)]'
+                  : 'bg-[var(--color-space-blue)] hover:bg-[var(--color-space-blue)]/80 z-10'
               }`}
+              style={{
+                clipPath: 'polygon(7% 0%, 93% 0%, 100% 100%, 0% 100%)',
+                marginLeft: i === 0 ? 0 : '-3%',
+                position: 'relative',
+              }}
             >
               {tab.label}
             </button>
@@ -94,10 +99,10 @@ export default function DashboardTabs() {
       </div>
 
       {/* Table content */}
-      <div className="rounded-b-xl rounded-tr-xl border-4 border-black bg-[var(--color-cream)] overflow-hidden -mt-1">
+      <div className="relative z-10 rounded-b-xl rounded-tr-xl bg-[var(--color-cream)] overflow-hidden -mt-1 shadow-[0_6px_16px_rgba(0,0,0,0.15)]">
         {isLoading ? (
           <p className="p-6 text-[var(--color-navy)]/70">Loading...</p>
-        ) : currentRows.length > 0 ? (
+        ) : (
           <table className="w-full">
             <thead className="bg-[var(--color-space-blue)]">
               <tr>
@@ -107,6 +112,7 @@ export default function DashboardTabs() {
                 <th className="px-6 py-3 text-left text-sm font-semibold text-white">When</th>
               </tr>
             </thead>
+            {currentRows.length > 0 ? (
             <tbody className="divide-y-2 divide-black">
               {currentRows.map((row) => (
                 <tr key={row.id} className="hover:bg-[var(--color-electric-blue)]/10">
@@ -144,13 +150,18 @@ export default function DashboardTabs() {
                 </tr>
               ))}
             </tbody>
+            ) : (
+              <tbody>
+                <tr>
+                  <td colSpan={4} className="px-6 py-8 text-center text-[var(--color-navy)]/70">
+                    {activeTab === 'bookmarked' && 'No bookmarked questions yet.'}
+                    {activeTab === 'incorrect' && 'No incorrect attempts yet.'}
+                    {activeTab === 'all' && 'No attempts yet. Start training to see your progress!'}
+                  </td>
+                </tr>
+              </tbody>
+            )}
           </table>
-        ) : (
-          <p className="p-6 text-[var(--color-navy)]/70">
-            {activeTab === 'bookmarked' && 'No bookmarked questions yet.'}
-            {activeTab === 'incorrect' && 'No incorrect attempts yet.'}
-            {activeTab === 'all' && 'No attempts yet. Start training to see your progress!'}
-          </p>
         )}
       </div>
     </div>
