@@ -3,11 +3,25 @@
 import { useState } from 'react';
 import { useAuth } from '@/lib/auth-context';
 
+// Google sign-in is fully wired up, but it stays switched off until the
+// project has its own domain and Google's brand verification passes —
+// a *.vercel.app URL cannot be verified, since the domain is Vercel's.
+// Until then the button shows as a disabled placeholder rather than
+// sending people into an "unverified app" warning or a Supabase error.
+//
+// To turn it on: flip this to true (and make sure Google is enabled in
+// the Supabase dashboard). Nothing else needs to change.
+const GOOGLE_SIGN_IN_ENABLED = false;
+
 // Google's four-colour "G". Inline rather than a hosted image so it always
 // renders, even offline, and never flashes in late.
-function GoogleLogo() {
+function GoogleLogo({ muted = false }: { muted?: boolean }) {
   return (
-    <svg className="h-5 w-5 flex-shrink-0" viewBox="0 0 48 48" aria-hidden="true">
+    <svg
+      className={`h-5 w-5 flex-shrink-0 ${muted ? 'opacity-60' : ''}`}
+      viewBox="0 0 48 48"
+      aria-hidden="true"
+    >
       <path
         fill="#EA4335"
         d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
@@ -28,8 +42,8 @@ function GoogleLogo() {
   );
 }
 
-// "Continue with Google" — same shape, border and width as the Log In and
-// Sign Up buttons, in white so it reads as the alternative route in.
+// Same shape, border and width as the Log In and Sign Up buttons, in white
+// so it reads as the alternative route in.
 export default function GoogleSignInButton({ label = 'Continue with Google' }: { label?: string }) {
   const { signInWithGoogle } = useAuth();
   const [isRedirecting, setIsRedirecting] = useState(false);
@@ -47,6 +61,22 @@ export default function GoogleSignInButton({ label = 'Continue with Google' }: {
       setIsRedirecting(false);
     }
   };
+
+  // Placeholder state: same button, no action, clearly labelled.
+  if (!GOOGLE_SIGN_IN_ENABLED) {
+    return (
+      <button
+        type="button"
+        disabled
+        aria-disabled="true"
+        title="Google sign-in is not available yet — use email and password for now"
+        className="flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-lg border-4 border-black bg-white px-6 py-3 font-bold text-[var(--color-navy)] opacity-60 shadow-[4px_4px_0_0_#000]"
+      >
+        <GoogleLogo muted />
+        Google coming soon!
+      </button>
+    );
+  }
 
   return (
     <div>
