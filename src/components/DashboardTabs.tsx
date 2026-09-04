@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/auth';
@@ -20,6 +20,23 @@ const TABS: { id: TabType; label: string }[] = [
   { id: 'bookmarked', label: 'Bookmarked' },
   { id: 'incorrect', label: 'Incorrect' },
 ];
+
+// Rounded trapezoid shape (like a browser tab): tapered sides, rounded top
+// corners, square bottom corners so it sits flush against the panel below.
+// Applied as a mask so it scales non-uniformly to fill each flex-width tab.
+const TAB_SHAPE_SVG =
+  "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 56' preserveAspectRatio='none'>" +
+  "<path d='M 0,56 L 18,14 A 14,14 0 0 1 32,0 L 168,0 A 14,14 0 0 1 182,14 L 200,56 Z' fill='white'/>" +
+  '</svg>';
+const TAB_SHAPE_MASK = `url("data:image/svg+xml,${encodeURIComponent(TAB_SHAPE_SVG)}")`;
+const tabShapeStyle: CSSProperties = {
+  WebkitMaskImage: TAB_SHAPE_MASK,
+  maskImage: TAB_SHAPE_MASK,
+  WebkitMaskSize: '100% 100%',
+  maskSize: '100% 100%',
+  WebkitMaskRepeat: 'no-repeat',
+  maskRepeat: 'no-repeat',
+};
 
 export default function DashboardTabs() {
   const { user } = useAuth();
@@ -73,7 +90,7 @@ export default function DashboardTabs() {
 
   return (
     <div>
-      {/* Chrome-style tab bar — soft rounded trapezoids */}
+      {/* Chrome-style tab bar — rounded trapezoids */}
       <div className="flex w-full gap-1.5">
         {TABS.map((tab) => {
           const isActive = activeTab === tab.id;
@@ -81,11 +98,12 @@ export default function DashboardTabs() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 rounded-t-2xl px-6 pt-4 pb-5 text-lg font-extrabold text-[var(--color-yellow)] transition-all duration-200 ${
+              className={`flex flex-1 h-[47px] items-center justify-center px-6 text-lg font-extrabold text-[var(--color-yellow)] transition-all duration-200 ${
                 isActive
                   ? 'bg-[var(--color-cream)] z-20 shadow-[0_-4px_12px_rgba(0,0,0,0.15)]'
                   : 'bg-[var(--color-space-blue)] hover:bg-[var(--color-space-blue)]/80 z-10 opacity-80 hover:opacity-100'
               }`}
+              style={tabShapeStyle}
             >
               {tab.label}
             </button>
