@@ -10369,13 +10369,10 @@ export const usaaaoMcqs = [
     explanation: "The types must be read from the three circled objects in the supplied source image; the official solution selects the fifth classification sequence.",
     questionMedia: {
       status: "complete",
-      assets: ["/mcq-images/usaaao-images/2021-usaaao-first-round-images/usaaao-2021-first-round-q14.png"]
+      assets: ["/mcq-images/usaaao-images/2021-usaaao-first-round-images/usaaao-2021-first-round-q14.png"],
     },
-
-    solutionMedia: {
-      status: "required-missing",
-      assets: [],
-    },
+    // No solution figure needed: the question image already shows the three
+    // circled objects the answer is read from.
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1.pdf",
     pageNumber: 5,
