@@ -871,3 +871,71 @@ Possible future features:
 * Public topic mastery maps
 * Spaced repetition
 * Mobile-first practice mode
+
+---
+
+## 17. Backlog — Specced, Not Yet Built
+
+These are agreed features with enough detail to build later. Not in scope
+for the current phase.
+
+### 17.1 Report a problem with a question
+
+A report button next to each question so learners can flag issues in the
+question bank, and the maintainer hears about it by email.
+
+**UI**
+
+* Report button on the question page, next to the question (near the
+  bookmark control).
+* Opens a small form with preset reasons:
+  * This requires an image
+  * Wrong answer
+  * Wrong explanation
+  * Typo
+  * Other
+* A free-text box for additional detail, available with any reason
+  (required when "Other" is selected).
+* Confirmation state after submitting, so the learner knows it was sent.
+
+**Email notification**
+
+* An email goes to the maintainer for every report, containing:
+  * Which question (ID, competition, year, question number, and a direct
+    link to the question page)
+  * The selected reason and any typed detail
+  * Who sent it — the reporting user's ID and email address
+  * When it was submitted
+* Purpose is to see the report and fix the underlying question data.
+
+**Open items to decide at build time**
+
+* Email delivery: Supabase, Resend, or another provider. Needs an API key
+  in server-only env vars.
+* Whether logged-out users may report (if yes, there is no email to
+  attribute the report to).
+* Store reports in a table as well as emailing, so they can be tracked and
+  marked resolved rather than living only in an inbox.
+* Basic abuse protection: rate limit per user per question.
+
+### 17.2 Continue with Google
+
+Google sign-in on both the login and signup pages, alongside
+email/password.
+
+* "Continue with Google" button on `/login` and `/signup`.
+* On first sign-in, populate the user's profile from the Google account:
+  * First name and last name from the Google profile
+  * Email from the Google account
+  * Username still defaults to the first name, matching the existing
+    email/password signup behaviour
+* Profile settings then shows those values already filled in, and they stay
+  editable.
+
+**Open items to decide at build time**
+
+* Requires a Google Cloud OAuth client ID and secret configured in Supabase
+  — see the "Enable Google sign-in" step in `README.md`, which already
+  documents the setup.
+* Decide what happens when a Google account uses an email that already has
+  an email/password account (link the identities, or show an error).
