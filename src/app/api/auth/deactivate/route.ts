@@ -1,23 +1,32 @@
-import { createClient } from '@/lib/supabase/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { supabase } from '@/lib/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { getPrisma } from '@/lib/prisma';
-import { NextResponse } from 'next/server';
 
 // Permanently deletes the signed-in user's account and everything stored
 // about them. This is what the "Deactivate Account" modal promises, so it
 // clears their practice data as well as the account itself.
 //
+// Auth works the same way as every other route here: the browser sends its
+// access token, which the server verifies. The session lives in
+// localStorage rather than cookies, so a cookie-based check sees nobody.
+//
 // Deleting a user requires Supabase's admin API, which only works with the
 // service-role key — the anon key the rest of the app uses is rejected.
-export async function POST() {
+export async function POST(request: NextRequest) {
   try {
-    // Identify the caller from their session cookie. Never trust a user ID
-    // sent from the browser for something irreversible.
-    const supabase = await createClient();
+    const authHeader = request.headers.get('Authorization');
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Identify the caller from their token. Never trust a user ID sent from
+    // the browser for something irreversible.
+    const token = authHeader.slice(7);
     const {
       data: { user },
       error: userError,
-    } = await supabase.auth.getUser();
+    } = await supabase.auth.getUser(token);
 
     if (userError || !user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -61,10 +70,6 @@ export async function POST() {
         { status: 400 },
       );
     }
-
-    // Clear the session cookie so the browser is not left holding a token
-    // for an account that no longer exists.
-    await supabase.auth.signOut();
 
     return NextResponse.json(
       { message: 'Account deactivated successfully' },

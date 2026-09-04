@@ -169,10 +169,23 @@ export default function ProfileSettingsPage() {
         throw new Error('Password is incorrect');
       }
 
+      // The session lives in localStorage, not cookies, so the token has to
+      // be sent explicitly — same as every other API call in the app.
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!session) {
+        throw new Error('Your session has expired. Please log in again.');
+      }
+
       // Delete the user account via API endpoint
       const response = await fetch('/api/auth/deactivate', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`,
+        },
       });
 
       if (!response.ok) {
@@ -181,6 +194,10 @@ export default function ProfileSettingsPage() {
         const data = await response.json().catch(() => null);
         throw new Error(data?.error || 'Failed to deactivate account');
       }
+
+      // Drop the stored session too, or the browser keeps a token for an
+      // account that no longer exists.
+      await supabase.auth.signOut();
 
       // Redirect to home page after successful deletion
       window.location.href = '/';
