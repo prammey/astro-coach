@@ -8,12 +8,10 @@ import ProfileDropdown from "./ProfileDropdown";
 export default function Navbar() {
   const { user } = useAuth();
 
-  // Logged-in users land on their dashboard instead of the marketing
-  // homepage — the dashboard was otherwise buried behind the profile menu.
-  const homeHref = user ? "/dashboard" : "/";
-
+  // Dashboard sits at the end of the nav for logged-in users; Home and the
+  // logo always go to the marketing homepage.
   const links = [
-    { href: homeHref, label: "Home" },
+    { href: "/", label: "Home" },
     { href: "/olympiads", label: "Olympiads" },
     { href: "/training", label: "Training" },
     { href: "/pricing", label: "Pricing" },
@@ -25,7 +23,7 @@ export default function Navbar() {
     <header className="border-b-4 border-black bg-[var(--color-navy)]">
       <nav className="flex items-center justify-between px-10 py-8">
         <Link
-          href={homeHref}
+          href="/"
           className="flex items-center gap-2 text-2xl font-extrabold tracking-tight text-[var(--color-yellow)]"
         >
           <Image
