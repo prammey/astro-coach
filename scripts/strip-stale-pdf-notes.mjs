@@ -19,7 +19,11 @@ const FILES = [
 ];
 
 // The bracketed note, plus any escaped newlines/whitespace leading up to it.
-const NOTE = /(?:\\n|\s)*\[[^\]]*?(?:required|All choices are visual plots)[^\]]*?\]/g;
+// Keyed on a mention of the source PDF, which is what makes a note stale
+// once the figure renders. Deliberately does NOT match bracketed hints and
+// definitions ("[Hint: it is close to Jupiter...]"), which are real content.
+const NOTE =
+  /(?:\\n|\s)*\[[^\]]*?(?:\bPDF\b|official exam|All choices are visual plots)[^\]]*?\]/gi;
 
 function matchBrace(text, openIdx) {
   let depth = 0;

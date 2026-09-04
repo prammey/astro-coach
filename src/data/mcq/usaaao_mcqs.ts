@@ -14844,7 +14844,7 @@ export const usaaaoMcqs = [
       "orbital geometry"
     ],
     "type": "MCQ",
-    "questionText": "Samvit observes one star of a binary system, M1, at (0,b) on an elliptical orbit with semiaxes a and b; the other star M2 is too dim. Which proposed position and mass for the other star could be physically consistent? [Snapshot diagram on official PDF page 5.]",
+    "questionText": "Samvit observes one star of a binary system, M1, at (0,b) on an elliptical orbit with semiaxes a and b; the other star M2 is too dim. Which proposed position and mass for the other star could be physically consistent?",
     "choices": [
       {
         "label": "A",
@@ -16392,7 +16392,7 @@ export const usaaaoMcqs = [
       "artificial gravity"
     ],
     "type": "MCQ",
-    "questionText": "Inside the rotating space station, you face the direction of rotation and throw a ball directly upward. Where does it land? [Official diagram on PDF page 6.]",
+    "questionText": "Inside the rotating space station, you face the direction of rotation and throw a ball directly upward. Where does it land?",
     "choices": [
       {
         "label": "A",
@@ -18148,7 +18148,7 @@ export const usaaaoMcqs = [
       "density distribution"
     ],
     "type": "MCQ",
-    "questionText": "For a galaxy rotation curve, the low-radius best-fit curve at r ≤ 5000 ly has v(r) ∝ r. Thus M(r) ∝ r^n. Which hypothesis is most consistent? [Official rotation-curve graph on PDF page 9.]",
+    "questionText": "For a galaxy rotation curve, the low-radius best-fit curve at r ≤ 5000 ly has v(r) ∝ r. Thus M(r) ∝ r^n. Which hypothesis is most consistent?",
     "choices": [
       {
         "label": "A",
@@ -18201,7 +18201,7 @@ export const usaaaoMcqs = [
       "galaxy mass"
     ],
     "type": "MCQ",
-    "questionText": "Within 40,000 ly of a galactic center, an observed rotation curve is roughly 3.5 times the baryonic-matter expectation. What is the closest ratio of enclosed dark-matter mass to baryonic mass? [Official rotation curve on PDF page 9.]",
+    "questionText": "Within 40,000 ly of a galactic center, an observed rotation curve is roughly 3.5 times the baryonic-matter expectation. What is the closest ratio of enclosed dark-matter mass to baryonic mass?",
     "choices": [
       {
         "label": "A",

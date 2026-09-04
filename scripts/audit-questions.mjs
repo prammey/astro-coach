@@ -162,7 +162,9 @@ for (const q of all) {
   // A leftover "see the official exam PDF" pointer on a question whose
   // figure now renders inline — it sends learners off to hunt for something
   // already on screen.
-  const pdfPointer = /\[[^\]]*(required|see page|official exam pdf|visual plots)[^\]]*\]/i;
+  // Any bracketed note that points at the source PDF. Bracketed hints and
+  // definitions are real content and are deliberately not matched.
+  const pdfPointer = /\[[^\]]*(\bPDF\b|official exam|visual plots)[^\]]*\]/i;
   const hasFigure = q.questionMedia?.status === 'complete';
   if (hasFigure && pdfPointer.test(q.questionText || '')) {
     findings.stalePdfNote.push(`${id}: has figure but text still points at the PDF`);
