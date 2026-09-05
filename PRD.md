@@ -1,9 +1,14 @@
 # Astro Coach PRD — Project Requirements Document
 
 **Project Name:** Astro Coach
-**Status:** Planning / Early Build
+**Status:** Live at [astrocoach.vercel.app](https://astrocoach.vercel.app) — v1 feature set complete
 **Maintained By:** Prameet Guha
-**Last Updated:** 2026-06-16
+**Last Updated:** 2026-09-05
+
+> **How to read this document.** Sections 1–11 are the original product
+> spec and still describe the intent. Section 12 records which phases are
+> actually done, and **Section 18 lists where the build deliberately
+> diverged from this spec** — read that before trusting an older section.
 
 ---
 
@@ -190,7 +195,10 @@ Must include:
 
 ---
 
-### 4.6 Future Dashboard `/dashboard`
+### 4.6 Dashboard `/dashboard` — BUILT
+
+> Built, minus the gamification rows (XP, streak, badges). Adds All /
+> Bookmarked / Incorrect tabs.
 
 Purpose: Show user progress after authentication and attempt history exist.
 
@@ -262,7 +270,9 @@ Success criteria:
 
 ---
 
-### Feature 5: Database-Backed Question Bank
+### Feature 5: Database-Backed Question Bank — NOT BUILT (deliberate)
+
+> Questions stayed in TypeScript. See Section 18.
 
 After the UI works with placeholder data, questions should move to a Supabase Postgres database using Prisma.
 
@@ -276,7 +286,9 @@ Success criteria:
 
 ---
 
-### Feature 6: Admin Question Creation
+### Feature 6: Admin Question Creation — NOT BUILT
+
+> Not needed while questions live in TypeScript. See Section 18.
 
 A simple admin form should allow manual question entry.
 
@@ -304,7 +316,9 @@ Success criteria:
 
 ---
 
-### Feature 8: Basic Gamification
+### Feature 8: Basic Gamification — NOT BUILT
+
+> The largest remaining item. See Section 19.
 
 Users should receive simple motivation features.
 
@@ -416,6 +430,11 @@ Design principles:
 ---
 
 ## 9. Data Model Requirements
+
+> **Outdated.** The Competition / Exam / Question / AnswerChoice tables below
+> were never built — questions live in TypeScript. The tables that do exist
+> are `UserAttempt`, `UserQuestionProgress`, `Bookmark` and `QuestionReport`.
+> See Section 18 and `prisma/schema.prisma`.
 
 ### Competition
 
@@ -602,6 +621,34 @@ Rules:
 
 ## 12. Development Phases
 
+**Status of each phase below:**
+
+| Phase | | Notes |
+| --- | --- | --- |
+| 1. Static website shell | ✅ done | |
+| 2. Placeholder question data | ✅ superseded | Replaced by 736 real, source-attributed questions |
+| 3. Training question bank UI | ✅ done | Search, filters, question cards |
+| 4. Individual question pages | ✅ done | MCQ only; no FRQs in the bank yet |
+| 5. Improve olympiad guide | ✅ done | |
+| 6. Prisma schema | ✅ done | User data only — see Section 18 |
+| 7. Seed data | ⬜ not needed | Questions live in TypeScript, not the database |
+| 8. Supabase setup | ✅ done | Auth, Postgres, Storage |
+| 9. Database integration | ✅ done | Attempts, progress, bookmarks, reports |
+| 10. Admin question creation | ⬜ **not built** | The one v1 phase still outstanding |
+| 11. Auth | ✅ done | Email/password; Google built but switched off |
+| 12. Bookmarks and attempts | ✅ done | Plus dashboard tabs |
+| 13. Gamification | ⬜ **not built** | XP, streaks, badges, topic mastery |
+| 14. Design polish | 🟡 partial | Ongoing |
+| 15. Deployment prep | ✅ done | Live on Vercel |
+| 16. Final review | 🟡 ongoing | |
+
+**Built beyond the original plan:** question and solution figures,
+multi-part questions, problem reporting with an admin review page and
+email notifications, account deletion, privacy/terms/pricing pages, and
+audit scripts for the question bank. See Section 18.
+
+---
+
 ### Phase 1: Static Website Shell
 
 Build:
@@ -783,25 +830,26 @@ Do:
 
 The project is successful when:
 
-* [ ] The app runs locally with `npm run dev`
-* [ ] Homepage, olympiad guide, training, and about pages exist
-* [ ] Training page supports search and filters
-* [ ] Individual question pages work
-* [ ] MCQ answer checking works
-* [ ] FRQ solution reveal works
-* [ ] Question data has metadata
-* [ ] Source policy is visible
-* [ ] Prisma schema exists
-* [ ] Supabase setup is documented
-* [ ] Seed data works
-* [ ] Database-backed question loading works
-* [ ] Auth works later
-* [ ] Bookmarks and attempts work later
-* [ ] Dashboard/gamification works later
-* [ ] README is beginner-friendly
-* [ ] No secrets are committed
-* [ ] App builds successfully
-* [ ] Code is understandable to a beginner
+* [x] The app runs locally with `npm run dev`
+* [x] Homepage, olympiad guide, training, and about pages exist
+* [x] Training page supports search and filters
+* [x] Individual question pages work
+* [x] MCQ answer checking works
+* [ ] FRQ solution reveal works — *no FRQs in the bank yet; the bank is MCQ only*
+* [x] Question data has metadata
+* [x] Source policy is visible
+* [x] Prisma schema exists
+* [x] Supabase setup is documented
+* [ ] Seed data works — *not needed; questions live in TypeScript*
+* [ ] Database-backed question loading — *deliberately not done, see Section 18*
+* [x] Auth works
+* [x] Bookmarks and attempts work
+* [x] Dashboard works
+* [ ] Gamification works — *not built*
+* [x] README is beginner-friendly
+* [x] No secrets are committed
+* [x] App builds successfully
+* [x] Code is understandable to a beginner
 
 ---
 
@@ -835,21 +883,21 @@ Do not add AI grading or a chatbot in v1.
 
 ## 15. Done When for Early MVP
 
-Early MVP is complete when:
+**Early MVP is complete.** The project is past this bar and live.
 
-* [ ] `/` exists
-* [ ] `/olympiads` exists
-* [ ] `/training` exists
-* [ ] `/training/[id]` exists
-* [ ] `/about` exists
-* [ ] There are at least 12 original placeholder questions
-* [ ] MCQ practice works
-* [ ] FRQ solution reveal works
-* [ ] Filters work
-* [ ] Site has a recognizable neo-brutalist astronomy style
-* [ ] Source policy is visible
-* [ ] App runs locally
-* [ ] README explains setup
+* [x] `/` exists
+* [x] `/olympiads` exists
+* [x] `/training` exists
+* [x] `/training/[id]` exists
+* [x] `/about` exists
+* [x] Questions exist — 736 real ones, not the 12 placeholders planned
+* [x] MCQ practice works
+* [ ] FRQ solution reveal — *no FRQs in the bank yet*
+* [x] Filters work
+* [x] Site has a recognizable neo-brutalist astronomy style
+* [x] Source policy is visible
+* [x] App runs locally
+* [x] README explains setup
 
 ---
 
@@ -857,9 +905,11 @@ Early MVP is complete when:
 
 Possible future features:
 
-* Real sourced question import
+* ~~Real sourced question import~~ — **done**, 736 questions with full
+  source metadata
+* ~~Admin review queue~~ — **done** for reported problems
+  (`/admin/reports`); not for question submissions
 * PDF upload/storage through Supabase Storage
-* Admin review queue
 * Better topic taxonomy
 * Difficulty calibration
 * AI-assisted hints
@@ -872,6 +922,8 @@ Possible future features:
 * Spaced repetition
 * Mobile-first practice mode
 
+For the concrete near-term list, see Section 19.
+
 ---
 
 ## 17. Backlog — Specced, Not Yet Built
@@ -879,7 +931,27 @@ Possible future features:
 These are agreed features with enough detail to build later. Not in scope
 for the current phase.
 
-### 17.1 Report a problem with a question
+### 17.1 Report a problem with a question — BUILT
+
+Shipped, including the email notifications. Live on every question.
+
+Decisions taken at build time, against the open items listed below:
+
+* **Email provider:** Resend, called over its REST API so no SDK was added.
+  Optional — without `RESEND_API_KEY` reports are still saved.
+* **Logged-out users may report.** The product lets guests practise, so
+  guests are exactly who hits a broken question. They see a nudge to sign
+  in "so we can follow up", but are never blocked.
+* **Reports are stored**, not only emailed — in `QuestionReport`, with an
+  `open`/`resolved` status, reviewed at `/admin/reports`.
+* **Abuse protection:** 10 open reports per question, 60 an hour
+  site-wide, and only the first open report of a given question and reason
+  sends an email. None of these store an IP address, so the privacy policy
+  stays accurate.
+
+The original spec follows, for reference.
+
+---
 
 A report button next to each question so learners can flag issues in the
 question bank, and the maintainer hears about it by email.
@@ -942,3 +1014,85 @@ email/password.
   documents the setup.
 * Decide what happens when a Google account uses an email that already has
   an email/password account (link the identities, or show an error).
+
+---
+
+## 18. Where the Build Diverged from This Spec
+
+Decisions taken during the build that contradict earlier sections. These
+are deliberate; the earlier text is left in place for context.
+
+### Questions live in TypeScript, not the database
+
+Section 5 (Feature 5) and Section 9 describe `Competition`, `Exam`,
+`Question` and `AnswerChoice` tables. **Those tables were never built.**
+
+Questions live in `src/data/mcq/*.ts` and are loaded server-side. The
+database holds only user-specific data: `UserAttempt`,
+`UserQuestionProgress`, `Bookmark` and `QuestionReport`.
+
+Why: the question bank is read-only, versioned in git, reviewable in a pull
+request, and needs no query layer. Moving it into Postgres would add a
+migration and an admin UI for no benefit at this size. Revisit if
+non-technical editors ever need to add questions.
+
+Consequence: Phase 7 (seed data) and Phase 10 (admin question creation) are
+not needed in their original form.
+
+### The bank is MCQ only
+
+Several sections describe FRQ answer boxes and rubric reveal. The data
+model supports FRQ, but **no FRQs have been added**, so that path is
+untested and effectively unbuilt.
+
+### Real questions, not placeholders
+
+Section 12 Phase 2 called for 12 original placeholder questions. The bank
+instead holds **736 real questions** from USAAAO, IAAC and BAAO, each with
+full source metadata, plus 99 figures. The source policy in Section 10
+governs them and still applies.
+
+### Multi-part questions
+
+Not in the original spec. Six questions build directly on the one before
+them, and are joined into a single item that is answered and scored as a
+unit — every part must be correct. This is why the app reports **730
+practice items** from 736 questions.
+
+### Account deletion
+
+Not in the original spec. "Deactivate Account" permanently deletes the
+account and all of that user's data. Requires `SUPABASE_SERVICE_ROLE_KEY`,
+which Section 11 and earlier README text said the project would not use.
+That guidance is superseded: the key is used, server-side only, in
+`src/lib/supabase/admin.ts`.
+
+### Pages added beyond Section 4
+
+`/pricing`, `/privacy`, `/terms`, `/admin/reports`, and `/training/mode`
+(a training run). Privacy and terms exist partly because Google requires
+both before an OAuth app can be published.
+
+### Google sign-in is built but switched off
+
+Fully implemented and disabled behind one flag, because Google's brand
+verification cannot pass on a `*.vercel.app` URL — the registrable domain
+belongs to Vercel. A custom domain unblocks it.
+
+---
+
+## 19. What to Build Next
+
+In rough order of value:
+
+1. **A custom domain.** Unblocks Google sign-in and Google's brand
+   verification, and looks far better than `*.vercel.app`.
+2. **Gamification** (Phase 13) — XP, streaks, badges, topic mastery. The
+   largest remaining item from the original plan.
+3. **Automated tests.** There are none. The highest-value first file would
+   cover the catalog: ID generation, multi-part grouping, and that answers
+   and explanations are stripped from what reaches the browser.
+4. **Admin question management** (Phase 10) — only worth it if questions
+   ever move out of TypeScript, or a non-technical editor needs to add them.
+5. **FRQ support** — the data model allows it; no questions use it yet.
+6. **Design polish and responsive passes** (Phase 14).
