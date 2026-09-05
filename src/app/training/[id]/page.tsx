@@ -1,19 +1,15 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageContainer from "@/components/PageContainer";
-import BrutalCard from "@/components/BrutalCard";
-import McqPractice from "@/components/McqPractice";
-import QuestionAnsweredIndicator from "@/components/QuestionAnsweredIndicator";
-import BookmarkButtonWrapper from "@/components/BookmarkButtonWrapper";
-import QuestionFigure from "@/components/QuestionFigure";
-import { questionNumberLabel } from "@/lib/question-label";
-import SkipQuestionButton from "@/components/SkipQuestionButton";
-import NextQuestionButton from "@/components/NextQuestionButton";
-import { findCatalogQuestionById, toPublicQuestion } from "@/data/mcq/catalog.server";
+import QuestionView from "@/components/QuestionView";
+import {
+  findCatalogQuestionById,
+  publicQuestionCatalog,
+  toPublicQuestion,
+} from "@/data/mcq/catalog.server";
 
 // Server Component: looks up the full question (with the correct answer)
 // only on the server, strips the sensitive fields via toPublicQuestion,
-// and passes only the safe version down to the client practice component.
+// and passes only the safe version down to the shared question view.
 export default async function QuestionDetailPage({
   params,
 }: {
@@ -27,97 +23,23 @@ export default async function QuestionDetailPage({
   }
 
   const publicQuestion = toPublicQuestion(question);
-  const isMultiPart = Boolean(publicQuestion.parts?.length);
+
+  // Neighbours in catalog order, so Previous/Next move through the bank
+  // predictably instead of jumping to a random question.
+  const index = publicQuestionCatalog.findIndex((entry) => entry.id === publicQuestion.id);
+  const previousQuestionId = index > 0 ? publicQuestionCatalog[index - 1].id : null;
+  const nextQuestionId =
+    index >= 0 && index < publicQuestionCatalog.length - 1
+      ? publicQuestionCatalog[index + 1].id
+      : null;
 
   return (
     <PageContainer>
-      <Link
-        href="/training"
-        className="inline-block font-bold text-[var(--color-purple)] hover:underline"
-      >
-        ← Back to Training
-      </Link>
-
-      <div className="mt-4 flex flex-wrap items-center gap-2 text-xs font-bold">
-        <span className="rounded bg-[var(--color-electric-blue)] px-2 py-1 text-white">
-          {publicQuestion.type}
-        </span>
-        <span className="rounded bg-[var(--color-purple)] px-2 py-1 text-white">
-          {publicQuestion.difficulty}
-        </span>
-        <span className="rounded bg-[var(--color-yellow)] px-2 py-1 text-[var(--color-navy)]">
-          {publicQuestion.topic}
-        </span>
-        {isMultiPart && (
-          <span className="rounded bg-[var(--color-navy)] px-2 py-1 text-[var(--color-yellow)]">
-            {publicQuestion.parts!.length} parts
-          </span>
-        )}
-      </div>
-
-      <div className="flex items-center gap-2">
-        <h1 className="mt-3 text-2xl font-extrabold text-[var(--color-navy)] sm:text-3xl">
-          {publicQuestion.competition} — {publicQuestion.year} {publicQuestion.examName}
-        </h1>
-        <div className="flex gap-1">
-          <QuestionAnsweredIndicator questionId={publicQuestion.id} />
-          <BookmarkButtonWrapper questionId={publicQuestion.id} />
-        </div>
-      </div>
-      <p className="text-sm text-black/60">{questionNumberLabel(publicQuestion)}</p>
-
-      {publicQuestion.questionMediaMissing && (
-        <div className="mt-4 rounded-lg border-4 border-black bg-[var(--color-yellow)] p-3 text-sm font-bold text-[var(--color-navy)]">
-          Question image coming soon. This question may be incomplete until its
-          figure is added.
-        </div>
-      )}
-
-      {isMultiPart ? (
-        // Each part carries its own prompt, so they are rendered together
-        // with their choices rather than as one shared prompt up here.
-        <div className="mt-6 rounded-lg border-4 border-black bg-[var(--color-yellow)] p-3 text-sm font-bold text-[var(--color-navy)]">
-          This question has {publicQuestion.parts!.length} parts that build on each
-          other. Answer both — it only counts as correct if every part is right.
-        </div>
-      ) : (
-        <BrutalCard className="mt-6 bg-[var(--color-cream)]">
-          <p className="text-lg text-[var(--color-navy)]">{publicQuestion.questionText}</p>
-          <QuestionFigure
-            assets={publicQuestion.questionMedia?.assets as readonly string[] | undefined}
-            alt={`Figure for ${publicQuestion.competition} ${publicQuestion.year} question ${publicQuestion.questionNumber}`}
-          />
-        </BrutalCard>
-      )}
-
-      <McqPractice question={publicQuestion} />
-
-      <div className="mt-6 flex gap-4 justify-center">
-        <SkipQuestionButton />
-        <NextQuestionButton currentQuestionId={publicQuestion.id} />
-      </div>
-
-      <BrutalCard className="mt-8 bg-white">
-        <h2 className="font-bold text-[var(--color-purple)]">Source Metadata</h2>
-        <dl className="mt-2 space-y-1 text-sm text-[var(--color-navy)]">
-          <div>
-            <dt className="inline font-bold">Source URL: </dt>
-            <dd className="inline">{publicQuestion.sourceUrl}</dd>
-          </div>
-          <div>
-            <dt className="inline font-bold">PDF URL: </dt>
-            <dd className="inline">{publicQuestion.pdfUrl}</dd>
-          </div>
-          <div>
-            <dt className="inline font-bold">Attribution: </dt>
-            <dd className="inline">{publicQuestion.attributionText}</dd>
-          </div>
-          <div>
-            <dt className="inline font-bold">Permission Status: </dt>
-            <dd className="inline">{publicQuestion.permissionStatus}</dd>
-          </div>
-        </dl>
-      </BrutalCard>
+      <QuestionView
+        question={publicQuestion}
+        previousQuestionId={previousQuestionId}
+        nextQuestionId={nextQuestionId}
+      />
     </PageContainer>
   );
 }

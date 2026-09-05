@@ -46,6 +46,23 @@ model UserQuestionProgress {
   @@index([userId])
 }
 
+// A problem a learner reported with a question — a wrong answer, a missing
+// figure, a typo. userId is null when the reporter was not signed in.
+// `status` lets reports be worked through rather than only read once.
+model QuestionReport {
+  id         String   @id @default(uuid())
+  questionId String
+  reason     String
+  details    String?
+  userId     String?
+  userEmail  String?
+  status     String   @default("open")
+  createdAt  DateTime @default(now())
+
+  @@index([status])
+  @@index([questionId])
+}
+
 // One record per bookmarked question by a user.
 model Bookmark {
   id         String   @id @default(uuid())
