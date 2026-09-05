@@ -159,6 +159,25 @@ export default function ReportProblemButton({ questionId }: { questionId: string
                   {details.length}/1000
                 </p>
 
+                {/* Reporting works signed out, so this nudges rather than
+                    blocks. The link opens in a new tab so a half-written
+                    report is not lost by navigating away. */}
+                {!user && (
+                  <p className="mt-3 rounded border-2 border-[var(--color-yellow)] bg-[var(--color-yellow)]/20 px-3 py-2 text-xs text-[var(--color-navy)]">
+                    You&apos;re reporting anonymously.{' '}
+                    <a
+                      href="/login"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-bold text-[var(--color-electric-blue)] underline"
+                    >
+                      Sign in
+                    </a>{' '}
+                    so we can follow up if we need more detail — your report counts
+                    either way.
+                  </p>
+                )}
+
                 {error && <p className="mt-2 text-sm font-bold text-red-700">{error}</p>}
 
                 <div className="mt-4 flex gap-3">
