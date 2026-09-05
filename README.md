@@ -30,15 +30,21 @@ Astro Coach is designed to help students:
 * Supabase Auth (email/password)
 * Supabase Postgres with Prisma ORM
 * Supabase Storage (for profile pictures)
+* Resend for report notification emails (optional)
 * Zod for validation
 * Vercel for hosting
+
+**Built but switched off:**
+
+* Google OAuth sign-in — fully implemented; the button shows
+  "Google coming soon!" until the project has its own domain. See
+  "Google sign-in" below.
 
 **Planned for future:**
 
 * shadcn/ui
 * Vitest for unit tests
 * Playwright for end-to-end tests
-* Google OAuth sign-in
 
 This project intentionally avoids unnecessary complexity. No Docker, Kubernetes, Redis, GraphQL, microservices, or separate Express backend.
 
@@ -46,39 +52,39 @@ This project intentionally avoids unnecessary complexity. No Docker, Kubernetes,
 
 ## Current Status
 
-**Status: Phase 5 — Authentication & User Profiles (Live)**
+**Live at [astrocoach.vercel.app](https://astrocoach.vercel.app)**
 
-Completed phases:
+**730 practice items** drawn from 736 real competition questions (USAAAO,
+IAAC, BAAO), with 99 figures. Six pairs of questions are joined into
+multi-part items, which is why the item count is lower than the question
+count — see "Multi-part questions" below.
+
+Done:
 
 1. ✅ Static website shell (homepage, navbar, footer)
-2. ✅ Original placeholder question data
-3. ✅ Training/question-bank UI (search, filters)
-4. ✅ Individual question pages (MCQ, FRQ support)
-5. ✅ Improved olympiad guide
-6. ✅ Prisma database schema
-7. ✅ Seed data
-8. ✅ Supabase setup (Auth + Postgres + Storage)
-9. ✅ Database integration (Prisma client, migrations)
-10. ✅ Supabase Auth (email/password signup & login)
-11. ✅ User profiles (first name, last name, username, profile pictures)
-12. ✅ Dashboard with progress tracking (attempts, accuracy stats)
-13. ✅ Profile dropdown in navbar with settings
-14. ✅ Deployed to Vercel (https://astrocoach.vercel.app)
+2. ✅ Training question bank with search and filters
+3. ✅ Individual question pages with MCQ checking and explanations
+4. ✅ Olympiad guide
+5. ✅ Prisma schema, Supabase Postgres, migrations
+6. ✅ Supabase Auth (email/password signup & login)
+7. ✅ User profiles (names, username, profile pictures via Supabase Storage)
+8. ✅ Dashboard with progress tracking and attempt history
+9. ✅ Account deletion ("Deactivate Account") that really deletes
+10. ✅ Bookmarks, with All / Bookmarked / Incorrect tabs on the dashboard
+11. ✅ Question figures rendering, for both questions and solutions
+12. ✅ Multi-part questions, for questions that build on a previous one
+13. ✅ Report a problem, with an admin review page and email notifications
+14. ✅ Pricing, Privacy Policy and Terms of Service pages
+15. ✅ Google sign-in built (switched off pending a custom domain)
+16. ✅ Deployed to Vercel
 
-Currently in progress:
+Next up:
 
-15. Gamification (XP, streaks, badges)
-16. Admin question management interface
-17. Bookmarks and favorites
-18. Design polish & responsive improvements
-
-Future phases:
-
-19. Google OAuth sign-in
-20. Email notifications
-21. Leaderboards
-22. Advanced search (by competition, year, round)
-23. Question explanations & discussion
+17. A custom domain, which unblocks Google sign-in
+18. Gamification (XP, streaks, badges)
+19. Admin question management interface
+20. Design polish & responsive improvements
+21. Leaderboards, advanced search, discussion
 
 ---
 
@@ -105,7 +111,7 @@ The design should feel fun and energetic, but still clean and easy to use.
 
 ---
 
-## Planned Pages
+## Pages
 
 ### `/`
 
@@ -141,17 +147,26 @@ Includes:
 * Filters
 * Question cards
 
-### `/training/[id]`
+### `/training/[id]` and `/training/mode`
 
-Individual question practice page.
+The two ways into a question: opening one directly, or working through a
+training run started with "Start Training".
+
+Both render the same `QuestionView` component, so they always look and
+behave identically. They previously had separate copies of this markup and
+drifted apart, which is worth remembering before adding anything here.
 
 Includes:
 
-* Question text
-* Metadata
-* MCQ answer checking
-* FRQ answer box and solution reveal
-* Source information
+* Question text, figure, and metadata
+* MCQ answer checking with explanation and solution figure
+* Bookmark toggle and "Report a problem"
+* Previous / Skip / Next
+* Source metadata
+
+The only difference between the two is what "next" means: the run's queue
+inside training, or the next question in catalog order when opened
+directly.
 
 ### `/dashboard`
 
@@ -159,9 +174,9 @@ User progress dashboard (requires authentication).
 
 Includes:
 
-* User greeting with first name
-* Progress stats (questions attempted, accuracy, unique correct)
-* Recent attempt history
+* User greeting
+* Progress stats (questions attempted, unique correct, accuracy)
+* Three tabs — All Questions, Bookmarked, Incorrect
 * Link to continue training
 
 ### `/profile/settings`
@@ -186,6 +201,32 @@ Includes:
 * Independence/non-affiliation notice
 * Source/copyright policy
 * Takedown/contact policy placeholder
+
+### `/pricing`
+
+Plan comparison (Guest, Free, and a "coming soon" Pro tier). Uses the same
+`PricingSection` component as the homepage.
+
+### `/privacy` and `/terms`
+
+Privacy Policy and Terms of Service, linked from the footer on every page.
+
+These exist partly because Google requires both to be reachable before an
+OAuth app can be published. They describe what the app actually stores —
+no analytics, no trackers, no ads — so keep them truthful if you change
+what is collected.
+
+### `/admin/reports`
+
+Admin-only review page for problems learners reported on questions.
+
+Includes:
+
+* Open / Resolved / All filters with counts
+* Reason, question link, reporter email, and the reported detail
+* Mark resolved / Reopen
+
+Access is controlled by `ADMIN_EMAILS`. See "Reporting problems" below.
 
 ---
 
@@ -307,56 +348,51 @@ npm test
 
 ---
 
-## Expected Project Structure
-
-The exact structure may evolve, but the project should roughly look like this:
+## Project Structure
 
 ```txt
 astro-coach/
-├── CLAUDE.md
-├── PRD.md
-├── README.md
-├── .env.example
-├── .gitignore
-├── package.json
-├── next.config.ts
-├── tsconfig.json
+├── CLAUDE.md, PRD.md, README.md
+├── .env.example                  committed; empty placeholders only
 ├── prisma/
 │   ├── schema.prisma
-│   └── seed.ts
-├── src/
-│   ├── app/
-│   │   ├── page.tsx
-│   │   ├── layout.tsx
-│   │   ├── globals.css
-│   │   ├── olympiads/
-│   │   │   └── page.tsx
-│   │   ├── training/
-│   │   │   ├── page.tsx
-│   │   │   └── [id]/
-│   │   │       └── page.tsx
-│   │   ├── about/
-│   │   │   └── page.tsx
-│   │   ├── dashboard/
-│   │   │   └── page.tsx
-│   │   └── admin/
-│   │       └── questions/
-│   │           └── new/
-│   │               └── page.tsx
-│   ├── components/
-│   │   ├── Navbar.tsx
-│   │   ├── Footer.tsx
-│   │   ├── QuestionCard.tsx
-│   │   ├── FilterBar.tsx
-│   │   └── OlympiadCard.tsx
-│   ├── data/
-│   │   └── sampleQuestions.ts
-│   ├── lib/
-│   │   ├── prisma.ts
-│   │   └── validators.ts
-│   └── types/
-│       └── question.ts
-└── public/
+│   └── migrations/               applied by running their SQL directly
+├── scripts/                      audit scripts, see "Audit scripts"
+├── public/
+│   └── mcq-images/               99 question and solution figures
+└── src/
+    ├── app/
+    │   ├── page.tsx, layout.tsx
+    │   ├── olympiads/, about/, pricing/, privacy/, terms/
+    │   ├── login/, signup/, auth/callback/
+    │   ├── training/
+    │   │   ├── page.tsx          browse and filter
+    │   │   ├── [id]/page.tsx     one question, opened directly
+    │   │   └── mode/page.tsx     a training run
+    │   ├── dashboard/, profile/settings/
+    │   ├── admin/reports/        admin-only report review
+    │   └── api/
+    │       ├── attempts/         checks answers, saves progress
+    │       ├── bookmarks/, reports/
+    │       ├── questions/, user/, dashboard/
+    │       ├── admin/reports/
+    │       └── auth/deactivate/
+    ├── components/
+    │   ├── QuestionView.tsx      shared by both question routes
+    │   ├── QuestionNavigation.tsx, QuestionFigure.tsx
+    │   ├── McqPractice.tsx       answering, incl. multi-part
+    │   ├── ReportProblemButton.tsx, BookmarkButton.tsx
+    │   ├── DashboardTabs.tsx, TrainingBrowser.tsx
+    │   └── Navbar.tsx, Footer.tsx, ...
+    ├── data/mcq/                 the question bank, server-only
+    └── lib/
+        ├── auth.ts               browser Supabase client
+        ├── auth-context.tsx      session state
+        ├── supabase/server.ts    cookie-based server client
+        ├── supabase/admin.ts     service-role client, route handlers only
+        ├── admin.ts              admin authorization
+        ├── email.ts              Resend notifications
+        └── prisma.ts
 ```
 
 ---
@@ -377,70 +413,101 @@ Example file should be:
 .env.example
 ```
 
-Variables currently in use (see `.env.example`):
+Copy `.env.example` to `.env.local` and fill it in. Every variable is
+documented there too.
+
+**Required — the app will not run without these:**
 
 ```bash
-NEXT_PUBLIC_SUPABASE_URL=""
-NEXT_PUBLIC_SUPABASE_ANON_KEY=""
-DATABASE_URL=""
+NEXT_PUBLIC_SUPABASE_URL=""       # Supabase → Settings → API
+NEXT_PUBLIC_SUPABASE_ANON_KEY=""  # Supabase → Settings → API
+DATABASE_URL=""                   # pooled "Transaction" string, used at runtime
+DIRECT_URL=""                     # direct string, used by Prisma migrations
 ```
 
-Planned for later phases:
+**Required for account deletion:**
 
 ```bash
-ADMIN_EMAILS=""
-ADMIN_SECRET=""
+SUPABASE_SERVICE_ROLE_KEY=""      # Supabase → Settings → API → service_role
+```
+
+**Required for the admin page:**
+
+```bash
+ADMIN_EMAILS=""                   # comma-separated emails allowed at /admin/reports
+```
+
+**Optional — report notification emails:**
+
+```bash
+RESEND_API_KEY=""                 # from resend.com
+REPORT_EMAIL_TO=""                # where notifications are sent
+REPORT_EMAIL_FROM=""              # leave blank to use Resend's shared sender
 ```
 
 Notes:
 
-* `DATABASE_URL` connects Prisma to Supabase Postgres — use the direct (Session) connection string, not the pooled one.
-* `NEXT_PUBLIC_SUPABASE_URL` is safe to expose to the browser.
-* `NEXT_PUBLIC_SUPABASE_ANON_KEY` is safe to expose when Supabase security rules are configured correctly.
-* Service-role keys should never be exposed to the browser, and Astro Coach does not use one.
-* `.env.local` must stay out of git.
+* Only the two `NEXT_PUBLIC_` values are safe to expose to the browser.
+  Everything else is server-only and must never gain that prefix.
+* `SUPABASE_SERVICE_ROLE_KEY` bypasses Row Level Security and can
+  administer accounts. It is read only in `src/lib/supabase/admin.ts`,
+  which is imported only from route handlers. Without it, "Deactivate
+  Account" fails with a clear configuration error.
+* With `ADMIN_EMAILS` unset, **nobody** is an admin — a missing value locks
+  `/admin/reports` rather than opening it.
+* Without `RESEND_API_KEY`, reports are still saved and readable at
+  `/admin/reports`; you simply are not emailed.
+* **Set these in Vercel too** (Project → Settings → Environment Variables),
+  or the features work locally and fail in production. Environment
+  variables are applied at build time, so redeploy after changing one.
+* `.env.local` must stay out of git. `.env.example` is committed on
+  purpose and contains only empty placeholders.
 
 ---
 
-## Database Plan
+## Database
 
-The app will eventually use Supabase Postgres with Prisma.
+Supabase Postgres via Prisma. Questions themselves are **not** in the
+database — they live in TypeScript files under `src/data/mcq/` and are
+loaded server-side. The database only holds what is specific to a user.
 
-Main tables:
+Current tables (`prisma/schema.prisma`):
 
-* Competition
-* Exam
-* Question
-* AnswerChoice
-* UserAttempt
-* Bookmark
+| Table | What it holds |
+| --- | --- |
+| `UserAttempt` | One row per answer checked: question, answer, correct, when |
+| `UserQuestionProgress` | One row per user+question: whether they have ever got it right |
+| `Bookmark` | One row per user+question they saved |
+| `QuestionReport` | Problems reported on a question, with an `open`/`resolved` status |
 
-Basic relationship:
+`userId` is the Supabase Auth user's UUID. There is no local `User` table,
+because Supabase Auth already manages accounts.
 
-```txt
-Competition
-  → Exam
-    → Question
-      → AnswerChoice
+### A caution about migrations
 
-User
-  → UserAttempt
-  → Bookmark
-```
+This project does **not** have a working `_prisma_migrations` history, so
+`prisma migrate dev` will not behave as you expect. Migrations under
+`prisma/migrations/` were applied by running their SQL directly.
 
-Each question must have source metadata.
+If you add a model, remember that `npx prisma generate` only updates the
+**TypeScript types**. It does not touch the database. That means
+`tsc`, `npm run lint` and `npm run build` can all pass while the table does
+not exist — which is exactly how the `Bookmark` table went missing and
+bookmarking silently failed in production for a while.
+
+**Always confirm a new table actually exists** before believing a feature
+works, for example by writing one row through the app and reading it back.
 
 ---
 
 ## Placeholder Data Rule
 
-Before the database is added, the app should use original placeholder questions in:
+**No longer applies.** The placeholder question set has been replaced by
+real, source-attributed questions from USAAAO, IAAC and BAAO. Every
+question carries its competition, year, round, question number, source URL
+and attribution, shown on the question page.
 
-```txt
-src/data/sampleQuestions.ts
-```
-
-These questions should be written only for development and should not be copied from real exams.
+The source policy above still governs what may be added.
 
 ---
 
@@ -613,8 +680,19 @@ Astro Coach uses Supabase Auth for user accounts and Supabase Storage for profil
 **Signup & Login:**
 - Email/password signup and login
 - Email confirmation required (users verify via link)
-- Session-based authentication via secure cookies
 - Password validation (min 6 characters)
+- "Continue with Google" is built but switched off — see below
+
+**A gotcha worth knowing:** the browser client stores the session in
+**localStorage, not cookies**. API routes therefore authenticate from an
+`Authorization: Bearer <token>` header, not from cookies. A route that
+reads the session server-side from cookies will see nobody and return 401.
+Every route here follows the Bearer pattern; match it when adding one.
+
+**Account deletion:** "Deactivate Account" in profile settings really
+deletes — the Supabase Auth account plus that user's attempts, progress
+and bookmarks. It needs `SUPABASE_SERVICE_ROLE_KEY`, because Supabase
+rejects admin calls made with the anon key.
 
 **User Profiles:**
 - First name and last name stored in Supabase user metadata
@@ -626,7 +704,7 @@ Astro Coach uses Supabase Auth for user accounts and Supabase Storage for profil
 **Dashboard:**
 - Personalized greeting with user's first name or username
 - Progress stats (attempts, accuracy, unique correct)
-- Attempt history with timestamps
+- All Questions / Bookmarked / Incorrect tabs
 - Link to continue training
 
 ### User Metadata Schema
@@ -642,6 +720,149 @@ User metadata stored in Supabase `auth.users.user_metadata`:
   "profile_image_url": "https://..."
 }
 ```
+
+Google sign-in returns different keys (`given_name`, `family_name`,
+`picture`), so `/auth/callback` translates them into the fields above on
+first sign-in. Username starts as the first name, matching email signup.
+It never overwrites values the user has already edited.
+
+### Google sign-in (built, switched off)
+
+Everything works: the button, the OAuth handoff, the callback, and the
+profile translation. It is disabled behind a single flag because Google's
+brand verification **cannot pass on a `*.vercel.app` URL** — the
+registrable domain belongs to Vercel, not us.
+
+To turn it on once the project has its own domain:
+
+1. Verify the domain in Google Search Console and set it as the app's home
+   page in the Google Auth Platform console.
+2. Enable Google in Supabase → Authentication → Sign In / Providers, with a
+   Google Cloud OAuth client ID and secret (see step 6 below).
+3. Flip `GOOGLE_SIGN_IN_ENABLED` to `true` in
+   `src/components/GoogleSignInButton.tsx`.
+
+Until then the button renders disabled and reads "Google coming soon!",
+rather than sending people into an unverified-app warning.
+
+---
+
+## The Question Bank
+
+Questions live in TypeScript, not the database:
+
+```txt
+src/data/mcq/
+├── usaaao_mcqs.ts      394 questions
+├── iaac_mcqs.ts        252 questions
+├── baao_mcqs.ts         90 questions
+├── catalog.server.ts   combines them, generates IDs, builds multi-part items
+├── types.ts
+└── topicTaxonomy.ts
+```
+
+`catalog.server.ts` is **server-only**. It holds correct answers and
+explanations, and throws if imported in the browser. Client components get
+`PublicQuestion`, which has those fields stripped.
+
+IDs are generated at load time from competition, year, exam and question
+number — for example `usaaao-2026-first-round-q13`. They are never stored
+in the data files.
+
+### Figures
+
+Images live in `public/mcq-images/` and are referenced from a question's
+`questionMedia` or `solutionMedia`. Question figures render with the
+prompt; **solution figures are only sent after an answer is checked**, via
+`/api/attempts`, so they cannot be read ahead of time.
+
+Naming convention, which the audit scripts rely on:
+
+```txt
+<competition>-<year>-<exam>-q<N>.png            question figure
+<competition>-<year>-<exam>-q<N>--solution.png  solution figure
+```
+
+### Multi-part questions
+
+Six questions build directly on the one before them ("the comet from the
+previous question"). Each declares `continuesFrom: <question number>`, and
+the catalog joins it to that question into a single item with an ID like
+`usaaao-2019-first-round-q3-q4`.
+
+A multi-part item is answered and scored as one unit: **every part must be
+correct**, or the whole item counts as wrong. It is stored as a single
+attempt, which is why the item count (730) is lower than the question
+count (736).
+
+### Audit scripts
+
+Run these after adding questions or images. They are regression guards for
+problems that have actually happened here:
+
+```bash
+node scripts/audit-questions.mjs     # media links, answer keys, source metadata
+node scripts/audit-image-files.mjs   # the image files themselves
+node scripts/audit-text-quality.mjs  # transcription defects in question text
+```
+
+`audit-questions.mjs` catches broken paths, figures linked to the wrong
+exam, orphan images, missing figures, and stale "see the official PDF"
+notes on questions whose figure now renders.
+
+`audit-image-files.mjs` checks case-sensitive paths — a wrong-case path
+works on macOS and 404s on Vercel's Linux — plus empty or corrupt files
+and duplicate content.
+
+Every problem counter currently reads zero. A few lines are non-zero by
+design and are **not** faults:
+
+* *Figure language but no question media (6)* — false positives:
+  conceptual H-R diagram questions, and self-contained problems that
+  happen to say "in the image".
+* *Extension does not match actual format (5)* — five IAAC files are named
+  `.png` but hold JPEG data. Browsers sniff the content and render them
+  fine.
+* *Dimensions too small (1)* — `usaaao-2015-first-round-q12.png` is small
+  but legible.
+* *Duplicate content (2)* and *Images shared by more than one question (2)*
+  — deliberate. Some source exams print one figure for several questions,
+  e.g. 2023 Q30 shares Q29's map.
+
+If a **new** name appears in any of these, investigate it.
+
+---
+
+## Reporting problems
+
+Every question has a "Report a problem" button with five preset reasons and
+a free-text box. It works **signed out** — a guest who hits a broken
+question is exactly who you want to hear from — with a gentle nudge to sign
+in so you can follow up.
+
+Reports go to the `QuestionReport` table and are reviewed at
+`/admin/reports`.
+
+Because the endpoint is open, three caps stop it being used to flood the
+table or your inbox. None of them stores an IP address or anything
+identifying, which keeps the privacy policy accurate:
+
+* at most 10 open reports per question
+* at most 60 reports an hour site-wide
+* **one email per problem** — only the first open report of a given
+  question and reason notifies you, so ten people hitting the same missing
+  figure is one email
+
+### Email notifications
+
+Optional. Set `RESEND_API_KEY` and `REPORT_EMAIL_TO` and you are emailed
+when a new problem is reported, with a link to the question and a reply-to
+pointing at the reporter when they were signed in.
+
+Resend's shared sender (`onboarding@resend.dev`) works without verifying a
+domain, but **only delivers to the email that owns the Resend account**.
+That is fine while notifications go to you. To send elsewhere, verify a
+domain and set `REPORT_EMAIL_FROM`.
 
 ---
 
@@ -663,9 +884,15 @@ Before deploying a new change:
 * ✅ `npx tsc --noEmit` passes (type-check)
 * ✅ `npm run build` succeeds
 * ✅ No `.env.local` or secrets in git
-* ✅ All database migrations applied
+* ✅ Audit scripts still read zero, if questions or images changed
+* ✅ Environment variables set **in Vercel**, not just `.env.local`
 * ✅ Supabase Storage bucket created (if adding profile features)
-* ✅ Environment variables set in Vercel
+
+**A green build is not proof a feature works.** Lint, type-check and build
+never touch the database, the network, or a real session. Anything that
+writes a row, sends an email, or depends on an environment variable has to
+be exercised for real — every bug that reached production in this project
+so far passed all three checks first.
 
 ### Auto-Deploy
 
@@ -677,30 +904,35 @@ vercel --prod
 
 ---
 
-## Testing Plan
+## Testing
 
-Early phases:
+There is no automated test suite yet (Vitest and Playwright are still
+planned). Testing today means linting, type-checking, the audit scripts,
+and exercising flows by hand.
 
-* Manual browser testing
-* Linting
-* Type-checking
+**What "tested" has to mean here.** Lint, type-check and build never touch
+the database, the network, or a real session — so passing them says nothing
+about whether a feature works. Every production bug in this project so far
+passed all three. For anything that writes a row, sends an email, or reads
+an environment variable, verify the effect:
 
-Later phases:
+* wrote a row? read it back out of Postgres
+* sent an email? confirm it arrived
+* needs an env var? confirm it is set **in Vercel**, not just locally
+* auth-gated? try it as a signed-out user, a normal user, and an admin
 
-* Vitest for unit tests
-* Playwright for end-to-end tests
+Use a throwaway account for anything destructive. Never test account
+deletion on your own account.
 
-Important flows to test:
+Flows worth checking after a change:
 
-* Navigation
-* Training filters
-* Question pages
-* MCQ answer checking
-* FRQ solution reveal
-* Login/logout
-* Bookmarking
-* Attempt history
-* Dashboard stats
+* Navigation, training filters and search
+* Answering a question, including a multi-part one
+* Question and solution figures rendering
+* Bookmarking, and the dashboard tabs
+* Login, logout, profile editing
+* Reporting a problem, signed in and signed out
+* `/admin/reports` as an admin and as a non-admin
 
 ---
 
@@ -751,7 +983,29 @@ Check:
 * `.env.local` exists
 * `DATABASE_URL` is correct
 * Supabase project is active
-* Prisma migration has been run
+* The table you are querying actually exists (see "A caution about
+  migrations")
+
+### A feature works locally but fails on the live site
+
+Almost always a missing environment variable in Vercel. Compare:
+
+```bash
+vercel env ls          # what production has
+```
+
+against `.env.local`. Add anything missing under Project → Settings →
+Environment Variables, then **redeploy** — variables are applied at build
+time, so an existing deployment will not pick them up.
+
+### "Account deletion is not configured on the server"
+
+`SUPABASE_SERVICE_ROLE_KEY` is missing wherever you are running.
+
+### `/admin/reports` says you do not have access
+
+`ADMIN_EMAILS` does not contain the email you are signed in with. It must
+match exactly, and must be set in Vercel for the live site.
 
 ### Create-next-app complains about a non-empty folder
 
