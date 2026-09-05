@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
+import { questionLabelFor } from '@/lib/question-row';
 
 // GET: Fetch all of the user's attempts (correct and incorrect), most recent first
 export async function GET(request: NextRequest) {
@@ -30,6 +31,7 @@ export async function GET(request: NextRequest) {
       attempts: attempts.map((a) => ({
         id: a.id,
         questionId: a.questionId,
+        questionLabel: questionLabelFor(a.questionId),
         submittedAnswer: a.submittedAnswer,
         isCorrect: a.isCorrect,
         createdAt: a.createdAt.toISOString(),

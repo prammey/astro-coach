@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
+import { questionLabelFor } from '@/lib/question-row';
 
 // GET: Fetch user's bookmarked questions, with their latest attempt (if any)
 export async function GET(request: NextRequest) {
@@ -42,6 +43,7 @@ export async function GET(request: NextRequest) {
         return {
           id: b.id,
           questionId: b.questionId,
+          questionLabel: questionLabelFor(b.questionId),
           submittedAnswer: attempt?.submittedAnswer ?? null,
           isCorrect: attempt?.isCorrect ?? null,
           createdAt: b.createdAt.toISOString(),

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
+import { questionLabelFor } from '@/lib/question-row';
 
 // GET: Fetch user's most recent incorrect attempt per question
 export async function GET(request: NextRequest) {
@@ -32,6 +33,7 @@ export async function GET(request: NextRequest) {
       attempts: incorrectAttempts.map((a) => ({
         id: a.id,
         questionId: a.questionId,
+        questionLabel: questionLabelFor(a.questionId),
         submittedAnswer: a.submittedAnswer,
         isCorrect: a.isCorrect,
         createdAt: a.createdAt.toISOString(),

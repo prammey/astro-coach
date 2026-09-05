@@ -10,6 +10,8 @@ type TabType = 'all' | 'bookmarked' | 'incorrect';
 interface AttemptRow {
   id: string;
   questionId: string;
+  // Null when the ID no longer matches a question in the catalog.
+  questionLabel: string | null;
   submittedAnswer: string | null;
   isCorrect: boolean | null;
   createdAt: string;
@@ -130,12 +132,23 @@ export default function DashboardTabs() {
               {currentRows.map((row) => (
                 <tr key={row.id} className="hover:bg-[var(--color-electric-blue)]/10">
                   <td className="px-6 py-3 text-sm font-semibold">
-                    <Link
-                      href={`/training/${row.questionId}`}
-                      className="text-[var(--color-electric-blue)] underline hover:text-[var(--color-purple)] transition-colors"
-                    >
-                      {row.questionId}
-                    </Link>
+                    {row.questionLabel ? (
+                      <Link
+                        href={`/training/${row.questionId}`}
+                        className="text-[var(--color-electric-blue)] underline hover:text-[var(--color-purple)] transition-colors"
+                      >
+                        {row.questionLabel}
+                      </Link>
+                    ) : (
+                      // The question is no longer in the catalog, so linking
+                      // would lead to a 404. Show it plainly instead.
+                      <span
+                        className="text-[var(--color-navy)]/50"
+                        title="This question is no longer in the question bank"
+                      >
+                        {row.questionId} <span className="text-xs">(removed)</span>
+                      </span>
+                    )}
                   </td>
                   <td className="px-6 py-3 text-sm font-semibold text-[var(--color-navy)]">
                     {row.submittedAnswer ?? '—'}
