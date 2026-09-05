@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
 import { findCatalogQuestionById } from '@/data/mcq/catalog.server';
+import { sendReportEmail } from '@/lib/email';
 
 // The reasons the report form offers. Anything else is rejected, so the
 // stored values stay consistent and easy to group when reviewing reports.
@@ -81,6 +82,21 @@ export async function POST(request: NextRequest) {
     await prisma.questionReport.create({
       data: { questionId, reason, details: details || null, userId, userEmail },
     });
+
+    // Notify the maintainer. The report is already saved, so a failure to
+    // send must not fail the request — the learner did their part.
+    try {
+      await sendReportEmail({
+        questionId,
+        reason,
+        details: details || null,
+        userId,
+        userEmail,
+        siteUrl: new URL(request.url).origin,
+      });
+    } catch (emailError) {
+      console.error('Could not email question report:', emailError);
+    }
 
     return NextResponse.json({ message: 'Report received' }, { status: 201 });
   } catch (error) {
