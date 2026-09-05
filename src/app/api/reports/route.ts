@@ -16,6 +16,12 @@ const VALID_REASONS = [
 
 const MAX_DETAILS = 1000;
 
+// Caps that keep an open, unauthenticated endpoint from being used to
+// flood the reports table or the notification inbox. Both are generous
+// enough that a genuine learner will never meet them.
+const MAX_OPEN_PER_QUESTION = 10;
+const MAX_PER_HOUR = 60;
+
 // Records a problem a learner reported with a question.
 //
 // Signing in is not required — a broken question is worth hearing about
@@ -79,23 +85,58 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Reporting deliberately works without an account, because a guest who
+    // hits a broken question is exactly who we want to hear from. That
+    // leaves the endpoint open, so two caps keep it from being used to
+    // flood the database or the notification inbox.
+    //
+    // Neither depends on knowing who the caller is, so no IP address or
+    // other identifying data has to be stored to make them work.
+    const openForQuestion = await prisma.questionReport.count({
+      where: { questionId, status: 'open' },
+    });
+    if (openForQuestion >= MAX_OPEN_PER_QUESTION) {
+      // Already flagged plenty; say thanks rather than showing an error,
+      // since from the learner's side nothing is wrong.
+      return NextResponse.json({ message: 'Report already received' }, { status: 200 });
+    }
+
+    const reportsInLastHour = await prisma.questionReport.count({
+      where: { createdAt: { gte: new Date(Date.now() - 60 * 60 * 1000) } },
+    });
+    if (reportsInLastHour >= MAX_PER_HOUR) {
+      console.warn(`Report rate limit hit: ${reportsInLastHour} in the last hour`);
+      return NextResponse.json(
+        { error: 'Too many reports right now. Please try again later.' },
+        { status: 429 },
+      );
+    }
+
     await prisma.questionReport.create({
       data: { questionId, reason, details: details || null, userId, userEmail },
     });
 
-    // Notify the maintainer. The report is already saved, so a failure to
-    // send must not fail the request — the learner did their part.
-    try {
-      await sendReportEmail({
-        questionId,
-        reason,
-        details: details || null,
-        userId,
-        userEmail,
-        siteUrl: new URL(request.url).origin,
-      });
-    } catch (emailError) {
-      console.error('Could not email question report:', emailError);
+    // Only notify for the first open report of a given problem. Ten people
+    // hitting the same missing figure is one thing to fix, not ten emails.
+    const alreadyReported = await prisma.questionReport.count({
+      where: { questionId, reason, status: 'open' },
+    });
+
+    if (alreadyReported <= 1) {
+      // The report is already saved, so a failure to send must not fail the
+      // request — the learner did their part.
+      try {
+        await sendReportEmail({
+          questionId,
+          reason,
+          details: details || null,
+          userId,
+          userEmail,
+          siteUrl: new URL(request.url).origin,
+        });
+      } catch (emailError) {
+        console.error('Could not email question report:', emailError);
+      }
     }
 
     return NextResponse.json({ message: 'Report received' }, { status: 201 });
