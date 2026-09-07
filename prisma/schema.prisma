@@ -293,8 +293,22 @@ model FrqSubmission {
   id            String @id @default(uuid())
   userId        String
   frqQuestionId String
-  /// 1, 2 or 3. Allocated server-side inside a transaction.
-  attemptNumber Int
+
+  /// Monotonic per user + question, counting EVERY submission row
+  /// including ones that failed or came back unreadable.
+  ///
+  /// This is the concurrency lock: it is allocated server-side and carries
+  /// the unique constraint below, so two simultaneous submissions cannot
+  /// both be recorded — the second loses the race and is rejected.
+  sequenceNumber Int
+
+  /// Which of the three graded attempts this was: 1, 2 or 3.
+  ///
+  /// Null until the attempt is actually charged. An unreadable upload or a
+  /// provider outage leaves this null, so it costs the student neither a
+  /// credit nor one of their three attempts. This is the number the UI
+  /// shows as "Attempt 2 of 3".
+  attemptNumber Int?
 
   typedResponse String?
 
@@ -333,9 +347,10 @@ model FrqSubmission {
   question FrqQuestion           @relation(fields: [frqQuestionId], references: [id], onDelete: Cascade)
   uploads  FrqSubmissionUpload[]
 
-  // One row per user + question + attempt number. This is what makes a
-  // double-clicked submit impossible to charge twice.
-  @@unique([userId, frqQuestionId, attemptNumber])
+  // One row per user + question + sequence number. This is what makes a
+  // double-clicked submit impossible to record, and therefore impossible
+  // to charge, twice.
+  @@unique([userId, frqQuestionId, sequenceNumber])
   @@index([userId])
   @@index([userId, createdAt])
   @@index([frqQuestionId])

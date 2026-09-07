@@ -4,7 +4,7 @@
 -- No existing table or column is dropped or altered destructively:
 -- the MCQ attempt, progress, bookmark and report data is untouched.
 
-◇ injected env (9) from .env.local // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (9) from .env.local // tip: ◈ secrets for agents [www.dotenvx.com]
 -- CreateEnum
 CREATE TYPE "FrqStatus" AS ENUM ('DRAFT', 'NEEDS_REVIEW', 'PUBLISHED', 'ARCHIVED');
 
@@ -103,7 +103,8 @@ CREATE TABLE "FrqSubmission" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "frqQuestionId" TEXT NOT NULL,
-    "attemptNumber" INTEGER NOT NULL,
+    "sequenceNumber" INTEGER NOT NULL,
+    "attemptNumber" INTEGER,
     "typedResponse" TEXT,
     "status" "SubmissionStatus" NOT NULL DEFAULT 'PENDING',
     "creditSource" "CreditSource",
@@ -272,7 +273,7 @@ CREATE INDEX "FrqSubmission_frqQuestionId_idx" ON "FrqSubmission"("frqQuestionId
 CREATE INDEX "FrqSubmission_status_idx" ON "FrqSubmission"("status");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "FrqSubmission_userId_frqQuestionId_attemptNumber_key" ON "FrqSubmission"("userId", "frqQuestionId", "attemptNumber");
+CREATE UNIQUE INDEX "FrqSubmission_userId_frqQuestionId_sequenceNumber_key" ON "FrqSubmission"("userId", "frqQuestionId", "sequenceNumber");
 
 -- CreateIndex
 CREATE INDEX "FrqSubmissionUpload_submissionId_idx" ON "FrqSubmissionUpload"("submissionId");
