@@ -634,7 +634,7 @@ Rules:
 | 7. Seed data | ⬜ not needed | Questions live in TypeScript, not the database |
 | 8. Supabase setup | ✅ done | Auth, Postgres, Storage |
 | 9. Database integration | ✅ done | Attempts, progress, bookmarks, reports |
-| 10. Admin question creation | ⬜ **not built** | The one v1 phase still outstanding |
+| 10. Admin question creation | ✅ done | The FRQ PDF importer and review queue — Section 20 |
 | 11. Auth | ✅ done | Email/password; Google built but switched off |
 | 12. Bookmarks and attempts | ✅ done | Plus dashboard tabs |
 | 13. Gamification | ⬜ **not built** | XP, streaks, badges, topic mastery |
@@ -646,6 +646,10 @@ Rules:
 multi-part questions, problem reporting with an admin review page and
 email notifications, account deletion, privacy/terms/pricing pages, and
 audit scripts for the question bank. See Section 18.
+
+**Astro Coach Pro** — subscriptions, the free-response question bank, AI
+grading and Pro analytics — is built on the `feature/pro-v1` branch. It
+was not part of the original 16-phase plan. See Section 20.
 
 ---
 
@@ -1096,3 +1100,107 @@ In rough order of value:
    ever move out of TypeScript, or a non-technical editor needs to add them.
 5. **FRQ support** — the data model allows it; no questions use it yet.
 6. **Design polish and responsive passes** (Phase 14).
+
+
+---
+
+## 20. Astro Coach Pro
+
+Built on the branch `feature/pro-v1`. Not merged, not deployed.
+
+This turns Astro Coach from an MCQ bank into a training platform: students
+write full solutions to real olympiad free-response questions, submit typed
+or handwritten work, and get rubric-based AI grading against the original
+marking scheme.
+
+### 20.1 Plans
+
+There are exactly two.
+
+**Free — $0.** Everything that already existed (the 726 MCQs, search,
+filters, bookmarks, explanations, progress tracking), plus **3 lifetime AI
+free-response grades**. They never reset. Once they are spent, free-response
+questions the student has not already worked on become Pro-only — but
+everything they have already attempted, every piece of feedback, and every
+solution they already unlocked stays theirs.
+
+**Pro — $5.99/month founding price.** The founding price is available to new
+subscribers until 31 December 2026 (`2027-01-01T06:00:00Z`), after which new
+subscribers pay $7.99/month. An existing founding subscriber is never
+migrated; if they cancel and resubscribe after the cutoff they pay the
+regular price. No annual, family or school plan.
+
+Pro includes the full free-response bank, 50 AI grades per Stripe billing
+period, typed/handwritten/PDF submissions, rubric-based part-by-part
+grading on the competition's own point values, up to 3 graded attempts per
+question, saved history, official solution unlocking, and detailed topic
+analytics.
+
+### 20.2 The rules that guard money
+
+| Rule | Where it lives |
+| --- | --- |
+| Entitlements are derived server-side, never from the browser | `src/lib/pro/rules.ts`, `entitlements.ts` |
+| Credits: 3 lifetime free, 50 per Stripe billing period on Pro | `src/lib/pro/config.ts` |
+| A credit is spent only after a real grade comes back | `submitGradedAttempt` |
+| Max 3 graded attempts per user per question, never resetting | `decideGradeAttempt` |
+| Full marks on any attempt unlocks the solution immediately | `unlockReasonAfterGrade` |
+| Attempt 3 unlocks the solution afterwards | `unlockReasonAfterGrade` |
+| Give Up unlocks the solution, blocks further grading, costs nothing | `giveUpAndUnlock` |
+| Locked questions are absent from the response, not blurred | `getFrqForStudent` |
+| Solutions require an `FrqSolutionUnlock` row | `canViewOfficialSolution` |
+| Stripe webhooks are the only thing that grants Pro | `/api/stripe/webhook` |
+
+Nothing costs a credit except a confirmed submission that passed every
+check and came back graded. Opening a question, uploading a file, an
+invalid file, a rejected page count, an unreadable photo, a provider
+outage and a double-click all cost zero.
+
+### 20.3 Scoring
+
+The competition's own point values are preserved. A 3-point question is
+scored out of 3; a 20-point question out of 20. Nothing is normalised to
+/10. A multi-part question is scored part by part and the parts must sum to
+the stated total.
+
+### 20.4 Uploads
+
+Up to **8 total pages** of work per submission, mixing formats freely — a
+4-page PDF plus 4 photos is 8 pages. Each image counts as one page; a PDF's
+real page count is read from the file server-side. Typed text counts as
+nothing. JPG, PNG, WebP and PDF, 10 MB per file and 40 MB per submission.
+
+Files go straight from the browser to a private Supabase Storage bucket via
+signed upload URLs, under `<userId>/<questionId>/`. Student work is never
+public and never in `/public`.
+
+### 20.5 AI grading
+
+Provider-agnostic. Business logic speaks only to the `GradingProvider`
+contract in `src/lib/ai/types.ts`; every Gemini-specific detail is confined
+to `src/lib/ai/providers/gemini.ts`, called over REST. A deterministic mock
+grader lets the whole flow run with no API key; production refuses to fall
+back to it.
+
+Model output is untrusted: scores are clamped to the real point values, the
+stored total is recomputed from the clamped parts, an omitted part scores
+zero, an invented part is discarded, and unknown mistake tags are dropped.
+
+Before the solution is unlocked, the grader is instructed to coach rather
+than answer — no final numerical answer, no complete derivation, no
+paraphrase of the official solution. Unreadable handwriting returns an
+"unreadable" verdict that costs nothing, rather than an invented grade.
+
+### 20.6 Admin FRQ importer
+
+An admin uploads a question paper and its official solutions; the extractor
+writes DRAFT questions with warnings. Nothing publishes automatically. A
+draft cannot be published while it carries unresolved warnings, has no
+point value, has parts that do not add up, has no official solution, or has
+rights nobody has reviewed. The importer never invents a point value, a
+solution or a figure.
+
+### 20.7 Deliberately not built
+
+Open-ended "Ask AI" follow-up chat; buying extra grading credits; annual,
+family or school billing; automatic figure cropping from source PDFs.

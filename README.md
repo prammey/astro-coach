@@ -204,8 +204,11 @@ Includes:
 
 ### `/pricing`
 
-Plan comparison (Guest, Free, and a "coming soon" Pro tier). Uses the same
-`PricingSection` component as the homepage.
+Plan comparison: Free ($0) and Astro Coach Pro ($5.99/month founding
+price). Uses the same `PricingSection` component as the homepage, and reads
+the signed-in user's real plan from `/api/pro/entitlements` — so a
+subscriber sees "Current plan" and a Manage Subscription button rather than
+an upgrade prompt. See "Astro Coach Pro" below.
 
 ### `/privacy` and `/terms`
 
@@ -1024,3 +1027,300 @@ Choose a license later before making the repository public.
 ## Future Resume Bullet
 
 Built Astro Coach, a full-stack astronomy olympiad training platform using Next.js, TypeScript, Tailwind CSS, Prisma, and Supabase. Designed a metadata-rich question bank with MCQ/FRQ practice, source attribution, searchable filters, user progress tracking, and gamified learning features.
+
+---
+
+# Astro Coach Pro
+
+Built on the branch `feature/pro-v1`. **Not merged to `main`, not deployed,
+and the database migration has not been applied.** Everything below is the
+setup needed to run it.
+
+Stripe is configured for **test mode only**. No real card is ever charged.
+
+## What Pro adds
+
+Students write full solutions to real olympiad free-response questions,
+submit typed and/or handwritten work, and get rubric-based AI grading
+against the original marking scheme, with part-by-part scores on the
+competition's own point values.
+
+**Free** keeps everything it had, plus **3 lifetime AI grades**. Once spent,
+free-response questions the student has not already worked on become
+Pro-only — but everything they already attempted, all their feedback, and
+any solution they already unlocked stays theirs forever.
+
+**Pro** is **$5.99/month** as a founding price until 31 December 2026,
+then $7.99/month for new subscribers. Founding subscribers keep $5.99 for
+as long as their subscription stays active. Pro includes the full
+free-response bank, 50 AI grades per billing period, handwritten and PDF
+submissions, up to 3 graded attempts per question, solution unlocking, and
+detailed topic analytics.
+
+## The rules that guard money
+
+A grading credit is spent in exactly one place: after a confirmed
+submission has passed every check *and* the model has returned a real
+grade. All of these cost **zero**:
+
+- opening a question
+- uploading a file
+- an invalid file, or one over the page limit
+- an unreadable photo (the grader says so instead of inventing a grade)
+- a provider outage or timeout
+- double-clicking Submit
+- viewing any past attempt or feedback
+- Give Up & View Solution
+
+Attempt limits, credit balances, plan state and solution unlocking are all
+derived server-side. There is no client-side `isPro` anywhere in the
+codebase, and a locked question's text is never sent to the browser and
+then hidden with CSS — it simply is not sent.
+
+## Setup
+
+Five things need configuring. The app runs without any of them, with
+subscriptions unavailable and a mock grader in place of real AI.
+
+### 1. Database migration — NOT YET APPLIED
+
+The migration is written and checked in at
+`prisma/migrations/20260907000000_pro_v1/`. It is **purely additive**: 11
+new tables and 8 new enums, with no `DROP`, no `TRUNCATE` and no change to
+any existing table. Your MCQ attempts, progress, bookmarks and reports are
+untouched.
+
+Apply it when you are ready:
+
+```bash
+# Look at what will run first — it should be all CREATE statements.
+cat prisma/migrations/20260907000000_pro_v1/migration.sql
+
+# Then apply it.
+npx prisma migrate deploy
+```
+
+If Prisma says the migration history is out of step, run
+`npx prisma migrate status` and read the output before doing anything else.
+**Never run `prisma migrate reset`** — it drops the database.
+
+### 2. Supabase Storage — three private buckets
+
+In Supabase Dashboard → **Storage** → **New bucket**, create these three.
+**Leave "Public bucket" switched OFF for all three.**
+
+| Bucket name | Holds |
+| --- | --- |
+| `frq-student-work` | Students' uploaded solution pages |
+| `frq-source-pdfs` | Admin-imported question and solution papers |
+| `frq-question-media` | Figures belonging to published questions |
+
+The app reaches storage with the service-role key and checks ownership
+itself, so no policies are strictly required for it to work. Add these
+anyway as a second line of defence — if the anon key is ever used against
+storage by mistake, they are what stops one student reading another's work.
+
+Go to Supabase Dashboard → **SQL Editor** → **New query**, paste this, and
+run it:
+
+```sql
+-- A student may only touch objects under their own user ID.
+-- Paths are always "<userId>/<questionId>/<file>", so the first path
+-- segment is the owner.
+create policy "own student work: read"
+  on storage.objects for select
+  using (
+    bucket_id = 'frq-student-work'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
+
+create policy "own student work: write"
+  on storage.objects for insert
+  with check (
+    bucket_id = 'frq-student-work'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
+
+-- Source PDFs and question media are reachable only through the server.
+-- No policy is created for them, so no signed-in user can read them
+-- directly — which is the intended result.
+```
+
+You already have `SUPABASE_SERVICE_ROLE_KEY` in `.env.local` for account
+deletion; Pro uses the same one. It must stay server-only.
+
+### 3. Stripe — TEST MODE
+
+Turn on the **Test mode** toggle (top right of the Stripe dashboard) and
+keep it on throughout.
+
+1. **Create the product.** Product catalogue → **Add product**.
+   Name it `Astro Coach Pro`.
+
+2. **Add the founding price.** In that product, add a price:
+   `$5.99`, **Recurring**, **Monthly**. Save it, then copy its ID — it
+   starts with `price_`. This is `STRIPE_FOUNDING_PRICE_ID`.
+
+3. **Add the regular price.** Add a *second* price to the same product:
+   `$7.99`, **Recurring**, **Monthly**. Copy its ID. This is
+   `STRIPE_REGULAR_PRICE_ID`.
+
+   The server picks between the two from the clock. Before 31 December
+   2026 new checkouts get $5.99; after, they get $7.99. Nobody is ever
+   migrated between them.
+
+4. **Get your secret key.** Developers → API keys → reveal the **secret
+   key**. It starts with `sk_test_`. This is `STRIPE_SECRET_KEY`.
+   If it starts with `sk_live_` you are not in test mode — stop and switch.
+
+5. **Set up the webhook.** Developers → Webhooks → **Add endpoint**.
+   Endpoint URL: `https://your-site.com/api/stripe/webhook`.
+   Select these events:
+
+   - `checkout.session.completed`
+   - `customer.subscription.created`
+   - `customer.subscription.updated`
+   - `customer.subscription.deleted`
+   - `invoice.payment_succeeded`
+   - `invoice.payment_failed`
+
+   Save, then copy the **Signing secret** (starts with `whsec_`). This is
+   `STRIPE_WEBHOOK_SECRET`. Without it the webhook route rejects
+   everything, so nobody can become Pro.
+
+   For local testing, use the Stripe CLI instead:
+
+   ```bash
+   stripe listen --forward-to localhost:3000/api/stripe/webhook
+   ```
+
+   It prints its own `whsec_` — use that one locally.
+
+6. **Turn on the Billing Portal.** Settings → Billing → Customer portal →
+   activate it, and allow customers to cancel subscriptions and update
+   payment methods. "Manage subscription" opens this.
+
+7. **Test card:** `4242 4242 4242 4242`, any future expiry, any CVC, any
+   postcode.
+
+**Do not enable live mode.** Switching later means replacing the four
+Stripe values with their live equivalents *after* an end-to-end test.
+
+### 4. AI grading
+
+1. Get a key from <https://aistudio.google.com/apikey>.
+2. Put it in `.env.local` as `GEMINI_API_KEY`.
+3. Leave `AI_GRADING_MODEL` unset to use `gemini-2.5-flash`, or set another
+   model. If you set one that is not in the rates table in
+   `src/lib/pro/config.ts`, cost estimates show as unknown rather than as a
+   wrong number.
+
+**Without a key**, grading uses a deterministic mock grader — you can build
+the whole flow locally without spending anything, and `/admin/usage` says
+loudly that mock grading is active. In production the app refuses to fall
+back to the mock grader rather than hand a student invented marks.
+
+Two strings force the awkward paths when testing with the mock grader:
+type `[mock:full]` to get full marks (tests early solution unlock), or
+`[mock:unreadable]` to get an unreadable verdict (tests that it costs
+nothing).
+
+The key is never exposed: `GEMINI_API_KEY` has no `NEXT_PUBLIC_` prefix,
+the Gemini code is server-only with a runtime guard against client imports,
+and a clean production build contains no reference to it.
+
+### 5. Admin access
+
+1. Supabase Dashboard → **Authentication** → **Users**.
+2. Click your own user.
+3. Copy the **User UID** (a UUID like `a1b2c3d4-...`).
+4. Add it to `.env.local`:
+
+   ```
+   ADMIN_USER_IDS="a1b2c3d4-...."
+   ```
+
+   Several admins go in comma-separated. With this unset **nobody** is an
+   admin, so a missing value locks the admin area rather than opening it.
+   Non-admins get a 404 from `/admin`, not a 403 — the area's existence is
+   not confirmed to a stranger.
+
+   This is separate from the older `ADMIN_EMAILS`, which still controls
+   `/admin/reports`.
+
+Then add every new variable to the Vercel project as well, before deploying.
+
+## Importing free-response questions
+
+1. Download the competition's **question PDF** and its **official solutions
+   PDF**.
+2. Open `/admin/frq-import`.
+3. Fill in competition, year, exam name and the source URL.
+4. Set the **rights/permission status** honestly. Leave it as "Not reviewed
+   yet" if you have not checked — a question cannot be published while it
+   is unreviewed or denied. A public PDF is not automatically reusable.
+5. Attach both PDFs and click **Analyze PDFs**. A long paper can take a
+   couple of minutes.
+6. Everything found is saved as a **draft**. Nothing is published.
+7. Go to `/admin/frq-review`, open a question, and check it against the
+   source — the screen shows the source page numbers it came from and the
+   extraction confidence.
+8. Fix anything wrong, then mark each warning **Resolved** once you have
+   actually resolved it.
+9. Click **Approve & publish**. If it refuses, it lists exactly why:
+   unresolved warnings, no point value, parts that do not add up, no
+   official solution, or unreviewed rights.
+
+The extractor never invents. A point value not printed in the paper comes
+back missing, not estimated. A solution it cannot find is null. It cannot
+crop figures, so a question that depends on a diagram is flagged for you to
+attach one.
+
+## Testing the student flow
+
+With a Free account:
+
+1. Open `/training/frq` and pick a question.
+2. Type a solution, or upload photos, or both. Submit — the confirmation
+   says "Attempt 1 of 3", that it costs 1 credit, and how many you have.
+3. Confirm. Check the dashboard: credits should drop 3 → 2.
+4. Use the other two grades. After the third, new free-response questions
+   lock, and `/training/frq` shows the upgrade prompt. Everything you
+   already worked on stays open.
+5. Try uploading 9 pages — it should refuse before charging anything.
+
+Then subscribe with the test card `4242 4242 4242 4242`:
+
+6. Confirm the dashboard shows Astro Coach Pro, the founding-price badge,
+   and 50 credits with a reset date matching your Stripe billing period.
+7. Upload a mix — a 4-page PDF plus 4 photos should be accepted as 8 pages;
+   adding one more should be refused.
+8. Work through attempts 1, 2 and 3 on a question. The solution stays
+   locked after 1 and 2 and unlocks after 3.
+9. On a fresh question, use `[mock:full]` (or genuinely earn full marks) —
+   the solution should unlock immediately.
+10. On another, use **Give up & view solution**. It should warn you, unlock
+    the solution, block further grading, and cost no credits.
+11. Reload. Every attempt and all its feedback should still be there,
+    without any AI call.
+12. Check the dashboard analytics, then open **Manage subscription** and
+    cancel. Pro access should continue to the end of the paid period, and
+    the card should say so.
+
+## Where to see what it costs
+
+`/admin/usage`, over a rolling 30 days: grades run, students grading,
+average grades per student, how many hit the 50-credit cap, average pages
+per grade, average latency, estimated total spend and estimated cost per
+grade, and the provider error rate.
+
+Cost estimates come from the rates table in `src/lib/pro/config.ts` — the
+one place any AI pricing lives. They are estimates, not a provider bill.
+Raw per-call data is in the `AiUsageEvent` table.
+
+## Deliberately not built
+
+Open-ended "Ask AI" follow-up chat after a grade; buying extra grading
+credits; annual, family or school billing; automatic figure cropping from
+source PDFs. The data model leaves room for purchased credits
+(`CreditGrant`, `CreditSource.PURCHASED`) but nothing creates them.
