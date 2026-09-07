@@ -74,3 +74,423 @@ model Bookmark {
   @@unique([userId, questionId])
   @@index([userId])
 }
+
+// ---------------------------------------------------------------------------
+// ASTRO COACH PRO
+//
+// Everything below this line was added for the Pro release: subscriptions,
+// the free-response (FRQ) question bank, AI-graded submissions, and the
+// usage/cost tracking that sits behind the admin analytics.
+//
+// Every model keys off the Supabase Auth user UUID (`userId`). There is
+// deliberately no local User table — Supabase Auth owns accounts.
+// ---------------------------------------------------------------------------
+
+// Where an FRQ sits in its editorial lifecycle. Only PUBLISHED questions
+// are ever visible to students; everything else is admin-only.
+enum FrqStatus {
+  DRAFT
+  NEEDS_REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
+// Copyright / permission state for third-party olympiad material. An FRQ
+// may not be published until this has been explicitly reviewed, so the
+// default of UNREVIEWED blocks publication rather than allowing it.
+enum RightsStatus {
+  UNREVIEWED
+  PENDING_PERMISSION
+  PERMISSION_GRANTED
+  PUBLIC_DOMAIN
+  FAIR_USE_CLAIMED
+  DENIED
+}
+
+// The lifecycle of one grading attempt.
+//
+// GRADED   — the AI returned a valid, validated grade. Costs 1 credit.
+// UNREADABLE — the AI could not read the uploaded work well enough to
+//              grade it. Costs 0 credits; the student may resubmit.
+// FAILED   — the provider or our validation failed. Costs 0 credits.
+enum SubmissionStatus {
+  PENDING
+  GRADING
+  GRADED
+  UNREADABLE
+  FAILED
+}
+
+// Why a student can now see the official solution.
+enum UnlockReason {
+  FULL_CREDIT
+  ATTEMPTS_EXHAUSTED
+  GIVE_UP
+}
+
+// Which pool a grading credit was drawn from. PURCHASED exists so extra
+// credit packs can be added later without a migration; nothing creates
+// PURCHASED credits in Pro v1.
+enum CreditSource {
+  FREE_LIFETIME
+  PRO_PERIOD
+  PURCHASED
+}
+
+// The two plans. There are exactly two — no annual, family or school tier.
+enum PlanTier {
+  FREE
+  PRO
+}
+
+// Whether a stored figure belongs to the question or to its solution.
+// Solution media is never served before the student's unlock conditions
+// are met.
+enum FrqMediaKind {
+  QUESTION
+  SOLUTION
+}
+
+// What an AI call was for, so grading spend and importer spend can be
+// told apart in the admin usage view.
+enum AiUsageKind {
+  GRADING
+  IMPORT_EXTRACTION
+}
+
+/// One free-response question from a real olympiad paper.
+///
+/// Unlike the MCQ bank (static TypeScript files), FRQs live in Postgres
+/// because they are created through the admin importer and edited before
+/// publication.
+model FrqQuestion {
+  id   String @id @default(uuid())
+  /// Human-readable stable identifier, e.g. "usaaao-2019-second-round-q3".
+  slug String @unique
+
+  // --- Provenance ---------------------------------------------------------
+  competition    String
+  year           Int
+  examName       String
+  /// Kept as text because papers number questions "3", "3b", "II.1", etc.
+  questionNumber String
+  title          String?
+
+  // --- Classification -----------------------------------------------------
+  /// One of the existing Astro Coach curriculum topics. Stored as text so
+  /// the taxonomy stays owned by src/data/mcq/topicTaxonomy.ts.
+  primaryCurriculumTopic String
+  curriculumTopics       String[] @default([])
+  /// The topic wording used by the original paper, when it states one.
+  rawTopic               String?
+  difficulty             String?
+
+  // --- Content ------------------------------------------------------------
+  questionText     String
+  /// The competition's own point value. Never normalised to /10.
+  totalPoints      Int
+  /// Solution and rubric for a question with no explicit lettered parts.
+  /// For a multi-part question these live on each FrqPart instead.
+  /// SERVER-ONLY: never included in a student response before unlock.
+  officialSolution String?
+  gradingRubric    String?
+
+  // --- Source / rights ----------------------------------------------------
+  sourceUrl        String?
+  questionPdfUrl   String?
+  questionPdfPages Int[]        @default([])
+  solutionPdfUrl   String?
+  solutionPdfPages Int[]        @default([])
+  attributionText  String?
+  rightsStatus     RightsStatus @default(UNREVIEWED)
+  rightsNotes      String?
+
+  // --- Editorial ----------------------------------------------------------
+  status               FrqStatus @default(DRAFT)
+  /// Machine-generated warnings from the importer, e.g. POINT_VALUE_MISSING.
+  /// A question with unresolved flags must not be published.
+  extractionFlags      String[]  @default([])
+  extractionConfidence Float?
+  reviewNotes          String?
+  importBatchId        String?
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  publishedAt DateTime?
+
+  parts       FrqPart[]
+  media       FrqMedia[]
+  submissions FrqSubmission[]
+  unlocks     FrqSolutionUnlock[]
+  importBatch FrqImportBatch?     @relation(fields: [importBatchId], references: [id], onDelete: SetNull)
+
+  @@index([status])
+  @@index([competition, year])
+  @@index([primaryCurriculumTopic])
+  @@index([importBatchId])
+}
+
+/// One lettered part of an FRQ (A, B, C...). A question may have zero
+/// parts, in which case the whole question is graded as a single unit
+/// against FrqQuestion.officialSolution.
+model FrqPart {
+  id               String  @id @default(uuid())
+  frqQuestionId    String
+  /// "A", "B", "(i)" — whatever the paper uses.
+  label            String
+  orderIndex       Int
+  prompt           String
+  /// The competition's point value for this part. The parts' maxPoints
+  /// must sum to the question's totalPoints.
+  maxPoints        Int
+  /// SERVER-ONLY. Never leaves the server before the student unlocks.
+  officialSolution String?
+  gradingRubric    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  question FrqQuestion @relation(fields: [frqQuestionId], references: [id], onDelete: Cascade)
+  media    FrqMedia[]
+
+  // One part per label within a question, so re-importing cannot silently
+  // duplicate part B.
+  @@unique([frqQuestionId, label])
+  @@index([frqQuestionId])
+}
+
+/// A figure or diagram belonging to a question or a solution. The file
+/// itself lives in Supabase Storage; only its path is stored here.
+model FrqMedia {
+  id            String       @id @default(uuid())
+  frqQuestionId String
+  frqPartId     String?
+  kind          FrqMediaKind @default(QUESTION)
+  /// Path inside the Supabase Storage bucket — not a public URL.
+  storagePath   String
+  caption       String?
+  orderIndex    Int          @default(0)
+  sourcePage    Int?
+  /// True when the importer attached this automatically and a human has
+  /// not yet confirmed it is the right figure, correctly cropped.
+  needsReview   Boolean      @default(true)
+
+  createdAt DateTime @default(now())
+
+  question FrqQuestion @relation(fields: [frqQuestionId], references: [id], onDelete: Cascade)
+  part     FrqPart?    @relation(fields: [frqPartId], references: [id], onDelete: SetNull)
+
+  @@index([frqQuestionId])
+  @@index([frqPartId])
+}
+
+/// One AI-graded attempt at an FRQ by one student.
+///
+/// Rows are created before the AI is called so a provider failure is
+/// recorded rather than lost, and so the unique constraint below makes
+/// double-submission impossible.
+model FrqSubmission {
+  id            String @id @default(uuid())
+  userId        String
+  frqQuestionId String
+  /// 1, 2 or 3. Allocated server-side inside a transaction.
+  attemptNumber Int
+
+  typedResponse String?
+
+  status         SubmissionStatus @default(PENDING)
+  /// Which credit pool this attempt drew from, set when the credit is
+  /// actually consumed. Null while the attempt has cost nothing.
+  creditSource   CreditSource?
+  /// True only once a credit has genuinely been spent on this attempt.
+  creditConsumed Boolean          @default(false)
+
+  // --- Grade --------------------------------------------------------------
+  awardedPoints Float?
+  maximumPoints Int
+  /// [{ partId, label, awarded, max, comment }] — validated before saving.
+  partScores    Json?
+  /// The structured grading feedback, exactly as validated. Re-displaying
+  /// it never calls the AI again.
+  feedback      Json?
+  mistakeTags   String[] @default([])
+
+  // --- Provider / cost ----------------------------------------------------
+  provider          String?
+  model             String?
+  inputTokens       Int?
+  outputTokens      Int?
+  uploadedPageCount Int     @default(0)
+  latencyMs         Int?
+  /// Estimated USD cost, computed from the rates in the server-side
+  /// pricing config. Approximate by nature.
+  estimatedCostUsd  Float?
+  errorCode         String?
+
+  createdAt DateTime  @default(now())
+  gradedAt  DateTime?
+
+  question FrqQuestion           @relation(fields: [frqQuestionId], references: [id], onDelete: Cascade)
+  uploads  FrqSubmissionUpload[]
+
+  // One row per user + question + attempt number. This is what makes a
+  // double-clicked submit impossible to charge twice.
+  @@unique([userId, frqQuestionId, attemptNumber])
+  @@index([userId])
+  @@index([userId, createdAt])
+  @@index([frqQuestionId])
+  @@index([status])
+}
+
+/// One uploaded page-bearing file attached to a submission. Files live in
+/// a private Supabase Storage bucket; only the path is stored here.
+model FrqSubmissionUpload {
+  id           String @id @default(uuid())
+  submissionId String
+  /// Path inside the private student-work bucket, always prefixed with
+  /// the owning userId so ownership is checkable from the path itself.
+  storagePath  String
+  mimeType     String
+  byteSize     Int
+  /// 1 for an image; the real page count for a PDF. Counted server-side.
+  pageCount    Int    @default(1)
+  orderIndex   Int    @default(0)
+
+  createdAt DateTime @default(now())
+
+  submission FrqSubmission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+
+  @@index([submissionId])
+}
+
+/// Records that a student may now see the official solution to a question,
+/// and why. Presence of a row is the only thing that unlocks a solution.
+model FrqSolutionUnlock {
+  id            String       @id @default(uuid())
+  userId        String
+  frqQuestionId String
+  reason        UnlockReason
+  unlockedAt    DateTime     @default(now())
+
+  question FrqQuestion @relation(fields: [frqQuestionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, frqQuestionId])
+  @@index([userId])
+}
+
+/// The user's Stripe subscription, mirrored from Stripe webhooks.
+///
+/// Stripe is the source of truth: nothing here is ever written because the
+/// browser said so, only because a signature-verified webhook said so.
+model Subscription {
+  id     String   @id @default(uuid())
+  userId String   @unique
+  plan   PlanTier @default(FREE)
+
+  stripeCustomerId     String?
+  stripeSubscriptionId String? @unique
+  stripePriceId        String?
+  /// Raw Stripe status: active, trialing, past_due, canceled, unpaid...
+  stripeStatus         String?
+
+  currentPeriodStart DateTime?
+  currentPeriodEnd   DateTime?
+  cancelAtPeriodEnd  Boolean   @default(false)
+
+  /// True when this subscription was bought at the $5.99 founding price.
+  /// Founding subscribers are never migrated to the regular price.
+  isFoundingPrice Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([stripeCustomerId])
+  @@index([stripeStatus])
+}
+
+/// Every Stripe webhook event we have already processed, keyed by Stripe's
+/// own event ID. Inserting here is how webhook handling stays idempotent:
+/// a duplicate delivery hits the primary key and is skipped.
+model StripeWebhookEvent {
+  id          String   @id
+  type        String
+  processedAt DateTime @default(now())
+
+  @@index([type])
+}
+
+/// A pool of grading credits granted to a user outside the normal Free
+/// lifetime allowance and Pro billing-period allowance.
+///
+/// Nothing in Pro v1 creates these rows. The model exists so purchased
+/// credit packs and goodwill credits can be added later without changing
+/// how credits are counted.
+model CreditGrant {
+  id        String       @id @default(uuid())
+  userId    String
+  source    CreditSource @default(PURCHASED)
+  amount    Int
+  reason    String?
+  grantedAt DateTime     @default(now())
+  expiresAt DateTime?
+
+  @@index([userId])
+}
+
+/// One admin run of the FRQ PDF importer: a question paper plus its
+/// official solutions, and the metadata the admin supplied for both.
+model FrqImportBatch {
+  id          String @id @default(uuid())
+  adminUserId String
+
+  competition String
+  year        Int
+  examName    String
+  sourceUrl   String?
+
+  /// Paths in the admin-only source-PDF bucket.
+  questionPdfPath String?
+  solutionPdfPath String?
+
+  rightsStatus RightsStatus @default(UNREVIEWED)
+  notes        String?
+
+  /// pending | analyzing | analyzed | failed
+  status       String  @default("pending")
+  errorMessage String?
+
+  createdAt  DateTime  @default(now())
+  analyzedAt DateTime?
+
+  questions FrqQuestion[]
+
+  @@index([adminUserId])
+  @@index([status])
+}
+
+/// One call to an AI provider, recorded for cost analytics. Grading also
+/// copies the key fields onto FrqSubmission so a student's history renders
+/// without touching this table.
+model AiUsageEvent {
+  id     String      @id @default(uuid())
+  kind   AiUsageKind
+  userId String?
+
+  provider String
+  model    String
+
+  inputTokens      Int?
+  outputTokens     Int?
+  pageCount        Int    @default(0)
+  latencyMs        Int?
+  estimatedCostUsd Float?
+
+  success   Boolean
+  errorCode String?
+
+  createdAt DateTime @default(now())
+
+  @@index([kind, createdAt])
+  @@index([userId])
+  @@index([createdAt])
+}
