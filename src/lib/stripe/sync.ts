@@ -4,6 +4,13 @@
 // ever called because a browser said a payment succeeded — only from a
 // signature-verified webhook, or from an explicit server-side refetch.
 
+// SERVER-ONLY. This check turns an accidental client import into an
+// immediate, obvious error rather than a secret quietly shipped to a
+// browser bundle.
+if (typeof window !== "undefined") {
+  throw new Error("src/lib/stripe/sync.ts must not be imported in the browser");
+}
+
 import type Stripe from "stripe";
 import type { PrismaClient } from "@/generated/prisma/client";
 import { getPrisma } from "@/lib/prisma";

@@ -9,6 +9,13 @@
 // SERVER-ONLY. GEMINI_API_KEY is never prefixed NEXT_PUBLIC_ and the model
 // is never called from the browser.
 
+// SERVER-ONLY. This check turns an accidental client import into an
+// immediate, obvious error rather than a secret quietly shipped to a
+// browser bundle.
+if (typeof window !== "undefined") {
+  throw new Error("src/lib/ai/providers/gemini.ts must not be imported in the browser");
+}
+
 import { buildSystemPrompt, buildUserPrompt } from "../prompt";
 import { extractJson, normaliseGrade } from "../schema";
 import type { GradingInput, GradingProvider, GradingResult } from "../types";

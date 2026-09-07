@@ -12,6 +12,13 @@
 //
 // SERVER-ONLY: this module uses the service-role key.
 
+// SERVER-ONLY. This check turns an accidental client import into an
+// immediate, obvious error rather than a secret quietly shipped to a
+// browser bundle.
+if (typeof window !== "undefined") {
+  throw new Error("src/lib/pro/storage.ts must not be imported in the browser");
+}
+
 import { createAdminClient } from "@/lib/supabase/admin";
 import { STUDENT_WORK_BUCKET } from "./config";
 

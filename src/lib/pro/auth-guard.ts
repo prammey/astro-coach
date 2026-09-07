@@ -5,6 +5,13 @@
 // session cookie — and everything downstream uses the userId that comes
 // back from Supabase, never one taken from a request body.
 
+// SERVER-ONLY. This check turns an accidental client import into an
+// immediate, obvious error rather than a secret quietly shipped to a
+// browser bundle.
+if (typeof window !== "undefined") {
+  throw new Error("src/lib/pro/auth-guard.ts must not be imported in the browser");
+}
+
 import { createClient as createServerSupabase } from "@/lib/supabase/server";
 import { supabase as anonSupabase } from "@/lib/auth";
 import { adminUserIds } from "./config";

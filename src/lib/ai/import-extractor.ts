@@ -12,36 +12,32 @@
 // Like grading, this is provider-neutral at the boundary and Gemini-specific
 // only inside callGemini(). SERVER-ONLY.
 
+// SERVER-ONLY. This check turns an accidental client import into an
+// immediate, obvious error rather than a secret quietly shipped to a
+// browser bundle.
+if (typeof window !== "undefined") {
+  throw new Error("src/lib/ai/import-extractor.ts must not be imported in the browser");
+}
+
 import { z } from "zod";
 import { configuredAiModel, configuredAiProvider, estimateAiCostUsd } from "@/lib/pro/config";
 import { CURRICULUM_TOPICS } from "@/data/mcq/topicTaxonomy";
 import { extractJson } from "./schema";
+import {
+  EXTRACTION_FLAG_LABELS,
+  type ExtractionFlag,
+} from "@/lib/pro/extraction-flags";
 
 // --- Warning flags ---------------------------------------------------------
 
-/// Machine-generated warnings. A draft carrying any of these cannot be
-/// published until a human resolves it.
-export const EXTRACTION_FLAGS = [
-  "POINT_VALUE_MISSING",
-  "PART_POINTS_DO_NOT_SUM",
-  "SOLUTION_MISSING",
-  "SOLUTION_PAIRING_UNCERTAIN",
-  "SOURCE_PAGE_UNCERTAIN",
-  "MEDIA_REVIEW_REQUIRED",
-  "LOW_CONFIDENCE",
-] as const;
-
-export type ExtractionFlag = (typeof EXTRACTION_FLAGS)[number];
-
-export const EXTRACTION_FLAG_LABELS: Record<ExtractionFlag, string> = {
-  POINT_VALUE_MISSING: "No point value found in the source",
-  PART_POINTS_DO_NOT_SUM: "Part points do not add up to the total",
-  SOLUTION_MISSING: "No official solution found",
-  SOLUTION_PAIRING_UNCERTAIN: "Not sure this solution belongs to this question",
-  SOURCE_PAGE_UNCERTAIN: "Source page numbers are uncertain",
-  MEDIA_REVIEW_REQUIRED: "The question refers to a figure that needs attaching",
-  LOW_CONFIDENCE: "The model was not confident in this extraction",
-};
+// The flag vocabulary lives in a dependency-free module so the admin review
+// screen (a Client Component) can show the labels without importing this
+// server-only file. Re-exported here so callers have one import.
+export {
+  EXTRACTION_FLAGS,
+  EXTRACTION_FLAG_LABELS,
+  type ExtractionFlag,
+} from "@/lib/pro/extraction-flags";
 
 // --- Extraction shape ------------------------------------------------------
 

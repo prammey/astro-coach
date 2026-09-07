@@ -14,6 +14,13 @@
 //
 // SERVER-ONLY.
 
+// SERVER-ONLY. This check turns an accidental client import into an
+// immediate, obvious error rather than a secret quietly shipped to a
+// browser bundle.
+if (typeof window !== "undefined") {
+  throw new Error("src/lib/pro/frq-service.ts must not be imported in the browser");
+}
+
 import type { PrismaClient } from "@/generated/prisma/client";
 import { getPrisma } from "@/lib/prisma";
 import {

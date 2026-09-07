@@ -8,6 +8,13 @@
 // Astro Coach uses Stripe Checkout and the Stripe Billing Portal, so there
 // is no card form in this codebase and no card data ever reaches our servers.
 
+// SERVER-ONLY. This check turns an accidental client import into an
+// immediate, obvious error rather than a secret quietly shipped to a
+// browser bundle.
+if (typeof window !== "undefined") {
+  throw new Error("src/lib/stripe/client.ts must not be imported in the browser");
+}
+
 import Stripe from "stripe";
 
 let cached: Stripe | null = null;

@@ -9,7 +9,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { ApiError, apiGet, apiPost } from "@/lib/pro/client";
-import { EXTRACTION_FLAG_LABELS, type ExtractionFlag } from "@/lib/ai/import-extractor";
+import { EXTRACTION_FLAG_LABELS, type ExtractionFlag } from "@/lib/pro/extraction-flags";
 import { CURRICULUM_TOPICS } from "@/data/mcq/topicTaxonomy";
 
 type DraftRow = {

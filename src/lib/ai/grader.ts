@@ -4,6 +4,13 @@
 // route, service or component below this line knows or cares which model
 // answered.
 
+// SERVER-ONLY. This check turns an accidental client import into an
+// immediate, obvious error rather than a secret quietly shipped to a
+// browser bundle.
+if (typeof window !== "undefined") {
+  throw new Error("src/lib/ai/grader.ts must not be imported in the browser");
+}
+
 import type { PrismaClient } from "@/generated/prisma/client";
 import { getPrisma } from "@/lib/prisma";
 import {

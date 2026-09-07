@@ -10,6 +10,13 @@
 // never be imported from a Client Component. Values the browser is
 // allowed to know are re-exported from ./public-config.ts instead.
 
+// SERVER-ONLY. This check turns an accidental client import into an
+// immediate, obvious error rather than a secret quietly shipped to a
+// browser bundle.
+if (typeof window !== "undefined") {
+  throw new Error("src/lib/pro/config.ts must not be imported in the browser");
+}
+
 import { PUBLIC_PRO_CONFIG } from "./public-config";
 
 // --- Grading credits -------------------------------------------------------
