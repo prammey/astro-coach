@@ -32,6 +32,7 @@ import {
 import {
   canViewFrqContent,
   canViewOfficialSolution,
+  creditChargeForOutcome,
   decideGradeAttempt,
   unlockReasonAfterGrade,
   type Entitlements,
@@ -40,6 +41,7 @@ import {
 import { getQuestionHistory, getUserEntitlements } from "./entitlements";
 import {
   countPdfPages,
+  checkStoredFile,
   checkSubmission,
   pageCountForFile,
   type CountedUpload,
@@ -558,7 +560,13 @@ export async function submitGradedAttempt(
 
   // An unreadable upload or a provider failure keeps the row for the audit
   // trail but leaves attemptNumber and creditConsumed alone — so it costs
-  // neither a credit nor one of the three attempts.
+  // neither a credit nor one of the three attempts. What each outcome costs
+  // is decided in one place, by creditChargeForOutcome.
+  const charge = creditChargeForOutcome(outcome.outcome);
+
+  // Branching on the discriminant rather than on `charge` keeps TypeScript's
+  // narrowing of the outcome union; `charge` is what decides the values
+  // actually written below, so the rule still lives in one place.
   if (outcome.outcome !== "graded") {
     await prisma.frqSubmission.update({
       where: { id: submissionId },
@@ -581,7 +589,8 @@ export async function submitGradedAttempt(
       : { ok: false, code: "GRADING_UNAVAILABLE", message: outcome.message };
   }
 
-  // A real grade. This is the only place creditConsumed becomes true.
+  // A real grade — the only outcome creditChargeForOutcome charges for,
+  // and the only place creditConsumed becomes true.
   const unlockReason = unlockReasonAfterGrade(
     decision.attemptNumber,
     outcome.awardedPoints,
@@ -594,7 +603,7 @@ export async function submitGradedAttempt(
       data: {
         status: "GRADED",
         attemptNumber: decision.attemptNumber,
-        creditConsumed: true,
+        creditConsumed: charge.chargeCredit,
         creditSource: decision.creditSource,
         awardedPoints: outcome.awardedPoints,
         maximumPoints: outcome.maximumPoints,
@@ -657,9 +666,15 @@ function blockedMessage(reason: string): string {
   }
 }
 
-/// Checks that every claimed upload exists, belongs to this user, and works
-/// out its real page count. A path the student made up, or someone else's
-/// file, is rejected before anything is charged.
+/// Checks that every claimed upload exists, belongs to this user, is a type
+/// and size we accept, and works out its real page count. A path the
+/// student made up, someone else's file, a file that is not what it claimed
+/// to be, or one that is too big are all rejected before anything is
+/// charged.
+///
+/// Size and type come from Supabase's own metadata, never from the browser.
+/// The check runs BEFORE the PDF is downloaded, so an oversized file is
+/// rejected without ever being pulled into memory.
 async function verifyUploads(
   userId: string,
   storagePaths: string[],
@@ -678,11 +693,20 @@ async function verifyUploads(
     if (!stat) {
       return {
         ok: false,
-        error: { code: "UNSUPPORTED_FILE_TYPE", message: "One of your files did not finish uploading. Try again." },
+        error: {
+          code: "UNSUPPORTED_FILE_TYPE",
+          message: "One of your files did not finish uploading. Try again.",
+        },
       };
     }
 
-    if (stat.mimeType === "application/pdf") {
+    // The real stored type and size, checked before we do anything else
+    // with the file.
+    const displayName = storagePath.split("/").pop() ?? "your file";
+    const checked = checkStoredFile(stat.mimeType, stat.byteSize, displayName);
+    if (!checked.ok) return { ok: false, error: checked.error };
+
+    if (checked.value === "application/pdf") {
       const bytes = await downloadFile(STUDENT_WORK_BUCKET, storagePath);
       const pageCount = bytes ? await countPdfPages(bytes) : null;
       counted.push({
@@ -694,25 +718,11 @@ async function verifyUploads(
       continue;
     }
 
-    if (
-      stat.mimeType !== "image/jpeg" &&
-      stat.mimeType !== "image/png" &&
-      stat.mimeType !== "image/webp"
-    ) {
-      return {
-        ok: false,
-        error: {
-          code: "UNSUPPORTED_FILE_TYPE",
-          message: "One of your files is not a supported type. Upload JPG, PNG, WebP or PDF.",
-        },
-      };
-    }
-
     counted.push({
       storagePath,
-      mimeType: stat.mimeType,
+      mimeType: checked.value,
       byteSize: stat.byteSize,
-      pageCount: pageCountForFile(stat.mimeType, null),
+      pageCount: pageCountForFile(checked.value, null),
     });
   }
 

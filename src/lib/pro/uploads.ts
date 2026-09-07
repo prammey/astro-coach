@@ -123,6 +123,44 @@ export function validateUploadClaims(
   return { ok: true, value: claims };
 }
 
+/// Checks one file as it ACTUALLY landed in storage, using the size and
+/// type Supabase reports rather than anything the browser said.
+///
+/// This is the check that matters. `validateUploadClaims` runs before the
+/// file exists and can only inspect what the browser claims, so a client
+/// is free to claim 1 MB and then upload 500 MB. The bucket's own size
+/// limit is one defence; this is the other, and it is the one that keeps
+/// the limit true even if a bucket is ever reconfigured.
+///
+/// Returns the narrowed MIME type so callers do not have to re-check it.
+export function checkStoredFile(
+  mimeType: string,
+  byteSize: number,
+  displayName: string,
+): ValidationResult<AllowedUploadMimeType> {
+  if (!isAllowedMimeType(mimeType)) {
+    return {
+      ok: false,
+      error: {
+        code: "UNSUPPORTED_FILE_TYPE",
+        message: `"${displayName}" is not a supported file type. Upload JPG, PNG, WebP or PDF.`,
+      },
+    };
+  }
+
+  if (byteSize <= 0 || byteSize > MAX_UPLOAD_FILE_BYTES) {
+    return {
+      ok: false,
+      error: {
+        code: "FILE_TOO_LARGE",
+        message: `"${displayName}" is larger than ${formatMegabytes(MAX_UPLOAD_FILE_BYTES)}. Try photographing at a lower resolution.`,
+      },
+    };
+  }
+
+  return { ok: true, value: mimeType };
+}
+
 /// How many pages one file contributes. An image is always one page; a PDF
 /// contributes however many pages it really has.
 export function pageCountForFile(
@@ -152,7 +190,11 @@ export async function countPdfPages(bytes: Uint8Array): Promise<number | null> {
 }
 
 /// The final gate before a credit is spent: does the submission contain any
-/// work at all, and does it fit inside the page limit?
+/// work at all, does it fit inside the whole-submission size cap, and does
+/// it fit inside the page limit?
+///
+/// Every size here is the real stored size read back from Supabase, never
+/// a number the browser supplied.
 export function checkSubmission(
   typedResponse: string | null,
   uploads: CountedUpload[],
@@ -179,6 +221,20 @@ export function checkSubmission(
         code: "UNREADABLE_PDF",
         message:
           "One of your PDFs could not be opened. Try re-exporting it, or upload photos of the pages instead.",
+      },
+    };
+  }
+
+  // Real stored sizes, not the browser's claims. Each file has already
+  // passed checkStoredFile individually; this is the whole-submission cap.
+  const totalBytes = uploads.reduce((sum, upload) => sum + upload.byteSize, 0);
+
+  if (totalBytes > MAX_UPLOAD_TOTAL_BYTES) {
+    return {
+      ok: false,
+      error: {
+        code: "SUBMISSION_TOO_LARGE",
+        message: `Your files add up to more than ${formatMegabytes(MAX_UPLOAD_TOTAL_BYTES)}. Remove a file or use smaller images.`,
       },
     };
   }

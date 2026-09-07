@@ -5,6 +5,7 @@
 import { describe, expect, it } from "vitest";
 import {
   canGiveUp,
+  creditChargeForOutcome,
   canViewFrqContent,
   canViewOfficialSolution,
   computeCredits,
@@ -300,5 +301,45 @@ describe("solution unlocking", () => {
   it("offers Give Up only while the solution is still hidden", () => {
     expect(canGiveUp(FRESH_QUESTION)).toBe(true);
     expect(canGiveUp({ ...FRESH_QUESTION, unlockReason: "FULL_CREDIT" })).toBe(false);
+  });
+});
+
+describe("what a grading outcome costs", () => {
+  it("charges a credit and an attempt only for a real grade", () => {
+    expect(creditChargeForOutcome("graded")).toEqual({
+      chargeCredit: true,
+      consumesAttempt: true,
+    });
+  });
+
+  it("charges nothing when the work could not be read", () => {
+    expect(creditChargeForOutcome("unreadable")).toEqual({
+      chargeCredit: false,
+      consumesAttempt: false,
+    });
+  });
+
+  it("charges nothing when the provider failed", () => {
+    expect(creditChargeForOutcome("failed")).toEqual({
+      chargeCredit: false,
+      consumesAttempt: false,
+    });
+  });
+
+  it("leaves the next attempt number unchanged after a free outcome", () => {
+    // A student on attempt 2 whose upload came back unreadable is still on
+    // attempt 2 — the failed run consumed neither a credit nor a try.
+    const pro = computeEntitlements(proSubscription(), NO_USAGE, NOW);
+    const afterOneGrade = { ...FRESH_QUESTION, gradedAttempts: 1, hasSubmitted: true };
+
+    expect(decideGradeAttempt(pro, afterOneGrade)).toMatchObject({
+      allowed: true,
+      attemptNumber: 2,
+    });
+
+    // gradedAttempts counts only charged attempts, so an unreadable run in
+    // between does not move it.
+    expect(creditChargeForOutcome("unreadable").consumesAttempt).toBe(false);
+    expect(decideGradeAttempt(pro, afterOneGrade)).toMatchObject({ attemptNumber: 2 });
   });
 });

@@ -294,3 +294,24 @@ export function unlockReasonAfterGrade(
 export function canGiveUp(history: QuestionHistorySnapshot): boolean {
   return history.unlockReason === null;
 }
+
+// --- What a grading outcome costs ------------------------------------------
+
+/// The three ways a grading run can end.
+export type GradingOutcomeKind = "graded" | "unreadable" | "failed";
+
+/// Whether an outcome costs the student anything.
+///
+/// Only a real grade does. Work the model could not read, and a provider
+/// or validation failure, are both free: they consume no credit and no
+/// attempt, so a bad photo or an outage never costs a student one of their
+/// three tries. Keeping this as one small function means the rule is
+/// stated once and can be tested directly, rather than living implicitly
+/// inside an if-statement in the submission flow.
+export function creditChargeForOutcome(outcome: GradingOutcomeKind): {
+  chargeCredit: boolean;
+  consumesAttempt: boolean;
+} {
+  const graded = outcome === "graded";
+  return { chargeCredit: graded, consumesAttempt: graded };
+}

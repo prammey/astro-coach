@@ -4,6 +4,7 @@
 import { describe, expect, it } from "vitest";
 import { PDFDocument } from "pdf-lib";
 import {
+  checkStoredFile,
   checkSubmission,
   countPdfPages,
   pageCountForFile,
@@ -187,5 +188,85 @@ describe("storage path ownership", () => {
   it("strips directory traversal and odd characters out of filenames", () => {
     expect(sanitiseFileName("../../etc/passwd")).toBe("passwd");
     expect(sanitiseFileName("my work (1).jpg")).toBe("my_work__1_.jpg");
+  });
+});
+
+describe("the real stored file, not what the browser claimed", () => {
+  const TEN_MB = 10 * 1024 * 1024;
+
+  it("accepts a file at exactly the limit", () => {
+    expect(checkStoredFile("image/jpeg", TEN_MB, "page.jpg").ok).toBe(true);
+  });
+
+  it("accepts a comfortably small file", () => {
+    const result = checkStoredFile("application/pdf", 500_000, "work.pdf");
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.value).toBe("application/pdf");
+  });
+
+  it("rejects a stored file over the limit", () => {
+    const result = checkStoredFile("image/jpeg", TEN_MB + 1, "huge.jpg");
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.error.code).toBe("FILE_TOO_LARGE");
+      expect(result.error.message).toContain("huge.jpg");
+    }
+  });
+
+  it("cannot be fooled by a browser that lies about the size", () => {
+    // The browser claims 1 MB, so the pre-upload check lets it through...
+    const claim = validateUploadClaims([
+      { fileName: "sneaky.pdf", mimeType: "application/pdf", byteSize: 1_000_000 },
+    ]);
+    expect(claim.ok).toBe(true);
+
+    // ...but the file that actually landed is 500 MB, and the check that
+    // reads real storage metadata refuses it.
+    const stored = checkStoredFile("application/pdf", 500 * 1024 * 1024, "sneaky.pdf");
+    expect(stored.ok).toBe(false);
+    if (!stored.ok) expect(stored.error.code).toBe("FILE_TOO_LARGE");
+  });
+
+  it("rejects a stored file whose real type is not allowed", () => {
+    // Uploaded as "image/png" but stored as something else entirely.
+    const result = checkStoredFile("application/zip", 1000, "notes.png");
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("UNSUPPORTED_FILE_TYPE");
+  });
+
+  it("rejects an empty file", () => {
+    expect(checkStoredFile("image/png", 0, "empty.png").ok).toBe(false);
+  });
+});
+
+describe("the whole-submission size cap, measured on real bytes", () => {
+  function sized(bytes: number): CountedUpload {
+    return {
+      storagePath: "user-1/q-1/page.jpg",
+      mimeType: "image/jpeg",
+      byteSize: bytes,
+      pageCount: 1,
+    };
+  }
+
+  it("accepts a submission inside the 40 MB cap", () => {
+    // 4 files x 9 MB = 36 MB.
+    const result = checkSubmission(null, Array.from({ length: 4 }, () => sized(9 * 1024 * 1024)));
+    expect(result.ok).toBe(true);
+  });
+
+  it("rejects a submission over the 40 MB cap", () => {
+    // 5 files x 9 MB = 45 MB, each individually under the per-file limit.
+    const result = checkSubmission(null, Array.from({ length: 5 }, () => sized(9 * 1024 * 1024)));
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("SUBMISSION_TOO_LARGE");
+  });
+
+  it("still enforces the 8-page rule alongside the size cap", () => {
+    // Well under 40 MB, but nine pages.
+    const nine = Array.from({ length: 9 }, () => sized(100_000));
+    const result = checkSubmission(null, nine);
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("TOO_MANY_PAGES");
   });
 });
