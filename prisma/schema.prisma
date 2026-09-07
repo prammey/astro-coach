@@ -12,16 +12,24 @@ datasource db {
   provider = "postgresql"
 }
 
+// The four models below predate Prisma Migrate in this project: their tables
+// were created by hand, so their columns are PostgreSQL `uuid` with a
+// database-side gen_random_uuid() default, not the TEXT columns Prisma's
+// own @default(uuid()) would have produced. The @db.* annotations below
+// describe the database as it actually is, so `prisma migrate diff` no
+// longer proposes rewriting live tables to match a schema that was never
+// true. Nothing here changes what the application stores or reads.
+
 // One record per answer-checking attempt a logged-in user makes.
 // userId is the Supabase Auth user's UUID — we don't keep our own User
 // table because Supabase Auth already manages accounts.
 model UserAttempt {
-  id              String   @id @default(uuid())
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   userId          String
   questionId      String
   submittedAnswer String
   isCorrect       Boolean
-  createdAt       DateTime @default(now())
+  createdAt       DateTime @default(now()) @db.Timestamp(6)
 
   @@index([userId])
   @@index([questionId])
@@ -31,12 +39,12 @@ model UserAttempt {
 // ever gotten that question right. This is what powers the "35 / 40"
 // unique-correct score, separate from raw attempt counts.
 model UserQuestionProgress {
-  id                  String    @id @default(uuid())
+  id                  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   userId              String
   questionId          String
   isCorrect           Boolean
-  firstCorrectAt      DateTime?
-  lastAttemptAt       DateTime  @default(now())
+  firstCorrectAt      DateTime? @db.Timestamp(6)
+  lastAttemptAt       DateTime  @default(now()) @db.Timestamp(6)
   attemptCount        Int       @default(0)
   correctAttemptCount Int       @default(0)
 
@@ -50,7 +58,7 @@ model UserQuestionProgress {
 // figure, a typo. userId is null when the reporter was not signed in.
 // `status` lets reports be worked through rather than only read once.
 model QuestionReport {
-  id         String   @id @default(uuid())
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   questionId String
   reason     String
   details    String?
@@ -65,7 +73,7 @@ model QuestionReport {
 
 // One record per bookmarked question by a user.
 model Bookmark {
-  id         String   @id @default(uuid())
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   userId     String
   questionId String
   createdAt  DateTime @default(now())

@@ -4,7 +4,6 @@
 -- No existing table or column is dropped or altered destructively:
 -- the MCQ attempt, progress, bookmark and report data is untouched.
 
-◇ injected env (9) from .env.local // tip: ◈ secrets for agents [www.dotenvx.com]
 -- CreateEnum
 CREATE TYPE "FrqStatus" AS ENUM ('DRAFT', 'NEEDS_REVIEW', 'PUBLISHED', 'ARCHIVED');
 
