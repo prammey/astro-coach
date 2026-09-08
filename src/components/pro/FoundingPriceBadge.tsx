@@ -14,6 +14,13 @@ import { PUBLIC_PRO_CONFIG } from "@/lib/pro/public-config";
 
 /// Builds the points of a star with `spikes` peaks, alternating between the
 /// outer and inner radius.
+///
+/// Coordinates are rounded to three decimals rather than written out in
+/// full. Math.cos and Math.sin are not guaranteed to agree to the last bit
+/// between the server's JavaScript engine and the browser's, and an
+/// unrounded coordinate turns that into a hydration mismatch warning on
+/// every page that renders this badge. Three decimals is far finer than a
+/// 100-unit viewBox can show, so the shape is unchanged.
 function starPoints(spikes: number, outerRadius: number, innerRadius: number): string {
   const points: string[] = [];
 
@@ -21,7 +28,9 @@ function starPoints(spikes: number, outerRadius: number, innerRadius: number): s
     const radius = index % 2 === 0 ? outerRadius : innerRadius;
     // Start at the top so the star sits square rather than tilted.
     const angle = (Math.PI * index) / spikes - Math.PI / 2;
-    points.push(`${50 + radius * Math.cos(angle)},${50 + radius * Math.sin(angle)}`);
+    const x = (50 + radius * Math.cos(angle)).toFixed(3);
+    const y = (50 + radius * Math.sin(angle)).toFixed(3);
+    points.push(`${x},${y}`);
   }
 
   return points.join(" ");
