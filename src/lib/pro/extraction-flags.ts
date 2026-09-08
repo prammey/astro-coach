@@ -12,6 +12,7 @@ export const EXTRACTION_FLAGS = [
   "SOLUTION_PAIRING_UNCERTAIN",
   "SOURCE_PAGE_UNCERTAIN",
   "MEDIA_REVIEW_REQUIRED",
+  "NOTATION_REVIEW_REQUIRED",
   "LOW_CONFIDENCE",
 ] as const;
 
@@ -24,5 +25,6 @@ export const EXTRACTION_FLAG_LABELS: Record<ExtractionFlag, string> = {
   SOLUTION_PAIRING_UNCERTAIN: "Not sure this solution belongs to this question",
   SOURCE_PAGE_UNCERTAIN: "Source page numbers are uncertain",
   MEDIA_REVIEW_REQUIRED: "The question refers to a figure that needs attaching",
+  NOTATION_REVIEW_REQUIRED: "Some maths notation could not be converted and may show as raw LaTeX",
   LOW_CONFIDENCE: "The model was not confident in this extraction",
 };

@@ -171,3 +171,58 @@ describe("what may be published", () => {
     }
   });
 });
+
+describe("maths notation in extracted drafts", () => {
+  it("converts LaTeX in the question text to the app's Unicode style", () => {
+    const draft = toDraft(
+      extracted({
+        question_text: "An asteroid orbits at $2.3$ AU. Show that $T^2 \\propto a^3$.",
+      }),
+    );
+    expect(draft.questionText).toBe("An asteroid orbits at 2.3 AU. Show that T² ∝ a³.");
+  });
+
+  it("converts LaTeX in parts, solutions and rubrics too", () => {
+    const draft = toDraft(
+      extracted({
+        total_points: 5,
+        official_solution: null,
+        parts: [
+          {
+            label: "A",
+            prompt: "Find $v_0$ in $\\text{m/s}$.",
+            max_points: 5,
+            official_solution: "$v_0 = 1.5 \\times 10^{4}$ m/s",
+            grading_rubric: "Award 2 marks for $\\alpha$.",
+          },
+        ],
+      }),
+    );
+    expect(draft.parts[0].prompt).toBe("Find v₀ in m/s.");
+    expect(draft.parts[0].officialSolution).toBe("v₀ = 1.5 × 10⁴ m/s");
+    expect(draft.parts[0].gradingRubric).toBe("Award 2 marks for α.");
+  });
+
+  it("leaves text that is already in the house style untouched", () => {
+    const clean = "The Gaia spacecraft mapped 1.8 × 10⁹ sources at δ = 60°.";
+    expect(toDraft(extracted({ question_text: clean })).questionText).toBe(clean);
+  });
+
+  it("flags notation it could not convert rather than showing raw LaTeX", () => {
+    const draft = toDraft(
+      extracted({ question_text: "Escape speed is $v_{esc} = \\sqrt{2GM/r}$." }),
+    );
+    expect(draft.flags).toContain("NOTATION_REVIEW_REQUIRED");
+  });
+
+  it("raises no notation flag on a clean conversion", () => {
+    const draft = toDraft(extracted({ question_text: "Show that $T^2 \\propto a^3$." }));
+    expect(draft.flags).not.toContain("NOTATION_REVIEW_REQUIRED");
+  });
+
+  it("still finds the solution after conversion", () => {
+    const draft = toDraft(extracted({ official_solution: "$T = 3.42$ years" }));
+    expect(draft.officialSolution).toBe("T = 3.42 years");
+    expect(draft.flags).not.toContain("SOLUTION_MISSING");
+  });
+});

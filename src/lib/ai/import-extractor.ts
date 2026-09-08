@@ -23,6 +23,7 @@ import { z } from "zod";
 import { configuredAiModel, configuredAiProvider, estimateAiCostUsd } from "@/lib/pro/config";
 import { CURRICULUM_TOPICS } from "@/data/mcq/topicTaxonomy";
 import { extractJson } from "./schema";
+import { hasLeftoverLatex, toUnicodeMath, toUnicodeMathOrNull } from "./math-notation";
 import {
   EXTRACTION_FLAG_LABELS,
   type ExtractionFlag,
@@ -138,6 +139,17 @@ function buildExtractionPrompt(context: {
     `    what the solutions PDF actually says.`,
     `  - Do not correct, reword or tidy the question text. Reproduce it.`,
     ``,
+    `MATHS AND SYMBOLS`,
+    `Write maths as plain Unicode text, NOT as LaTeX. This archive renders`,
+    `question text directly, so backslashes and dollar signs would be shown`,
+    `to students exactly as you typed them.`,
+    `  Write:  1.8 × 10⁹ sources     L₀     α ≈ 0h, δ = 60°     T² ∝ a³`,
+    `  Not:    $1.8 \\times 10^{9}$   L_0    \\alpha \\approx 0h    T^2 \\propto a^3`,
+    `Use × · ± ≈ ∝ ≤ ≥ ° √ ∞ Σ ∫ and Greek letters directly. Use superscript`,
+    `and subscript characters (² ³ ⁹ ⁻ ₀ ₁ ₑ) for powers and indices.`,
+    `Write fractions with a slash, e.g. GM/r². Keep units as ordinary text,`,
+    `e.g. "m/s²", "kg m⁻³".`,
+    ``,
     `FIGURES`,
     `You cannot attach images. If a question depends on a diagram, graph or`,
     `table, set references_figure to true so a human attaches it before`,
@@ -179,15 +191,22 @@ const LOW_CONFIDENCE_THRESHOLD = 0.7;
 export function toDraft(extracted: ExtractedQuestion): DraftQuestion {
   const flags = new Set<ExtractionFlag>();
 
+  // Every piece of text is converted to the plain-Unicode maths style the
+  // app renders, so an imported question matches the existing MCQ bank
+  // instead of showing raw LaTeX to students.
   const parts = (extracted.parts ?? []).map((part, index) => ({
     label: part.label,
     orderIndex: index,
-    prompt: part.prompt,
+    prompt: toUnicodeMath(part.prompt),
     // A missing part point value becomes 0 and a flag — never a guess.
     maxPoints: typeof part.max_points === "number" ? part.max_points : 0,
-    officialSolution: part.official_solution?.trim() || null,
-    gradingRubric: part.grading_rubric?.trim() || null,
+    officialSolution: toUnicodeMathOrNull(part.official_solution),
+    gradingRubric: toUnicodeMathOrNull(part.grading_rubric),
   }));
+
+  const questionText = toUnicodeMath(extracted.question_text);
+  const officialSolution = toUnicodeMathOrNull(extracted.official_solution);
+  const gradingRubric = toUnicodeMathOrNull(extracted.grading_rubric);
 
   const statedTotal =
     typeof extracted.total_points === "number" ? extracted.total_points : null;
@@ -204,8 +223,7 @@ export function toDraft(extracted: ExtractedQuestion): DraftQuestion {
   }
 
   const hasSolution =
-    Boolean(extracted.official_solution?.trim()) ||
-    parts.some((part) => part.officialSolution);
+    Boolean(officialSolution) || parts.some((part) => part.officialSolution);
   if (!hasSolution) flags.add("SOLUTION_MISSING");
 
   if (extracted.solution_pairing_confident === false) {
@@ -231,15 +249,22 @@ export function toDraft(extracted: ExtractedQuestion): DraftQuestion {
     ? (extracted.topic as string)
     : "Miscellaneous & Space History";
 
+  // Notation the converter did not recognise would reach a student as raw
+  // LaTeX, so it is flagged for a human rather than published looking wrong.
+  const everyField = [questionText, officialSolution ?? "", gradingRubric ?? ""]
+    .concat(parts.flatMap((part) => [part.prompt, part.officialSolution ?? ""]))
+    .join("\n");
+  if (hasLeftoverLatex(everyField)) flags.add("NOTATION_REVIEW_REQUIRED");
+
   return {
     questionNumber: extracted.question_number,
-    title: extracted.title?.trim() || null,
-    questionText: extracted.question_text,
+    title: toUnicodeMathOrNull(extracted.title),
+    questionText,
     // 0 stands for "unknown", paired with POINT_VALUE_MISSING. It is never
     // presented to a student, because a flagged draft cannot be published.
     totalPoints: statedTotal ?? partsTotal,
-    officialSolution: extracted.official_solution?.trim() || null,
-    gradingRubric: extracted.grading_rubric?.trim() || null,
+    officialSolution,
+    gradingRubric,
     topic,
     questionPdfPages: (extracted.question_source_pages ?? []).filter(Number.isInteger),
     solutionPdfPages: (extracted.solution_source_pages ?? []).filter(Number.isInteger),
