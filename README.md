@@ -1275,10 +1275,28 @@ Stripe values with their live equivalents *after* an end-to-end test.
 
 1. Get a key from <https://aistudio.google.com/apikey>.
 2. Put it in `.env.local` as `GEMINI_API_KEY`.
-3. Leave `AI_GRADING_MODEL` unset to use `gemini-2.5-flash`, or set another
-   model. If you set one that is not in the rates table in
+3. Leave `AI_GRADING_MODEL` unset to use `gemini-3.5-flash-lite`, or set
+   another model. This one variable controls **both** grading and the FRQ
+   importer. If you set a model that is not in the rates table in
    `src/lib/pro/config.ts`, cost estimates show as unknown rather than as a
    wrong number.
+
+   Do not use the `gemini-2.5-*` models: Google retired them for API keys
+   issued after mid-2026, and they return "no longer available to new
+   users" even though `ListModels` still advertises them.
+
+   Measured on a typical grading call (text only, September 2026):
+
+   | Model | Speed | Input / output per 1M tokens |
+   | --- | --- | --- |
+   | `gemini-3.5-flash-lite` | ~1.3s | $0.30 / $2.50 |
+   | `gemini-3.1-flash-lite` | ~1.7s | $0.25 / $1.50 |
+   | `gemini-3.8-flash` | ~3.2s | $0.75 / $3.75 (doubles 1 Jan 2027) |
+   | `gemini-3.5-flash` | ~5.8s | $1.50 / $9.00 |
+
+   Uploaded photos and PDFs add to both. The importer sends whole PDFs, so
+   it is much slower than a grade — but it runs once per exam, where
+   grading runs on every submission.
 
 **Without a key**, grading uses a deterministic mock grader — you can build
 the whole flow locally without spending anything, and `/admin/usage` says

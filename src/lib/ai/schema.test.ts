@@ -269,7 +269,7 @@ describe("the mock grader", () => {
 describe("cost estimation", () => {
   it("estimates from the rates table", () => {
     // 1M input at $0.30 plus 1M output at $2.50.
-    expect(estimateAiCostUsd("gemini-2.5-flash", 1_000_000, 1_000_000)).toBeCloseTo(2.8, 6);
+    expect(estimateAiCostUsd("gemini-3.5-flash-lite", 1_000_000, 1_000_000)).toBeCloseTo(2.8, 6);
   });
 
   it("returns null for a model we have no rates for, rather than a false zero", () => {
@@ -277,6 +277,42 @@ describe("cost estimation", () => {
   });
 
   it("returns null when no token counts were reported", () => {
-    expect(estimateAiCostUsd("gemini-2.5-flash", null, null)).toBeNull();
+    expect(estimateAiCostUsd("gemini-3.5-flash-lite", null, null)).toBeNull();
+  });
+
+  it("costs nothing for the mock grader", () => {
+    expect(estimateAiCostUsd("mock", 1_000_000, 1_000_000)).toBe(0);
+  });
+
+  it("still prices the retired 2.5 models, for historical usage rows", () => {
+    expect(estimateAiCostUsd("gemini-2.5-flash", 1_000_000, 1_000_000)).toBeCloseTo(2.8, 6);
+  });
+
+  describe("promotional pricing that expires", () => {
+    const DURING = new Date("2026-09-08T00:00:00Z");
+    const AFTER = new Date("2027-01-01T00:00:00Z");
+
+    it("uses the discounted rate before the changeover", () => {
+      // $0.75 input + $3.75 output per 1M.
+      expect(estimateAiCostUsd("gemini-3.8-flash", 1_000_000, 1_000_000, DURING))
+        .toBeCloseTo(4.5, 6);
+    });
+
+    it("uses the full rate from the changeover date onward", () => {
+      // Doubles to $1.50 + $7.50.
+      expect(estimateAiCostUsd("gemini-3.8-flash", 1_000_000, 1_000_000, AFTER))
+        .toBeCloseTo(9, 6);
+    });
+
+    it("switches exactly on the boundary, not a day late", () => {
+      const justBefore = new Date("2026-12-31T23:59:59Z");
+      expect(estimateAiCostUsd("gemini-3.8-flash", 1_000_000, 0, justBefore)).toBeCloseTo(0.75, 6);
+      expect(estimateAiCostUsd("gemini-3.8-flash", 1_000_000, 0, AFTER)).toBeCloseTo(1.5, 6);
+    });
+
+    it("leaves models without a promotion unaffected by the date", () => {
+      expect(estimateAiCostUsd("gemini-3.5-flash", 1_000_000, 0, DURING)).toBeCloseTo(1.5, 6);
+      expect(estimateAiCostUsd("gemini-3.5-flash", 1_000_000, 0, AFTER)).toBeCloseTo(1.5, 6);
+    });
   });
 });

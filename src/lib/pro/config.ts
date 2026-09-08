@@ -117,39 +117,98 @@ export function configuredAiProvider(): "mock" | "gemini" {
   return process.env.GEMINI_API_KEY ? "gemini" : "mock";
 }
 
+/// The model used for BOTH grading and the FRQ importer.
+///
+/// Note the variable name predates the importer and now controls both.
+///
+/// The default is gemini-3.5-flash-lite: it is fast (~1.3s on a typical
+/// grading call), inexpensive, and — unlike the 2.5 family — actually
+/// callable. Google retired 2.5 for newly issued API keys, which return
+/// "no longer available to new users" even though ListModels still
+/// advertises them.
 export function configuredAiModel(): string {
-  return process.env.AI_GRADING_MODEL?.trim() || "gemini-2.5-flash";
+  return process.env.AI_GRADING_MODEL?.trim() || "gemini-3.5-flash-lite";
 }
 
-/// USD per million tokens, by model. Used only to estimate spend for the
-/// admin usage view — it is an approximation, not a bill.
+/// USD per million tokens, by model, from Google's published pricing.
 ///
-/// Update these when provider pricing changes. Keeping them in one map is
-/// why no cost arithmetic appears anywhere else in the codebase.
-const MODEL_RATES_USD_PER_MILLION_TOKENS: Record<
-  string,
-  { input: number; output: number }
-> = {
+/// Used only to estimate spend for the admin usage view — it is an
+/// approximation, not a bill. Keeping every rate in one table is why no
+/// cost arithmetic appears anywhere else in the codebase.
+///
+/// `promotionEnds` handles a model whose price is temporarily discounted:
+/// the 3.6/3.7/3.8 Flash models are half price until the end of 2026 and
+/// double on 1 January 2027. Without this the estimates would silently
+/// under-report by half from that date.
+///
+/// A model missing from this table produces a null estimate rather than a
+/// confident zero — see estimateAiCostUsd.
+type ModelRate = {
+  input: number;
+  output: number;
+  promotionEnds?: { on: string; input: number; output: number };
+};
+
+const MODEL_RATES_USD_PER_MILLION_TOKENS: Record<string, ModelRate> = {
+  // Flash — current generation. Promotional pricing through 2026.
+  "gemini-3.8-flash": {
+    input: 0.75,
+    output: 3.75,
+    promotionEnds: { on: "2027-01-01T00:00:00Z", input: 1.5, output: 7.5 },
+  },
+  "gemini-3.7-flash": {
+    input: 0.75,
+    output: 3.75,
+    promotionEnds: { on: "2027-01-01T00:00:00Z", input: 1.5, output: 7.5 },
+  },
+  "gemini-3.6-flash": {
+    input: 0.75,
+    output: 3.75,
+    promotionEnds: { on: "2027-01-01T00:00:00Z", input: 1.5, output: 7.5 },
+  },
+
+  "gemini-3.5-flash": { input: 1.5, output: 9 },
+  "gemini-3.5-flash-lite": { input: 0.3, output: 2.5 },
+  "gemini-3.1-flash-lite": { input: 0.25, output: 1.5 },
+  "gemini-3.1-pro-preview": { input: 2, output: 12 },
+  "gemini-3-flash-preview": { input: 0.5, output: 3 },
+
+  // The 2.5 family is retired for API keys issued after mid-2026. Kept so
+  // historical AiUsageEvent rows still cost out correctly.
   "gemini-2.5-flash": { input: 0.3, output: 2.5 },
+  "gemini-2.5-flash-lite": { input: 0.1, output: 0.4 },
   "gemini-2.5-pro": { input: 1.25, output: 10 },
-  "gemini-2.0-flash": { input: 0.1, output: 0.4 },
+
   mock: { input: 0, output: 0 },
 };
 
 /// Estimated USD cost of one AI call. Returns null when the model's rates
 /// are unknown, so an unrecognised model shows as "unknown" in analytics
 /// rather than as a confidently wrong $0.00.
+///
+/// PDF and image input are billed at the image token rate, which for every
+/// model above equals the text input rate — so a single input rate is
+/// accurate for what this app sends. That would need revisiting only if
+/// audio were ever added, which is priced separately.
 export function estimateAiCostUsd(
   model: string,
   inputTokens: number | null | undefined,
   outputTokens: number | null | undefined,
+  now: Date = new Date(),
 ): number | null {
   const rates = MODEL_RATES_USD_PER_MILLION_TOKENS[model];
   if (!rates) return null;
   if (inputTokens == null && outputTokens == null) return null;
 
-  const input = ((inputTokens ?? 0) / 1_000_000) * rates.input;
-  const output = ((outputTokens ?? 0) / 1_000_000) * rates.output;
+  const promotionOver =
+    rates.promotionEnds !== undefined &&
+    now.getTime() >= new Date(rates.promotionEnds.on).getTime();
+
+  const inputRate = promotionOver ? rates.promotionEnds!.input : rates.input;
+  const outputRate = promotionOver ? rates.promotionEnds!.output : rates.output;
+
+  const input = ((inputTokens ?? 0) / 1_000_000) * inputRate;
+  const output = ((outputTokens ?? 0) / 1_000_000) * outputRate;
   return Number((input + output).toFixed(6));
 }
 
