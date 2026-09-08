@@ -1,24 +1,14 @@
 import PageContainer from "@/components/PageContainer";
-import { requireAdminPage } from "@/lib/pro/admin-page-guard";
-import FrqReviewQueue from "@/components/admin/FrqReviewQueue";
+import FrqReviewScreen from "@/components/admin/screens/FrqReviewScreen";
 
-export const metadata = { title: "Review FRQs — Astro Coach" };
-
-export default async function FrqReviewPage() {
-  await requireAdminPage();
-
+// No `metadata` export on purpose: a title would appear in the document of
+// an unauthorised visitor and reveal that this route exists. The page
+// inherits the site's default title instead, and everything else is decided
+// inside the client boundary — see AdminGate.
+export default function Page() {
   return (
     <PageContainer>
-      <h1 className="text-3xl font-extrabold text-[var(--color-navy)]">
-        Review and publish
-      </h1>
-      <p className="mt-2 max-w-2xl text-[var(--color-navy)]/80">
-        Check each extracted question against the source paper. A question can
-        only be published once its warnings are resolved, its points add up,
-        it has an official solution, and its rights have been reviewed.
-      </p>
-
-      <FrqReviewQueue />
+      <FrqReviewScreen />
     </PageContainer>
   );
 }

@@ -53,7 +53,14 @@ export async function requireUser(request?: Request): Promise<AuthResult> {
 /// the admin area rather than opening it.
 export function isAdminUserId(userId: string): boolean {
   const ids = adminUserIds();
-  return ids.length > 0 && ids.includes(userId);
+  if (ids.length === 0) return false;
+
+  // UUIDs are case-insensitive by specification, and a value pasted from
+  // the Supabase dashboard can differ in case from one typed by hand.
+  // Comparing case-insensitively avoids a confusing "why am I not an
+  // admin" without widening who matches.
+  const wanted = userId.toLowerCase();
+  return ids.some((id) => id.toLowerCase() === wanted);
 }
 
 /// Resolves the signed-in user and requires that they be an admin.

@@ -1,23 +1,14 @@
 import PageContainer from "@/components/PageContainer";
-import { requireAdminPage } from "@/lib/pro/admin-page-guard";
-import UsageDashboard from "@/components/admin/UsageDashboard";
+import UsageScreen from "@/components/admin/screens/UsageScreen";
 
-export const metadata = { title: "Usage — Astro Coach" };
-
-export default async function AdminUsagePage() {
-  await requireAdminPage();
-
+// No `metadata` export on purpose: a title would appear in the document of
+// an unauthorised visitor and reveal that this route exists. The page
+// inherits the site's default title instead, and everything else is decided
+// inside the client boundary — see AdminGate.
+export default function Page() {
   return (
     <PageContainer>
-      <h1 className="text-3xl font-extrabold text-[var(--color-navy)]">
-        Usage and AI spend
-      </h1>
-      <p className="mt-2 max-w-2xl text-[var(--color-navy)]/80">
-        Aggregate figures over the last 30 days. Individual students and their
-        work are deliberately not listed here.
-      </p>
-
-      <UsageDashboard />
+      <UsageScreen />
     </PageContainer>
   );
 }
