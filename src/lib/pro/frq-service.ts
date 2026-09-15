@@ -25,6 +25,7 @@ import type { PrismaClient } from "@/generated/prisma/client";
 import { getPrisma } from "@/lib/prisma";
 import {
   estimateAiCostUsd as estimateAiCostUsdRef,
+  GRADING_RESERVATION_TTL_MS,
   MAX_GRADED_ATTEMPTS_PER_FRQ,
   QUESTION_MEDIA_BUCKET,
   STUDENT_WORK_BUCKET,
@@ -35,6 +36,7 @@ import {
   creditChargeForOutcome,
   decideGradeAttempt,
   unlockReasonAfterGrade,
+  type GradeBlockedReason,
   type Entitlements,
   type QuestionHistorySnapshot,
 } from "./rules";
@@ -55,6 +57,15 @@ import {
 } from "./storage";
 import { gradeFrqSubmission } from "@/lib/ai/grader";
 import type { GradingAttachment, GradingPart } from "@/lib/ai/types";
+
+/// Thrown inside the reservation transaction when the locked re-check says
+/// no. It exists so the rollback carries the real reason back out — a plain
+/// throw would be indistinguishable from a database error.
+class ReservationRefused extends Error {
+  constructor(readonly reason: GradeBlockedReason) {
+    super(reason);
+  }
+}
 
 // --- Browsing --------------------------------------------------------------
 
@@ -482,40 +493,85 @@ export async function submitGradedAttempt(
     };
   }
 
-  // 5. Reserve the slot. Two concurrent submissions both compute the same
-  // sequence number; the unique constraint lets exactly one through.
-  const previous = await prisma.frqSubmission.aggregate({
-    where: { userId, frqQuestionId: questionId },
-    _max: { sequenceNumber: true },
-  });
-  const sequenceNumber = (previous._max.sequenceNumber ?? 0) + 1;
-
+  // 5. Reserve the slot and the credit, together, under a per-user lock.
+  //
+  // The permission check at step 2 is not enough on its own. Grading takes
+  // seconds, and nothing is charged until it comes back, so two requests
+  // sent at the same moment would both read the same "1 credit left" and
+  // both spend it. The unique constraint below only serialises repeat
+  // attempts at the SAME question; two different questions race freely.
+  //
+  // So the decision is made again here, inside a transaction holding an
+  // advisory lock on this user, and this time it counts the grades already
+  // running. The GRADING row created below IS the reservation — once it
+  // exists, a concurrent request sees it and is turned away.
   let submissionId: string;
   try {
-    const created = await prisma.frqSubmission.create({
-      data: {
-        userId,
-        frqQuestionId: questionId,
-        sequenceNumber,
-        attemptNumber: null,
-        typedResponse: input.typedResponse,
-        status: "GRADING",
-        maximumPoints: question.totalPoints,
-        uploadedPageCount: submissionCheck.value.totalPages,
-        uploads: {
-          create: counted.value.map((upload, index) => ({
-            storagePath: upload.storagePath,
-            mimeType: upload.mimeType,
-            byteSize: upload.byteSize,
-            pageCount: upload.pageCount,
-            orderIndex: index,
-          })),
+    submissionId = await prisma.$transaction(async (tx) => {
+      // Serialises this block per user. Released automatically when the
+      // transaction ends, however it ends.
+      await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${userId}))`;
+
+      // Submissions still being graded, ignoring any left orphaned by a
+      // crash so a dead row cannot block a student permanently.
+      const inFlightGrades = await tx.frqSubmission.count({
+        where: {
+          userId,
+          status: "GRADING",
+          createdAt: { gt: new Date(Date.now() - GRADING_RESERVATION_TTL_MS) },
         },
-      },
-      select: { id: true },
+      });
+
+      const [lockedEntitlements, lockedHistory] = await Promise.all([
+        getUserEntitlements(userId, tx as PrismaClient),
+        getQuestionHistory(userId, questionId, tx as PrismaClient),
+      ]);
+
+      const lockedDecision = decideGradeAttempt(
+        lockedEntitlements,
+        lockedHistory,
+        inFlightGrades,
+      );
+      if (!lockedDecision.allowed) {
+        throw new ReservationRefused(lockedDecision.reason);
+      }
+
+      const previous = await tx.frqSubmission.aggregate({
+        where: { userId, frqQuestionId: questionId },
+        _max: { sequenceNumber: true },
+      });
+      const sequenceNumber = (previous._max.sequenceNumber ?? 0) + 1;
+
+      const created = await tx.frqSubmission.create({
+        data: {
+          userId,
+          frqQuestionId: questionId,
+          sequenceNumber,
+          attemptNumber: null,
+          typedResponse: input.typedResponse,
+          status: "GRADING",
+          maximumPoints: question.totalPoints,
+          uploadedPageCount: submissionCheck.value.totalPages,
+          uploads: {
+            create: counted.value.map((upload, index) => ({
+              storagePath: upload.storagePath,
+              mimeType: upload.mimeType,
+              byteSize: upload.byteSize,
+              pageCount: upload.pageCount,
+              orderIndex: index,
+            })),
+          },
+        },
+        select: { id: true },
+      });
+      return created.id;
     });
-    submissionId = created.id;
-  } catch {
+  } catch (error) {
+    // The locked re-check turned this submission away — report its real
+    // reason rather than flattening it into "duplicate".
+    if (error instanceof ReservationRefused) {
+      return { ok: false, code: error.reason, message: blockedMessage(error.reason) };
+    }
     // Unique violation on (userId, questionId, sequenceNumber).
     return {
       ok: false,

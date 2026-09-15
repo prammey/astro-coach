@@ -267,6 +267,40 @@ describe("grading attempts", () => {
     });
   });
 
+  it("counts grades already running against the credits available", () => {
+    // The last free credit is already promised to a grade still in flight,
+    // so a second simultaneous submission must not also spend it.
+    expect(decideGradeAttempt(freeOneLeft, FRESH_QUESTION, 1)).toEqual({
+      allowed: false,
+      reason: "NO_CREDITS",
+    });
+  });
+
+  it("still allows a grade when in-flight work leaves a credit spare", () => {
+    const freeTwoLeft = computeEntitlements(
+      null,
+      { ...NO_USAGE, freeLifetimeUsed: 1 },
+      NOW,
+    );
+    expect(decideGradeAttempt(freeTwoLeft, FRESH_QUESTION, 1)).toMatchObject({
+      allowed: true,
+      attemptNumber: 1,
+    });
+  });
+
+  it("ignores in-flight work for a Pro user with credits to spare", () => {
+    expect(decideGradeAttempt(pro, FRESH_QUESTION, 3)).toMatchObject({
+      allowed: true,
+      creditSource: "PRO_PERIOD",
+    });
+  });
+
+  it("treats an omitted in-flight count as none running", () => {
+    expect(decideGradeAttempt(freeOneLeft, FRESH_QUESTION)).toMatchObject({
+      allowed: true,
+    });
+  });
+
   it("refuses to grade once the solution is visible", () => {
     for (const reason of ["GIVE_UP", "FULL_CREDIT", "ATTEMPTS_EXHAUSTED"] as const) {
       expect(

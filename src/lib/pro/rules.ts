@@ -248,9 +248,19 @@ export type GradeDecision =
 /// Grading stops once the official solution is visible, whatever unlocked
 /// it. Grading a problem whose answer is on screen cannot tell the student
 /// anything, and letting it through would burn credits for nothing.
+///
+/// `inFlightGrades` is how many of this user's submissions are already
+/// being graded and have not yet been charged. Those grades are going to
+/// spend a credit each the moment they come back, so they are subtracted
+/// from what is available here. Without that, two submissions started at
+/// the same moment would both read the same "1 credit left" and both go
+/// on to spend it. Callers that are only describing the current state —
+/// rendering a button, answering "can I grade this?" — pass nothing and
+/// get the plain answer.
 export function decideGradeAttempt(
   entitlements: Entitlements,
   history: QuestionHistorySnapshot,
+  inFlightGrades: number = 0,
 ): GradeDecision {
   if (!canViewFrqContent(entitlements, history)) {
     return { allowed: false, reason: "QUESTION_LOCKED" };
@@ -262,6 +272,11 @@ export function decideGradeAttempt(
     return { allowed: false, reason: "ATTEMPTS_EXHAUSTED" };
   }
   if (!entitlements.credits.nextSource) {
+    return { allowed: false, reason: "NO_CREDITS" };
+  }
+  // Credits already promised to grades still running are not available
+  // again, even though nothing has been charged for them yet.
+  if (entitlements.credits.remaining - inFlightGrades <= 0) {
     return { allowed: false, reason: "NO_CREDITS" };
   }
 

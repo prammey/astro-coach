@@ -35,6 +35,17 @@ export const PRO_PERIOD_GRADE_CREDITS = 50;
 /// per user + question and never resets.
 export const MAX_GRADED_ATTEMPTS_PER_FRQ = 3;
 
+/// How long a submission that is still being graded holds onto the credit
+/// it will spend. A row sits in GRADING from the moment it is created
+/// until the model answers, and during that window it counts against the
+/// user's remaining credits so two simultaneous submissions cannot both
+/// spend the same last credit.
+///
+/// It is a safety net, not a timeout: nothing cancels a grade when this
+/// elapses. It only stops a row orphaned by a crash or a redeploy from
+/// blocking the student's credit forever.
+export const GRADING_RESERVATION_TTL_MS = 5 * 60 * 1000; // 5 minutes
+
 // --- Uploads ---------------------------------------------------------------
 
 /// Total pages of handwritten/PDF work allowed in one grading submission.
