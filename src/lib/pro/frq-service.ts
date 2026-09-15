@@ -582,6 +582,27 @@ export async function submitGradedAttempt(
 
   // 6. Grade.
   const attachments = await loadAttachments(counted.value);
+
+  // Every page the student uploaded must actually be in hand before the
+  // model is asked anything. downloadFile returns null rather than throwing
+  // when storage is unreachable, so without this check a storage outage
+  // would send the model a submission with no work in it — and a grade of
+  // zero that cost a credit and one of the three attempts. An outage is not
+  // the student's mistake, so it fails here instead, free, with the row
+  // marked FAILED rather than left grading forever.
+  if (attachments.length !== counted.value.length) {
+    await prisma.frqSubmission.update({
+      where: { id: submissionId },
+      data: { status: "FAILED", errorCode: "UPLOAD_UNREADABLE" },
+    });
+
+    return {
+      ok: false,
+      code: "GRADING_UNAVAILABLE",
+      message: "We could not read your uploaded work just now. Please try again.",
+    };
+  }
+
   const gradingParts: GradingPart[] = question.parts.map((part) => ({
     id: part.id,
     label: part.label,
@@ -741,7 +762,7 @@ async function verifyUploads(
     if (!ownsStudentWorkPath(userId, storagePath)) {
       return {
         ok: false,
-        error: { code: "UNSUPPORTED_FILE_TYPE", message: "One of your files could not be found." },
+        error: { code: "FILE_NOT_FOUND", message: "One of your files could not be found." },
       };
     }
 
@@ -750,7 +771,7 @@ async function verifyUploads(
       return {
         ok: false,
         error: {
-          code: "UNSUPPORTED_FILE_TYPE",
+          code: "UPLOAD_INCOMPLETE",
           message: "One of your files did not finish uploading. Try again.",
         },
       };

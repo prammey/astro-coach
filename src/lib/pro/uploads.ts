@@ -43,7 +43,11 @@ export type ValidationError = {
     | "SUBMISSION_TOO_LARGE"
     | "TOO_MANY_PAGES"
     | "TOO_MANY_FILES"
-    | "UNREADABLE_PDF";
+    | "UNREADABLE_PDF"
+    /// The path did not belong to this user, or names nothing at all.
+    | "FILE_NOT_FOUND"
+    /// The row exists but the bytes never arrived in storage.
+    | "UPLOAD_INCOMPLETE";
   /// Written for the student, not for a log. Says what to change.
   message: string;
 };

@@ -211,12 +211,12 @@ export function estimateAiCostUsd(
   if (!rates) return null;
   if (inputTokens == null && outputTokens == null) return null;
 
+  const promotion = rates.promotionEnds;
   const promotionOver =
-    rates.promotionEnds !== undefined &&
-    now.getTime() >= new Date(rates.promotionEnds.on).getTime();
+    promotion !== undefined && now.getTime() >= new Date(promotion.on).getTime();
 
-  const inputRate = promotionOver ? rates.promotionEnds!.input : rates.input;
-  const outputRate = promotionOver ? rates.promotionEnds!.output : rates.output;
+  const inputRate = promotionOver && promotion ? promotion.input : rates.input;
+  const outputRate = promotionOver && promotion ? promotion.output : rates.output;
 
   const input = ((inputTokens ?? 0) / 1_000_000) * inputRate;
   const output = ((outputTokens ?? 0) / 1_000_000) * outputRate;
