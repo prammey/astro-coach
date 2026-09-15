@@ -65,6 +65,31 @@ function readBillingPeriod(subscription: Stripe.Subscription): {
   };
 }
 
+/// Reads the subscription ID off an invoice.
+///
+/// Stripe moved this from the invoice's top-level `subscription` field onto
+/// `parent.subscription_details.subscription`. The SDK's Invoice type no
+/// longer carries the old field at all, so reading it returned undefined
+/// and the renewal resync silently did nothing — which is what moves the
+/// billing period forward and resets the period's grading credits.
+///
+/// Both shapes are handled for the same reason readBillingPeriod handles
+/// both: the app keeps working across an API version bump instead of
+/// quietly losing renewals.
+export function readInvoiceSubscriptionId(
+  invoice: Stripe.Invoice,
+): string | null {
+  const parent = invoice.parent?.subscription_details?.subscription ?? null;
+  if (parent) return typeof parent === "string" ? parent : parent.id;
+
+  const legacy = (invoice as Stripe.Invoice & {
+    subscription?: string | Stripe.Subscription | null;
+  }).subscription;
+  if (!legacy) return null;
+
+  return typeof legacy === "string" ? legacy : legacy.id;
+}
+
 /// Maps a Stripe subscription onto our fields. Pure, so it is unit-tested
 /// directly against realistic Stripe payloads.
 export function mapSubscription(

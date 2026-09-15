@@ -18,6 +18,7 @@ import {
   claimWebhookEvent,
   mapSubscription,
   markSubscriptionEnded,
+  readInvoiceSubscriptionId,
   readSupabaseUserId,
   releaseWebhookEvent,
   upsertSubscription,
@@ -126,14 +127,10 @@ export async function POST(request: Request) {
       // resets the 50 grading credits — so we resync rather than ignore it.
       case "invoice.payment_succeeded":
       case "invoice.payment_failed": {
-        const invoice = event.data.object as Stripe.Invoice & {
-          subscription?: string | Stripe.Subscription | null;
-        };
-        const subscription = invoice.subscription;
-        if (subscription) {
-          await syncSubscriptionById(
-            typeof subscription === "string" ? subscription : subscription.id,
-          );
+        const invoice = event.data.object as Stripe.Invoice;
+        const subscriptionId = readInvoiceSubscriptionId(invoice);
+        if (subscriptionId) {
+          await syncSubscriptionById(subscriptionId);
         }
         break;
       }

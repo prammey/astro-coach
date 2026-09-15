@@ -11,6 +11,7 @@ import type { PrismaClient } from "@/generated/prisma/client";
 import {
   claimWebhookEvent,
   mapSubscription,
+  readInvoiceSubscriptionId,
   readSupabaseUserId,
   releaseWebhookEvent,
 } from "./sync";
@@ -214,5 +215,61 @@ describe("attributing a subscription to a Supabase user", () => {
   it("returns null rather than guessing when there is no metadata", () => {
     const subscription = stripeSubscription({ metadata: {}, customer: "cus_123" });
     expect(readSupabaseUserId(subscription)).toBeNull();
+  });
+});
+
+describe("reading the subscription off a renewal invoice", () => {
+  // This is what actually resyncs the billing period at renewal, which is
+  // what resets the period's grading credits. Reading the wrong field made
+  // it silently do nothing.
+  it("reads the current shape, where it lives under parent", () => {
+    const invoice = {
+      id: "in_123",
+      object: "invoice",
+      parent: {
+        type: "subscription_details",
+        quote_details: null,
+        subscription_details: { subscription: "sub_123", metadata: null },
+      },
+    } as unknown as Stripe.Invoice;
+
+    expect(readInvoiceSubscriptionId(invoice)).toBe("sub_123");
+  });
+
+  it("unwraps an expanded subscription object", () => {
+    const invoice = {
+      id: "in_123",
+      object: "invoice",
+      parent: {
+        type: "subscription_details",
+        quote_details: null,
+        subscription_details: {
+          subscription: { id: "sub_456", object: "subscription" },
+          metadata: null,
+        },
+      },
+    } as unknown as Stripe.Invoice;
+
+    expect(readInvoiceSubscriptionId(invoice)).toBe("sub_456");
+  });
+
+  it("still reads the legacy top-level field", () => {
+    const invoice = {
+      id: "in_123",
+      object: "invoice",
+      subscription: "sub_legacy",
+    } as unknown as Stripe.Invoice;
+
+    expect(readInvoiceSubscriptionId(invoice)).toBe("sub_legacy");
+  });
+
+  it("returns null for an invoice with no subscription at all", () => {
+    const invoice = {
+      id: "in_123",
+      object: "invoice",
+      parent: { type: "quote_details", quote_details: null, subscription_details: null },
+    } as unknown as Stripe.Invoice;
+
+    expect(readInvoiceSubscriptionId(invoice)).toBeNull();
   });
 });
