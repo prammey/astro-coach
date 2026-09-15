@@ -1,4 +1,5 @@
 import { promises as fs } from "fs";
+import Link from "next/link";
 import path from "path";
 import PageContainer from "@/components/PageContainer";
 import TrainingBrowser from "@/components/TrainingBrowser";
@@ -53,6 +54,23 @@ export default async function TrainingPage() {
             </p>
           </div>
         )}
+      </div>
+
+      {/* Free-response practice lives on its own page: those questions come
+          from the database and depend on the signed-in student's plan, so
+          they cannot be part of this pre-rendered MCQ catalog. */}
+      <div className="mt-4 rounded-lg border-4 border-black bg-[var(--color-purple)] p-4 text-white">
+        <h2 className="text-lg font-extrabold">Free-response practice</h2>
+        <p className="mt-1 text-sm text-white/90">
+          Write full solutions to real olympiad free-response problems and get
+          rubric-based, part-by-part AI feedback.
+        </p>
+        <Link
+          href="/training/frq"
+          className="mt-3 inline-block rounded-lg border-4 border-black bg-[var(--color-yellow)] px-4 py-2 font-extrabold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+        >
+          Open free-response practice
+        </Link>
       </div>
 
       <TrainingBrowser questions={publicQuestionCatalog} />

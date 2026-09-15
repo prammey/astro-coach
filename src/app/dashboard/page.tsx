@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/auth';
 import DashboardTabs from '@/components/DashboardTabs';
+import SubscriptionCard from '@/components/pro/SubscriptionCard';
+import ProAnalyticsPanel from '@/components/pro/ProAnalyticsPanel';
 
 interface UserAttempt {
   id: string;
@@ -151,6 +153,14 @@ export default function DashboardPage() {
                 </p>
               </div>
             </div>
+
+            {/* Plan, credits and subscription management. */}
+            <SubscriptionCard />
+
+            {/* Pro analytics — or, for a Free account, a locked preview of
+                them. The server sends no figures at all to a Free account,
+                so the lock is real rather than a blur over real data. */}
+            <ProAnalyticsPanel />
 
             {/* Questions Tabs */}
             <div>
