@@ -238,8 +238,36 @@ export function adminUserIds(): string[] {
 // --- Site ------------------------------------------------------------------
 
 /// Absolute base URL, needed to build Stripe return URLs.
+///
+/// This value is where a student lands after paying, so getting it wrong
+/// in production means sending a paying customer to a dead address. It is
+/// resolved in three steps:
+///
+///   1. NEXT_PUBLIC_SITE_URL, if set — an explicit custom domain wins.
+///   2. VERCEL_PROJECT_PRODUCTION_URL, which Vercel sets by itself. This
+///      means a Vercel deployment works with nothing configured at all.
+///   3. localhost, for local development only.
+///
+/// Falling through to localhost in production used to happen silently.
+/// It now throws instead, for the same reason the grader refuses to
+/// mock-grade in production: a loud failure beats a checkout that quietly
+/// redirects a paying student to a machine that is not there.
 export function siteUrl(): string {
-  return (
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "http://localhost:3000"
-  );
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (explicit) return explicit.replace(/\/$/, "");
+
+  // Vercel sets this to the project's stable production domain, without a
+  // protocol. Preferred over VERCEL_URL, which changes per deployment and
+  // would send a returning customer to a stale one.
+  const vercelDomain = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  if (vercelDomain) return `https://${vercelDomain.replace(/\/$/, "")}`;
+
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(
+      "No site URL is configured. Set NEXT_PUBLIC_SITE_URL to your public " +
+        "domain — refusing to build Stripe return URLs pointing at localhost.",
+    );
+  }
+
+  return "http://localhost:3000";
 }
