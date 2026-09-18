@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-18
 **Branch:** `feature/design-glowup`
-**Status:** Awaiting review
+**Status:** Built on `feature/design-glowup` (see "What changed during the build" at the end)
 
 ## What this is
 
@@ -257,3 +257,30 @@ Vitest suite run before each commit.
   your mind later.
 - **Keep:** open a pull request from `feature/design-glowup` into
   `main` and merge it. I will walk you through this when we get there.
+
+## What changed during the build
+
+Decisions Prameet made after seeing the first steps, which override the
+plan above where they differ:
+
+- **Headings keep the original bold system font.** Bricolage Grotesque
+  was tried and reverted. Only the body text uses Instrument Sans.
+- **The pricing section is untouched.** Its copy, layout and colors are
+  exactly as on `main`. It lives only on `/pricing` now.
+- **The home page has no pricing block.** It was rebuilt as: a staggered
+  hero with real counts from the catalog, a numbered three-step guide, a
+  question-bank preview showing an actual question with all ten topic
+  chips, free-response and progress cards, a "coming soon" strip, and a
+  closing call to action that links to the pricing page.
+- **Slightly softer borders.** Cards, buttons and inputs use a 3 px
+  border instead of 4 px. Chips and small controls stay at 2 px.
+- **Tailwind v4 note.** Its translate utilities set the CSS `translate`
+  property, so every hover transition lists `translate`, not
+  `transform`. New color tokens must be used by a class somewhere or
+  Tailwind will not emit them; inline `var()` references alone are not
+  enough.
+- **Dev cache.** The Turbopack dev filesystem cache is disabled in
+  `next.config.ts` because it kept serving stale compiled CSS.
+- **Not deleted, but now unused:** `src/components/FilterBar.tsx` and
+  `src/components/FrqPractice.tsx` were already unreferenced before this
+  work. They were left in place; removing them is a separate decision.
