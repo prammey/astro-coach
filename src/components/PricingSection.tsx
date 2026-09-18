@@ -25,6 +25,7 @@ import {
   type EntitlementsResponse,
 } from '@/lib/pro/client';
 import { PUBLIC_PRO_CONFIG } from '@/lib/pro/public-config';
+import FoundingPriceBadge from './pro/FoundingPriceBadge';
 
 // What someone gets without an account at all.
 const GUEST_FEATURES = ['Execute questions'];
@@ -174,6 +175,8 @@ export default function PricingSection() {
           {/* Right column: Pro (larger, premium) */}
           <div className="lg:col-span-2">
             <div className="relative h-full rounded-lg border-[3px] border-ink bg-purple p-8 shadow-brutal-lg">
+              <FoundingPriceBadge />
+
               {/* Where the "COMING SOON" tag used to sit. Pro has shipped, so
                   this now carries the real founding price instead. */}
               <div className="absolute -top-4 left-8 rounded border-[3px] border-ink bg-yellow px-4 py-1 text-sm font-extrabold text-navy">
@@ -181,8 +184,12 @@ export default function PricingSection() {
               </div>
 
               <h3 className="mt-2 text-4xl font-extrabold text-white">Go Pro</h3>
-              <p className="mt-3 text-lg text-white/90">
+              <p className="mt-3 max-w-md text-lg text-white/90">
                 Everything in Free, plus premium features
+              </p>
+
+              <p className="sr-only">
+                Price goes up after {PUBLIC_PRO_CONFIG.foundingDeadlineShort}.
               </p>
 
               <div className="mt-4 flex flex-wrap items-baseline gap-2">

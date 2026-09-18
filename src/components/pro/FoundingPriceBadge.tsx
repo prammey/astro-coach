@@ -1,6 +1,6 @@
 "use client";
 
-// The founding-price badge on the Pro card.
+// The deadline badge on the Pro card.
 //
 // Drawn as inline SVG rather than an image so it stays crisp at any size,
 // scales with the layout, and adds no network request. The starburst is a
@@ -57,31 +57,15 @@ export default function FoundingPriceBadge() {
           strokeWidth="2"
         />
 
-        <text
-          x="50"
-          y="34"
-          textAnchor="middle"
-          fontSize="8"
-          fontWeight="800"
-          fill="#0b0f2e"
-          letterSpacing="0.5"
-        >
-          FOUNDING
+        {/* Three short lines, sized to stay inside the star's inner points. */}
+        <text x="50" y="40" textAnchor="middle" fontSize="8" fontWeight="800" fill="#0b0f2e">
+          PRICE GOES
         </text>
-        <text x="50" y="43" textAnchor="middle" fontSize="8" fontWeight="800" fill="#0b0f2e">
-          PRICE
+        <text x="50" y="51" textAnchor="middle" fontSize="8" fontWeight="800" fill="#0b0f2e">
+          UP AFTER
         </text>
-        <text x="50" y="60" textAnchor="middle" fontSize="17" fontWeight="900" fill="#0b0f2e">
-          ${PUBLIC_PRO_CONFIG.foundingPriceUsd}
-        </text>
-        <text x="50" y="69" textAnchor="middle" fontSize="7" fontWeight="700" fill="#0b0f2e">
-          /month
-        </text>
-        <text x="50" y="80" textAnchor="middle" fontSize="7" fontWeight="800" fill="#0b0f2e">
-          LOCK IT IN
-        </text>
-        <text x="50" y="88" textAnchor="middle" fontSize="7" fontWeight="800" fill="#0b0f2e">
-          BEFORE DEC 31
+        <text x="50" y="65" textAnchor="middle" fontSize="10" fontWeight="900" fill="#0b0f2e">
+          {PUBLIC_PRO_CONFIG.foundingDeadlineShort}!
         </text>
       </svg>
     </div>
