@@ -102,14 +102,15 @@ export default function PricingSection() {
         <p className="mt-2 text-center text-sm text-navy">Choose your learning path</p>
 
         <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {/* Left column: Guest + Free (smaller) */}
-          <div className="space-y-6">
+          {/* Left column: Guest + Free (smaller). The column fills the row,
+              and both cards grow, so this column ends level with Pro. */}
+          <div className="flex h-full flex-col gap-6">
             {/* Guest — what you get with no account at all. */}
-            <div className="rounded-lg border-[3px] border-ink bg-gray-100 p-5">
+            <div className="flex flex-auto flex-col rounded-lg border-[3px] border-ink bg-gray-100 p-5">
               <h4 className="text-lg font-extrabold text-gray-700">Guest</h4>
               <p className="mt-2 text-xs text-gray-600">No account</p>
 
-              <div className="mt-3 space-y-2">
+              <div className="mt-3 flex-1 space-y-2">
                 {GUEST_FEATURES.map((feature) => (
                   <div key={feature} className="flex items-start gap-2">
                     <span aria-hidden className="text-sm">
@@ -135,11 +136,11 @@ export default function PricingSection() {
             </div>
 
             {/* Free — the account tier. */}
-            <div className="rounded-lg border-[3px] border-ink bg-electric p-5">
+            <div className="flex flex-auto flex-col rounded-lg border-[3px] border-ink bg-electric p-5">
               <h4 className="text-lg font-extrabold text-white">Free</h4>
               <p className="mt-2 text-xs text-white/80">All basics included</p>
 
-              <div className="mt-3 space-y-2">
+              <div className="mt-3 flex-1 space-y-2">
                 {FREE_FEATURES.map((feature) => (
                   <div key={feature} className="flex items-start gap-2">
                     <span aria-hidden className="text-sm">
@@ -190,13 +191,6 @@ export default function PricingSection() {
                 </span>
                 <span className="text-xl font-bold text-white">/month</span>
               </div>
-              <p className="mt-2 max-w-md text-sm text-white/80">
-                Price increases to ${PUBLIC_PRO_CONFIG.regularPriceUsd}/month for new
-                subscribers after {PUBLIC_PRO_CONFIG.foundingDeadlineLabel}. Subscribe
-                before then and you keep ${PUBLIC_PRO_CONFIG.foundingPriceUsd}/month for
-                as long as your subscription stays active.
-              </p>
-
               <div className="mt-8 grid grid-cols-2 gap-6">
                 <div>
                   <h4 className="text-sm font-bold uppercase text-yellow">Included</h4>
