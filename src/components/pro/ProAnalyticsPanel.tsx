@@ -11,6 +11,7 @@ import Link from "next/link";
 import { apiGet } from "@/lib/pro/client";
 import { labelForMistakeTag } from "@/lib/ai/mistakes";
 import type { ProAnalytics } from "@/lib/pro/analytics";
+import LoadingStar from "../ui/LoadingStar";
 
 type AnalyticsResponse =
   | { locked: true; plan: "FREE" | "PRO" }
@@ -34,7 +35,7 @@ export default function ProAnalyticsPanel() {
 
   if (failed) return null;
   if (!data) {
-    return <p className="text-white/70">Loading your analytics…</p>;
+    return <LoadingStar tone="light" label="Loading your analytics…" />;
   }
   if (data.locked) return <LockedPreview />;
 
@@ -68,7 +69,7 @@ export default function ProAnalyticsPanel() {
         </div>
 
         {analytics.entitlements.hitPeriodCap && (
-          <p className="mt-4 rounded-lg border-4 border-black bg-[var(--color-yellow)] p-4 font-bold text-[var(--color-navy)]">
+          <p className="mt-4 rounded-lg border-[3px] border-ink bg-yellow p-4 font-bold text-navy">
             You have used all {analytics.entitlements.creditsTotal} AI grades for this
             billing period.
             {analytics.entitlements.creditsResetAt &&
@@ -89,12 +90,12 @@ export default function ProAnalyticsPanel() {
           {analytics.topics.map((topic) => (
             <div
               key={topic.topic}
-              className="rounded-lg border-4 border-black bg-[var(--color-cream)] p-4"
+              className="rounded-lg border-[3px] border-ink bg-cream p-4"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="font-extrabold text-[var(--color-navy)]">{topic.topic}</h3>
+                <h3 className="font-extrabold text-navy">{topic.topic}</h3>
                 {!topic.hasEnoughData && (
-                  <span className="text-xs font-semibold text-[var(--color-navy)]/60">
+                  <span className="text-xs font-semibold text-navy/60">
                     Not enough data yet
                   </span>
                 )}
@@ -105,7 +106,7 @@ export default function ProAnalyticsPanel() {
                   label="Multiple choice"
                   percentage={topic.mcqAccuracy}
                   detail={`${topic.mcqAttempted} attempt${topic.mcqAttempted === 1 ? "" : "s"}`}
-                  colour="var(--color-electric-blue)"
+                  colour="var(--color-electric)"
                 />
                 <Meter
                   label="Free response"
@@ -125,11 +126,11 @@ export default function ProAnalyticsPanel() {
 
       {(analytics.strongestTopic || analytics.topicToPractiseNext) && (
         <section className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-lg border-4 border-black bg-[var(--color-electric-blue)] p-5 text-white">
+          <div className="rounded-lg border-[3px] border-ink bg-electric p-5 text-white">
             <p className="text-sm font-bold uppercase">Strongest topic</p>
             <p className="mt-1 text-xl font-extrabold">{analytics.strongestTopic}</p>
           </div>
-          <div className="rounded-lg border-4 border-black bg-[var(--color-purple)] p-5 text-white">
+          <div className="rounded-lg border-[3px] border-ink bg-purple p-5 text-white">
             <p className="text-sm font-bold uppercase">Practise next</p>
             <p className="mt-1 text-xl font-extrabold">{analytics.topicToPractiseNext}</p>
           </div>
@@ -150,12 +151,12 @@ export default function ProAnalyticsPanel() {
             {analytics.commonMistakes.map((mistake) => (
               <li
                 key={mistake.tag}
-                className="flex items-center justify-between rounded-lg border-4 border-black bg-[var(--color-cream)] px-4 py-2"
+                className="flex items-center justify-between rounded-lg border-[3px] border-ink bg-cream px-4 py-2"
               >
-                <span className="font-bold text-[var(--color-navy)]">
+                <span className="font-bold text-navy">
                   {labelForMistakeTag(mistake.tag)}
                 </span>
-                <span className="font-extrabold text-[var(--color-purple)]">{mistake.count}</span>
+                <span className="font-extrabold text-purple">{mistake.count}</span>
               </li>
             ))}
           </ul>
@@ -170,20 +171,20 @@ export default function ProAnalyticsPanel() {
               <Link
                 key={attempt.submissionId}
                 href={`/training/frq/${attempt.frqQuestionId}`}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-lg border-4 border-black bg-[var(--color-cream)] px-4 py-3 transition hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-yellow)]"
+                className="flex flex-wrap items-center justify-between gap-3 rounded-lg border-[3px] border-ink bg-cream px-4 py-3 transition hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow"
               >
-                <span className="font-bold text-[var(--color-navy)]">
+                <span className="font-bold text-navy">
                   {attempt.competition} {attempt.year} — Q{attempt.questionNumber}
                   {attempt.attemptNumber && (
-                    <span className="ml-2 font-normal text-[var(--color-navy)]/60">
+                    <span className="ml-2 font-normal text-navy/60">
                       attempt {attempt.attemptNumber}
                     </span>
                   )}
                 </span>
-                <span className="text-sm font-extrabold text-[var(--color-purple)]">
+                <span className="text-sm font-extrabold text-purple">
                   {attempt.awardedPoints ?? 0} / {attempt.maximumPoints}
                   {attempt.solutionUnlocked && (
-                    <span className="ml-2 font-normal text-[var(--color-navy)]/60">
+                    <span className="ml-2 font-normal text-navy/60">
                       solution unlocked
                     </span>
                   )}
@@ -203,10 +204,10 @@ export default function ProAnalyticsPanel() {
 
 function Stat({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
-    <div className="rounded-xl border-4 border-black bg-[var(--color-cream)] p-5 shadow-[6px_6px_0_0_#000]">
-      <p className="text-sm text-[var(--color-navy)]">{label}</p>
-      <p className="mt-1 text-3xl font-extrabold text-[var(--color-purple)]">{value}</p>
-      {sub && <p className="mt-1 text-xs text-[var(--color-navy)]/60">{sub}</p>}
+    <div className="rounded-xl border-[3px] border-ink bg-cream p-5 shadow-brutal">
+      <p className="text-sm text-navy">{label}</p>
+      <p className="mt-1 text-3xl font-extrabold text-purple">{value}</p>
+      {sub && <p className="mt-1 text-xs text-navy/60">{sub}</p>}
     </div>
   );
 }
@@ -226,14 +227,14 @@ function Meter({
   return (
     <div>
       <div className="flex items-baseline justify-between text-sm">
-        <span className="font-bold text-[var(--color-navy)]">{label}</span>
-        <span className="font-extrabold text-[var(--color-navy)]">
+        <span className="font-bold text-navy">{label}</span>
+        <span className="font-extrabold text-navy">
           {percentage === null ? "—" : `${percentage}%`}
         </span>
       </div>
 
       <div
-        className="mt-1 h-3 w-full overflow-hidden rounded border-2 border-black bg-white"
+        className="mt-1 h-3 w-full overflow-hidden rounded border-2 border-ink bg-white"
         role="img"
         aria-label={
           percentage === null
@@ -246,7 +247,7 @@ function Meter({
         )}
       </div>
 
-      <p className="mt-1 text-xs text-[var(--color-navy)]/60">{detail}</p>
+      <p className="mt-1 text-xs text-navy/60">{detail}</p>
     </div>
   );
 }
@@ -268,7 +269,7 @@ function TrendChart({ points }: { points: ProAnalytics["trend"] }) {
   const latest = points[points.length - 1];
 
   return (
-    <div className="overflow-x-auto rounded-lg border-4 border-black bg-[var(--color-cream)] p-4">
+    <div className="overflow-x-auto rounded-lg border-[3px] border-ink bg-cream p-4">
       <svg
         viewBox={`0 0 ${width} ${height}`}
         className="h-40 w-full min-w-[500px]"
@@ -299,7 +300,7 @@ function TrendChart({ points }: { points: ProAnalytics["trend"] }) {
         })}
       </svg>
 
-      <p className="mt-2 text-xs text-[var(--color-navy)]/70">
+      <p className="mt-2 text-xs text-navy/70">
         Your last {points.length} graded free-response attempts, oldest first.
       </p>
     </div>
@@ -308,7 +309,7 @@ function TrendChart({ points }: { points: ProAnalytics["trend"] }) {
 
 function LockedPreview() {
   return (
-    <section className="rounded-xl border-4 border-black bg-[var(--color-purple)] p-6 text-white shadow-[6px_6px_0_0_#000]">
+    <section className="rounded-xl border-[3px] border-ink bg-purple p-6 text-white shadow-brutal">
       <div className="flex items-start gap-3">
         <span aria-hidden className="text-2xl">🔒</span>
         <div>
@@ -330,7 +331,7 @@ function LockedPreview() {
           "Every past attempt and its feedback, kept",
         ].map((item) => (
           <li key={item} className="flex items-start gap-2 text-sm text-white/90">
-            <span aria-hidden className="text-[var(--color-yellow)]">★</span>
+            <span aria-hidden className="text-yellow">★</span>
             {item}
           </li>
         ))}
@@ -338,7 +339,7 @@ function LockedPreview() {
 
       <Link
         href="/pricing"
-        className="mt-6 inline-block rounded-lg border-4 border-black bg-[var(--color-yellow)] px-6 py-3 font-extrabold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+        className="mt-6 inline-block rounded-lg border-[3px] border-ink bg-yellow px-6 py-3 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
       >
         Unlock Astro Coach Pro
       </Link>

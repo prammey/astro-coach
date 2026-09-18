@@ -210,7 +210,7 @@ export default function ProfileSettingsPage() {
 
   if (loading || !user) {
     return (
-      <div className="min-h-screen bg-[var(--color-navy)] flex items-center justify-center">
+      <div className="starfield-dark min-h-screen bg-navy flex items-center justify-center">
         <p className="text-white">Loading...</p>
       </div>
     );
@@ -220,26 +220,26 @@ export default function ProfileSettingsPage() {
   const avatarInitial = (username || 'U').charAt(0).toUpperCase();
 
   return (
-    <div className="min-h-screen bg-[var(--color-navy)] px-4 py-10">
+    <div className="starfield-dark min-h-screen bg-navy px-4 py-10">
       <div className="mx-auto max-w-2xl">
         {/* Back Link */}
-        <Link href="/dashboard" className="mb-8 inline-block text-sm font-semibold text-[var(--color-yellow)] hover:underline">
+        <Link href="/dashboard" className="mb-8 inline-block text-sm font-semibold text-yellow hover:underline">
           ← Back to Dashboard
         </Link>
 
         {/* Settings Card */}
-        <div className="rounded-xl border-4 border-black bg-white p-8 shadow-[6px_6px_0_0_#000]">
-          <h1 className="text-3xl font-extrabold text-[var(--color-navy)] mb-2">Profile Settings</h1>
-          <p className="text-sm text-gray-600 mb-8">Customize your profile and account information</p>
+        <div className="rounded-xl border-[3px] border-ink bg-white p-8 shadow-brutal">
+          <h1 className="text-3xl font-extrabold text-navy mb-2">Profile Settings</h1>
+          <p className="text-sm text-navy/70 mb-8">Customize your profile and account information</p>
 
           {error && (
-            <div className="mb-6 p-4 bg-red-100 border-2 border-red-500 rounded text-red-700 text-sm">
+            <div className="mb-6 p-4 rounded-lg border-[3px] border-danger bg-white font-semibold text-danger text-sm">
               {error}
             </div>
           )}
 
           {success && (
-            <div className="mb-6 p-4 bg-green-100 border-2 border-green-500 rounded text-green-700 text-sm">
+            <div className="mb-6 p-4 rounded-lg border-[3px] border-success bg-white font-semibold text-success text-sm">
               {success}
             </div>
           )}
@@ -247,12 +247,12 @@ export default function ProfileSettingsPage() {
           <form onSubmit={handleSave} className="space-y-6">
             {/* Profile Picture Section */}
             <div>
-              <label className="block text-sm font-semibold text-[var(--color-navy)] mb-4">
+              <label className="block text-sm font-semibold text-navy mb-4">
                 Profile Picture
               </label>
               <div className="flex items-center gap-6">
                 {/* Avatar Preview */}
-                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-[var(--color-electric-blue)] text-white font-bold text-3xl border-2 border-black">
+                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-electric text-white font-bold text-3xl border-2 border-ink">
                   {profileImageUrl ? (
                     <img
                       src={profileImageUrl}
@@ -270,9 +270,9 @@ export default function ProfileSettingsPage() {
                     accept="image/*"
                     onChange={handleProfileImageUpload}
                     disabled={isSaving || isUploadingImage}
-                    className="block w-full text-sm text-gray-600 border-2 border-black rounded px-3 py-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--color-electric-blue)] disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="block w-full text-sm text-navy/70 border-2 border-ink rounded px-3 py-2 cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
-                  <p className="text-xs text-gray-600 mt-2">
+                  <p className="text-xs text-navy/70 mt-2">
                     {isUploadingImage ? 'Uploading...' : 'PNG, JPG, GIF, WebP up to 5MB'}
                   </p>
                 </div>
@@ -281,7 +281,7 @@ export default function ProfileSettingsPage() {
 
             {/* Username */}
             <div>
-              <label htmlFor="username" className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
+              <label htmlFor="username" className="block text-sm font-semibold text-navy mb-2">
                 Username
               </label>
               <input
@@ -290,16 +290,16 @@ export default function ProfileSettingsPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value.slice(0, 25))}
                 maxLength={25}
-                className="w-full px-4 py-2 border-2 border-black rounded focus:outline-none focus:ring-2 focus:ring-[var(--color-electric-blue)]"
+                className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 placeholder="Your username"
                 disabled={isSaving}
               />
-              <p className="text-xs text-gray-600 mt-2">Max 25 characters. Shown in navbar and dashboard greeting</p>
+              <p className="text-xs text-navy/70 mt-2">Max 25 characters. Shown in navbar and dashboard greeting</p>
             </div>
 
             {/* First Name */}
             <div>
-              <label htmlFor="firstName" className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
+              <label htmlFor="firstName" className="block text-sm font-semibold text-navy mb-2">
                 First Name
               </label>
               <input
@@ -307,7 +307,7 @@ export default function ProfileSettingsPage() {
                 type="text"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-black rounded focus:outline-none focus:ring-2 focus:ring-[var(--color-electric-blue)]"
+                className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 placeholder="Your first name"
                 disabled={isSaving}
               />
@@ -315,7 +315,7 @@ export default function ProfileSettingsPage() {
 
             {/* Last Name */}
             <div>
-              <label htmlFor="lastName" className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
+              <label htmlFor="lastName" className="block text-sm font-semibold text-navy mb-2">
                 Last Name
               </label>
               <input
@@ -323,7 +323,7 @@ export default function ProfileSettingsPage() {
                 type="text"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-black rounded focus:outline-none focus:ring-2 focus:ring-[var(--color-electric-blue)]"
+                className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 placeholder="Your last name"
                 disabled={isSaving}
               />
@@ -331,23 +331,23 @@ export default function ProfileSettingsPage() {
 
             {/* Email (Read-only) */}
             <div>
-              <label className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
+              <label className="block text-sm font-semibold text-navy mb-2">
                 Email
               </label>
               <input
                 type="email"
                 value={user.email || ''}
                 disabled
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded bg-gray-100 text-gray-600 cursor-not-allowed"
+                className="w-full px-4 py-2 border-2 border-gray-300 rounded bg-navy/5 text-navy/70 cursor-not-allowed"
               />
-              <p className="text-xs text-gray-600 mt-2">Your email cannot be changed here. Contact support if needed.</p>
+              <p className="text-xs text-navy/70 mt-2">Your email cannot be changed here. Contact support if needed.</p>
             </div>
 
             {/* Save Button */}
             <button
               type="submit"
               disabled={isSaving}
-              className="w-full mt-8 rounded-lg border-4 border-black bg-[var(--color-electric-blue)] px-6 py-3 font-bold text-white shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:opacity-50"
+              className="w-full mt-8 rounded-lg border-[3px] border-ink bg-electric px-6 py-3 font-bold text-white shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:opacity-50"
             >
               {isSaving ? 'Saving...' : 'Save Changes'}
             </button>
@@ -357,7 +357,7 @@ export default function ProfileSettingsPage() {
         {/* Deactivate Account Button */}
         <button
           onClick={() => setShowDeactivateModal(true)}
-          className="w-full mt-6 rounded-lg border-4 border-red-600 bg-red-600 px-6 py-3 font-bold text-white shadow-[4px_4px_0_0_rgba(220,38,38,0.6)] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+          className="w-full mt-6 rounded-lg border-[3px] border-ink bg-danger px-6 py-3 font-bold text-white shadow-[4px_4px_0_0_rgba(220,38,38,0.6)] transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
         >
           Deactivate Account
         </button>
@@ -366,10 +366,10 @@ export default function ProfileSettingsPage() {
       {/* Deactivate Account Modal */}
       {showDeactivateModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="rounded-xl border-4 border-black bg-white p-8 shadow-[8px_8px_0_0_#000] max-w-md w-full">
-            <h2 className="text-2xl font-extrabold text-red-600 mb-4">Deactivate Account</h2>
+          <div className="rounded-xl border-[3px] border-ink bg-white p-8 shadow-brutal-lg max-w-md w-full">
+            <h2 className="text-2xl font-extrabold text-danger mb-4">Deactivate Account</h2>
 
-            <div className="mb-6 space-y-3 text-sm text-[var(--color-navy)]">
+            <div className="mb-6 space-y-3 text-sm text-navy">
               <p className="font-semibold">⚠️ This action is irreversible!</p>
               <p>Deactivating your account will:</p>
               <ul className="list-disc list-inside space-y-1 ml-2">
@@ -378,18 +378,18 @@ export default function ProfileSettingsPage() {
                 <li>Delete all your attempt history</li>
                 <li>Remove your account permanently</li>
               </ul>
-              <p className="font-semibold text-red-600 mt-4">This cannot be undone.</p>
+              <p className="font-semibold text-danger mt-4">This cannot be undone.</p>
             </div>
 
             {error && (
-              <div className="mb-4 p-3 bg-red-100 border-2 border-red-500 rounded text-red-700 text-sm">
+              <div className="mb-4 p-3 rounded-lg border-[3px] border-danger bg-white font-semibold text-danger text-sm">
                 {error}
               </div>
             )}
 
             {/* Password Input */}
             <div className="mb-4">
-              <label htmlFor="deactivatePassword" className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
+              <label htmlFor="deactivatePassword" className="block text-sm font-semibold text-navy mb-2">
                 Enter your password to confirm
               </label>
               <input
@@ -398,7 +398,7 @@ export default function ProfileSettingsPage() {
                 value={deactivatePassword}
                 onChange={(e) => setDeactivatePassword(e.target.value)}
                 disabled={isDeactivating}
-                className="w-full px-4 py-2 border-2 border-black rounded focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full px-4 py-2 border-2 border-ink rounded focus:outline-none focus:ring-2 focus:ring-red-500"
                 placeholder="••••••••"
               />
             </div>
@@ -413,7 +413,7 @@ export default function ProfileSettingsPage() {
                   disabled={isDeactivating}
                   className="mt-1 w-4 h-4 cursor-pointer"
                 />
-                <span className="text-sm text-[var(--color-navy)]">
+                <span className="text-sm text-navy">
                   I understand this will permanently delete my account and all associated data. This cannot be undone.
                 </span>
               </label>
@@ -429,7 +429,7 @@ export default function ProfileSettingsPage() {
                   setError('');
                 }}
                 disabled={isDeactivating}
-                className="flex-1 rounded-lg border-2 border-gray-300 px-4 py-2 font-semibold text-[var(--color-navy)] hover:bg-gray-100 transition disabled:opacity-50"
+                className="flex-1 rounded-lg border-2 border-gray-300 px-4 py-2 font-semibold text-navy hover:bg-cream transition disabled:opacity-50"
               >
                 Cancel
               </button>

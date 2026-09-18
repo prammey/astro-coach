@@ -12,15 +12,15 @@ export const metadata = {
 export default function TermsPage() {
   return (
     <PageContainer>
-      <h1 className="text-3xl font-extrabold text-[var(--color-navy)] sm:text-4xl">
+      <h1 className="text-3xl font-extrabold text-navy sm:text-4xl">
         Terms of Service
       </h1>
-      <p className="mt-2 text-sm text-[var(--color-navy)]/60">Last updated: 4 September 2026</p>
+      <p className="mt-2 text-sm text-navy/60">Last updated: 4 September 2026</p>
 
       <div className="mt-8 space-y-6">
-        <BrutalCard className="bg-[var(--color-cream)]">
-          <h2 className="text-xl font-bold text-[var(--color-purple)]">What this is</h2>
-          <p className="mt-2 text-[var(--color-navy)]">
+        <BrutalCard tone="cream">
+          <h2 className="text-xl font-bold text-purple">What this is</h2>
+          <p className="mt-2 text-navy">
             Astro Coach is a free, independent educational project that helps
             students prepare for astronomy olympiads. By creating an account or
             using the site, you agree to these terms.
@@ -28,10 +28,10 @@ export default function TermsPage() {
         </BrutalCard>
 
         <BrutalCard className="bg-white">
-          <h2 className="text-xl font-bold text-[var(--color-purple)]">
+          <h2 className="text-xl font-bold text-purple">
             Not affiliated with any competition
           </h2>
-          <p className="mt-2 text-[var(--color-navy)]">
+          <p className="mt-2 text-navy">
             Astro Coach is not affiliated with, endorsed by, or connected to USAAAO,
             IAAC, IOAA, IAO, Science Olympiad, BAAO, or any other competition
             organization. Competition names are used only to describe where a
@@ -40,20 +40,20 @@ export default function TermsPage() {
         </BrutalCard>
 
         <BrutalCard className="bg-white">
-          <h2 className="text-xl font-bold text-[var(--color-purple)]">
+          <h2 className="text-xl font-bold text-purple">
             Questions, sources, and attribution
           </h2>
-          <p className="mt-2 text-[var(--color-navy)]">
+          <p className="mt-2 text-navy">
             Practice questions are transcribed from publicly available competition
             papers and solutions. Every question records its competition, year,
             round, question number, and a link to the original source, shown on the
             question page.
           </p>
-          <p className="mt-3 text-[var(--color-navy)]">
+          <p className="mt-3 text-navy">
             Rights in the original material remain with whoever holds them. If you
             own material used here and want it changed or removed, email the address
             below and it will be taken down promptly. See the{" "}
-            <Link href="/about" className="font-bold text-[var(--color-electric-blue)] underline">
+            <Link href="/about" className="font-bold text-electric underline">
               About page
             </Link>{" "}
             for the full source policy.
@@ -61,10 +61,10 @@ export default function TermsPage() {
         </BrutalCard>
 
         <BrutalCard className="bg-white">
-          <h2 className="text-xl font-bold text-[var(--color-purple)]">
+          <h2 className="text-xl font-bold text-purple">
             Accuracy is not guaranteed
           </h2>
-          <p className="mt-2 text-[var(--color-navy)]">
+          <p className="mt-2 text-navy">
             Questions, answers, explanations, and figures are transcribed and may
             contain mistakes. Astro Coach is a study aid, not an authoritative
             source. Always check the original competition paper before relying on
@@ -73,8 +73,8 @@ export default function TermsPage() {
         </BrutalCard>
 
         <BrutalCard className="bg-white">
-          <h2 className="text-xl font-bold text-[var(--color-purple)]">Your account</h2>
-          <ul className="mt-2 list-disc space-y-1 pl-6 text-[var(--color-navy)]">
+          <h2 className="text-xl font-bold text-purple">Your account</h2>
+          <ul className="mt-2 list-disc space-y-1 pl-6 text-navy">
             <li>Give accurate information when you sign up, and keep your login secure.</li>
             <li>One account per person. Do not share an account.</li>
             <li>
@@ -90,10 +90,10 @@ export default function TermsPage() {
         </BrutalCard>
 
         <BrutalCard className="bg-white">
-          <h2 className="text-xl font-bold text-[var(--color-purple)]">
+          <h2 className="text-xl font-bold text-purple">
             Availability and changes
           </h2>
-          <p className="mt-2 text-[var(--color-navy)]">
+          <p className="mt-2 text-navy">
             Astro Coach is offered free and as-is, with no guarantee of uptime,
             and it is under active development. Features, questions, and these terms
             may change, and the site may be unavailable at times. To the extent the
@@ -103,20 +103,20 @@ export default function TermsPage() {
           </p>
         </BrutalCard>
 
-        <BrutalCard className="bg-[var(--color-cream)]">
-          <h2 className="text-xl font-bold text-[var(--color-purple)]">Contact</h2>
-          <p className="mt-2 text-[var(--color-navy)]">
+        <BrutalCard tone="cream">
+          <h2 className="text-xl font-bold text-purple">Contact</h2>
+          <p className="mt-2 text-navy">
             Questions, corrections, or takedown requests:{" "}
             <a
               href="mailto:prameet.guha@gmail.com"
-              className="font-bold text-[var(--color-electric-blue)] underline"
+              className="font-bold text-electric underline"
             >
               prameet.guha@gmail.com
             </a>
           </p>
-          <p className="mt-3 text-sm text-[var(--color-navy)]/70">
+          <p className="mt-3 text-sm text-navy/70">
             See also the{" "}
-            <Link href="/privacy" className="font-bold text-[var(--color-electric-blue)] underline">
+            <Link href="/privacy" className="font-bold text-electric underline">
               Privacy Policy
             </Link>
             .

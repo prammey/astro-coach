@@ -70,7 +70,7 @@ export default function GoogleSignInButton({ label = 'Continue with Google' }: {
         disabled
         aria-disabled="true"
         title="Google sign-in is not available yet — use email and password for now"
-        className="flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-lg border-4 border-black bg-white px-6 py-3 font-bold text-[var(--color-navy)] opacity-60 shadow-[4px_4px_0_0_#000]"
+        className="flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-lg border-[3px] border-ink bg-white px-6 py-3 font-bold text-navy opacity-60 shadow-brutal-sm"
       >
         <GoogleLogo muted />
         Google coming soon!
@@ -84,13 +84,13 @@ export default function GoogleSignInButton({ label = 'Continue with Google' }: {
         type="button"
         onClick={handleClick}
         disabled={isRedirecting}
-        className="flex w-full items-center justify-center gap-3 rounded-lg border-4 border-black bg-white px-6 py-3 font-bold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:opacity-50"
+        className="flex w-full items-center justify-center gap-3 rounded-lg border-[3px] border-ink bg-white px-6 py-3 font-bold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:opacity-50"
       >
         <GoogleLogo />
         {isRedirecting ? 'Redirecting...' : label}
       </button>
 
-      {error && <p className="mt-2 text-sm font-semibold text-red-700">{error}</p>}
+      {error && <p className="mt-2 text-sm font-semibold text-danger">{error}</p>}
     </div>
   );
 }

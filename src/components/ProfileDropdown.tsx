@@ -46,10 +46,10 @@ export default function ProfileDropdown() {
     <div ref={dropdownRef} className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-lg border-2 border-[var(--color-yellow)] px-3 py-2 transition hover:bg-[var(--color-yellow)] hover:text-[var(--color-navy)]"
+        className="flex items-center gap-2 rounded-lg border-2 border-yellow px-3 py-2 transition-colors duration-200 hover:bg-yellow hover:text-navy"
       >
         {/* Profile Avatar */}
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-electric-blue)] text-white font-bold text-sm overflow-hidden flex-shrink-0">
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-electric text-white font-bold text-sm overflow-hidden flex-shrink-0">
           {profileImageUrl ? (
             <img
               src={profileImageUrl}
@@ -61,12 +61,12 @@ export default function ProfileDropdown() {
           )}
         </div>
         {/* Username */}
-        <span className="text-base font-bold text-[var(--color-yellow)] hidden sm:inline truncate max-w-[180px]">
+        <span className="text-base font-bold text-yellow hidden sm:inline truncate max-w-[180px]">
           {username}
         </span>
         {/* Dropdown Arrow */}
         <svg
-          className={`h-4 w-4 text-[var(--color-yellow)] transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          className={`h-4 w-4 text-yellow transition-transform ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -77,18 +77,18 @@ export default function ProfileDropdown() {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute left-0 right-0 mt-2 rounded-lg border-2 border-black bg-white shadow-[6px_6px_0_0_#000] z-50">
-          <div className="px-4 py-3 border-b-2 border-black">
-            <p className="text-sm font-semibold text-[var(--color-navy)]">{username}</p>
-            <p className="text-xs text-gray-600 truncate">{user.email}</p>
+        <div className="absolute left-0 right-0 z-50 mt-2 animate-pop-in rounded-lg border-2 border-ink bg-white shadow-brutal">
+          <div className="px-4 py-3 border-b-2 border-ink">
+            <p className="text-sm font-semibold text-navy">{username}</p>
+            <p className="text-xs text-navy/70 truncate">{user.email}</p>
           </div>
 
-          <ul className="divide-y-2 divide-black">
+          <ul className="divide-y-2 divide-ink">
             <li>
               <Link
                 href="/profile/settings"
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-3 text-sm font-semibold text-[var(--color-navy)] hover:bg-[var(--color-cream)] transition"
+                className="block px-4 py-3 text-sm font-semibold text-navy hover:bg-cream transition"
               >
                 Profile Settings
               </Link>
@@ -96,7 +96,7 @@ export default function ProfileDropdown() {
             <li>
               <button
                 onClick={handleLogout}
-                className="w-full text-left px-4 py-3 text-sm font-semibold text-red-600 hover:bg-red-50 transition"
+                className="w-full text-left px-4 py-3 text-sm font-semibold text-danger hover:bg-danger/10 transition"
               >
                 Sign Out
               </button>

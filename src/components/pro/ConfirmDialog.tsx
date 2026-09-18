@@ -83,8 +83,8 @@ export default function ConfirmDialog({
 
   const confirmClasses =
     confirmTone === "danger"
-      ? "bg-red-500 text-white"
-      : "bg-[var(--color-yellow)] text-[var(--color-navy)]";
+      ? "bg-danger text-white"
+      : "bg-yellow text-navy";
 
   return (
     <div
@@ -96,23 +96,23 @@ export default function ConfirmDialog({
         role="dialog"
         aria-modal="true"
         aria-labelledby="confirm-dialog-title"
-        className="w-full max-w-md rounded-xl border-4 border-black bg-[var(--color-cream)] p-6 shadow-[8px_8px_0_0_#000]"
+        className="w-full max-w-md rounded-xl border-[3px] border-ink bg-cream p-6 shadow-brutal-lg"
       >
         <h2
           id="confirm-dialog-title"
-          className="text-xl font-extrabold text-[var(--color-navy)]"
+          className="text-xl font-extrabold text-navy"
         >
           {title}
         </h2>
 
-        <div className="mt-3 space-y-2 text-sm text-[var(--color-navy)]">{children}</div>
+        <div className="mt-3 space-y-2 text-sm text-navy">{children}</div>
 
         <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
           <button
             type="button"
             onClick={onCancel}
             disabled={busy}
-            className="rounded-lg border-4 border-black bg-white px-5 py-2 font-bold text-[var(--color-navy)] transition hover:bg-gray-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)] disabled:opacity-50"
+            className="rounded-lg border-[3px] border-ink bg-white px-5 py-2 font-bold text-navy transition hover:bg-cream focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50"
           >
             {cancelLabel}
           </button>
@@ -122,7 +122,7 @@ export default function ConfirmDialog({
             type="button"
             onClick={onConfirm}
             disabled={busy}
-            className={`rounded-lg border-4 border-black px-5 py-2 font-extrabold shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)] disabled:cursor-wait disabled:opacity-70 ${confirmClasses}`}
+            className={`rounded-lg border-[3px] border-ink px-5 py-2 font-extrabold shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:cursor-wait disabled:opacity-70 ${confirmClasses}`}
           >
             {busy ? "Working…" : confirmLabel}
           </button>

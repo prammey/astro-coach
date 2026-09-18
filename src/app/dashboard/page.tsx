@@ -2,12 +2,15 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/auth';
 import DashboardTabs from '@/components/DashboardTabs';
 import SubscriptionCard from '@/components/pro/SubscriptionCard';
 import ProAnalyticsPanel from '@/components/pro/ProAnalyticsPanel';
+import BrutalCard from '@/components/BrutalCard';
+import BrutalButton from '@/components/ui/BrutalButton';
+import LoadingStar from '@/components/ui/LoadingStar';
+import Reveal from '@/components/ui/Reveal';
 
 interface UserAttempt {
   id: string;
@@ -91,8 +94,8 @@ export default function DashboardPage() {
 
   if (loading || !user) {
     return (
-      <div className="min-h-screen bg-[var(--color-navy)] flex items-center justify-center">
-        <p className="text-white">Loading...</p>
+      <div className="starfield-dark flex min-h-screen items-center justify-center bg-navy">
+        <LoadingStar tone="light" />
       </div>
     );
   }
@@ -102,56 +105,58 @@ export default function DashboardPage() {
   const greeting = username ? `Welcome, ${username}!` : 'Welcome!';
 
   return (
-    <div className="min-h-screen bg-[var(--color-navy)] text-white">
+    <div className="starfield-dark min-h-screen bg-navy text-white">
       <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
         <div className="flex items-center justify-between mb-10">
           <h1 className="text-4xl font-extrabold">
-            <span className="text-[var(--color-yellow)]">Dashboard</span>
+            <span className="text-yellow">Dashboard</span>
           </h1>
-          <button
-            onClick={handleLogout}
-            className="rounded-lg border-2 border-[var(--color-yellow)] px-4 py-2 font-semibold text-[var(--color-yellow)] transition hover:bg-[var(--color-yellow)] hover:text-[var(--color-navy)]"
-          >
-            Log Out
-          </button>
+          <BrutalButton variant="ghost" size="sm" onClick={handleLogout}>
+            Log out
+          </BrutalButton>
         </div>
 
         <p className="text-white/70 mb-8">{greeting}</p>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-100 border-2 border-red-500 rounded text-red-700">
+          <div className="mb-6 p-4 rounded-lg border-[3px] border-danger bg-white font-semibold text-danger">
             {error}
           </div>
         )}
 
         {statsLoading ? (
-          <div className="flex items-center justify-center py-20">
-            <p>Loading your stats...</p>
+          <div className="flex justify-center py-12">
+            <LoadingStar tone="light" label="Loading your stats…" />
           </div>
         ) : stats ? (
           <div className="space-y-8">
             {/* Stats Cards */}
             <div className="grid gap-6 sm:grid-cols-3">
-              <div className="rounded-xl border-4 border-black bg-[var(--color-cream)] p-6 shadow-[6px_6px_0_0_#000]">
-                <p className="text-sm text-[var(--color-navy)]">Questions Attempted</p>
-                <p className="mt-2 text-4xl font-extrabold text-[var(--color-electric-blue)]">
-                  {stats.totalAttempted}
-                </p>
-              </div>
+              <Reveal>
+                <BrutalCard tone="cream" hover>
+                  <p className="text-sm font-semibold text-navy/80">Questions attempted</p>
+                  <p className="mt-2 text-4xl font-extrabold text-electric">
+                    {stats.totalAttempted}
+                  </p>
+                </BrutalCard>
+              </Reveal>
 
-              <div className="rounded-xl border-4 border-black bg-[var(--color-cream)] p-6 shadow-[6px_6px_0_0_#000]">
-                <p className="text-sm text-[var(--color-navy)]">Unique Correct</p>
-                <p className="mt-2 text-4xl font-extrabold text-[var(--color-yellow)]">
-                  {stats.uniqueCorrect} / {stats.totalQuestions}
-                </p>
-              </div>
+              <Reveal delay={80}>
+                <BrutalCard tone="cream" hover>
+                  <p className="text-sm font-semibold text-navy/80">Unique correct</p>
+                  <p className="mt-2 text-4xl font-extrabold text-navy">
+                    {stats.uniqueCorrect}{' '}
+                    <span className="text-2xl text-navy/50">/ {stats.totalQuestions}</span>
+                  </p>
+                </BrutalCard>
+              </Reveal>
 
-              <div className="rounded-xl border-4 border-black bg-[var(--color-cream)] p-6 shadow-[6px_6px_0_0_#000]">
-                <p className="text-sm text-[var(--color-navy)]">Accuracy</p>
-                <p className="mt-2 text-4xl font-extrabold text-[var(--color-purple)]">
-                  {stats.accuracy}%
-                </p>
-              </div>
+              <Reveal delay={160}>
+                <BrutalCard tone="cream" hover>
+                  <p className="text-sm font-semibold text-navy/80">Accuracy</p>
+                  <p className="mt-2 text-4xl font-extrabold text-purple">{stats.accuracy}%</p>
+                </BrutalCard>
+              </Reveal>
             </div>
 
             {/* Plan, credits and subscription management. */}
@@ -170,12 +175,9 @@ export default function DashboardPage() {
 
             {/* CTA */}
             <div>
-              <Link
-                href="/training"
-                className="inline-block rounded-lg border-4 border-black bg-[var(--color-electric-blue)] px-6 py-3 font-bold text-white shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
-              >
-                Continue Training
-              </Link>
+              <BrutalButton href="/training" variant="primary" size="lg">
+                Continue training
+              </BrutalButton>
             </div>
           </div>
         ) : null}

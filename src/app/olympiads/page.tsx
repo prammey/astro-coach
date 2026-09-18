@@ -86,7 +86,7 @@ const OLYMPIADS: OlympiadCardData[] = [
 export default function OlympiadsPage() {
   return (
     <PageContainer>
-      <h1 className="text-3xl font-extrabold text-[var(--color-navy)] sm:text-4xl">
+      <h1 className="text-3xl font-extrabold text-navy sm:text-4xl">
         Olympiad Guide
       </h1>
       <p className="mt-2 max-w-2xl text-navy/80">

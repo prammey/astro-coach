@@ -76,7 +76,7 @@ export default function BookmarkButton({
       {isBookmarked ? (
         // Filled bookmark (star)
         <svg
-          className="w-5 h-5 text-[var(--color-yellow)]"
+          className="w-5 h-5 text-yellow"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -85,7 +85,7 @@ export default function BookmarkButton({
       ) : (
         // Outline bookmark (star)
         <svg
-          className="w-5 h-5 text-[var(--color-navy)]/40 hover:text-[var(--color-yellow)]"
+          className="w-5 h-5 text-navy/40 hover:text-yellow"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

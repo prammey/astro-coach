@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import GoogleSignInButton from '@/components/GoogleSignInButton';
+import BrutalButton from '@/components/ui/BrutalButton';
+import LoadingStar from '@/components/ui/LoadingStar';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -18,11 +20,13 @@ export default function SignupPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState('');
 
-  // Redirect to dashboard if already logged in
-  if (!loading && user) {
-    router.push('/dashboard');
-    return null;
-  }
+  // Redirect to the dashboard if already logged in. This runs after render
+  // (in an effect) because navigating during render is not allowed.
+  useEffect(() => {
+    if (!loading && user) {
+      router.push('/dashboard');
+    }
+  }, [loading, user, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,29 +80,29 @@ export default function SignupPage() {
     }
   };
 
-  if (loading) {
+  if (loading || user) {
     return (
-      <div className="min-h-screen bg-[var(--color-navy)] flex items-center justify-center">
-        <p className="text-white">Loading...</p>
+      <div className="starfield-dark flex min-h-screen items-center justify-center bg-navy">
+        <LoadingStar tone="light" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[var(--color-navy)] flex items-center justify-center px-4">
+    <div className="starfield-dark min-h-screen bg-navy flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <div className="rounded-xl border-4 border-black bg-white p-8 shadow-[6px_6px_0_0_#000]">
-          <h1 className="text-3xl font-extrabold text-[var(--color-navy)] mb-2">Sign Up</h1>
-          <p className="text-sm text-gray-600 mb-6">Create your Astro Coach account</p>
+        <div className="animate-rise-in rounded-xl border-[3px] border-ink bg-white p-8 shadow-brutal-lg">
+          <h1 className="text-3xl font-extrabold text-navy mb-2">Sign Up</h1>
+          <p className="text-sm text-navy/70 mb-6">Create your Astro Coach account</p>
 
           {error && (
-            <div className="mb-4 p-4 bg-red-100 border-2 border-red-500 rounded text-red-700 text-sm">
+            <div className="mb-4 p-4 rounded-lg border-[3px] border-danger bg-white font-semibold text-danger text-sm">
               {error}
             </div>
           )}
 
           {success && (
-            <div className="mb-4 p-4 bg-green-100 border-2 border-green-500 rounded text-green-700 text-sm">
+            <div className="mb-4 p-4 rounded-lg border-[3px] border-success bg-white font-semibold text-success text-sm">
               {success}
             </div>
           )}
@@ -106,15 +110,15 @@ export default function SignupPage() {
           <GoogleSignInButton label="Sign up with Google" />
 
           <div className="my-6 flex items-center gap-3">
-            <span className="h-0.5 flex-1 bg-black/20" />
-            <span className="text-xs font-bold uppercase tracking-wide text-gray-500">or</span>
-            <span className="h-0.5 flex-1 bg-black/20" />
+            <span className="h-0.5 flex-1 bg-navy/20" />
+            <span className="text-xs font-bold uppercase tracking-wide text-navy/60">or</span>
+            <span className="h-0.5 flex-1 bg-navy/20" />
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="firstName" className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
+                <label htmlFor="firstName" className="block text-sm font-semibold text-navy mb-2">
                   First Name
                 </label>
                 <input
@@ -123,13 +127,13 @@ export default function SignupPage() {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   required
-                  className="w-full px-4 py-2 border-2 border-black rounded focus:outline-none focus:ring-2 focus:ring-[var(--color-electric-blue)]"
+                  className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                   placeholder="John"
                   disabled={isSubmitting}
                 />
               </div>
               <div>
-                <label htmlFor="lastName" className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
+                <label htmlFor="lastName" className="block text-sm font-semibold text-navy mb-2">
                   Last Name
                 </label>
                 <input
@@ -138,7 +142,7 @@ export default function SignupPage() {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   required
-                  className="w-full px-4 py-2 border-2 border-black rounded focus:outline-none focus:ring-2 focus:ring-[var(--color-electric-blue)]"
+                  className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                   placeholder="Doe"
                   disabled={isSubmitting}
                 />
@@ -146,7 +150,7 @@ export default function SignupPage() {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
+              <label htmlFor="email" className="block text-sm font-semibold text-navy mb-2">
                 Email
               </label>
               <input
@@ -155,14 +159,14 @@ export default function SignupPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-2 border-2 border-black rounded focus:outline-none focus:ring-2 focus:ring-[var(--color-electric-blue)]"
+                className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 placeholder="your@email.com"
                 disabled={isSubmitting}
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
+              <label htmlFor="password" className="block text-sm font-semibold text-navy mb-2">
                 Password
               </label>
               <input
@@ -171,14 +175,14 @@ export default function SignupPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-2 border-2 border-black rounded focus:outline-none focus:ring-2 focus:ring-[var(--color-electric-blue)]"
+                className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 placeholder="••••••••"
                 disabled={isSubmitting}
               />
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-semibold text-[var(--color-navy)] mb-2">
+              <label htmlFor="confirmPassword" className="block text-sm font-semibold text-navy mb-2">
                 Confirm Password
               </label>
               <input
@@ -187,24 +191,20 @@ export default function SignupPage() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="w-full px-4 py-2 border-2 border-black rounded focus:outline-none focus:ring-2 focus:ring-[var(--color-electric-blue)]"
+                className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 placeholder="••••••••"
                 disabled={isSubmitting}
               />
             </div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full mt-6 rounded-lg border-4 border-black bg-[var(--color-electric-blue)] px-6 py-3 font-bold text-white shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:opacity-50"
-            >
-              {isSubmitting ? 'Creating account...' : 'Sign Up'}
-            </button>
+            <BrutalButton type="submit" variant="primary" className="mt-6 w-full" disabled={isSubmitting}>
+              {isSubmitting ? 'Creating account...' : 'Sign up'}
+            </BrutalButton>
           </form>
 
-          <p className="mt-6 text-center text-sm text-gray-600">
+          <p className="mt-6 text-center text-sm text-navy/70">
             Already have an account?{' '}
-            <Link href="/login" className="font-semibold text-[var(--color-electric-blue)] hover:underline">
+            <Link href="/login" className="font-semibold text-electric hover:underline">
               Log in
             </Link>
           </p>

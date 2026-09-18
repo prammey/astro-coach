@@ -100,10 +100,10 @@ export default function DashboardTabs() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex flex-1 h-[47px] items-center justify-center px-6 text-lg font-extrabold text-[var(--color-yellow)] transition-all duration-200 ${
+              className={`flex flex-1 h-[47px] items-center justify-center px-6 text-lg font-extrabold text-yellow transition-all duration-200 ${
                 isActive
-                  ? 'bg-[var(--color-cream)] z-20 shadow-[0_-4px_12px_rgba(0,0,0,0.15)]'
-                  : 'bg-[var(--color-space-blue)] hover:bg-[var(--color-space-blue)]/80 z-10 opacity-80 hover:opacity-100'
+                  ? 'bg-cream z-20 shadow-[0_-4px_12px_rgba(0,0,0,0.15)]'
+                  : 'bg-space hover:bg-space/80 z-10 opacity-80 hover:opacity-100'
               }`}
               style={tabShapeStyle}
             >
@@ -114,12 +114,12 @@ export default function DashboardTabs() {
       </div>
 
       {/* Table content */}
-      <div className="relative z-10 rounded-b-2xl rounded-tr-2xl bg-[var(--color-cream)] overflow-hidden -mt-1 shadow-[0_6px_16px_rgba(0,0,0,0.15)]">
+      <div className="relative z-10 rounded-b-2xl rounded-tr-2xl bg-cream overflow-hidden -mt-1 shadow-[0_6px_16px_rgba(0,0,0,0.15)]">
         {isLoading ? (
-          <p className="p-6 text-[var(--color-navy)]/70">Loading...</p>
+          <p className="p-6 text-navy/70">Loading...</p>
         ) : (
           <table className="w-full">
-            <thead className="bg-[var(--color-space-blue)]">
+            <thead className="bg-space">
               <tr>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-white">Question</th>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-white">Your Answer</th>
@@ -128,14 +128,14 @@ export default function DashboardTabs() {
               </tr>
             </thead>
             {currentRows.length > 0 ? (
-            <tbody className="divide-y-2 divide-black">
+            <tbody className="divide-y-2 divide-ink">
               {currentRows.map((row) => (
-                <tr key={row.id} className="hover:bg-[var(--color-electric-blue)]/10">
+                <tr key={row.id} className="hover:bg-electric/10">
                   <td className="px-6 py-3 text-sm font-semibold">
                     {row.questionLabel ? (
                       <Link
                         href={`/training/${row.questionId}`}
-                        className="text-[var(--color-electric-blue)] underline hover:text-[var(--color-purple)] transition-colors"
+                        className="text-electric underline hover:text-purple transition-colors"
                       >
                         {row.questionLabel}
                       </Link>
@@ -143,34 +143,34 @@ export default function DashboardTabs() {
                       // The question is no longer in the catalog, so linking
                       // would lead to a 404. Show it plainly instead.
                       <span
-                        className="text-[var(--color-navy)]/50"
+                        className="text-navy/50"
                         title="This question is no longer in the question bank"
                       >
                         {row.questionId} <span className="text-xs">(removed)</span>
                       </span>
                     )}
                   </td>
-                  <td className="px-6 py-3 text-sm font-semibold text-[var(--color-navy)]">
+                  <td className="px-6 py-3 text-sm font-semibold text-navy">
                     {row.submittedAnswer ?? '—'}
                   </td>
                   <td className="px-6 py-3">
                     {row.isCorrect === null ? (
-                      <span className="inline-block px-3 py-1 rounded font-semibold text-sm bg-gray-200 text-gray-700">
+                      <span className="inline-block px-3 py-1 rounded font-semibold text-sm bg-navy/10 text-navy">
                         Not attempted
                       </span>
                     ) : (
                       <span
                         className={`inline-block px-3 py-1 rounded font-semibold text-sm ${
                           row.isCorrect
-                            ? 'bg-green-200 text-green-800'
-                            : 'bg-red-200 text-red-800'
+                            ? 'bg-success text-white'
+                            : 'bg-danger text-white'
                         }`}
                       >
                         {row.isCorrect ? '✓ Correct' : '✗ Incorrect'}
                       </span>
                     )}
                   </td>
-                  <td className="px-6 py-3 text-sm text-[var(--color-navy)]">
+                  <td className="px-6 py-3 text-sm text-navy">
                     {new Date(row.createdAt).toLocaleDateString()}
                   </td>
                 </tr>
@@ -179,7 +179,7 @@ export default function DashboardTabs() {
             ) : (
               <tbody>
                 <tr>
-                  <td colSpan={4} className="px-6 py-8 text-center text-[var(--color-navy)]/70">
+                  <td colSpan={4} className="px-6 py-8 text-center text-navy/70">
                     {activeTab === 'bookmarked' && 'No bookmarked questions yet.'}
                     {activeTab === 'incorrect' && 'No incorrect attempts yet.'}
                     {activeTab === 'all' && 'No attempts yet. Start training to see your progress!'}
