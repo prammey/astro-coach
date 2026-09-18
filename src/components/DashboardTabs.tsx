@@ -100,7 +100,7 @@ export default function DashboardTabs() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex flex-1 h-[47px] items-center justify-center px-6 text-lg font-extrabold text-yellow transition-all duration-200 ${
+              className={`flex h-[47px] min-w-0 flex-1 items-center justify-center px-2 text-sm font-extrabold text-yellow transition-all duration-200 ease-snappy sm:px-6 sm:text-lg ${
                 isActive
                   ? 'bg-cream z-20 shadow-[0_-4px_12px_rgba(0,0,0,0.15)]'
                   : 'bg-space hover:bg-space/80 z-10 opacity-80 hover:opacity-100'
@@ -114,7 +114,9 @@ export default function DashboardTabs() {
       </div>
 
       {/* Table content */}
-      <div className="relative z-10 rounded-b-2xl rounded-tr-2xl bg-cream overflow-hidden -mt-1 shadow-[0_6px_16px_rgba(0,0,0,0.15)]">
+      {/* The table scrolls sideways inside this box on narrow screens, so
+          the page itself never grows wider than the phone. */}
+      <div className="relative z-10 -mt-1 overflow-x-auto overflow-y-hidden rounded-b-2xl rounded-tr-2xl bg-cream shadow-[0_6px_16px_rgba(0,0,0,0.15)]">
         {isLoading ? (
           <p className="p-6 text-navy/70">Loading...</p>
         ) : (
