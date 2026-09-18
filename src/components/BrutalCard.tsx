@@ -19,7 +19,7 @@ const TONE_CLASSES: Record<Tone, string> = {
 
 // Lift up-left and grow the shadow, the opposite of a button's "press".
 const HOVER_CLASSES =
-  "transition-[transform,box-shadow] duration-200 ease-snappy " +
+  "transition-[translate,box-shadow] duration-200 ease-snappy " +
   "hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-brutal-lg";
 
 export default function BrutalCard({

@@ -33,7 +33,7 @@ const SIZE_CLASSES: Record<Size, string> = {
 // "press" where it moves down-right and its shadow disappears.
 const BASE_CLASSES =
   "inline-flex items-center justify-center gap-2 rounded-lg border-[3px] border-ink font-bold " +
-  "shadow-brutal-sm transition-[transform,box-shadow] duration-200 ease-snappy " +
+  "shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy " +
   "hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none " +
   "active:translate-x-[4px] active:translate-y-[4px] " +
   "disabled:cursor-not-allowed disabled:opacity-60 " +
