@@ -158,6 +158,28 @@
 }
 
 /* ============================================================
+   Components
+   ============================================================ */
+
+@layer components {
+  /* The scroll-reveal wrapper (see src/components/ui/Reveal.tsx).
+     Starts hidden and slightly low; the component flips data-visible
+     when it scrolls into view and the transition does the rest. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 500ms var(--ease-snappy),
+      transform 500ms var(--ease-snappy);
+  }
+
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================================
    Utilities
    ============================================================ */
 
