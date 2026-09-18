@@ -284,3 +284,6 @@ plan above where they differ:
 - **Not deleted, but now unused:** `src/components/FilterBar.tsx` and
   `src/components/FrqPractice.tsx` were already unreferenced before this
   work. They were left in place; removing them is a separate decision.
+- **Olympiad ladder reverted to green-to-dark-red.** Prameet preferred the
+  original gradient. The tier dots were removed as clutter. The
+  Philippine and Pan-African olympiads were removed from the guide.
