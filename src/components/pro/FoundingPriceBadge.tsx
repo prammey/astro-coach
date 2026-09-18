@@ -3,8 +3,9 @@
 // The deadline badge on the Pro card.
 //
 // Drawn as inline SVG rather than an image so it stays crisp at any size,
-// scales with the layout, and adds no network request. The starburst is a
-// 12-point star built from alternating long and short radii.
+// scales with the layout, and adds no network request. It is a single
+// 12-point star built from alternating long and short radii, with a plain
+// black outline and no shadow behind it.
 //
 // The deadline is the real one — 31 December 2026 — and there is no
 // countdown timer or manufactured scarcity. It says what is true: the price
@@ -42,14 +43,7 @@ export default function FoundingPriceBadge() {
       className="pointer-events-none absolute -right-3 -top-6 h-32 w-32 sm:-right-6 sm:-top-8 sm:h-40 sm:w-40"
       aria-hidden="true"
     >
-      <svg viewBox="0 0 100 100" className="h-full w-full drop-shadow-[4px_4px_0_rgba(0,0,0,1)]">
-        {/* A second, slightly rotated star gives the badge a thicker,
-            hand-cut look rather than a flat sticker. */}
-        <polygon
-          points={starPoints(12, 48, 34)}
-          fill="#0b0f2e"
-          transform="rotate(15 50 50)"
-        />
+      <svg viewBox="0 0 100 100" className="h-full w-full">
         <polygon
           points={starPoints(12, 46, 32)}
           fill="var(--color-yellow)"
