@@ -1,7 +1,8 @@
 import PageContainer from "@/components/PageContainer";
 import OlympiadCard, { OlympiadCardData } from "@/components/OlympiadCard";
+import Reveal from "@/components/ui/Reveal";
 
-// Competitions ordered from easiest (tier 1, green) to hardest (tier 6, dark red).
+// Competitions ordered from easiest (tier 1, cream) to hardest (tier 6, navy).
 const OLYMPIADS: OlympiadCardData[] = [
   {
     name: "IAAC (International Astronomy and Astrophysics Competition)",
@@ -88,14 +89,17 @@ export default function OlympiadsPage() {
       <h1 className="text-3xl font-extrabold text-[var(--color-navy)] sm:text-4xl">
         Olympiad Guide
       </h1>
-      <p className="mt-2 max-w-2xl text-[var(--color-navy)]/80">
-        Competitions are stacked from easiest (green) at the top to hardest
-        (dark red) at the bottom, so you know where to start.
+      <p className="mt-2 max-w-2xl text-navy/80">
+        Competitions are stacked from the most beginner-friendly at the top
+        to the most advanced at the bottom. The deeper the color, the harder
+        the competition.
       </p>
 
       <div className="mt-8 flex flex-col gap-5">
-        {OLYMPIADS.map((olympiad) => (
-          <OlympiadCard key={olympiad.name} data={olympiad} />
+        {OLYMPIADS.map((olympiad, index) => (
+          <Reveal key={olympiad.name} delay={Math.min(index, 4) * 60}>
+            <OlympiadCard data={olympiad} />
+          </Reveal>
         ))}
       </div>
     </PageContainer>

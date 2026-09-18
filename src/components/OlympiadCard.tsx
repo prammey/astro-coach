@@ -1,5 +1,8 @@
 // One competition's info card on the Olympiad Guide page.
-// "tier" places it on the green (easy) → red (hard) difficulty gradient.
+//
+// "tier" places it on a "deeper into space" ladder: the easiest tier is
+// cream, then pale blue, electric blue, purple, space blue and finally navy
+// for the hardest. The deeper the color, the harder the competition.
 export type DifficultyTier = 1 | 2 | 3 | 4 | 5 | 6;
 
 export type OlympiadCardData = {
@@ -9,30 +12,34 @@ export type OlympiadCardData = {
   blurb: string;
 };
 
-// Color gradient from beginner-friendly green up to advanced dark red.
-// Tier 1 = easiest, tier 6 = hardest.
-const TIER_COLORS: Record<DifficultyTier, { background: string; text: string }> = {
-  1: { background: "#22c55e", text: "#0b0f2e" }, // green
-  2: { background: "#84cc16", text: "#0b0f2e" }, // yellow-green
-  3: { background: "#eab308", text: "#0b0f2e" }, // yellow
-  4: { background: "#f97316", text: "#ffffff" }, // orange
-  5: { background: "#dc2626", text: "#ffffff" }, // red
-  6: { background: "#7f1d1d", text: "#ffffff" }, // dark red
+const HARDEST_TIER: DifficultyTier = 6;
+
+// Card colors for each tier, all from the brand palette, plus the inverted
+// colors for the difficulty badge in the corner. These are Tailwind classes
+// (not inline styles) so the colors are guaranteed to be in the stylesheet.
+const TIER_CLASSES: Record<DifficultyTier, { card: string; badge: string }> = {
+  1: { card: "bg-cream text-navy", badge: "bg-navy text-cream" },
+  2: { card: "bg-sky text-navy", badge: "bg-navy text-sky" },
+  3: { card: "bg-electric text-white", badge: "bg-white text-electric" },
+  4: { card: "bg-purple text-white", badge: "bg-white text-purple" },
+  5: { card: "bg-space text-white", badge: "bg-white text-space" },
+  6: { card: "bg-navy text-white", badge: "bg-white text-navy" },
 };
 
 export default function OlympiadCard({ data }: { data: OlympiadCardData }) {
-  const colors = TIER_COLORS[data.tier];
+  const classes = TIER_CLASSES[data.tier];
 
   return (
     <div
-      className="rounded-xl border-4 border-black p-6 shadow-[6px_6px_0_0_#000]"
-      style={{ backgroundColor: colors.background, color: colors.text }}
+      className={`rounded-xl border-[3px] border-ink p-6 shadow-brutal transition-[translate,box-shadow] duration-200 ease-snappy hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-brutal-lg ${classes.card}`}
     >
-      <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h3 className="text-2xl font-extrabold">{data.name}</h3>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="min-w-0 flex-1">
+          <TierDots tier={data.tier} />
+          <h3 className="mt-3 text-2xl font-extrabold leading-tight">{data.name}</h3>
+        </div>
         <span
-          className="rounded-full border-2 border-black px-3 py-1 text-xs font-bold"
-          style={{ backgroundColor: colors.text, color: colors.background }}
+          className={`shrink-0 rounded-full border-2 border-ink px-3 py-1 text-xs font-bold ${classes.badge}`}
         >
           {data.difficultyLabel}
         </span>
@@ -40,9 +47,32 @@ export default function OlympiadCard({ data }: { data: OlympiadCardData }) {
 
       <p className="mt-3 text-sm leading-relaxed">{data.blurb}</p>
 
-      <p className="mt-4 text-xs italic opacity-70">
+      <p className="mt-4 text-xs italic opacity-60">
         Source link placeholder — review source later
       </p>
+    </div>
+  );
+}
+
+// Six dots, filled up to this competition's tier, so the difficulty is
+// readable at a glance without decoding the color.
+function TierDots({ tier }: { tier: DifficultyTier }) {
+  const dots = Array.from({ length: HARDEST_TIER }, (_, index) => index + 1);
+
+  return (
+    <div
+      className="flex gap-1.5"
+      role="img"
+      aria-label={`Difficulty ${tier} of ${HARDEST_TIER}`}
+    >
+      {dots.map((dot) => (
+        <span
+          key={dot}
+          className={`h-2.5 w-2.5 rounded-full border-2 border-current ${
+            dot <= tier ? "bg-current" : "bg-transparent opacity-40"
+          }`}
+        />
+      ))}
     </div>
   );
 }

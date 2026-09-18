@@ -22,6 +22,9 @@
   --color-cream: #fdf6e3;
   --color-ink: #000000;
 
+  /* Pale blue, the second step of the olympiad difficulty ladder. */
+  --color-sky: #bfdbfe;
+
   /* Old names, kept so existing classes keep working. */
   --color-space-blue: #131a4a;
   --color-electric-blue: #3b82f6;

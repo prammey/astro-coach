@@ -7,15 +7,17 @@ import type { ReactNode } from "react";
 //   difficulty = purple  (Beginner, Intermediate, Advanced)
 //   topic      = yellow  (Solar System, Light & Spectra, ...)
 //   parts      = navy    ("2 parts")
+//   pro        = purple  (FRQ, Astro Coach Pro)
 //   neutral    = white   (anything informational, e.g. "Coming soon")
 
-type Tone = "type" | "difficulty" | "topic" | "parts" | "neutral";
+type Tone = "type" | "difficulty" | "topic" | "parts" | "pro" | "neutral";
 
 const TONE_CLASSES: Record<Tone, string> = {
   type: "bg-electric text-white",
   difficulty: "bg-purple text-white",
   topic: "bg-yellow text-navy",
   parts: "bg-navy text-yellow",
+  pro: "bg-purple text-white",
   neutral: "border-2 border-ink bg-white text-navy",
 };
 

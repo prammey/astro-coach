@@ -8,6 +8,16 @@
 
 import Link from "next/link";
 import type { FrqCard as FrqCardData } from "@/lib/pro/frq-service";
+import Chip from "../ui/Chip";
+
+// Locked cards get a faint diagonal hatch so "locked" reads as a state
+// rather than as a broken or greyed-out card.
+const LOCKED_CLASSES =
+  "bg-white [background-image:repeating-linear-gradient(135deg,transparent_0_10px,rgba(11,15,46,0.06)_10px_12px)]";
+
+const UNLOCKED_CLASSES =
+  "bg-white transition-[translate,box-shadow] duration-200 ease-snappy " +
+  "hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-brutal-lg";
 
 export default function FrqCard({
   question,
@@ -21,70 +31,58 @@ export default function FrqCard({
 
   const card = (
     <div
-      className={`h-full rounded-xl border-4 border-black p-5 shadow-[6px_6px_0_0_#000] transition ${
-        locked
-          ? "bg-gray-100"
-          : "bg-white hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[3px_3px_0_0_#000]"
+      className={`h-full rounded-xl border-[3px] border-ink p-5 shadow-brutal ${
+        locked ? LOCKED_CLASSES : UNLOCKED_CLASSES
       }`}
     >
       <div className="flex items-start justify-between gap-3">
-        <span className="rounded border-2 border-black bg-[var(--color-purple)] px-2 py-0.5 text-xs font-extrabold uppercase text-white">
-          FRQ
-        </span>
-        <span className="rounded border-2 border-black bg-[var(--color-yellow)] px-2 py-0.5 text-xs font-extrabold text-[var(--color-navy)]">
+        <Chip tone="pro">FRQ</Chip>
+        <Chip tone="topic">
           {question.totalPoints} {question.totalPoints === 1 ? "point" : "points"}
-        </span>
+        </Chip>
       </div>
 
-      <h3 className="mt-3 font-extrabold text-[var(--color-navy)]">
+      <h3 className="mt-3 font-extrabold text-navy">
         {question.competition} {question.year} — Q{question.questionNumber}
       </h3>
-      <p className="text-sm text-[var(--color-navy)]/70">{question.examName}</p>
+      <p className="text-sm text-navy/70">{question.examName}</p>
 
       {question.title && (
-        <p className="mt-2 text-sm font-semibold text-[var(--color-navy)]">{question.title}</p>
+        <p className="mt-2 text-sm font-semibold text-navy">{question.title}</p>
       )}
 
       <div className="mt-3 flex flex-wrap gap-2">
-        <span className="rounded border-2 border-black bg-[var(--color-cream)] px-2 py-0.5 text-xs font-semibold text-[var(--color-navy)]">
-          {question.primaryCurriculumTopic}
-        </span>
-        {question.partCount > 0 && (
-          <span className="rounded border-2 border-black bg-[var(--color-cream)] px-2 py-0.5 text-xs font-semibold text-[var(--color-navy)]">
-            {question.partCount} parts
-          </span>
-        )}
-        {question.difficulty && (
-          <span className="rounded border-2 border-black bg-[var(--color-cream)] px-2 py-0.5 text-xs font-semibold text-[var(--color-navy)]">
-            {question.difficulty}
-          </span>
-        )}
+        <Chip tone="neutral">{question.primaryCurriculumTopic}</Chip>
+        {question.partCount > 0 && <Chip tone="neutral">{question.partCount} parts</Chip>}
+        {question.difficulty && <Chip tone="neutral">{question.difficulty}</Chip>}
       </div>
 
-      <div className="mt-4 border-t-2 border-black/10 pt-3 text-sm">
+      <div className="mt-4 border-t-2 border-navy/10 pt-3 text-sm">
         {locked ? (
-          <p className="font-bold text-[var(--color-purple)]">
-            {signedIn ? "🔒 Unlock with Astro Coach Pro" : "🔒 Sign in to practise"}
+          <p className="flex items-center gap-2 font-bold text-purple">
+            <LockIcon />
+            {signedIn ? "Unlock with Astro Coach Pro" : "Sign in to practise"}
           </p>
         ) : attempted ? (
-          <p className="font-semibold text-[var(--color-navy)]">
+          <p className="font-semibold text-navy">
             Best {question.bestScore ?? 0} / {question.totalPoints} · attempt{" "}
             {question.attemptsUsed} of {question.maxAttempts}
             {question.solutionUnlocked && " · solution unlocked"}
           </p>
         ) : (
-          <p className="font-semibold text-[var(--color-electric-blue)]">Not attempted yet</p>
+          <p className="font-semibold text-electric">Not attempted yet</p>
         )}
       </div>
     </div>
   );
 
-  // A locked card is not a link — there is no page behind it to open.
+  // A locked card is not a link to the question — there is no page behind
+  // it to open — so it leads to the place that unlocks it instead.
   if (locked) {
     return (
       <Link
         href={signedIn ? "/pricing" : "/login"}
-        className="block focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)]"
+        className="block rounded-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-electric"
         aria-label={`${question.competition} ${question.year} question ${question.questionNumber} — locked. ${signedIn ? "Upgrade to Astro Coach Pro" : "Sign in"}`}
       >
         {card}
@@ -95,9 +93,28 @@ export default function FrqCard({
   return (
     <Link
       href={`/training/frq/${question.id}`}
-      className="block focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)]"
+      className="block rounded-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-electric"
     >
       {card}
     </Link>
+  );
+}
+
+// A small padlock, drawn inline so it matches the text color.
+function LockIcon() {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="4" y="11" width="16" height="10" rx="2" />
+      <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+    </svg>
   );
 }

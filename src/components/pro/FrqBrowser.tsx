@@ -7,10 +7,13 @@
 // list itself is safe to show anyone.
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 import { apiGet } from "@/lib/pro/client";
 import type { FrqCard as FrqCardData } from "@/lib/pro/frq-service";
 import FrqCard from "./FrqCard";
+import BrutalCard from "../BrutalCard";
+import BrutalButton from "../ui/BrutalButton";
+import LoadingStar from "../ui/LoadingStar";
+import Reveal from "../ui/Reveal";
 
 type FrqListResponse = {
   questions: FrqCardData[];
@@ -63,12 +66,15 @@ export default function FrqBrowser() {
   );
 
   if (loading) {
-    return <p className="mt-6 text-[var(--color-navy)]">Loading free-response questions…</p>;
+    return <LoadingStar label="Loading free-response questions…" />;
   }
 
   if (error) {
     return (
-      <div className="mt-6 rounded-lg border-4 border-black bg-red-100 p-4 text-[var(--color-navy)]">
+      <div
+        role="alert"
+        className="mt-6 rounded-lg border-[3px] border-danger bg-white p-4 font-semibold text-danger"
+      >
         {error}
       </div>
     );
@@ -76,15 +82,13 @@ export default function FrqBrowser() {
 
   if (!data || data.questions.length === 0) {
     return (
-      <div className="mt-6 rounded-lg border-4 border-black bg-[var(--color-cream)] p-6">
-        <h3 className="font-extrabold text-[var(--color-navy)]">
-          Free-response questions are on the way
-        </h3>
-        <p className="mt-2 text-sm text-[var(--color-navy)]/80">
+      <BrutalCard tone="cream" className="mt-6">
+        <h3 className="font-extrabold text-navy">Free-response questions are on the way</h3>
+        <p className="mt-2 text-sm text-navy/80">
           Real olympiad free-response problems are being added, each checked
           against its official marking scheme before it is published.
         </p>
-      </div>
+      </BrutalCard>
     );
   }
 
@@ -100,35 +104,34 @@ export default function FrqBrowser() {
         />
 
         {data.signedIn && data.creditsRemaining !== null && (
-          <p className="ml-auto text-sm font-bold text-[var(--color-navy)]">
+          <p className="ml-auto text-sm font-bold text-navy">
             {data.creditsRemaining} AI grade{data.creditsRemaining === 1 ? "" : "s"} left
           </p>
         )}
       </div>
 
       {data.signedIn && data.plan === "FREE" && data.creditsRemaining === 0 && (
-        <div className="mt-4 rounded-lg border-4 border-black bg-[var(--color-purple)] p-4 text-white">
+        <BrutalCard tone="purple" className="mt-4">
           <p className="font-extrabold">You have used your 3 free AI grades</p>
           <p className="mt-1 text-sm text-white/90">
             Everything you have already worked on stays yours. Astro Coach Pro
             opens the rest of the free-response bank and 50 AI grades a month.
           </p>
-          <Link
-            href="/pricing"
-            className="mt-3 inline-block rounded-lg border-4 border-black bg-[var(--color-yellow)] px-4 py-2 font-extrabold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
-          >
+          <BrutalButton href="/pricing" variant="accent" size="sm" className="mt-3">
             Unlock Astro Coach Pro
-          </Link>
-        </div>
+          </BrutalButton>
+        </BrutalCard>
       )}
 
-      <p className="mt-4 text-sm text-[var(--color-navy)]/70">
+      <p className="mt-4 text-sm font-bold text-navy/70">
         {visible.length} question{visible.length === 1 ? "" : "s"}
       </p>
 
       <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {visible.map((question) => (
-          <FrqCard key={question.id} question={question} signedIn={data.signedIn} />
+        {visible.map((question, index) => (
+          <Reveal key={question.id} delay={Math.min(index, 5) * 50} className="h-full">
+            <FrqCard question={question} signedIn={data.signedIn} />
+          </Reveal>
         ))}
       </div>
     </div>
@@ -147,12 +150,12 @@ function Filter({
   onChange: (value: string) => void;
 }) {
   return (
-    <label className="block text-sm font-bold text-[var(--color-navy)]">
+    <label className="block text-sm font-bold text-navy">
       {label}
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-1 block rounded-lg border-4 border-black bg-white px-3 py-2 font-semibold text-[var(--color-navy)] focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)]"
+        className="mt-1 block rounded-lg border-[3px] border-ink bg-white px-3 py-2 font-semibold text-navy shadow-brutal-sm focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
       >
         {options.map((option) => (
           <option key={option} value={option}>

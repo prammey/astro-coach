@@ -1,6 +1,7 @@
-import Link from "next/link";
 import BrutalCard from "./BrutalCard";
 import BookmarkButton from "./BookmarkButton";
+import BrutalButton from "./ui/BrutalButton";
+import Chip from "./ui/Chip";
 import { PublicQuestion } from "@/data/mcq/types";
 import { questionNumberLabel } from "@/lib/question-label";
 
@@ -25,62 +26,62 @@ export default function QuestionCard({
   const moreTopicsCount = Math.max(0, question.curriculumTopics.length - 2);
 
   return (
-    <BrutalCard className="relative flex flex-col bg-[var(--color-cream)]">
-      <div className="absolute top-3 right-3 flex gap-2 items-center">
-        <BookmarkButton
-          questionId={question.id}
-          isBookmarked={isBookmarked}
-        />
-        {isAnswered && (
-          <img
-            src="/icons/eye.png"
-            alt="Question answered"
-            className="w-5 h-5 object-contain"
-          />
-        )}
-      </div>
-      <div className="flex flex-wrap items-center gap-2 text-xs font-bold">
-        <span className="rounded bg-[var(--color-electric-blue)] px-2 py-1 text-white">
-          {question.type}
-        </span>
-        <span className="rounded bg-[var(--color-purple)] px-2 py-1 text-white">
-          {question.difficulty}
-        </span>
-        {displayTopics.map((topic) => (
-          <span
-            key={topic}
-            className="rounded bg-[var(--color-yellow)] px-2 py-1 text-[var(--color-navy)]"
-          >
-            {topic}
-          </span>
-        ))}
-        {moreTopicsCount > 0 && (
-          <span className="rounded bg-[var(--color-yellow)] px-2 py-1 text-[var(--color-navy)] font-bold">
-            +{moreTopicsCount}
-          </span>
-        )}
-        {question.parts?.length ? (
-          <span className="rounded bg-[var(--color-navy)] px-2 py-1 text-[var(--color-yellow)]">
-            {question.parts.length} parts
-          </span>
-        ) : null}
+    <BrutalCard tone="cream" hover className="relative flex flex-col">
+      {/* Bookmark star and "already answered" eye, top right. */}
+      <div className="absolute top-3 right-3 flex items-center gap-2">
+        <BookmarkButton questionId={question.id} isBookmarked={isBookmarked} />
+        {isAnswered && <AnsweredEye />}
       </div>
 
-      <h3 className="mt-3 text-lg font-extrabold text-[var(--color-navy)]">
+      <div className="flex flex-wrap items-center gap-2 pr-14">
+        <Chip tone="type">{question.type}</Chip>
+        <Chip tone="difficulty">{question.difficulty}</Chip>
+        {displayTopics.map((topic) => (
+          <Chip key={topic} tone="topic">
+            {topic}
+          </Chip>
+        ))}
+        {moreTopicsCount > 0 && <Chip tone="topic">+{moreTopicsCount}</Chip>}
+        {question.parts?.length ? <Chip tone="parts">{question.parts.length} parts</Chip> : null}
+      </div>
+
+      <h3 className="mt-3 text-lg font-extrabold leading-snug text-navy">
         {question.competition} — {question.year} {question.examName}
       </h3>
-      <p className="text-sm text-black/60">{questionNumberLabel(question)}</p>
+      <p className="text-sm text-navy/60">{questionNumberLabel(question)}</p>
 
-      <p className="mt-3 text-sm text-[var(--color-navy)]">
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-navy">
         {previewText(question.questionText, 120)}
       </p>
 
-      <Link
+      <BrutalButton
         href={`/training/${question.id}`}
-        className="mt-4 inline-block rounded-lg border-4 border-black bg-[var(--color-navy)] px-4 py-2 text-center font-bold text-white shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+        variant="dark"
+        size="sm"
+        className="mt-4 self-start"
       >
-        Open Question
-      </Link>
+        Open question
+      </BrutalButton>
     </BrutalCard>
+  );
+}
+
+// A small eye icon meaning "you have answered this one before".
+function AnsweredEye() {
+  return (
+    <svg
+      role="img"
+      aria-label="Question answered"
+      viewBox="0 0 24 24"
+      className="h-5 w-5 text-navy/60"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
   );
 }
