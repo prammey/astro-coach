@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useTrainingMode } from '@/lib/training-mode-context';
+import BrutalButton from './ui/BrutalButton';
 
 // Previous / Skip / Next for a question, with the same look and the same
 // meaning wherever a question is opened from.
@@ -35,12 +36,6 @@ export default function QuestionNavigation({
 
   const progress = getProgress();
 
-  // Shared button styling, so the two modes cannot drift apart again.
-  const base =
-    'rounded-lg border-4 border-black px-6 py-2 font-bold shadow-[4px_4px_0_0_#000] transition';
-  const enabled = 'hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none';
-  const disabled = 'bg-gray-300 text-gray-500 border-gray-400 cursor-not-allowed opacity-50';
-
   const atStart = isInTrainingMode ? currentIndex === 0 : !previousQuestionId;
   const atEnd = isInTrainingMode ? false : !nextQuestionId;
 
@@ -70,37 +65,24 @@ export default function QuestionNavigation({
   return (
     <div className="mt-8">
       {isInTrainingMode && (
-        <p className="mb-3 text-center text-sm font-bold text-[var(--color-navy)]/70">
+        <p className="mb-3 text-center text-sm font-bold text-navy/70">
           Question {progress.current} of {progress.total}
         </p>
       )}
 
       <div className="flex flex-wrap justify-center gap-4">
-        <button
-          type="button"
-          onClick={goPrevious}
-          disabled={atStart}
-          className={`${base} ${
-            atStart ? disabled : `bg-[var(--color-space-blue)] text-white ${enabled}`
-          }`}
-        >
+        <BrutalButton variant="dark" onClick={goPrevious} disabled={atStart}>
           ← Previous
-        </button>
+        </BrutalButton>
 
-        <button
-          type="button"
+        {/* Blue once answered (move on), yellow before (skip for now). */}
+        <BrutalButton
+          variant={isAnswered ? 'primary' : 'accent'}
           onClick={advance}
           disabled={atEnd}
-          className={`${base} ${
-            atEnd
-              ? disabled
-              : isAnswered
-                ? `bg-[var(--color-electric-blue)] text-white ${enabled}`
-                : `bg-[var(--color-yellow)] text-[var(--color-navy)] ${enabled}`
-          }`}
         >
           {isAnswered ? 'Next →' : 'Skip →'}
-        </button>
+        </BrutalButton>
       </div>
     </div>
   );

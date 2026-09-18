@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import SearchInput from "@/components/SearchInput";
 import CollapsibleFilterPanel, { type FilterState } from "@/components/CollapsibleFilterPanel";
 import QuestionCard from "@/components/QuestionCard";
+import BrutalButton from "@/components/ui/BrutalButton";
 import { PublicQuestion } from "@/data/mcq/types";
 import { CURRICULUM_TOPICS } from "@/data/mcq/topicTaxonomy";
 import { useAuth } from "@/lib/auth-context";
@@ -147,20 +148,22 @@ export default function TrainingBrowser({ questions }: { questions: PublicQuesti
 
       {filteredQuestions.length > 0 && (
         <div className="mt-6">
-          <button
+          <BrutalButton
+            variant="primary"
+            size="lg"
+            className="w-full"
             onClick={() => {
               const questionIds = filteredQuestions.map((q) => q.id);
               startTrainingMode(questionIds);
               router.push(`/training/mode`);
             }}
-            className="w-full rounded-lg border-4 border-black bg-[var(--color-electric-blue)] px-6 py-4 text-center font-extrabold text-white shadow-[6px_6px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
           >
-            Start Training
-          </button>
+            Start training with these {filteredQuestions.length} questions
+          </BrutalButton>
         </div>
       )}
 
-      <p className="mt-6 text-sm font-bold text-[var(--color-navy)]/70">
+      <p className="mt-6 text-sm font-bold text-navy/70">
         {filteredQuestions.length} question{filteredQuestions.length === 1 ? "" : "s"} found
       </p>
 
@@ -176,9 +179,12 @@ export default function TrainingBrowser({ questions }: { questions: PublicQuesti
       </div>
 
       {filteredQuestions.length === 0 && (
-        <p className="mt-8 text-center text-[var(--color-navy)]/60">
-          No questions match your search and filters.
-        </p>
+        <div className="mt-8 rounded-xl border-[3px] border-dashed border-navy/40 p-8 text-center">
+          <p className="font-bold text-navy">No questions match your search and filters.</p>
+          <p className="mt-1 text-sm text-navy/70">
+            Try fewer filters, or a shorter search term.
+          </p>
+        </div>
       )}
     </>
   );

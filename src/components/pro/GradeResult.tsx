@@ -47,13 +47,13 @@ export default function GradeResult({
   const isFullMarks = maximumPoints > 0 && awardedPoints >= maximumPoints;
 
   return (
-    <div className="rounded-xl border-4 border-black bg-white p-5 shadow-[6px_6px_0_0_#000]">
+    <div className="rounded-xl border-[3px] border-ink bg-white p-5 shadow-brutal">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h3 className="text-lg font-extrabold text-[var(--color-navy)]">
+        <h3 className="text-lg font-extrabold text-navy">
           {attemptNumber ? `Attempt ${attemptNumber} of ${maxAttempts}` : "Attempt"}
         </h3>
         {gradedAt && (
-          <p className="text-xs text-[var(--color-navy)]/60">
+          <p className="text-xs text-navy/60">
             {new Date(gradedAt).toLocaleDateString()}
           </p>
         )}
@@ -62,28 +62,28 @@ export default function GradeResult({
       {/* The score is always out of the competition's own total, never /10. */}
       <p
         className={`mt-2 text-4xl font-extrabold ${
-          isFullMarks ? "text-[var(--color-electric-blue)]" : "text-[var(--color-purple)]"
+          isFullMarks ? "text-electric" : "text-purple"
         }`}
       >
-        {awardedPoints} <span className="text-2xl text-[var(--color-navy)]/60">/ {maximumPoints}</span>
+        {awardedPoints} <span className="text-2xl text-navy/60">/ {maximumPoints}</span>
       </p>
 
       {partScores.length > 1 && (
         <div className="mt-4">
-          <h4 className="text-sm font-extrabold uppercase text-[var(--color-navy)]/70">
+          <h4 className="text-sm font-extrabold uppercase text-navy/70">
             Part by part
           </h4>
           <ul className="mt-2 space-y-2">
             {partScores.map((part) => (
               <li
                 key={part.partId}
-                className="rounded-lg border-2 border-black bg-[var(--color-cream)] p-3"
+                className="rounded-lg border-2 border-ink bg-cream p-3"
               >
-                <p className="font-bold text-[var(--color-navy)]">
+                <p className="font-bold text-navy">
                   {part.label}: {part.awardedPoints} / {part.maxPoints}
                 </p>
                 {part.comment && (
-                  <p className="mt-1 text-sm text-[var(--color-navy)]/80">{part.comment}</p>
+                  <p className="mt-1 text-sm text-navy/80">{part.comment}</p>
                 )}
               </li>
             ))}
@@ -93,10 +93,10 @@ export default function GradeResult({
 
       {feedback && (
         <div className="mt-5 space-y-4">
-          <p className="text-[var(--color-navy)]">{feedback.overall}</p>
+          <p className="text-navy">{feedback.overall}</p>
 
           {feedback.legibilityNote && (
-            <p className="rounded-lg border-2 border-black bg-[var(--color-yellow)]/40 p-3 text-sm text-[var(--color-navy)]">
+            <p className="rounded-lg border-2 border-ink bg-yellow/40 p-3 text-sm text-navy">
               <strong>On your uploaded work:</strong> {feedback.legibilityNote}
             </p>
           )}
@@ -106,10 +106,10 @@ export default function GradeResult({
 
           {feedback.nextStep && (
             <div>
-              <h4 className="text-sm font-extrabold uppercase text-[var(--color-navy)]/70">
+              <h4 className="text-sm font-extrabold uppercase text-navy/70">
                 Try next
               </h4>
-              <p className="mt-1 text-sm text-[var(--color-navy)]">{feedback.nextStep}</p>
+              <p className="mt-1 text-sm text-navy">{feedback.nextStep}</p>
             </div>
           )}
         </div>
@@ -120,7 +120,7 @@ export default function GradeResult({
           {mistakeTags.map((tag) => (
             <span
               key={tag}
-              className="rounded border-2 border-black bg-[var(--color-cream)] px-2 py-0.5 text-xs font-semibold text-[var(--color-navy)]"
+              className="rounded border-2 border-ink bg-cream px-2 py-0.5 text-xs font-semibold text-navy"
             >
               {labelForMistakeTag(tag)}
             </span>
@@ -136,8 +136,8 @@ function FeedbackList({ title, items }: { title: string; items: string[] }) {
 
   return (
     <div>
-      <h4 className="text-sm font-extrabold uppercase text-[var(--color-navy)]/70">{title}</h4>
-      <ul className="mt-1 list-disc space-y-1 pl-5 text-sm text-[var(--color-navy)]">
+      <h4 className="text-sm font-extrabold uppercase text-navy/70">{title}</h4>
+      <ul className="mt-1 list-disc space-y-1 pl-5 text-sm text-navy">
         {items.map((item, index) => (
           <li key={index}>{item}</li>
         ))}

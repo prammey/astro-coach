@@ -81,38 +81,38 @@ export default function ReportProblemButton({ questionId }: { questionId: string
         type="button"
         onClick={() => setIsOpen(true)}
         title="Report a problem with this question"
-        className="inline-flex items-center gap-1.5 rounded-lg border-2 border-[var(--color-navy)]/25 px-3 py-1.5 text-sm font-bold text-[var(--color-navy)]/70 transition hover:border-red-500 hover:bg-red-50 hover:text-red-700"
+        className="inline-flex items-center gap-1.5 rounded-lg border-2 border-navy/25 px-3 py-1.5 text-sm font-bold text-navy/70 transition hover:border-danger hover:bg-danger/10 hover:text-danger"
       >
         <span aria-hidden="true">⚑</span> Report a problem
       </button>
 
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
-          <div className="w-full max-w-lg rounded-xl border-4 border-black bg-white p-6 shadow-[8px_8px_0_0_#000]">
+          <div className="w-full max-w-lg rounded-xl border-[3px] border-ink bg-white p-6 shadow-brutal-lg">
             {sent ? (
               // Confirmation, so the learner knows it actually went somewhere.
               <div className="text-center">
                 <p className="text-2xl">✅</p>
-                <h2 className="mt-2 text-xl font-extrabold text-[var(--color-navy)]">
+                <h2 className="mt-2 text-xl font-extrabold text-navy">
                   Thanks — report sent
                 </h2>
-                <p className="mt-2 text-sm text-[var(--color-navy)]/70">
+                <p className="mt-2 text-sm text-navy/70">
                   We&apos;ll take a look at this question and fix it if something is wrong.
                 </p>
                 <button
                   type="button"
                   onClick={close}
-                  className="mt-5 w-full rounded-lg border-4 border-black bg-[var(--color-electric-blue)] px-6 py-2 font-bold text-white shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+                  className="mt-5 w-full rounded-lg border-[3px] border-ink bg-electric px-6 py-2 font-bold text-white shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
                 >
                   Close
                 </button>
               </div>
             ) : (
               <>
-                <h2 className="text-xl font-extrabold text-[var(--color-navy)]">
+                <h2 className="text-xl font-extrabold text-navy">
                   Report a problem
                 </h2>
-                <p className="mt-1 text-sm text-[var(--color-navy)]/70">
+                <p className="mt-1 text-sm text-navy/70">
                   What&apos;s wrong with this question?
                 </p>
 
@@ -126,13 +126,13 @@ export default function ReportProblemButton({ questionId }: { questionId: string
                         onClick={() => setReason(option.value)}
                         className={`block w-full rounded-lg border-2 px-4 py-2.5 text-left transition ${
                           selected
-                            ? 'border-black bg-[var(--color-electric-blue)] text-white'
-                            : 'border-black/20 bg-white text-[var(--color-navy)] hover:border-black hover:bg-[var(--color-cream)]'
+                            ? 'border-ink bg-electric text-white'
+                            : 'border-navy/20 bg-white text-navy hover:border-ink hover:bg-cream'
                         }`}
                       >
                         <span className="block text-sm font-bold">{option.label}</span>
                         <span
-                          className={`block text-xs ${selected ? 'text-white/80' : 'text-[var(--color-navy)]/55'}`}
+                          className={`block text-xs ${selected ? 'text-white/80' : 'text-navy/55'}`}
                         >
                           {option.hint}
                         </span>
@@ -143,7 +143,7 @@ export default function ReportProblemButton({ questionId }: { questionId: string
 
                 <label
                   htmlFor="report-details"
-                  className="mt-4 block text-sm font-bold text-[var(--color-navy)]"
+                  className="mt-4 block text-sm font-bold text-navy"
                 >
                   {detailsRequired ? 'Tell us what happened' : 'Anything else? (optional)'}
                 </label>
@@ -153,9 +153,9 @@ export default function ReportProblemButton({ questionId }: { questionId: string
                   onChange={(event) => setDetails(event.target.value.slice(0, 1000))}
                   rows={3}
                   placeholder="Add any detail that would help us fix it"
-                  className="mt-1 w-full rounded border-2 border-black px-3 py-2 text-sm text-[var(--color-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--color-electric-blue)]"
+                  className="mt-1 w-full rounded border-2 border-ink px-3 py-2 text-sm text-navy focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 />
-                <p className="mt-1 text-right text-xs text-[var(--color-navy)]/50">
+                <p className="mt-1 text-right text-xs text-navy/50">
                   {details.length}/1000
                 </p>
 
@@ -163,13 +163,13 @@ export default function ReportProblemButton({ questionId }: { questionId: string
                     blocks. The link opens in a new tab so a half-written
                     report is not lost by navigating away. */}
                 {!user && (
-                  <p className="mt-3 rounded border-2 border-[var(--color-yellow)] bg-[var(--color-yellow)]/20 px-3 py-2 text-xs text-[var(--color-navy)]">
+                  <p className="mt-3 rounded border-2 border-yellow bg-yellow/20 px-3 py-2 text-xs text-navy">
                     You&apos;re reporting anonymously.{' '}
                     <a
                       href="/login"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-bold text-[var(--color-electric-blue)] underline"
+                      className="font-bold text-electric underline"
                     >
                       Sign in
                     </a>{' '}
@@ -178,13 +178,13 @@ export default function ReportProblemButton({ questionId }: { questionId: string
                   </p>
                 )}
 
-                {error && <p className="mt-2 text-sm font-bold text-red-700">{error}</p>}
+                {error && <p className="mt-2 text-sm font-bold text-danger">{error}</p>}
 
                 <div className="mt-4 flex gap-3">
                   <button
                     type="button"
                     onClick={close}
-                    className="flex-1 rounded-lg border-2 border-black bg-white px-4 py-2 font-bold text-[var(--color-navy)] transition hover:bg-[var(--color-cream)]"
+                    className="flex-1 rounded-lg border-2 border-ink bg-white px-4 py-2 font-bold text-navy transition hover:bg-cream"
                   >
                     Cancel
                   </button>
@@ -192,7 +192,7 @@ export default function ReportProblemButton({ questionId }: { questionId: string
                     type="button"
                     onClick={handleSubmit}
                     disabled={!canSubmit || isSending}
-                    className="flex-1 rounded-lg border-2 border-black bg-[var(--color-electric-blue)] px-4 py-2 font-bold text-white transition hover:bg-[var(--color-electric-blue)]/90 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex-1 rounded-lg border-2 border-ink bg-electric px-4 py-2 font-bold text-white transition hover:bg-electric/90 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {isSending ? 'Sending...' : 'Send report'}
                   </button>

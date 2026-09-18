@@ -11,10 +11,10 @@ export const metadata = {
 export default function FrqTrainingPage() {
   return (
     <PageContainer>
-      <h1 className="text-3xl font-extrabold text-[var(--color-navy)] sm:text-4xl">
+      <h1 className="text-3xl font-extrabold text-navy sm:text-4xl">
         Free-response practice
       </h1>
-      <p className="mt-2 max-w-2xl text-[var(--color-navy)]/80">
+      <p className="mt-2 max-w-2xl text-navy/80">
         Real olympiad free-response problems, graded against their original
         marking schemes. Write your solution or photograph your working, and
         get part-by-part feedback on where the reasoning holds up and where it

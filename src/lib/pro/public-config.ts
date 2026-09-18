@@ -12,6 +12,8 @@ export const PUBLIC_PRO_CONFIG = {
   /// The real deadline shown in pricing copy: December 31, 2026.
   foundingCutoffIso: "2027-01-01T06:00:00Z",
   foundingDeadlineLabel: "December 31, 2026",
+  /// The same deadline, short enough to fit inside the starburst badge.
+  foundingDeadlineShort: "12/31/26",
   /// Advertised allowances, for pricing copy only.
   freeLifetimeGrades: 3,
   proPeriodGrades: 50,

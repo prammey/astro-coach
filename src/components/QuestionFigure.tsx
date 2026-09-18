@@ -17,7 +17,7 @@ export default function QuestionFigure({
       {assets.map((src) => (
         <div
           key={src}
-          className="overflow-hidden rounded-lg border-4 border-black bg-white p-3"
+          className="overflow-hidden rounded-lg border-[3px] border-ink bg-white p-3"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={src} alt={alt} className="mx-auto h-auto max-w-full" />

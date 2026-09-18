@@ -51,16 +51,16 @@ export default function SolutionUploader({
   }
 
   return (
-    <div className="rounded-lg border-4 border-black bg-white p-4">
-      <h3 className="font-extrabold text-[var(--color-navy)]">Upload your working</h3>
+    <div className="rounded-lg border-[3px] border-ink bg-white p-4">
+      <h3 className="font-extrabold text-navy">Upload your working</h3>
 
       {/* Handwriting guidance, kept honest — no promise that recognition is
           perfect. */}
-      <p className="mt-2 text-sm text-[var(--color-navy)]/80">
+      <p className="mt-2 text-sm text-navy/80">
         For best grading: write clearly, keep all work visible and well-lit,
         and box your final answers.
       </p>
-      <ul className="mt-2 list-disc space-y-0.5 pl-5 text-xs text-[var(--color-navy)]/70">
+      <ul className="mt-2 list-disc space-y-0.5 pl-5 text-xs text-navy/70">
         <li>Avoid blurry photos — check the page is in focus before uploading.</li>
         <li>Keep each page the right way up.</li>
         <li>Include all your working, not just the final line.</li>
@@ -73,11 +73,11 @@ export default function SolutionUploader({
         accept={ACCEPT}
         disabled={disabled}
         onChange={(event) => addFiles(event.target.files)}
-        className="mt-4 block w-full text-sm text-[var(--color-navy)] file:mr-3 file:rounded-lg file:border-4 file:border-black file:bg-[var(--color-cream)] file:px-4 file:py-2 file:font-bold file:text-[var(--color-navy)] focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)] disabled:opacity-50"
+        className="mt-4 block w-full text-sm text-navy file:mr-3 file:rounded-lg file:border-[3px] file:border-ink file:bg-cream file:px-4 file:py-2 file:font-bold file:text-navy focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50"
         aria-describedby="upload-limits"
       />
 
-      <p id="upload-limits" className="mt-2 text-xs text-[var(--color-navy)]/70">
+      <p id="upload-limits" className="mt-2 text-xs text-navy/70">
         JPG, PNG, WebP or PDF · up to {PUBLIC_PRO_CONFIG.maxUploadPages} pages in
         total per submission · 10 MB per file. Each photo counts as one page; a
         PDF counts its own pages. Typed working does not count.
@@ -88,11 +88,11 @@ export default function SolutionUploader({
           {files.map((entry, index) => (
             <li
               key={`${entry.file.name}-${index}`}
-              className="flex items-center justify-between gap-3 rounded-lg border-2 border-black bg-[var(--color-cream)] px-3 py-2"
+              className="flex items-center justify-between gap-3 rounded-lg border-2 border-ink bg-cream px-3 py-2"
             >
-              <span className="min-w-0 flex-1 truncate text-sm font-semibold text-[var(--color-navy)]">
+              <span className="min-w-0 flex-1 truncate text-sm font-semibold text-navy">
                 {entry.file.name}
-                <span className="ml-2 font-normal text-[var(--color-navy)]/60">
+                <span className="ml-2 font-normal text-navy/60">
                   {entry.estimatedPages === null
                     ? "PDF — pages counted on submit"
                     : "1 page"}
@@ -102,7 +102,7 @@ export default function SolutionUploader({
                 type="button"
                 disabled={disabled}
                 onClick={() => onChange(files.filter((_, position) => position !== index))}
-                className="rounded border-2 border-black bg-white px-2 py-1 text-xs font-bold text-[var(--color-navy)] hover:bg-red-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)] disabled:opacity-50"
+                className="rounded border-2 border-ink bg-white px-2 py-1 text-xs font-bold text-navy hover:bg-danger/10 focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50"
                 aria-label={`Remove ${entry.file.name}`}
               >
                 Remove
@@ -113,7 +113,7 @@ export default function SolutionUploader({
       )}
 
       {files.length > 0 && (
-        <p className="mt-3 text-sm font-bold text-[var(--color-navy)]">
+        <p className="mt-3 text-sm font-bold text-navy">
           {knownPages} page{knownPages === 1 ? "" : "s"}
           {hasUnknown && " so far, plus your PDF pages"} of{" "}
           {PUBLIC_PRO_CONFIG.maxUploadPages} allowed

@@ -3,6 +3,8 @@
 import { useState, useMemo } from "react";
 import { CURRICULUM_TOPICS, type CurriculumTopic } from "@/data/mcq/topicTaxonomy";
 import { PublicQuestion } from "@/data/mcq/types";
+import BrutalButton from "./ui/BrutalButton";
+import Chip from "./ui/Chip";
 
 // Filter state: competitions, topics, and difficulty are sets of selected values
 export type FilterState = {
@@ -36,9 +38,9 @@ function Checkbox({
             ref.indeterminate = indeterminate || false;
           }
         }}
-        className="w-4 h-4 border-2 border-black rounded cursor-pointer"
+        className="h-4 w-4 cursor-pointer rounded border-2 border-ink accent-electric"
       />
-      <span className="text-sm text-[var(--color-navy)]">{label}</span>
+      <span className="text-sm text-navy">{label}</span>
     </label>
   );
 }
@@ -72,18 +74,18 @@ function DualRangeSlider({
   return (
     <div className="space-y-3">
       {/* Range display */}
-      <div className="text-sm font-bold text-[var(--color-navy)]">
+      <div className="text-sm font-bold text-navy">
         {value[0]} — {value[1]}
       </div>
 
       {/* Dual handle slider */}
       <div className="relative h-8 flex items-center">
         {/* Track background */}
-        <div className="absolute w-full h-2 bg-gray-300 rounded-full border-2 border-black"></div>
+        <div className="absolute w-full h-2 rounded-full border-2 border-ink bg-navy/15"></div>
 
         {/* Active range highlight */}
         <div
-          className="absolute h-2 bg-[var(--color-electric-blue)] rounded-full"
+          className="absolute h-2 bg-electric rounded-full"
           style={{
             left: `${minPercent}%`,
             right: `${100 - maxPercent}%`,
@@ -101,7 +103,7 @@ function DualRangeSlider({
           aria-valuemin={min}
           aria-valuemax={max}
           aria-valuenow={value[0]}
-          className="absolute w-full h-2 bg-transparent rounded-full appearance-none pointer-events-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-4 [&::-webkit-slider-thumb]:border-black [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:shadow-[2px_2px_0_#000] [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-4 [&::-moz-range-thumb]:border-black [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:pointer-events-auto [&:focus-visible]:[&::-webkit-slider-thumb]:outline [&:focus-visible]:[&::-webkit-slider-thumb]:outline-2 [&:focus-visible]:[&::-webkit-slider-thumb]:outline-offset-2 [&:focus-visible]:[&::-webkit-slider-thumb]:outline-[var(--color-electric-blue)]"
+          className="absolute w-full h-2 bg-transparent rounded-full appearance-none pointer-events-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-4 [&::-webkit-slider-thumb]:border-black [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:shadow-[2px_2px_0_#000] [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-4 [&::-moz-range-thumb]:border-black [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:pointer-events-auto [&:focus-visible]:[&::-webkit-slider-thumb]:outline [&:focus-visible]:[&::-webkit-slider-thumb]:outline-2 [&:focus-visible]:[&::-webkit-slider-thumb]:outline-offset-2 [&:focus-visible]:[&::-webkit-slider-thumb]:outline-electric"
           style={{ zIndex: value[0] > max - (max - min) / 2 ? 5 : 3 }}
         />
 
@@ -116,7 +118,7 @@ function DualRangeSlider({
           aria-valuemin={min}
           aria-valuemax={max}
           aria-valuenow={value[1]}
-          className="absolute w-full h-2 bg-transparent rounded-full appearance-none pointer-events-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-4 [&::-webkit-slider-thumb]:border-black [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:shadow-[2px_2px_0_#000] [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-4 [&::-moz-range-thumb]:border-black [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:pointer-events-auto [&:focus-visible]:[&::-webkit-slider-thumb]:outline [&:focus-visible]:[&::-webkit-slider-thumb]:outline-2 [&:focus-visible]:[&::-webkit-slider-thumb]:outline-offset-2 [&:focus-visible]:[&::-webkit-slider-thumb]:outline-[var(--color-electric-blue)]"
+          className="absolute w-full h-2 bg-transparent rounded-full appearance-none pointer-events-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-4 [&::-webkit-slider-thumb]:border-black [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:shadow-[2px_2px_0_#000] [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-4 [&::-moz-range-thumb]:border-black [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:pointer-events-auto [&:focus-visible]:[&::-webkit-slider-thumb]:outline [&:focus-visible]:[&::-webkit-slider-thumb]:outline-2 [&:focus-visible]:[&::-webkit-slider-thumb]:outline-offset-2 [&:focus-visible]:[&::-webkit-slider-thumb]:outline-electric"
           style={{ zIndex: value[1] < max - (max - min) / 2 ? 5 : 3 }}
         />
       </div>
@@ -285,37 +287,37 @@ export default function CollapsibleFilterPanel({
   }, [filters, competitions.length, yearRange]);
 
   return (
-    <div className="border-4 border-black bg-white">
+    <div className="rounded-lg border-[3px] border-ink bg-white shadow-brutal-sm">
       {/* Header / Toggle */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition"
+        className="flex w-full items-center justify-between rounded-lg px-4 py-3 transition-colors duration-200 hover:bg-cream"
         aria-expanded={isOpen}
       >
         <div className="flex items-center gap-2">
-          <span className="text-lg font-bold text-[var(--color-navy)]">Filters</span>
-          {activeFilterCount > 0 && (
-            <span className="text-xs font-bold bg-[var(--color-electric-blue)] text-white px-2 py-1 rounded">
-              {activeFilterCount} active
-            </span>
-          )}
+          <span className="text-lg font-bold text-navy">Filters</span>
+          {activeFilterCount > 0 && <Chip tone="type">{activeFilterCount} active</Chip>}
         </div>
+        {/* Chevron that flips when the panel is open. */}
         <svg
-          className={`w-6 h-6 transition-transform text-[var(--color-navy)] ${isOpen ? "rotate-180" : ""}`}
+          className={`h-5 w-5 text-navy transition-transform duration-200 ease-snappy ${isOpen ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
+          strokeWidth={2.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          <path d="M6 9l6 6 6-6" />
         </svg>
       </button>
 
       {/* Expanded content */}
       {isOpen && (
-        <div className="border-t-4 border-black px-4 py-4 space-y-6">
+        <div className="animate-rise-in space-y-6 border-t-[3px] border-ink px-4 py-4">
           {/* Year Range - Full Width */}
           <div>
-            <h3 className="text-sm font-bold text-[var(--color-navy)] mb-3">Year Range</h3>
+            <h3 className="text-sm font-bold text-navy mb-3">Year Range</h3>
             <DualRangeSlider
               min={yearRange.min}
               max={yearRange.max}
@@ -335,7 +337,7 @@ export default function CollapsibleFilterPanel({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Competitions */}
             <div>
-              <h3 className="text-sm font-bold text-[var(--color-navy)] mb-2">Competitions</h3>
+              <h3 className="text-sm font-bold text-navy mb-2">Competitions</h3>
               <div className="space-y-1">
                 <Checkbox
                   label="All competitions"
@@ -358,7 +360,7 @@ export default function CollapsibleFilterPanel({
 
             {/* Topics */}
             <div>
-              <h3 className="text-sm font-bold text-[var(--color-navy)] mb-2">Topics</h3>
+              <h3 className="text-sm font-bold text-navy mb-2">Topics</h3>
               <div className="space-y-1">
                 <Checkbox
                   label="All topics"
@@ -381,7 +383,7 @@ export default function CollapsibleFilterPanel({
 
             {/* Difficulty */}
             <div>
-              <h3 className="text-sm font-bold text-[var(--color-navy)] mb-2">Difficulty</h3>
+              <h3 className="text-sm font-bold text-navy mb-2">Difficulty</h3>
               <div className="space-y-1">
                 <Checkbox
                   label="All difficulties"
@@ -404,12 +406,9 @@ export default function CollapsibleFilterPanel({
           </div>
 
           {/* Reset button */}
-          <button
-            onClick={handleResetFilters}
-            className="w-full px-4 py-2 bg-[var(--color-navy)] text-white font-bold rounded-lg border-2 border-black hover:bg-[var(--color-navy)]/90 transition"
-          >
-            Reset Filters
-          </button>
+          <BrutalButton variant="ghost" size="sm" onClick={handleResetFilters}>
+            Reset filters
+          </BrutalButton>
         </div>
       )}
     </div>

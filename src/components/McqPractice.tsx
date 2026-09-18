@@ -5,6 +5,8 @@ import { PublicQuestion } from "@/data/mcq/types";
 import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/lib/auth";
 import QuestionFigure from "./QuestionFigure";
+import BrutalButton from "./ui/BrutalButton";
+import Chip from "./ui/Chip";
 
 // The graded result for one question, or one part of a multi-part item.
 type GradedPart = {
@@ -124,25 +126,21 @@ export default function McqPractice({
               {isMultiPart && (
                 <div className="mb-3">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded bg-[var(--color-navy)] px-2 py-1 text-xs font-bold text-[var(--color-yellow)]">
-                      Part {part.partLabel}
-                    </span>
-                    <span className="text-xs font-bold text-[var(--color-navy)]/60">
+                    <Chip tone="parts">Part {part.partLabel}</Chip>
+                    <span className="text-xs font-bold text-navy/60">
                       Question {part.questionNumber}
                     </span>
                     {graded && (
                       <span
-                        className={`rounded px-2 py-1 text-xs font-bold ${
-                          graded.isCorrect
-                            ? "bg-green-200 text-green-900"
-                            : "bg-red-200 text-red-900"
+                        className={`animate-pop-in rounded-md px-2 py-1 text-xs font-bold ${
+                          graded.isCorrect ? "bg-success text-white" : "bg-danger text-white"
                         }`}
                       >
                         {graded.isCorrect ? "✓ Correct" : "✗ Incorrect"}
                       </span>
                     )}
                   </div>
-                  <p className="mt-2 text-lg text-[var(--color-navy)]">{part.questionText}</p>
+                  <p className="mt-2 text-lg text-navy">{part.questionText}</p>
                   <QuestionFigure
                     assets={part.questionMedia?.assets as readonly string[] | undefined}
                     alt={`Figure for question ${part.questionNumber}`}
@@ -157,13 +155,13 @@ export default function McqPractice({
 
                   // After checking, mark the right answer green and a wrong
                   // pick red, so each part reads on its own.
-                  let tone = "bg-white text-[var(--color-navy)] hover:bg-[var(--color-cream)]";
+                  let tone = "bg-white text-navy hover:bg-cream hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-brutal-sm";
                   if (graded && isCorrectAnswer) {
-                    tone = "bg-green-200 text-green-900";
+                    tone = "bg-success text-white";
                   } else if (graded && isSelected) {
-                    tone = "bg-red-200 text-red-900";
+                    tone = "bg-danger text-white";
                   } else if (!graded && isSelected) {
-                    tone = "bg-[var(--color-electric-blue)] text-white";
+                    tone = "bg-navy text-yellow shadow-brutal-sm";
                   }
 
                   return (
@@ -171,7 +169,7 @@ export default function McqPractice({
                       key={choice.label}
                       type="button"
                       onClick={() => selectAnswer(part.id, choice.label)}
-                      className={`block w-full rounded-lg border-4 border-black px-4 py-3 text-left font-medium transition ${tone}`}
+                      className={`block w-full rounded-lg border-[3px] border-ink px-4 py-3 text-left font-medium transition-[translate,box-shadow,background-color,color] duration-200 ease-snappy ${tone}`}
                     >
                       <span className="font-bold">{choice.label}.</span> {choice.text}
                     </button>
@@ -181,17 +179,17 @@ export default function McqPractice({
 
               {/* Each part gets its own explanation and solution figure. */}
               {graded && (
-                <div className="mt-4 rounded-lg border-4 border-black bg-[var(--color-cream)] p-4">
-                  <h3 className="font-bold text-[var(--color-purple)]">
+                <div className="mt-4 animate-rise-in rounded-lg border-[3px] border-ink bg-cream p-4">
+                  <h3 className="font-bold text-purple">
                     {isMultiPart ? `Part ${part.partLabel} — Explanation` : "Explanation"}
                   </h3>
-                  <p className="mt-1 text-[var(--color-navy)]">{graded.explanation}</p>
+                  <p className="mt-1 text-navy">{graded.explanation}</p>
                   <QuestionFigure
                     assets={graded.solutionMediaAssets}
                     alt={`Solution figure for question ${part.questionNumber}`}
                   />
                   {graded.solutionMediaMissing && (
-                    <p className="mt-2 text-sm font-bold text-[var(--color-purple)]">
+                    <p className="mt-2 text-sm font-bold text-purple">
                       Solution figure coming soon.
                     </p>
                   )}
@@ -203,32 +201,33 @@ export default function McqPractice({
       </div>
 
       {!user && (
-        <p className="mt-4 text-sm font-bold text-[var(--color-purple)]">
+        <p className="mt-4 text-sm font-bold text-purple">
           Sign in to save your progress.
         </p>
       )}
 
-      {checkError && <p className="mt-3 text-sm font-bold text-red-700">{checkError}</p>}
+      {checkError && <p className="mt-3 text-sm font-bold text-danger">{checkError}</p>}
 
-      <button
-        type="button"
+      <BrutalButton
+        variant="accent"
+        className="mt-4"
         disabled={!allAnswered || checking}
         onClick={handleCheckAnswer}
-        className="mt-4 rounded-lg border-4 border-black bg-[var(--color-yellow)] px-6 py-2 font-bold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {checking ? "Checking..." : isMultiPart ? "Check Both Parts" : "Check Answer"}
-      </button>
+        {checking ? "Checking..." : isMultiPart ? "Check both parts" : "Check answer"}
+      </BrutalButton>
 
       {isMultiPart && !allAnswered && !result && (
-        <p className="mt-2 text-sm font-bold text-[var(--color-navy)]/60">
+        <p className="mt-2 text-sm font-bold text-navy/60">
           Answer both parts to check. Both must be correct to count as correct.
         </p>
       )}
 
       {result && (
         <div
-          className={`mt-4 rounded-lg border-4 border-black p-4 font-bold ${
-            result.isCorrect ? "bg-green-200 text-green-900" : "bg-red-200 text-red-900"
+          role="status"
+          className={`mt-4 animate-pop-in rounded-lg border-[3px] border-ink p-4 font-bold shadow-brutal-sm ${
+            result.isCorrect ? "bg-success text-white" : "bg-danger text-white"
           }`}
         >
           {!isMultiPart &&

@@ -5,38 +5,38 @@ import BrutalCard from "@/components/BrutalCard";
 export default function AboutPage() {
   return (
     <PageContainer>
-      <h1 className="text-3xl font-extrabold text-[var(--color-navy)] sm:text-4xl">
+      <h1 className="text-3xl font-extrabold text-navy sm:text-4xl">
         About Astro Coach
       </h1>
 
       <div className="mt-8 space-y-6">
-        <BrutalCard className="bg-[var(--color-cream)]">
-          <h2 className="text-xl font-bold text-[var(--color-purple)]">
+        <BrutalCard tone="cream">
+          <h2 className="text-xl font-bold text-purple">
             What Astro Coach Is
           </h2>
-          <p className="mt-2 text-[var(--color-navy)]">
+          <p className="mt-2 text-navy">
             Astro Coach is an independent educational project that helps
             students prepare for astronomy olympiads by organizing
             competition guides and practice questions in one place.
           </p>
         </BrutalCard>
 
-        <BrutalCard className="bg-[var(--color-cream)]">
-          <h2 className="text-xl font-bold text-[var(--color-purple)]">
+        <BrutalCard tone="cream">
+          <h2 className="text-xl font-bold text-purple">
             Independence Notice
           </h2>
-          <p className="mt-2 text-[var(--color-navy)]">
+          <p className="mt-2 text-navy">
             Astro Coach is not affiliated with USAAAO, IAAC, IOAA, IAO,
             Science Olympiad, or any other official competition
             organization.
           </p>
         </BrutalCard>
 
-        <BrutalCard className="bg-[var(--color-cream)]">
-          <h2 className="text-xl font-bold text-[var(--color-purple)]">
+        <BrutalCard tone="cream">
+          <h2 className="text-xl font-bold text-purple">
             Source Policy
           </h2>
-          <p className="mt-2 text-[var(--color-navy)]">
+          <p className="mt-2 text-navy">
             Real competition questions will only be added once each question
             has full source metadata, including the competition name, year,
             round, source URL, and permission status. Only official or
@@ -47,11 +47,11 @@ export default function AboutPage() {
           </p>
         </BrutalCard>
 
-        <BrutalCard className="bg-[var(--color-cream)]">
-          <h2 className="text-xl font-bold text-[var(--color-purple)]">
+        <BrutalCard tone="cream">
+          <h2 className="text-xl font-bold text-purple">
             Takedown and Contact Policy
           </h2>
-          <p className="mt-2 text-[var(--color-navy)]">
+          <p className="mt-2 text-navy">
             If you believe any content on Astro Coach should be removed or
             corrected, a contact and takedown process will be added here
             before public launch.

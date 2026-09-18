@@ -14,6 +14,7 @@ import type { FrqDetail } from "@/lib/pro/frq-service";
 import ConfirmDialog from "./ConfirmDialog";
 import GradeResult, { type Feedback, type PartScore } from "./GradeResult";
 import SolutionUploader, { type PendingFile } from "./SolutionUploader";
+import LoadingStar from "../ui/LoadingStar";
 
 type Dialog = "none" | "submit" | "giveUp";
 
@@ -121,10 +122,10 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
   }
 
   if (loadError) {
-    return <p className="rounded-lg border-4 border-black bg-red-100 p-4">{loadError}</p>;
+    return <p className="rounded-lg border-[3px] border-danger bg-white p-4">{loadError}</p>;
   }
   if (!detail) {
-    return <p className="text-[var(--color-navy)]">Loading question…</p>;
+    return <LoadingStar label="Loading question…" />;
   }
 
   const { meta, content, solution, attempts, state } = detail;
@@ -135,27 +136,27 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
       {/* 1. Metadata — always visible, even when the question is locked. */}
       <header>
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded border-2 border-black bg-[var(--color-purple)] px-2 py-0.5 text-xs font-extrabold uppercase text-white">
+          <span className="rounded border-2 border-ink bg-purple px-2 py-0.5 text-xs font-extrabold uppercase text-white">
             FRQ
           </span>
-          <span className="rounded border-2 border-black bg-[var(--color-yellow)] px-2 py-0.5 text-xs font-extrabold text-[var(--color-navy)]">
+          <span className="rounded border-2 border-ink bg-yellow px-2 py-0.5 text-xs font-extrabold text-navy">
             {meta.totalPoints} points
           </span>
-          <span className="rounded border-2 border-black bg-white px-2 py-0.5 text-xs font-semibold text-[var(--color-navy)]">
+          <span className="rounded border-2 border-ink bg-white px-2 py-0.5 text-xs font-semibold text-navy">
             {meta.primaryCurriculumTopic}
           </span>
         </div>
 
-        <h1 className="mt-3 text-3xl font-extrabold text-[var(--color-navy)]">
+        <h1 className="mt-3 text-3xl font-extrabold text-navy">
           {meta.competition} {meta.year} — Question {meta.questionNumber}
         </h1>
-        <p className="text-[var(--color-navy)]/70">{meta.examName}</p>
+        <p className="text-navy/70">{meta.examName}</p>
       </header>
 
       {/* 2 & 3. The question itself, or the Pro wall in its place. */}
       {content ? (
-        <section className="rounded-xl border-4 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-          <p className="whitespace-pre-wrap text-[var(--color-navy)]">{content.questionText}</p>
+        <section className="rounded-xl border-[3px] border-ink bg-white p-6 shadow-brutal">
+          <p className="whitespace-pre-wrap text-navy">{content.questionText}</p>
 
           {content.figures.length > 0 && (
             <div className="mt-4 space-y-4">
@@ -166,10 +167,10 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
                   <img
                     src={figure.url}
                     alt={figure.caption ?? "Question figure"}
-                    className="w-full rounded-lg border-4 border-black"
+                    className="w-full rounded-lg border-[3px] border-ink"
                   />
                   {figure.caption && (
-                    <figcaption className="mt-1 text-xs text-[var(--color-navy)]/70">
+                    <figcaption className="mt-1 text-xs text-navy/70">
                       {figure.caption}
                     </figcaption>
                   )}
@@ -181,11 +182,11 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
           {content.parts.length > 0 && (
             <ol className="mt-6 space-y-4">
               {content.parts.map((part) => (
-                <li key={part.id} className="rounded-lg border-2 border-black bg-[var(--color-cream)] p-4">
-                  <p className="font-extrabold text-[var(--color-navy)]">
+                <li key={part.id} className="rounded-lg border-2 border-ink bg-cream p-4">
+                  <p className="font-extrabold text-navy">
                     {part.label} <span className="font-normal">({part.maxPoints} points)</span>
                   </p>
-                  <p className="mt-1 whitespace-pre-wrap text-[var(--color-navy)]">{part.prompt}</p>
+                  <p className="mt-1 whitespace-pre-wrap text-navy">{part.prompt}</p>
                 </li>
               ))}
             </ol>
@@ -198,9 +199,9 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
       {/* 4–9. The workspace, only when the student can read the question. */}
       {content && (
         <section className="space-y-4">
-          <h2 className="text-2xl font-extrabold text-[var(--color-navy)]">Your solution</h2>
+          <h2 className="text-2xl font-extrabold text-navy">Your solution</h2>
 
-          <label className="block font-bold text-[var(--color-navy)]">
+          <label className="block font-bold text-navy">
             Typed working
             <textarea
               value={typedResponse}
@@ -208,7 +209,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
               rows={10}
               disabled={!state.canSubmit || busy}
               placeholder="Set out your reasoning here. You can also, or instead, upload photos of handwritten work."
-              className="mt-2 w-full rounded-lg border-4 border-black bg-white p-3 font-normal text-[var(--color-navy)] focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)] disabled:bg-gray-100"
+              className="mt-2 w-full rounded-lg border-[3px] border-ink bg-white p-3 font-normal text-navy focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:bg-navy/5"
             />
           </label>
 
@@ -223,7 +224,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
           {submitError && (
             <p
               role="alert"
-              className="rounded-lg border-4 border-black bg-red-100 p-4 text-sm font-semibold text-[var(--color-navy)]"
+              className="rounded-lg border-[3px] border-danger bg-white p-4 text-sm font-semibold text-navy"
             >
               {submitError}
             </p>
@@ -232,7 +233,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
           {status && (
             <p
               role="status"
-              className="rounded-lg border-4 border-black bg-[var(--color-yellow)]/40 p-4 text-sm font-bold text-[var(--color-navy)]"
+              className="rounded-lg border-[3px] border-ink bg-yellow/40 p-4 text-sm font-bold text-navy"
             >
               {status}
             </p>
@@ -243,7 +244,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
               type="button"
               onClick={() => setDialog("submit")}
               disabled={!state.canSubmit || !hasWork || busy}
-              className="rounded-lg border-4 border-black bg-[var(--color-yellow)] px-6 py-3 font-extrabold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+              className="rounded-lg border-[3px] border-ink bg-yellow px-6 py-3 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-x-0 disabled:hover:translate-y-0"
             >
               Submit for grading
             </button>
@@ -253,7 +254,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
                 type="button"
                 onClick={() => setDialog("giveUp")}
                 disabled={busy}
-                className="rounded-lg border-4 border-black bg-white px-6 py-3 font-bold text-[var(--color-navy)] transition hover:bg-gray-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)] disabled:opacity-50"
+                className="rounded-lg border-[3px] border-ink bg-white px-6 py-3 font-bold text-navy transition hover:bg-cream focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50"
               >
                 Give up &amp; view solution
               </button>
@@ -262,12 +263,12 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
 
           {/* A disabled button always says why it is disabled. */}
           {!state.canSubmit && (
-            <p className="text-sm font-semibold text-[var(--color-navy)]/80">
+            <p className="text-sm font-semibold text-navy/80">
               {disabledExplanation(state.blockedReason)}
             </p>
           )}
           {state.canSubmit && !hasWork && (
-            <p className="text-sm text-[var(--color-navy)]/70">
+            <p className="text-sm text-navy/70">
               Type your working or upload a page to enable grading.
             </p>
           )}
@@ -277,7 +278,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
       {/* 11 & 12. Every attempt, newest last, loaded from the database. */}
       {attempts.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-2xl font-extrabold text-[var(--color-navy)]">Your attempts</h2>
+          <h2 className="text-2xl font-extrabold text-navy">Your attempts</h2>
           {attempts.map((attempt) => (
             <GradeResult
               key={attempt.id}
@@ -296,12 +297,12 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
 
       {/* 13. The official solution, only once it has genuinely been unlocked. */}
       {solution && (
-        <section className="rounded-xl border-4 border-black bg-[var(--color-cream)] p-6 shadow-[6px_6px_0_0_#000]">
-          <h2 className="text-2xl font-extrabold text-[var(--color-navy)]">Official solution</h2>
-          <p className="mt-1 text-sm text-[var(--color-navy)]/70">{unlockExplanation(solution.reason)}</p>
+        <section className="rounded-xl border-[3px] border-ink bg-cream p-6 shadow-brutal">
+          <h2 className="text-2xl font-extrabold text-navy">Official solution</h2>
+          <p className="mt-1 text-sm text-navy/70">{unlockExplanation(solution.reason)}</p>
 
           {solution.questionSolution && (
-            <p className="mt-4 whitespace-pre-wrap text-[var(--color-navy)]">
+            <p className="mt-4 whitespace-pre-wrap text-navy">
               {solution.questionSolution}
             </p>
           )}
@@ -311,9 +312,9 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
               {solution.parts
                 .filter((part) => part.officialSolution)
                 .map((part) => (
-                  <li key={part.label} className="rounded-lg border-2 border-black bg-white p-4">
-                    <p className="font-extrabold text-[var(--color-navy)]">{part.label}</p>
-                    <p className="mt-1 whitespace-pre-wrap text-[var(--color-navy)]">
+                  <li key={part.label} className="rounded-lg border-2 border-ink bg-white p-4">
+                    <p className="font-extrabold text-navy">{part.label}</p>
+                    <p className="mt-1 whitespace-pre-wrap text-navy">
                       {part.officialSolution}
                     </p>
                   </li>
@@ -327,7 +328,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
               key={figure.id}
               src={figure.url}
               alt={figure.caption ?? "Solution figure"}
-              className="mt-4 w-full rounded-lg border-4 border-black"
+              className="mt-4 w-full rounded-lg border-[3px] border-ink"
             />
           ))}
         </section>
@@ -375,7 +376,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
 
 function AttemptState({ state }: { state: FrqDetail["state"] }) {
   return (
-    <div className="flex flex-wrap gap-4 rounded-lg border-4 border-black bg-[var(--color-cream)] p-4 text-sm font-bold text-[var(--color-navy)]">
+    <div className="flex flex-wrap gap-4 rounded-lg border-[3px] border-ink bg-cream p-4 text-sm font-bold text-navy">
       <span>
         Graded attempts used: {state.attemptsUsed} of {state.maxAttempts}
       </span>
@@ -388,7 +389,7 @@ function AttemptState({ state }: { state: FrqDetail["state"] }) {
 
 function LockedQuestionNotice() {
   return (
-    <section className="rounded-xl border-4 border-black bg-[var(--color-purple)] p-6 text-white shadow-[6px_6px_0_0_#000]">
+    <section className="rounded-xl border-[3px] border-ink bg-purple p-6 text-white shadow-brutal">
       <h2 className="text-2xl font-extrabold">This question is part of Astro Coach Pro</h2>
       <p className="mt-2 text-white/90">
         You have used your 3 free AI grades. Everything you have already
@@ -402,7 +403,7 @@ function LockedQuestionNotice() {
       </ul>
       <Link
         href="/pricing"
-        className="mt-5 inline-block rounded-lg border-4 border-black bg-[var(--color-yellow)] px-6 py-3 font-extrabold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+        className="mt-5 inline-block rounded-lg border-[3px] border-ink bg-yellow px-6 py-3 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
       >
         Unlock Astro Coach Pro
       </Link>

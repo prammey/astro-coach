@@ -53,14 +53,14 @@ export default function SubscriptionCard() {
   const { isPro, status, credits, currentPeriodEnd, isFoundingPrice } = entitlements;
 
   return (
-    <div className="rounded-xl border-4 border-black bg-[var(--color-cream)] p-6 shadow-[6px_6px_0_0_#000]">
+    <div className="rounded-xl border-[3px] border-ink bg-cream p-6 shadow-brutal">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <p className="text-sm text-[var(--color-navy)]">Your plan</p>
-          <p className="text-2xl font-extrabold text-[var(--color-navy)]">
+          <p className="text-sm text-navy">Your plan</p>
+          <p className="text-2xl font-extrabold text-navy">
             {isPro ? "Astro Coach Pro" : "Free"}
             {isPro && isFoundingPrice && (
-              <span className="ml-2 rounded border-2 border-black bg-[var(--color-yellow)] px-2 py-0.5 align-middle text-xs font-extrabold">
+              <span className="ml-2 rounded border-2 border-ink bg-yellow px-2 py-0.5 align-middle text-xs font-extrabold">
                 FOUNDING PRICE
               </span>
             )}
@@ -68,19 +68,19 @@ export default function SubscriptionCard() {
         </div>
 
         <div className="text-right">
-          <p className="text-sm text-[var(--color-navy)]">AI grades left</p>
-          <p className="text-2xl font-extrabold text-[var(--color-purple)]">
+          <p className="text-sm text-navy">AI grades left</p>
+          <p className="text-2xl font-extrabold text-purple">
             {credits.remaining} / {credits.total}
           </p>
         </div>
       </div>
 
-      <p className="mt-3 text-sm text-[var(--color-navy)]/80">
+      <p className="mt-3 text-sm text-navy/80">
         {statusLine(status, credits.resetsAt, currentPeriodEnd)}
       </p>
 
       {error && (
-        <p role="alert" className="mt-3 text-sm font-semibold text-red-700">
+        <p role="alert" className="mt-3 text-sm font-semibold text-danger">
           {error}
         </p>
       )}
@@ -91,7 +91,7 @@ export default function SubscriptionCard() {
             type="button"
             onClick={() => run(openBillingPortal)}
             disabled={busy}
-            className="rounded-lg border-4 border-black bg-white px-5 py-2 font-bold text-[var(--color-navy)] transition hover:bg-gray-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)] disabled:opacity-60"
+            className="rounded-lg border-[3px] border-ink bg-white px-5 py-2 font-bold text-navy transition hover:bg-cream focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-60"
           >
             {busy ? "Opening…" : "Manage subscription"}
           </button>
@@ -101,13 +101,13 @@ export default function SubscriptionCard() {
               type="button"
               onClick={() => run(startProCheckout)}
               disabled={busy}
-              className="rounded-lg border-4 border-black bg-[var(--color-yellow)] px-5 py-2 font-extrabold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)] disabled:opacity-60"
+              className="rounded-lg border-[3px] border-ink bg-yellow px-5 py-2 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-60"
             >
               {busy ? "Opening…" : `Unlock Pro — $${PUBLIC_PRO_CONFIG.foundingPriceUsd}/mo`}
             </button>
             <Link
               href="/pricing"
-              className="rounded-lg border-4 border-black bg-white px-5 py-2 font-bold text-[var(--color-navy)] transition hover:bg-gray-100"
+              className="rounded-lg border-[3px] border-ink bg-white px-5 py-2 font-bold text-navy transition hover:bg-cream"
             >
               See what Pro includes
             </Link>

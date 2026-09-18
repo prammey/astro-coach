@@ -7,6 +7,7 @@ import BrutalCard from '@/components/BrutalCard';
 import QuestionView from '@/components/QuestionView';
 import { useTrainingMode } from '@/lib/training-mode-context';
 import { PublicQuestion } from '@/data/mcq/types';
+import LoadingStar from '@/components/ui/LoadingStar';
 
 export const dynamic = 'force-dynamic';
 
@@ -46,8 +47,8 @@ export default function TrainingModePage() {
   if (loading) {
     return (
       <PageContainer>
-        <div className="py-8 text-center">
-          <p className="font-bold text-[var(--color-navy)]">Loading question...</p>
+        <div className="flex justify-center py-8">
+          <LoadingStar label="Loading question…" />
         </div>
       </PageContainer>
     );
@@ -64,8 +65,8 @@ export default function TrainingModePage() {
         // and any selected choices reset between questions.
         <QuestionView key={currentQuestionId} question={question} />
       ) : (
-        <BrutalCard className="border-4 border-black bg-[var(--color-yellow)]">
-          <p className="font-bold text-[var(--color-navy)]">Question not found</p>
+        <BrutalCard tone="yellow">
+          <p className="font-bold">Question not found</p>
         </BrutalCard>
       )}
     </PageContainer>

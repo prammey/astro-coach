@@ -25,13 +25,13 @@ export default function OlympiadCard({ data }: { data: OlympiadCardData }) {
 
   return (
     <div
-      className="rounded-xl border-4 border-black p-6 shadow-[6px_6px_0_0_#000]"
+      className="rounded-xl border-[3px] border-ink p-6 shadow-brutal transition-[translate,box-shadow] duration-200 ease-snappy hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-brutal-lg"
       style={{ backgroundColor: colors.background, color: colors.text }}
     >
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h3 className="text-2xl font-extrabold">{data.name}</h3>
         <span
-          className="rounded-full border-2 border-black px-3 py-1 text-xs font-bold"
+          className="rounded-full border-2 border-ink px-3 py-1 text-xs font-bold"
           style={{ backgroundColor: colors.text, color: colors.background }}
         >
           {data.difficultyLabel}
