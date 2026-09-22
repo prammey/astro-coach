@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import katex from "katex";
+import MathText from "@/components/MathText";
 import { realQuestionCatalog } from "../catalog.server";
 import { allMcqExplanations } from "./index";
 import type { CatalogQuestion } from "../types";
@@ -114,6 +117,24 @@ describe("MCQ explanations", () => {
     }
 
     expect(broken).toEqual([]);
+  });
+
+  it("every string renders through MathText with no stray delimiters", () => {
+    const problems: string[] = [];
+
+    for (const [id, explanation] of Object.entries(allMcqExplanations)) {
+      for (const text of allTextIn(explanation)) {
+        const html = renderToStaticMarkup(createElement(MathText, { text }));
+        // React escapes prose, so a literal "$" or "**" left in the visible
+        // text means a delimiter was never matched up.
+        const visible = html.replace(/<[^>]+>/g, "");
+        if (visible.includes("**")) problems.push(`${id}: stray ** in "${text.slice(0, 60)}"`);
+        if (visible.includes("$")) problems.push(`${id}: stray $ in "${text.slice(0, 60)}"`);
+        if (html.includes("katex-error")) problems.push(`${id}: KaTeX error in "${text.slice(0, 60)}"`);
+      }
+    }
+
+    expect(problems).toEqual([]);
   });
 
   it("every question in the bank has an explanation", () => {

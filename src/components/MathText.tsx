@@ -66,9 +66,11 @@ function renderMath(tex: string, display: boolean): string {
 function renderSegments(text: string): ReactNode[] {
   return splitSegments(text).map((segment, index) => {
     if (segment.kind === "bold") {
+      // Bold text can itself contain maths, e.g. "**$100\times$**", so the
+      // inside is split and rendered the same way.
       return (
         <strong key={index} className="font-bold">
-          {segment.value}
+          {renderSegments(segment.value)}
         </strong>
       );
     }
