@@ -54,7 +54,7 @@ export const explanations: McqExplanationMap = {
       r`So helium delivers about ten times **less energy per kilogram** of fuel. A helium-burning star, which is also more luminous, has to consume its fuel much faster to keep shining, so the helium is gone in a small fraction of the time the hydrogen lasted.`,
     ],
     wrongChoices: {
-      A: r`Stars do use up their core helium; that is what ends the horizontal-branch phase. The question is why it happens so quickly, and the answer is in the energy budget.`,
+      A: r`Stars do use up their core helium; that is what ends the horizontal-branch phase. The question is why it happens so quickly, and that comes down to the energy budget.`,
       B: r`The core **is** hotter during helium burning, which helps the reactions go, but the fundamental reason a given mass of helium lasts so much less time is that each reaction yields far less energy, so more fuel must be burned per second.`,
       C: r`The amount of helium is not small by the time helium burning starts; the core is almost pure helium. The short lifetime comes from the poor energy yield of the fuel.`,
       E: r`One of the listed reasons is correct: the energy released per helium-burning reaction is much smaller than for hydrogen.`,
