@@ -3,6 +3,7 @@
 // allowed to send to the browser before a learner answers a question.
 
 import type { CurriculumTopic } from "./topicTaxonomy";
+import type { McqExplanation } from "./explanations/types";
 
 // One multiple-choice option, e.g. { label: "A", text: "Delphinus" }.
 export type McqChoice = {
@@ -59,6 +60,11 @@ export type CatalogQuestion = RawMcqQuestion & {
   id: string;
   primaryCurriculumTopic: CurriculumTopic;
   curriculumTopics: CurriculumTopic[];
+  // The full teaching explanation (worked solution, why each wrong choice
+  // is wrong, key takeaway), attached by the catalog from the explanations
+  // folder. Undefined for a question that has not been written up yet, in
+  // which case the short `explanation` sentence above is the fallback.
+  detailedExplanation?: McqExplanation;
   // Present only on a multi-part item. Each entry is one part (A, B, ...)
   // and carries its own prompt, choices, answer and explanation. When this
   // is set, the item's own questionText/correctAnswer are the first part's
@@ -73,7 +79,7 @@ export type CatalogQuestion = RawMcqQuestion & {
 // Includes curriculum topics for filtering and display.
 export type PublicQuestion = Omit<
   CatalogQuestion,
-  "correctAnswer" | "explanation" | "solutionMedia" | "parts"
+  "correctAnswer" | "explanation" | "detailedExplanation" | "solutionMedia" | "parts"
 > & {
   questionMediaMissing: boolean;
   hasSolutionMedia: boolean;

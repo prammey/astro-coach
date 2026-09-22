@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
+// Typesetting styles for the maths in MCQ explanations (see MathText).
+import "katex/dist/katex.min.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/lib/auth-context";
