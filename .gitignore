@@ -47,3 +47,7 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+
+# Official exam PDFs used for auditing the question bank. Never committed:
+# they are third-party copyright and must not be rehosted on GitHub.
+source-pdfs/
