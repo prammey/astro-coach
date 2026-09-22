@@ -15,7 +15,7 @@ here checked out.
 | usaaao-2016-first-round-q2 | A (6.00π) | Ellipse with perihelion 1.5 AU and aphelion 4.5 AU has a = 3, b = √6.75 ≈ 2.6, area πab ≈ 7.8π AU², which is not among the choices. The key's 6.00π cannot be derived; the explanation teaches πab and says so. |
 | usaaao-2016-first-round-q7 | C (2543 m/s) | With r₁ = 6571 km, r₂ = 42,157 km and GM = 3.986×10¹⁴, Δv = 10,245 − 7,788 ≈ 2457 m/s, closer to choice B (2441) than to the key. The explanation follows the key but notes the discrepancy. |
 | usaaao-2017-first-round-q22 | B (85 pc) | Using R_hot = 2 R☉, R_cold = 3.3 R☉, T = 8000/6000 K and m = 8.2, the luminosity sum gives M ≈ 1.2 and d ≈ 250 pc, not 85 pc. The key cannot be reproduced from the graph readings; the explanation teaches the method and says so. |
-| usaaao-2017-first-round-q27 | B (0.9×10⁻⁵ arcsec) | 1.22λ/D = 3.3×10⁻⁷ rad ≈ 0.07″. The printed options have wrong units and the source says the question was excluded from grading. Explanation gives the correct physics and states the issue. Consider unpublishing. |
+| usaaao-2017-first-round-q27 | B (1.9×10⁻⁵ arcsec) | 1.22λ/D = 3.3×10⁻⁷ rad ≈ 0.07″ = 1.86×10⁻⁵ **degrees**. The official options say arcsec, and the source says the question was excluded from grading. Choice text was corrected to the official PDF (1.5/1.9/2.2/1.5/1.9) in the Sept 2026 audit; the explanation gives the correct physics and states the issue. Consider unpublishing. |
 | usaaao-2019-first-round-q24 | D (alt diff 11°, zenith diff 13°) | The 13° zenith-distance difference is solid. The altitude difference depends on how the 2.4° horizon dip at 5790 m is applied; measuring altitude above the visible (dipped) horizon would give 15° (choice A). The explanation follows the official solution (11°) and notes the dip. |
 | usaaao-2020-first-round-q12 | C (42 yr, 9h28m) | The 42-year polar half is solid. For part II, cos H = −tan(30°5′)tan(10°) gives H ≈ 96° and a day of about 9 h 11 min, not 9 h 28 min. Choice C is still the only option consistent with 42 years; the explanation says the listed value is the pairing option. |
 | usaaao-2020-first-round-q23 | A (−3.06×10⁴⁸ J) | The key assumes circular-orbit energy −GMm/(2r). Note that 1 km from a 23.2 M☉ black hole is inside its 68 km Schwarzschild radius, so the setup is unphysical; explanation follows the key's Newtonian intent. |
@@ -24,4 +24,28 @@ here checked out.
 | usaaao-2021-first-round-q27 | D ((2/3)GMm/R) | The key uses the potential-energy drop from 3R to R. For Keplerian orbits the radiated energy would be GMm/(3R), not listed. Explanation follows the key and notes this. |
 | usaaao-2025-first-round-q20 | A (43° W) | The 2 h 52 min gap between local mean sunrise (05:52) and the 03:00 UTC watch reading gives 43°, but a local time later than UTC places the ship east of Greenwich, contradicting the westward voyage. The explanation follows the key's 43° W and notes the inconsistency. |
 | iaac-2021-final-round-q18 | D (244 · 10⁹) | 1.22λ/D = 2.44×10⁻⁷ rad = 244×10⁻⁹ rad. The printed options have lost the minus sign in the exponent. Explanation states the intended reading; consider fixing the option text to 244 × 10⁻⁹ rad. |
-| iaac-2021-final-round-q19 | A (√(8/3) c) | **Key is wrong.** γ = 3 gives v = √(1 − 1/9) c = √(8/9) c, which is option C. Option A exceeds the speed of light. The explanation teaches the correct physics and says the key appears wrong. **Fix the stored correctAnswer to C.** |
+| iaac-2021-final-round-q19 | C (√(8/9) c) — **fixed Sept 2026** | γ = 3 gives v = √(1 − 1/9) c = √(8/9) c, option C. The official IAAC solution sheet prints A, which exceeds the speed of light, so the sheet has a typo. The stored key was changed from A to C and the explanation rewritten. |
+
+## Source audit — September 2026
+
+Every stored MCQ (736 questions, 30 exams) was checked against the official
+exam and solution PDFs kept locally in `source-pdfs/` (gitignored):
+question number, question text, choice text and order, and answer key.
+
+- **Numbering**: every stored question number matches the official PDF for
+  all 30 exams. IAAC 2021 q19 is the Lorentz-factor question and q20 is the
+  solar-eclipse question, exactly as stored.
+- **Answer keys**: all stored keys match the official keys, except IAAC
+  2021 q19 (fixed above). IAAC 2021 q31–40 have no official key sheet; they
+  were verified by working the physics.
+- **Text**: USAAAO 2014–2023, all IAAC and all BAAO questions are verbatim.
+  USAAAO 2024, 2025 and 2026 are stored as faithful paraphrases (shorter
+  wording, same numbers, same choices, same key); questions that depend on
+  a figure say so. USAAAO 2019 q4/q24 and 2020 q23 restate context from the
+  previous question so they stand alone.
+- **Choice text**: verbatim everywhere except USAAAO 2017 q27 (fixed above).
+- **Deliberately omitted**: USAAAO 2024 q23 and q30 are marked VOIDED on the
+  official exam and are not in the bank.
+- **Known source typos kept as printed**: IAAC 2021 q18 options say 10⁹ where
+  10⁻⁹ is meant (explanation says so); USAAAO 2017 q12 letters the choices
+  a, c, b, d, e in the PDF (stored in normal order, key unchanged).

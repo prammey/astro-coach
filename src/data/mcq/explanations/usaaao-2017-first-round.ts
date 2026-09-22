@@ -393,7 +393,7 @@ export const explanations: McqExplanationMap = {
     solution: [
       r`The diffraction limit is $\theta = 1.22\,\dfrac{\lambda}{D} = 1.22 \times \dfrac{1.2 \times 10^{-6}}{4.5} \approx 3.3 \times 10^{-7}$ rad.`,
       r`Converting with $206{,}265''$ per radian gives about **0.07 arcseconds**.`,
-      r`None of the printed options matches this correctly; the answer options were printed with the wrong units, and the question was excluded from grading in the original exam. The official key nonetheless marks $0.9 \times 10^{-5}$ arcsec. Take the method from this question, not the number.`,
+      r`None of the printed options matches this correctly; the answer options were printed with the wrong units, and the question was excluded from grading in the original exam. The official key nonetheless marks $1.9 \times 10^{-5}$: that number is right in **degrees** ($1.86 \times 10^{-5}$ degrees $\approx 0.07''$), but the options say arcsec. Take the method from this question, not the printed unit.`,
     ],
     wrongChoices: {
       A: r`This is not the keyed option. Note that the options' units do not match a real diffraction limit (about 0.07″ here); compute $1.22\lambda/D$ in radians and convert to arcseconds.`,

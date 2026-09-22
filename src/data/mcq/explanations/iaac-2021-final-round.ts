@@ -226,15 +226,16 @@ export const explanations: McqExplanationMap = {
 
   "iaac-2021-final-round-q19": {
     solution: [
-      r`From $\gamma = \dfrac{1}{\sqrt{1 - v^2/c^2}}$: $\dfrac{v^2}{c^2} = 1 - \dfrac{1}{\gamma^2} = 1 - \dfrac{1}{9} = \dfrac{8}{9}$, so $v = \sqrt{8/9}\,c \approx 0.943c$.`,
-      r`**Important:** the stored answer key marks option A, $\sqrt{8/3}\,c$, but that is faster than light and cannot be right; the physics gives $\sqrt{8/9}\,c$, which is option C. Trust the derivation.`,
+      r`The Lorentz factor is $\gamma = \dfrac{1}{\sqrt{1 - v^2/c^2}}$. Square it and rearrange: $\dfrac{v^2}{c^2} = 1 - \dfrac{1}{\gamma^2}$.`,
+      r`With $\gamma = 3$: $\dfrac{v^2}{c^2} = 1 - \dfrac{1}{9} = \dfrac{8}{9}$, so $v = \sqrt{8/9}\,c \approx 0.943c$.`,
+      r`**Sanity check:** every answer must be slower than light. Options A, B and D are all bigger than $c$, so only C can be right. (The competition's printed solution sheet lists A for this question, which is a typo; the exam PDF's choices confirm C.)`,
     ],
     wrongChoices: {
+      A: r`$\sqrt{8/3} \approx 1.63$, so this speed would be faster than light. Nothing with mass can reach $c$. Solve $\gamma = 1/\sqrt{1 - v^2/c^2}$ for $v$ and check your value is below $c$.`,
       B: r`$3/\sqrt{8} \approx 1.06$, faster than light. No massive object can reach $c$.`,
-      C: r`This is actually what the Lorentz-factor formula gives: $v = c\sqrt{1 - 1/\gamma^2} = \sqrt{8/9}\,c$. The stored key marks a different option, which appears to be an error in the key.`,
       D: r`$9/\sqrt{8} \approx 3.2$, more than three times the speed of light.`,
     },
-    takeaway: r`v = c √(1 − 1/γ²); for γ = 3 that is √(8/9) c ≈ 0.94c.`,
+    takeaway: r`v = c √(1 − 1/γ²); for γ = 3 that is √(8/9) c ≈ 0.94c, and a real speed is always below c.`,
   },
 
   "iaac-2021-final-round-q20": {

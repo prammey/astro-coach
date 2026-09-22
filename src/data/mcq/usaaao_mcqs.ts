@@ -5549,16 +5549,16 @@ export const usaaaoMcqs = [
   questionText: "What is the diffraction limit of a 4.5-meter telescope if we are measuring at a wavelength of 1.2 μm?",
 
   choices: [
-    { label: "A", text: "0.5 × 10⁻⁵ arcsec" },
-    { label: "B", text: "0.9 × 10⁻⁵ arcsec" },
+    { label: "A", text: "1.5 × 10⁻⁵ arcsec" },
+    { label: "B", text: "1.9 × 10⁻⁵ arcsec" },
     { label: "C", text: "2.2 × 10⁻⁵ arcsec" },
     { label: "D", text: "1.5 × 10⁻⁴ arcsec" },
-    { label: "E", text: "0.9 × 10⁻⁶ arcsec" },
+    { label: "E", text: "1.9 × 10⁻⁶ arcsec" },
   ],
 
   correctAnswer: "B",
 
-  explanation: "The source identifies B as the intended answer, but its own calculation gives about 0.07 arcsec and states that the answer-option units were wrong; the question was excluded from grading. This record deliberately preserves the supplied answer key’s B.",
+  explanation: "The source marks B (1.9 × 10⁻⁵) as the intended answer, but its own calculation gives 1.86 × 10⁻⁵ degrees ≈ 0.07 arcsec and states that the answer-option units were wrong; the question was excluded from grading. Choice text was corrected to match the official PDF in the September 2026 source audit; the supplied key B is preserved.",
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
