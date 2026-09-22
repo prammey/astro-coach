@@ -5005,7 +5005,7 @@ export const usaaaoMcqs = [
 
   type: "MCQ",
 
-  questionText: "A predicted (A) and observed (B) rotation curve of a typical spiral galaxy is shown above. What component of the galaxy causes this discrepancy?",
+  questionText: "A predicted (A) and observed (B) rotation curve of a typical spiral galaxy is shown below. What component of the galaxy causes this discrepancy?",
 
   choices: [
     { label: "A", text: "Baryons" },
@@ -5223,6 +5223,17 @@ export const usaaaoMcqs = [
 
   explanation: "For the source spectra, peak heights scale as R²T⁵. Combining their peak-height ratio with the temperatures from Question 19 gives Rhot/Rcold ≈ 0.6.",
 
+  // Shares Question 19's graph: the source exam prints one spectrum plot
+  // for Questions 19–22.
+
+  questionMedia: {
+
+    status: "complete",
+
+    assets: ["/mcq-images/usaaao-images/2017-usaaao-first-round-images/usaaao-2017-first-round-q19.jpg"],
+
+  },
+
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
   pageNumber: 13,
@@ -5270,6 +5281,17 @@ export const usaaaoMcqs = [
 
   explanation: "Use the luminosity ratio inferred from the source spectrum to split the system flux into component fluxes. The brighter component has apparent magnitude 8.9.",
 
+  // Shares Question 19's graph: the source exam prints one spectrum plot
+  // for Questions 19–22.
+
+  questionMedia: {
+
+    status: "complete",
+
+    assets: ["/mcq-images/usaaao-images/2017-usaaao-first-round-images/usaaao-2017-first-round-q19.jpg"],
+
+  },
+
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
   pageNumber: 14,
@@ -5316,6 +5338,17 @@ export const usaaaoMcqs = [
   correctAnswer: "B",
 
   explanation: "Using the source spectrum to infer the system luminosity, then comparing luminosity with the observed flux, gives a distance of 85 parsecs.",
+
+  // Shares Question 19's graph: the source exam prints one spectrum plot
+  // for Questions 19–22.
+
+  questionMedia: {
+
+    status: "complete",
+
+    assets: ["/mcq-images/usaaao-images/2017-usaaao-first-round-images/usaaao-2017-first-round-q19.jpg"],
+
+  },
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
@@ -5521,53 +5554,6 @@ export const usaaaoMcqs = [
   answerKeyPageNumber: 16,
 
   attributionText: "Source: USAAAO 2017 First Round, Question 26.",
-
-  permissionStatus: "needs-review",
-  status: "draft",
-},
-
-{
-  competition: "USAAAO",
-  year: 2017,
-  examName: "First Round",
-  questionNumber: 27,
-
-  difficulty: "Advanced",
-
-  topic: "Observational Astronomy & Telescopes",
-  subtopic: "Diffraction Limit",
-  tags: [
-    "diffraction limit",
-    "Rayleigh criterion",
-    "telescope aperture",
-    "wavelength",
-    "angular resolution",
-  ],
-
-  type: "MCQ",
-
-  questionText: "What is the diffraction limit of a 4.5-meter telescope if we are measuring at a wavelength of 1.2 μm?",
-
-  choices: [
-    { label: "A", text: "1.5 × 10⁻⁵ arcsec" },
-    { label: "B", text: "1.9 × 10⁻⁵ arcsec" },
-    { label: "C", text: "2.2 × 10⁻⁵ arcsec" },
-    { label: "D", text: "1.5 × 10⁻⁴ arcsec" },
-    { label: "E", text: "1.9 × 10⁻⁶ arcsec" },
-  ],
-
-  correctAnswer: "B",
-
-  explanation: "The source marks B (1.9 × 10⁻⁵) as the intended answer, but its own calculation gives 1.86 × 10⁻⁵ degrees ≈ 0.07 arcsec and states that the answer-option units were wrong; the question was excluded from grading. Choice text was corrected to match the official PDF in the September 2026 source audit; the supplied key B is preserved.",
-
-  sourceUrl: "https://usaaao.org/resources/past-exams/",
-  pdfUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
-  pageNumber: 16,
-
-  answerKeyUrl: "https://usaaao.org/wp-content/uploads/2017/06/releasedfinal20171stroundioaasolutions.pdf",
-  answerKeyPageNumber: 16,
-
-  attributionText: "Source: USAAAO 2017 First Round, Question 27. The source states that this question was excluded from grading because the answer-option units were wrong.",
 
   permissionStatus: "needs-review",
   status: "draft",
@@ -7305,7 +7291,7 @@ export const usaaaoMcqs = [
 
   type: "MCQ",
 
-  questionText: "The quasar in the previous question has redshift 1.5 and comoving radial distance about 4.4 Gpc. It is observed to have a companion galaxy 5 arcseconds apart. What is the projected linear separation of the companion galaxy from the quasar?",
+  questionText: "Now, let’s assume that the quasar in the previous question is observed to have a companion galaxy which is 5 arcseconds apart. What is the projected linear separation of the companion galaxy from the quasar?",
 
   choices: [
     { label: "A", text: "107 kpc" },
@@ -8221,7 +8207,7 @@ export const usaaaoMcqs = [
 
   type: "MCQ",
 
-  questionText: "Two amateur astronomers A and B live in Ecuador and stand on the Equator at the Galapagos Islands (height 0 m, longitude 91° W) and Volcán Cayambe (height 5790 m, longitude 78° W), respectively. What are the differences in degrees of the Sun’s altitudes and zenith distances measured on March 20, 2019 when it is local noon for observer B? Neglect refraction and give the nearest-degree answer.",
+  questionText: "Two amateur astronomers A and B living in Ecuador are standing on the Equator at the Galapagos Islands (height 0 m, longitude 91° W) and Volcán Cayambe (height 5790 m, longitude 78° W) respectively. What are the differences (in degrees) of the altitudes from the horizon and zenith distances of the Sun measured by these two astronomers on March 20, 2019 when it is local noon for observer B? Neglect refraction and give your answer to the nearest degree.",
 
   choices: [
     { label: "A", text: "Difference in altitudes: 15, Difference in zenith distances: 13." },
@@ -9451,7 +9437,7 @@ export const usaaaoMcqs = [
 
   type: "MCQ",
 
-  questionText: "In a compact binary system consisting of a black hole of mass 23.2 M☉ and a main-sequence star of mass 15.6 M☉ separated by 1 AU, a clump of gas of mass 1 M☉ detaches from the main-sequence star. When the gas is 1 km from the black hole, what is its total energy? Neglect viscous forces.",
+  questionText: "In a particular compact binary system consisting of a black hole and a main sequence star, the black hole has a mass of 23.2 M☉ and the main sequence star has mass of 15.6 M☉. The two stars are separated by 1 AU. A clump of gas of mass 1 M☉ detaches from the main sequence star. When the gas is 1 km from the black hole, what is its total energy? Neglect viscous forces.",
 
   choices: [
     { label: "A", text: "−3.06 × 10⁴⁸ J" },
@@ -10963,56 +10949,6 @@ export const usaaaoMcqs = [
     competition: "USAAAO",
     year: 2021,
     examName: "First Round",
-    questionNumber: 27,
-    difficulty: "Advanced",
-    topic: "Stars & Stellar Evolution",
-    subtopic: "Accretion-Disk Energy",
-    tags: [
-      "accretion disk",
-      "Keplerian orbit",
-      "gravitational energy",
-      "binary stars"
-    ],
-    type: "MCQ",
-    questionText: "When binary systems are really close together, they can execute an accretion process, in which one star (called the primary star) \"eats\" the mass of the other (called the secondary star), whose mass spirals down into the primary star, creating an accretion disk! For an accretion disk with the outer edge 3R from the center of the primary star (radius R and mass M), calculate the energy lost by a test mass (mass m) where it touches the primary star from where it first enters the accretion disk. Consider the orbits to be Keplerian.",
-    choices: [
-      {
-        label: "A",
-        text: "GMm / R"
-      },
-      {
-        label: "B",
-        text: "(1/2) GMm / R"
-      },
-      {
-        label: "C",
-        text: "(5/2) GMm / R"
-      },
-      {
-        label: "D",
-        text: "(2/3) GMm / R"
-      },
-      {
-        label: "E",
-        text: "(3/4) GMm / R"
-      }
-    ],
-    correctAnswer: "D",
-    explanation: "Using the official Keplerian-disk energy treatment between 3R and R gives the listed energy-loss expression (2/3)GMm/R.",
-    sourceUrl: "https://usaaao.org/resources/past-exams/",
-    pdfUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1.pdf",
-    pageNumber: 8,
-    answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
-    answerKeyPageNumber: 17,
-    attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
-    status: "draft"
-  },
-
-{
-    competition: "USAAAO",
-    year: 2021,
-    examName: "First Round",
     questionNumber: 28,
     difficulty: "Advanced",
     topic: "Stars & Stellar Evolution",
@@ -12054,7 +11990,7 @@ export const usaaaoMcqs = [
       "eclipse duration"
     ],
     type: "MCQ",
-    questionText: "Assume that the smaller star in the above binary star system is brighter than the larger star. What is the ratio of the radius of the smaller star to the radius of the larger star?",
+    questionText: "Assume that the smaller star in the binary star system shown below is brighter than the larger star. What is the ratio of the radius of the smaller star to the radius of the larger star?",
     choices: [
       {
         label: "A",
@@ -12250,6 +12186,7 @@ export const usaaaoMcqs = [
     year: 2022,
     examName: "First Round",
     questionNumber: 22,
+    continuesFrom: 21,
     difficulty: "Advanced",
     topic: "Orbital Mechanics & Gravitation",
     subtopic: "Apogee Changes after Delta-v",
@@ -14183,7 +14120,7 @@ export const usaaaoMcqs = [
       "diurnal motion"
     ],
     type: "MCQ",
-    questionText: "After a day spent showing a visiting friend around Boston, Leo is walking back along the bridge (see diagram in previous problem) to return to Next House. The time is such that the Sun now aligns with perfectly upriver, so it is in the opposite direction compared to the morning. How high in the sky is the Sun relative to the morning?",
+    questionText: "After a day spent showing a visiting friend around Boston, Leo is walking back along the bridge (see diagram below) to return to Next House. The time is such that the Sun now aligns with perfectly upriver, so it is in the opposite direction compared to the morning. How high in the sky is the Sun relative to the morning?",
     choices: [
       {
         label: "A",
@@ -14244,7 +14181,7 @@ export const usaaaoMcqs = [
       "seasons"
     ],
     "type": "MCQ",
-    "questionText": "David is walking down MIT’s infinite corridor (latitude 42°21′33″) when he sees the Sun aligned with the window at the end of the corridor. He measures the Sun’s azimuth as 245.81°. It has been less than six months since the previous winter solstice. Which date is closest? Assume the corridor is parallel to the Earth’s surface.",
+    "questionText": "David is walking down MIT’s infinite corridor (latitude 42°21′33″) when he suddenly sees the sun aligning with the window at the end of the corridor. Being the observational master he is, David immediately pulls out his compass and measures the Sun to be at an azimuth of 245.81°. Forgetting to bring his jacket, he is painfully reminded as he walks outside that it has been less than 6 months since the previous winter solstice. Which of the following choices is closest to the current date? Assume the corridor is parallel to the surface of the Earth.",
     "choices": [
       {
         "label": "A",
@@ -14293,7 +14230,7 @@ export const usaaaoMcqs = [
       "absolute magnitude"
     ],
     "type": "MCQ",
-    "questionText": "Abhay looks at light curves for two main-sequence blackbody stars A and B. A peaks at a frequency twice as high as B, and A has higher metallicity. He makes two statements: P: A has higher absolute magnitude than B. Q: A is older than B. Which is true?",
+    "questionText": "Abhay looks at the light curves for two main sequence stars A and B, which you can assume are blackbodies. A has its peak at a frequency two times as high as that of B. By looking at the depth of spectral lines, Abhay can also determine that A has higher metallicity than B. Abhay makes the following statements: P: A has higher absolute magnitude than B. Q: A is older than B. Which of the following is true?",
     "choices": [
       {
         "label": "A",
@@ -14313,7 +14250,7 @@ export const usaaaoMcqs = [
       },
       {
         "label": "E",
-        "text": "We do not have sufficient information for one or more statements."
+        "text": "We don’t have sufficient information for one or more of these statements."
       }
     ],
     "correctAnswer": "B",
@@ -14342,7 +14279,7 @@ export const usaaaoMcqs = [
       "Earth transit"
     ],
     "type": "MCQ",
-    "questionText": "Aliens in a nearby star system, randomly oriented relative to Earth, search for planets using transits. What is the probability that they can see Earth transit across the Sun? Assume they observe over multiple years and have sufficient sensitivity.",
+    "questionText": "Aliens in a nearby star system (located in a random direction from Earth) are looking for nearby planets using the transit method. What is the probability that they can see the Earth transit across the Sun? (Assume they observe our Sun over multiple years and their instruments are sensitive enough to detect any transit that occurs.)",
     "choices": [
       {
         "label": "A",
@@ -14391,7 +14328,7 @@ export const usaaaoMcqs = [
       "field image"
     ],
     "type": "MCQ",
-    "questionText": "Orion’s first telescope has primary-mirror focal length Fp = 2 m and eyepiece focal length Fe = 30 mm. The official PDF shows a full-field image from this telescope and a second, more magnified full-field image from a second telescope. Which specifications could belong to the second telescope?",
+    "questionText": "Orion is observing the sky with two telescopes that he just made. Orion wrote down that the first telescope has a primary mirror with focal length Fp = 2 m and an eye piece with focal length Fe = 30 mm. However, he does not know the specifications of his second telescope. Given that the full-field image on the left (below) was taken by the first telescope, and the full-field image on the right was taken by the second telescope, which of the following choices could be the specifications of the second telescope?",
     "choices": [
       {
         "label": "A",
@@ -14444,7 +14381,7 @@ export const usaaaoMcqs = [
       "energy budget"
     ],
     "type": "MCQ",
-    "questionText": "A supernova releases 99% of its energy as neutrinos. For about three months its visible-light power equals 10 billion Suns. If supernova neutrinos have mean energy about 10 MeV and all energy is released during the visible interval, estimate the number of neutrinos released.",
+    "questionText": "A supernova is triggered largely by neutrinos. In fact, 99% of the energy coming from the supernova is released in form of neutrinos. Over a time span of about three months, the supernova outputs visible light with power equivalent to 10 billion Suns. Assuming supernova neutrinos have mean energy of around 10 MeV, that all the power of the supernova is released during the time it is visible, and that all of the power released is released in the form of either visible light or neutrinos, estimate the number of neutrinos released.",
     "choices": [
       {
         "label": "A",
@@ -14493,7 +14430,7 @@ export const usaaaoMcqs = [
       "two-body orbit"
     ],
     "type": "MCQ",
-    "questionText": "Planets DDP and CJ orbit a nearby star as shown in the official figure. CJ has a circular orbit of radius 2d. DDP has aphelion d, perihelion 5d, and is three times as massive as CJ. Their orbits intersect at B. What is the ratio of DDP’s angular momentum to CJ’s angular momentum at B?",
+    "questionText": "Newly discovered planets DDP and CJ are found to orbit a nearby star, as shown in the figure below. Planet CJ has a circular orbit with a radius of 2d, while planet DDP moves in an elliptical orbit with an aphelion of d and a perihelion of 5d. Their orbits intersect at location B in the figure. Additionally, through external analysis, planet DDP is found to be three times more massive than planet CJ. From the perspective of the star, what is the ratio of the angular momentum of planet DDP when it passes through point B to the angular momentum of planet CJ when it passes through point B? You may assume that the masses of both planets are significantly smaller than the mass of the star they orbit.",
     "choices": [
       {
         "label": "A",
@@ -14546,7 +14483,7 @@ export const usaaaoMcqs = [
       "ellipse area"
     ],
     "type": "MCQ",
-    "questionText": "Arjun launches a 50 kg rocket from Earth’s surface at 10,405 m/s and redirects it into a stable elliptical orbit. The orbit’s area is 1.438 × 10^15 m². What is the approximate periapsis distance from Earth’s center? Assume no energy was lost in redirection.",
+    "questionText": "Arjun launches a 50 kg rocket with speed 10,405 m/s from the surface of the Earth and redirects it into a stable elliptical orbit. Upon analysis, he finds the area of the orbit to be 1.438 × 10¹⁵ m². What is the approximate distance between the periapsis of the orbit and the center of the Earth? Assume no energy was lost in the redirection of the rocket into its new orbit.",
     "choices": [
       {
         "label": "A",
@@ -14595,7 +14532,7 @@ export const usaaaoMcqs = [
       "Newtonian gravity"
     ],
     "type": "MCQ",
-    "questionText": "Assume the Milky Way has constant surface mass density σ and is a perfect circular disk. What is the dependence of circular orbital velocity v(r) on radius r?",
+    "questionText": "The mass density of the Milky Way galaxy determines the orbital velocity of planets, stars, and other objects orbiting around its center. Assuming a constant surface mass density σ for the Milky Way and modeling it as a perfect circular disk, identify the dependence of the circular orbital velocity v(r) of a point mass at radius r from the galaxy’s center.",
     "choices": [
       {
         "label": "A",
@@ -14644,7 +14581,7 @@ export const usaaaoMcqs = [
       "survey volume"
     ],
     "type": "MCQ",
-    "questionText": "An expedition takes a telescope with 0.01-arcsecond angular resolution from Earth to Mars. What is the ratio of the number of stars whose parallax distances can be measured from Mars compared with Earth? Mars has semimajor axis 1.524 AU.",
+    "questionText": "Let’s assume that on an expedition mission to Mars, we take a telescope with 0.01 arcsecond angular resolution from earth. What is the ratio of the number of the stars we can measure the parallax distance to using this telescope on Mars compared to earth? The semimajor axis of Mars is 1.524 AU.",
     "choices": [
       {
         "label": "A",
@@ -14697,7 +14634,7 @@ export const usaaaoMcqs = [
       "altitude"
     ],
     "type": "MCQ",
-    "questionText": "Ben lives on an Earth-like planet with obliquity 0° at latitude 42.20°. He wants to observe M52 (α ≈ 0h, δ = 60°), which must be above altitude 30° and observed during astronomical twilight, when the Sun is more than 18° below the horizon. Which date is the earliest after the vernal equinox on which he can observe it?",
+    "questionText": "Ben Chen is an alien living on a system identical to earth, except his planet’s obliquity is 0°. Located at latitude 42.20°, he wants to observe M52. Due to the open cluster being so dim, Ben needs perfect conditions to observe M52. Due to atmospheric effects, M52 can only be observed above an altitude of 30°. Additionally, it must be during astronomical twilight (when the Sun is more than 18° below the horizon). Of the following dates, which is the earliest after the vernal equinox that Ben can observe the cluster? The coordinates of M52 are approximately α = 0h and δ = 60°.",
     "choices": [
       {
         "label": "A",
@@ -14746,7 +14683,7 @@ export const usaaaoMcqs = [
       "seasonal Sun"
     ],
     "type": "MCQ",
-    "questionText": "Joe is at the bottom of a vertical cylindrical hole of radius 10 m and depth 10 km. He sees direct sunlight through the opening for a few days twice yearly, around November 2 and February 9. Which is Joe’s latitude?",
+    "questionText": "Joe lives at the bottom of a vertical cylindrical hole with a radius of 10 m at a depth of 10 km below the surface. He sees the Sun directly through the opening of the hole for a couple days twice a year, around November 2nd and February 9th. Which of the following is Joe’s latitude?",
     "choices": [
       {
         "label": "A",
@@ -14785,6 +14722,7 @@ export const usaaaoMcqs = [
     "year": 2024,
     "examName": "First Round",
     "questionNumber": 12,
+    "continuesFrom": 11,
     "difficulty": "Advanced",
     "topic": "Celestial Coordinates & Time",
     "subtopic": "Solar Angular Motion",
@@ -14795,7 +14733,7 @@ export const usaaaoMcqs = [
       "daily motion"
     ],
     "type": "MCQ",
-    "questionText": "In the same cylindrical-hole scenario, what is the longest possible interval during one day in which direct sunlight reaches anywhere on the bottom of the hole?",
+    "questionText": "In the same scenario as the question above, what is the longest possible time interval that direct sunlight reaches anywhere in the bottom of the hole in a single day?",
     "choices": [
       {
         "label": "A",
@@ -14844,7 +14782,7 @@ export const usaaaoMcqs = [
       "orbital geometry"
     ],
     "type": "MCQ",
-    "questionText": "Samvit observes one star of a binary system, M1, at (0,b) on an elliptical orbit with semiaxes a and b; the other star M2 is too dim. Which proposed position and mass for the other star could be physically consistent?",
+    "questionText": "Samvit observes a binary star system of masses M1 and M2. Unfortunately, the star with mass M2 is too dim for him to observe it, leading to the snapshot shown below. What could Samvit hypothesize to be the position and mass of the other star at this instant that would be consistent with the laws of physics and the orbit snapshot that he sees? To be clear, he has no knowledge of the value of M2 or the period of the binary system.",
     "choices": [
       {
         "label": "A",
@@ -14897,7 +14835,7 @@ export const usaaaoMcqs = [
       "synodic period"
     ],
     "type": "MCQ",
-    "questionText": "The Sun’s surface speed is 2021 m/s at the equator and 809 m/s at 60° south. How long does it take a sunspot at the equator to complete one extra lap relative to a sunspot at 60° south?",
+    "questionText": "The surface of the Sun exhibits differential rotation, with different rotational periods at different latitudes. We can measure this rotation speed using Doppler spectroscopy or by tracking the motion of sunspots. If the rotation speed of the Sun’s surface at the equator is 2021 m/s, and at 60° South is 809 m/s, how long would it take for a sunspot at the equator to do a full extra lap around the Sun compared to a sunspot at 60° South?",
     "choices": [
       {
         "label": "A",
@@ -14946,7 +14884,7 @@ export const usaaaoMcqs = [
       "classical turning point"
     ],
     "type": "MCQ",
-    "questionText": "Two protons lie in the solar interior. In proton A’s rest frame, proton B approaches radially from far away at 0.9c. What is the radius of the classically forbidden region that B cannot enter?",
+    "questionText": "Two protons A and B lie in the solar interior. In the rest frame of proton A, the proton B approaches it radially from a large distance with speed 0.9c. In the rest frame of proton A, identify the radius of the “classically forbidden” region for proton B (i.e. the region in which proton B cannot enter).",
     "choices": [
       {
         "label": "A",
@@ -14995,7 +14933,7 @@ export const usaaaoMcqs = [
       "orbital period"
     ],
     "type": "MCQ",
-    "questionText": "A planet has rotation period 2 days, moon revolution period 42 days, and orbital period around its Sun 420 days. All motions have the same direction. What is the lunar-cycle length as seen from the planet?",
+    "questionText": "Consider a sun-planet-moon system. The rotation period of the planet is 2 days. The period of revolution of the moon around the planet is 42 days while that of the planet around the sun is 420 days. What is the length of the lunar cycle as seen from the planet? You can assume the direction of planetary rotation, planetary revolution and lunar revolution is the same.",
     "choices": [
       {
         "label": "A",
@@ -15044,7 +14982,7 @@ export const usaaaoMcqs = [
       "angular resolution"
     ],
     "type": "MCQ",
-    "questionText": "The Extremely Large Telescope has planned primary-mirror diameter 39.3 m. An exoplanet lies 1 AU from its star. Ignoring atmospheric seeing and using 500 nm light, what is the greatest Earth distance at which the ELT can resolve the planet separately from the star?",
+    "questionText": "The Extremely Large Telescope (ELT) is an optical telescope under construction in Chile. The primary mirror has been planned to have a diameter of 39.3 m making it the largest optical telescope ever built. One of the goals for this telescope is the direct imaging of exoplanets. Consider an exoplanet at a distance of 1 A.U. from a star. What is the maximum distance from Earth of such a star-exoplanet system in which the ELT can resolve the exoplanet separately from the star? Ignore atmospheric seeing and assume optical wavelength to be 500 nm.",
     "choices": [
       {
         "label": "A",
@@ -15093,7 +15031,7 @@ export const usaaaoMcqs = [
       "solstice"
     ],
     "type": "MCQ",
-    "questionText": "At 40° N, 75° W, Leo marks hourly directions of a vertical-stick shadow from 6 AM to 6 PM on the March equinox, then repeats the exercise three months later. Let α12 and α6 be the spring-shadow azimuths at noon and 6 PM; β12 and β6 are the summer values. Which is true?",
+    "questionText": "At 6am on March 20th, as the Sun is rising, Leo, who is at (40° N, 75° W), plants a stick vertically on the ground. At that moment, he marks out a (finite) line on the ground in the direction of the shadow of the stick at that moment, labeling it with the current time. Every hour afterwards, on the hour, he marks out a new line in the current direction of the shadow, until the sun sets at 6pm. Three months later, Leo returns to the same spot, where the vertical stick and lines remain. Again, every hour on the hour, he marks out a line in the current direction of the shadow, until the sun sets. Let α12 and α6 be the azimuths of the lines drawn in the spring at 12pm and 6pm, and β12 and β6 be the azimuths of the lines drawn in the summer at 12pm and 6pm. Which of the following statements is true? Ignore atmospheric effects and the equation of time.",
     "choices": [
       {
         "label": "A",
@@ -15136,6 +15074,7 @@ export const usaaaoMcqs = [
     "year": 2024,
     "examName": "First Round",
     "questionNumber": 19,
+    "continuesFrom": 18,
     "difficulty": "Intermediate",
     "topic": "Celestial Coordinates & Time",
     "subtopic": "Gnomon Alignment",
@@ -15146,7 +15085,7 @@ export const usaaaoMcqs = [
       "gnomon"
     ],
     "type": "MCQ",
-    "questionText": "For a single set of hour markings to work throughout the year, a stick’s shadow at a fixed time should always lie on the same ground line. At 40° N, measured from vertical, how should the stick be tilted?",
+    "questionText": "Leo then realizes that, in order for a single set of hour markings to accurately describe the time over the course of an entire year, the stick may need to be tilted away from the vertical position. More specifically, consider straight lines drawn on the ground from the base of the stick; the shadow at a certain fixed time of day, on different days of the year, should always lie on the same line. Measured as an angle from the vertical, how much does the stick need to be tilted, and in which direction?",
     "choices": [
       {
         "label": "A",
@@ -15154,19 +15093,19 @@ export const usaaaoMcqs = [
       },
       {
         "label": "B",
-        "text": "40° toward north"
+        "text": "40° towards the North"
       },
       {
         "label": "C",
-        "text": "50° toward north"
+        "text": "50° towards the North"
       },
       {
         "label": "D",
-        "text": "40° toward south"
+        "text": "40° towards the South"
       },
       {
         "label": "E",
-        "text": "50° toward south"
+        "text": "50° towards the South"
       }
     ],
     "correctAnswer": "C",
@@ -15199,7 +15138,7 @@ export const usaaaoMcqs = [
       "orbital dynamics"
     ],
     "type": "MCQ",
-    "questionText": "A very long cylindrical planet has average density ρ and radius R. A satellite orbits at distance d from the center. Which expression gives its period P?",
+    "questionText": "Imagine a very long cylindrical planet that has a satellite orbiting around it. Considering that the average density of the planet is ρ and the radius is R, find the expression that relates the period P of the satellite with its distance d to the center of the planet.",
     "choices": [
       {
         "label": "A",
@@ -15248,7 +15187,7 @@ export const usaaaoMcqs = [
       "observable universe"
     ],
     "type": "MCQ",
-    "questionText": "Magnetic monopole number density at creation is about 10^82 m^−3. Inflation dilutes this density. Estimate the expansion factor during inflation required so that today the probability of even one monopole in the observable universe is 1%, given a 28.5 Gpc observable-universe diameter and post-inflation linear expansion factor 5 × 10^26.",
+    "questionText": "The problem of magnetic monopoles — that is, the apparent absence of magnetic monopoles in the universe — arises from the fact that some modern physical theories (such as string theory) predict that the number density of magnetic monopoles at the time of their creation was nM(tGUT) ≈ 10⁸² m⁻³. The inflation theory provides a possible solution to this problem, as the exponential expansion of the primordial universe would “dilute” the monopoles. Calculate, approximately, how much the universe expanded during the inflationary period so that today the probability of a single magnetic monopole existing in the observational universe is 1%. Consider that the beginning of inflation coincides with the time of the creation of magnetic monopoles, and that the universe is flat (Euclidean geometry can be used on large scales). You can use that the diameter of the observational universe is 28.5 Gpc, and that between the end of inflation and today, the universe has linearly expanded by a factor of 5 × 10²⁶.",
     "choices": [
       {
         "label": "A",
@@ -15297,7 +15236,7 @@ export const usaaaoMcqs = [
       "central temperature"
     ],
     "type": "MCQ",
-    "questionText": "For hypothetical X stars of mass M and radius R, central gas pressure scales as M³/R⁵. What is central temperature proportional to?",
+    "questionText": "Tara is investigating a new interesting type of stars she decides to call the X stars. She observes that in an X star of mass M and radius R, the gas pressure in the center of the star is proportional to M³/R⁵. What is the temperature at the center of the star proportional to?",
     "choices": [
       {
         "label": "A",
@@ -15346,7 +15285,7 @@ export const usaaaoMcqs = [
       "mass estimate"
     ],
     "type": "MCQ",
-    "questionText": "An X star is observed at the edge of a galaxy of radius 15 × 10^3 pc and has speed 270 km/s. Estimate the galaxy’s mass in solar masses.",
+    "questionText": "Tara has become obsessed with X stars and decides to look for them in other galaxies. She observes one on the edge of a galaxy with radius r = 15 × 10³ pc. She estimates that the star is moving with a speed of v = 270 km/s. What is a good estimate for the mass of the galaxy in unit mass of the sun?",
     "choices": [
       {
         "label": "A",
@@ -15395,7 +15334,7 @@ export const usaaaoMcqs = [
       "galaxy luminosity"
     ],
     "type": "MCQ",
-    "questionText": "A galaxy at redshift 0.5 has apparent bolometric magnitude 22 and luminosity distance 2.8 Gpc. Estimate its luminosity.",
+    "questionText": "There is a galaxy at redshift 0.5 for which we have a measurement for apparent bolometric magnitude to be 22. With a standard candle in that galaxy, we have found its luminosity distance to Earth to be 2.8 Gpc. Estimate the luminosity of this galaxy.",
     "choices": [
       {
         "label": "A",
@@ -15444,7 +15383,7 @@ export const usaaaoMcqs = [
       "focal length"
     ],
     "type": "MCQ",
-    "questionText": "An astronomer wants the full Moon to fill an entire telescope field of view. The eyepiece field of view is 60° and its focal length is 25 mm; the Moon’s angular diameter is 0.5°. What telescope focal length is needed?",
+    "questionText": "An astronomer wants to design a telescope so that the full moon fills the entire FOV of the telescope. She uses an eyepiece with a FOV of 60°. If the focal length of the eyepiece is 25 mm, what will the focal length of the chosen telescope be? Note that the angular diameter of the moon is 0.5°. Never look at the moon through a telescope without proper precautions!",
     "choices": [
       {
         "label": "A",
@@ -15493,7 +15432,7 @@ export const usaaaoMcqs = [
       "matter density"
     ],
     "type": "MCQ",
-    "questionText": "The CMB peak wavelength today is 1.063 mm. At release, the Universe’s temperature was about 3000 K. How much larger was matter density at CMB release than today?",
+    "questionText": "The Cosmic Microwave Background is made of light that was released when the Universe first became transparent. It is a blackbody spectrum with temperature equal to the current temperature of the Universe. We observe the peak wavelength of the CMB to be at 1.063 millimeters. When the CMB was released, we can theoretically predict the temperature of the universe to be 3000 Kelvins. How much larger was the density of matter when the CMB was released than now? Select the closest answer.",
     "choices": [
       {
         "label": "A",
@@ -15542,7 +15481,7 @@ export const usaaaoMcqs = [
       "latitude"
     ],
     "type": "MCQ",
-    "questionText": "Austin flies from Lubbock, Texas (33.58° N, 101.84° W) toward Boston, MA (42.36° N, 71.06° W), but the pilots entered the destination latitude incorrectly. The initial bearing was 63° and the plane followed the shortest route. Where is he?",
+    "questionText": "Moving into MIT for the start of the spring semester, Austin is flying from Lubbock, Texas (33.58° N, 101.84° W) to Boston, MA (42.36° N, 71.06° W). However, when he lands he finds that he is not in Boston. The pilots entered the latitude coordinate incorrectly! But Austin remembers that the plane left Lubbock at a bearing of 63°. Assume that the flight still took the shortest path to the current destination. Where is Austin now?",
     "choices": [
       {
         "label": "A",
@@ -15591,7 +15530,7 @@ export const usaaaoMcqs = [
       "spherical geometry"
     ],
     "type": "MCQ",
-    "questionText": "From Boston, Austin observes LARES, a satellite 1450 km above Earth’s surface in an orbit inclined 69.49° to the equator. What is the greatest altitude he can point his telescope when LARES is at its highest latitude?",
+    "questionText": "After that slight headache, Austin is back at MIT in Boston! For his astronomy research, he is observing the LARES satellite which is a ball of diameter 36.4 cm made out of THA-18N (a tungsten alloy). It orbits at a distance 1450 km from the surface of the Earth and at an inclination of 69.49° relative to the equatorial plane. What is the highest altitude Austin can point his telescope if he wants to observe LARES at its highest latitude?",
     "choices": [
       {
         "label": "A",
@@ -15640,7 +15579,7 @@ export const usaaaoMcqs = [
       "delta-v"
     ],
     "type": "MCQ",
-    "questionText": "You are on Deimos, 23,460 km from Mars’s center, traveling about 1.35 km/s. Mars’s mass is 6.39 × 10^23 kg. How much additional speed is needed to escape Mars?",
+    "questionText": "Imagine you are on Deimos right now and you want to escape Mars because you are bored. If Deimos is currently at 23,460 km away from the center of Mars and its speed is currently around 1.35 km/s, how much more speed do you and Deimos need to escape Mars? The mass of Mars is 6.39 × 10²³ kg.",
     "choices": [
       {
         "label": "A",
@@ -15689,7 +15628,7 @@ export const usaaaoMcqs = [
       "gas giant"
     ],
     "type": "MCQ",
-    "questionText": "A spherical gas giant has radius R, temperature T, uniform density and composition, and fixed volumetric heat capacity. Heat leaves only by blackbody radiation. How does the cooling rate −dT/dt depend on R and T?",
+    "questionText": "Suppose a spherical gas giant has radius R, temperature T, uniform density and composition, and fixed volumetric heat capacity. Assuming heat leaves solely through blackbody radiation, calculate how the planet’s cooling rate −dT/dt depends on R, T.",
     "choices": [
       {
         "label": "A",
@@ -15739,7 +15678,7 @@ export const usaaaoMcqs = [
       "gas giant"
     ],
     "type": "MCQ",
-    "questionText": "With T(t) the temperature of the gas giant from the previous question, T0 = T(0), and environmental temperature Tenv = 0, what is the dependence of T/T0 on time t? α is a constant.",
+    "questionText": "Let T(t) be the temperature of the planet after time t and let T₀ be the temperature at time t = 0. Calculate the dependence of T/T₀ on t assuming Tenv = 0 is the temperature of the planet’s environment. Below, α is a constant.",
     "choices": [
       {
         "label": "A",
@@ -15788,7 +15727,7 @@ export const usaaaoMcqs = [
       "delta-v"
     ],
     "type": "MCQ",
-    "questionText": "A rocket orbits a star of mass M in a circular orbit of radius R and transfers to a circular orbit of radius 8R by a two-burn Hohmann transfer. Its total delta-v is k√(GM/R). What is k?",
+    "questionText": "Suppose a rocket around a star of mass M wishes to execute an orbital transfer from a circular orbit with radius R to a larger one with that of radius 8R. One common way to do this is known as a Hohmann transfer, which has an intermediate elliptical orbit. This process requires two burns, with total delta-v Δv = k√(GM/R) for some k. Assuming instantaneous burns, compute k.",
     "choices": [
       {
         "label": "A",
@@ -15837,7 +15776,7 @@ export const usaaaoMcqs = [
       "orbital geometry"
     ],
     "type": "MCQ",
-    "questionText": "A highly eccentric planet has semi-latus rectum nearly one hundred times smaller than its semimajor axis. What is its eccentricity?",
+    "questionText": "It may be useful to know the semi-latus rectum of an ellipse is the distance between one of its foci and the point on the ellipse immediately above or below it, as shown in the diagram below. Consider a highly eccentric planet with a semi-latus rectum that is nearly a hundred times smaller than its semi-major axis. What is its eccentricity?",
     "choices": [
       {
         "label": "A",
@@ -15890,7 +15829,7 @@ export const usaaaoMcqs = [
       "declination"
     ],
     "type": "MCQ",
-    "questionText": "Galileo launches satellites at altitude 3 Earth radii above the surface, but they orbit in Earth’s orbital plane rather than directly over the celestial equator. Astronomers use them as a new celestial equator. What is the maximum absolute difference between new and old declinations?",
+    "questionText": "Galileo the Tyrant has conquered the Earth. In his madness, he launched many bright satellites into space because he thought that the celestial equator should be visible from Earth, and not just be an imaginary line. These satellites all orbit around Earth 3RE from the surface, where RE is the radius of earth. However, there was a major mistake made in the plan – the satellites now orbit in a circle on Earth’s orbital plane instead of directly above the equator. Nevertheless, Galileo still forces all astronomers to use these satellites as the new Celestial Equator. They must calculate the declination for any star by finding the angle to the satellite at the same Right Ascension. What is the maximum absolute difference between the new declination and the old declination of bodies throughout the sky experienced by astronomers around the Earth? (Choose the closest value.)",
     "choices": [
       {
         "label": "A",
@@ -15943,7 +15882,7 @@ export const usaaaoMcqs = [
       "spherical law of cosines"
     ],
     "type": "MCQ",
-    "questionText": "What is the geodesic distance between Boston (42°21′37″ N, 71°3′28″ W) and Mumbai (19°4′34″ N, 72°52′39″ E), assuming a spherical Earth?",
+    "questionText": "What is the geodesic distance between Boston (42°21′37″ N, 71°3′28″ W) and Mumbai (19°4′34″ N, 72°52′39″ E)? Assume that the Earth is perfectly spherical.",
     "choices": [
       {
         "label": "A",
@@ -15996,7 +15935,7 @@ export const usaaaoMcqs = [
       "linewidth"
     ],
     "type": "MCQ",
-    "questionText": "Which statements about spectral broadening are correct? P: At zero temperature, spectral lines have infinitesimally narrow linewidth. Q: For equal central frequency and FWHM, a homogeneous-broadened line has lower probability far in the wings (at 2f0) than an inhomogeneous-broadened line. R: Thermal Doppler linewidth at 2T is twice the linewidth at T.",
+    "questionText": "Which of the following statements are correct regarding spectral broadening? P: In the limit of zero temperature, spectral lines have infinitesimally narrow linewidth. Q: Consider two hypothetical spectral lines: line I has central frequency f₀ and full width at half maximum (FWHM) w ≪ f₀, with only homogeneous broadening; line II has identical central frequency and FWHM but only has inhomogeneous broadening. Let P(f)Δf denote the probability of measuring frequency f for each line within some bandwidth Δf ≪ w. Then, P_I(2f₀)Δf < P_II(2f₀)Δf. R: The same spectral line of two ideal gases, one with temperature T and the other with temperature 2T, are probed. The gases are otherwise identical. The linewidth of the hotter gas under thermal Doppler broadening is twice that of the cooler gas.",
     "choices": [
       {
         "label": "A",
@@ -16045,7 +15984,7 @@ export const usaaaoMcqs = [
       "cluster age"
     ],
     "type": "MCQ",
-    "questionText": "Which statements are true for a cluster of main-sequence stars? A: At fixed total mass, a cluster with more stars is brighter per unit mass. B: Older clusters have hotter main-sequence turnoffs. C: Older clusters have lower-luminosity main-sequence turnoffs. Assume L ∝ M^3.5.",
+    "questionText": "Which of the following statements are true about a cluster of main sequence stars: A: For two star clusters of the same total mass, the one with the larger number of stars will be brighter as measured by luminosity per unit mass. B: The main-sequence turnoff point for star clusters is at higher temperatures if they are older. C: The main-sequence turnoff point for star clusters is at lower luminosities if they are older. Assume the mass-luminosity relationship L ∝ M^3.5 for main-sequence stars.",
     "choices": [
       {
         "label": "A",
@@ -16094,7 +16033,7 @@ export const usaaaoMcqs = [
       "sky map"
     ],
     "type": "MCQ",
-    "questionText": "Match imaginary lines 1–3 on the official sky map to labels.",
+    "questionText": "Match each imaginary line in the sky map below to its label.",
     "choices": [
       {
         "label": "A",
@@ -16147,7 +16086,7 @@ export const usaaaoMcqs = [
       "slope"
     ],
     "type": "MCQ",
-    "questionText": "Exoplanets orbit a 10-solar-mass star. On a log T versus log a plot, where T is period in years and a is semimajor axis in AU, what is the slope of the best-fit line?",
+    "questionText": "An astronomer was studying the exoplanets orbiting a star with a mass of 10 M☉. The astronomer decided to draw a log T vs. log a plot for the exoplanet orbits, where T corresponds to the period in years and a corresponds to the semi-major axis in AU. What would be the slope of the best fit line to this plot? Note that log represents the base 10 logarithm.",
     "choices": [
       {
         "label": "A",
@@ -16186,6 +16125,7 @@ export const usaaaoMcqs = [
     "year": 2025,
     "examName": "First Round",
     "questionNumber": 12,
+    "continuesFrom": 11,
     "difficulty": "Intermediate",
     "topic": "Gravitation, Orbits & Dynamics",
     "subtopic": "Logarithmic Kepler Law",
@@ -16196,7 +16136,7 @@ export const usaaaoMcqs = [
       "stellar mass"
     ],
     "type": "MCQ",
-    "questionText": "For the same log T versus log a plot of planets orbiting a 10-solar-mass star, what is the y-intercept?",
+    "questionText": "What would be the y-intercept of the best fit line to this plot?",
     "choices": [
       {
         "label": "A",
@@ -16245,7 +16185,7 @@ export const usaaaoMcqs = [
       "semimajor axis"
     ],
     "type": "MCQ",
-    "questionText": "An exosolar system has a star, planet, and moon. The moon’s period is 100 min; the planet’s period is 90 days. The moon ranges from 1000 km to 7000 km above a 3000 km-radius planet. Star-to-planet mass ratio is 10^5. What is the planet’s orbital semimajor axis?",
+    "questionText": "A recently observed exosolar system consists of a star, a planet, and the planet’s satellite. The satellite has a revolution period of 100 minutes around the planet, and the planet has a 90 day revolution period around the star. The satellite approaches the surface of the planet to a minimum height of 1000 km and recedes to a maximum height of 7000 km. The radius of the planet is 3000 km. If the ratio of the mass of the star to the mass of the planet is 1 × 10⁵, what is the semi-major axis of the planet’s revolution around the star? Assume that the mass of the satellite is much smaller than the mass of the planet.",
     "choices": [
       {
         "label": "A",
@@ -16294,7 +16234,7 @@ export const usaaaoMcqs = [
       "space station"
     ],
     "type": "MCQ",
-    "questionText": "A cylindrical space station of radius 50 m spins to provide Earth gravity, g = 9.81 m/s². What rotational period is needed?",
+    "questionText": "A cylindrical space station rotating about its primary axis could create artificial “spin gravity,” allowing people to live on the inner surface of the cylinder. For such a station with a radius of 50 m, what rotational period is needed for inhabitants to experience spin gravity equal to Earth’s gravity g = 9.81 m/s²?",
     "choices": [
       {
         "label": "A",
@@ -16343,7 +16283,7 @@ export const usaaaoMcqs = [
       "space station"
     ],
     "type": "MCQ",
-    "questionText": "For a rotating habitat with spin gravity equal to Earth gravity, what is the minimum radius so a person walking 1 m/s in any direction experiences Coriolis acceleration below 1% of g?",
+    "questionText": "A cylindrical space station rotating about its primary axis could create artificial “spin gravity,” allowing people to live on the inner surface of the cylinder. If the space station is too small, inhabitants might experience unwanted effects of being in a rotating reference frame, such as the Coriolis “force” on moving objects: F = −2m(ω × v), where ω is the angular velocity vector of the space station and v is the velocity of the object in the rotating reference frame. For a space station with spin gravity equal to Earth’s gravity, what is the minimum radius needed so that a person walking at 1 m/s in any direction experiences negligible Coriolis force (< 1% of Earth’s gravity)?",
     "choices": [
       {
         "label": "A",
@@ -16392,7 +16332,7 @@ export const usaaaoMcqs = [
       "artificial gravity"
     ],
     "type": "MCQ",
-    "questionText": "Inside the rotating space station, you face the direction of rotation and throw a ball directly upward. Where does it land?",
+    "questionText": "A cylindrical space station rotating about its primary axis could create artificial “spin gravity,” allowing people to live on the inner surface of the cylinder. You are standing inside the space station, facing in the direction of the cylinder’s rotation (see image below). You throw a ball directly upward. Where does it land?",
     "choices": [
       {
         "label": "A",
@@ -16445,7 +16385,7 @@ export const usaaaoMcqs = [
       "Stefan-Boltzmann law"
     ],
     "type": "MCQ",
-    "questionText": "A giant star has radius R, core temperature Tc, and surface temperature Ts ≪ Tc. Alice estimates the core radius assuming the core radiates energy; Bob assumes heat is conducted through the interior with uniform thermal conductivity κ, where κ ≫ RσTc^4/Ts. What is RA/RB proportional to?",
+    "questionText": "Consider a giant star with radius R. The core has temperature Tc and the surface has temperature Ts ≪ Tc. Given R, Tc, and Ts, Alice and Bob estimate the core’s radius in two different ways, both assuming that the star is in thermal equilibrium: Alice: The core radiates energy. Bob: The inside of the star conducts heat with constant uniform thermal conductivity κ such that κ ≫ RσTc⁴/Ts. Let RA and RB be the core radii estimated by Alice and Bob. Which of the following is the ratio RA/RB proportional to?",
     "choices": [
       {
         "label": "A",
@@ -16494,7 +16434,7 @@ export const usaaaoMcqs = [
       "solar geometry"
     ],
     "type": "MCQ",
-    "questionText": "Connor wakes only at sunrise and sunset and measures the angle between the two vertical-stick shadows as 105°. Which latitude interval could he be in?",
+    "questionText": "Connor is stranded on an island and wishes to determine his latitude, but he only wakes up at sunrise and sunset. He constructs a vertical stick in the ground. On some day, he measures the angle between the shadows made at sunrise and sunset as 105°. Which of the following intervals of latitudes could Connor be in?",
     "choices": [
       {
         "label": "A",
@@ -16543,7 +16483,7 @@ export const usaaaoMcqs = [
       "tangential velocity"
     ],
     "type": "MCQ",
-    "questionText": "Which statements cannot be inferred from Kepler’s laws? I: A planet moves in an elliptical orbit around the Sun. II: All solar-system planet eccentricities are small. III: A planet’s highest tangential velocity occurs when closest to the Sun. IV: All planets move in roughly the same plane.",
+    "questionText": "Which of the following statements CANNOT be inferred from Kepler’s laws of motion? I: A planet moves in an elliptical orbit around the Sun. II: The eccentricities of the orbits of all solar system planets are small. III: A solar system planet has its highest tangential velocity when it is closest to the Sun. IV: All planets move in elliptical orbits in roughly the same plane around the Sun.",
     "choices": [
       {
         "label": "A",
@@ -16592,7 +16532,7 @@ export const usaaaoMcqs = [
       "solar time"
     ],
     "type": "MCQ",
-    "questionText": "Just before dawn on the summer solstice, Christopher sails west from 50° N, 5° W with a UTC watch. On his 91st sunrise, the watch reads 3:00 AM. What is his longitude? The equation of time is −3 min at summer solstice and +8 min at autumnal equinox.",
+    "questionText": "Just before dawn of the summer solstice, Christopher the sailor begins sailing due West from 50° N, 5° W. His watch is set to UTC. On seeing his 91st sunrise at sea, his watch reads 3:00am. What is his longitude? (The equation of time, in the convention solar time minus mean time, is −3 minutes on the summer solstice and 8 minutes on the autumnal equinox)",
     "choices": [
       {
         "label": "A",
@@ -16641,7 +16581,7 @@ export const usaaaoMcqs = [
       "latitude"
     ],
     "type": "MCQ",
-    "questionText": "What is the largest latitude range φ for which, at some time of day, the line between Rigel (α = 5h14m32s, δ = −8°12′5.9″) and Betelgeuse (α = 5h56m33s, δ = 7°24′40.3″) appears vertical? Answer to within 5° accuracy.",
+    "questionText": "What is the largest range of latitudes φ for which, at some time during the day, the line between Rigel (αR = 5h 14m 32s, δR = −8°12′5.9″) and Betelgeuse (αB = 5h 56m 33s, δB = 7°24′40.3″) appears vertical? Answer to within 5 degree accuracy.",
     "choices": [
       {
         "label": "A",
@@ -16694,7 +16634,7 @@ export const usaaaoMcqs = [
       "evening visibility"
     ],
     "type": "MCQ",
-    "questionText": "Observed from the equator, what is the maximum continuous duration Venus can be seen after sunset? Assume circular coplanar Earth and Venus orbits with radii 1 AU and 0.723 AU.",
+    "questionText": "Observed from the equator, what is the maximum duration over which Venus can be observed (continuously) after sunset? Assume that the orbits of Venus and Earth are circular of radius 0.723 AU and 1 AU and lie on the ecliptic plane.",
     "choices": [
       {
         "label": "A",
@@ -16747,7 +16687,7 @@ export const usaaaoMcqs = [
       "inverse-square law"
     ],
     "type": "MCQ",
-    "questionText": "Earth’s orbital eccentricity is 0.0167. By what percent is total solar irradiance greater at perihelion than aphelion?",
+    "questionText": "The Earth orbits the Sun with orbital eccentricity e = 0.0167. What percent more total solar irradiance does the Earth receive at perihelion compared to aphelion?",
     "choices": [
       {
         "label": "A",
@@ -16796,7 +16736,7 @@ export const usaaaoMcqs = [
       "stellar envelope"
     ],
     "type": "MCQ",
-    "questionText": "A main-sequence star is 500 times less luminous than the Sun. It must have a ______ core and a ______ envelope.",
+    "questionText": "Consider a main sequence star 500 times less luminous than the sun. This star must have a ______ core and a ______ envelope.",
     "choices": [
       {
         "label": "A",
@@ -16845,7 +16785,7 @@ export const usaaaoMcqs = [
       "Stefan-Boltzmann law"
     ],
     "type": "MCQ",
-    "questionText": "Evan uses a telescope with focal length 1000 mm to observe a star with parallax 50 mas. Its CCD image diameter is 0.1 μm and apparent magnitude is 1. Neglect atmospheric seeing. What is the star’s approximate temperature?",
+    "questionText": "Evan uses a telescope of focal distance f = 1000 mm to observe a star known to have a parallax p = 50 mas. Observing the CCD of the telescope, Evan notices that the star has a diameter D = 0.1 µm. Furthermore, he measures its apparent magnitude to be m = 1. What is the approximate temperature of this star? Please, neglect the atmospheric seeing in your calculations.",
     "choices": [
       {
         "label": "A",
@@ -16894,7 +16834,7 @@ export const usaaaoMcqs = [
       "spherical trigonometry"
     ],
     "type": "MCQ",
-    "questionText": "Two exoplanets have circular orbits around one star, share ascending-node longitude, and start there together. Their inclinations are 30° and 70°, with periods 2 yr and 1 yr. When do they next have equal ecliptic longitude?",
+    "questionText": "Two exoplanets, A and B, have circular orbits around the same central star. Suppose that the ascending nodes of the orbits are located at the same ecliptic longitude, defined analogously as the one for the solar system, and that both planets are at that point in the beginning. How long will it take for the planets to have an equal, common ecliptic longitude again, knowing that the inclinations of their orbits are i₁ = 30° and i₂ = 70°, and that their periods are T₁ = 2 yr and T₂ = 1 yr?",
     "choices": [
       {
         "label": "A",
@@ -16943,7 +16883,7 @@ export const usaaaoMcqs = [
       "cosmic expansion"
     ],
     "type": "MCQ",
-    "questionText": "In a matter-dominated universe, the Hubble parameter is proportional to the square root of matter density. How does the size of the universe evolve with time t?",
+    "questionText": "Cosmologists consider three possible universes: universes dominated by baryonic matter (i.e. ordinary matter), universes dominated by radiation, and universes dominated by dark energy (realistically, we consider some mix of the above). An equation written by Alexander Friedmann implies that for a matter-dominated universe, the Hubble parameter is proportional to the square root of that universe’s matter density. In a matter-dominated universe, how does the size of the universe evolve with time t?",
     "choices": [
       {
         "label": "A",
@@ -16992,7 +16932,7 @@ export const usaaaoMcqs = [
       "calendar"
     ],
     "type": "MCQ",
-    "questionText": "If leap days are removed so every calendar year has exactly 365 days, and summer solstice is June 21 in year one, what date is summer solstice after 100 years?",
+    "questionText": "Suppose leap days were removed from the calendar, so that each calendar year has exactly 365 days. In the first year of this calendar change, summer solstice is on June 21st. After 100 years of this calendar, what is the date of summer solstice?",
     "choices": [
       {
         "label": "A",
@@ -17041,7 +16981,7 @@ export const usaaaoMcqs = [
       "photometry"
     ],
     "type": "MCQ",
-    "questionText": "A planet transit increases a system’s observed magnitude by 0.005. Assuming an edge-on central transit, what is planet radius Rp in terms of stellar radius R?",
+    "questionText": "It is observed that a planet orbiting a star increases the observed magnitude of the system by 0.005 when it transits across the star. Assuming that the system is viewed edge on and is orthogonal to the line of sight, determine the radius of the planet Rp in terms of the radius of the star R.",
     "choices": [
       {
         "label": "A",
@@ -17090,7 +17030,7 @@ export const usaaaoMcqs = [
       "telescope"
     ],
     "type": "MCQ",
-    "questionText": "What is the focal ratio of a telescope with 1.2 m focal length and 12 cm aperture?",
+    "questionText": "What is the focal ratio of a telescope with 1.2 m in focal length and 12 cm in aperture?",
     "choices": [
       {
         "label": "A",
@@ -17139,7 +17079,7 @@ export const usaaaoMcqs = [
       "dot product"
     ],
     "type": "MCQ",
-    "questionText": "A planet has velocity v(t) = v0(cos(ωt) i-hat + sin(ωt) j-hat) in a circular orbit. With a(t) = dv/dt, which statement is correct?",
+    "questionText": "A planet moves in a circular orbit in a fixed plane with angular velocity ω, and let n-hat be a unit vector perpendicular to the orbital plane. Let the planet’s velocity vector as a function of time be given by v(t) = v₀(cos(ωt) i-hat + sin(ωt) j-hat). Define a(t) = dv/dt. Which of the following statements is correct? (Here, i-hat and j-hat are orthogonal unit vectors in the orbital plane.)",
     "choices": [
       {
         "label": "A",
@@ -17147,15 +17087,15 @@ export const usaaaoMcqs = [
       },
       {
         "label": "B",
-        "text": "a has magnitude v0ω and is perpendicular to v"
+        "text": "a has a magnitude v₀ω and is perpendicular to v"
       },
       {
         "label": "C",
-        "text": "a is zero because |v| is constant"
+        "text": "a is zero since the magnitude of v is constant"
       },
       {
         "label": "D",
-        "text": "v · a = v0²ω"
+        "text": "v · a = v₀²ω"
       },
       {
         "label": "E",
@@ -17188,27 +17128,27 @@ export const usaaaoMcqs = [
       "Lagrange points"
     ],
     "type": "MCQ",
-    "questionText": "A planet of mass m orbits a star of mass M in an elliptical orbit with semimajor axis a and eccentricity e, with M much larger than m. Which statement is true?",
+    "questionText": "A planet of mass m orbits a star of mass M in an elliptical orbit with semi-major axis a and eccentricity e where M ≫ m. Which of the following statements is true?",
     "choices": [
       {
         "label": "A",
-        "text": "Orbital speed is maximized at aphelion due to conservation of energy"
+        "text": "The orbital speed is maximized at aphelion due to conservation of energy"
       },
       {
         "label": "B",
-        "text": "The planet moves in a perfect circle regardless of eccentricity"
+        "text": "The planet moves in a perfect circle around the star regardless of eccentricity"
       },
       {
         "label": "C",
-        "text": "Orbital period depends on eccentricity through Kepler’s Third Law"
+        "text": "The orbital period depends on eccentricity through Kepler’s Third Law"
       },
       {
         "label": "D",
-        "text": "The Roche limit increases if planet density decreases"
+        "text": "The Roche limit increases if the planet’s density decreases"
       },
       {
         "label": "E",
-        "text": "All five Lagrange points are stable equilibria"
+        "text": "All five Lagrange points correspond to stable equilibria"
       }
     ],
     "correctAnswer": "D",
@@ -17237,23 +17177,23 @@ export const usaaaoMcqs = [
       "galaxy dynamics"
     ],
     "type": "MCQ",
-    "questionText": "A spiral galaxy has nearly constant orbital speed v0 beyond radius r0. Which conclusion is most accurate?",
+    "questionText": "Astronomers in the United States observe a spiral galaxy and measure its rotation curve. They find that beyond a radius r₀, the orbital speed of stars remains approximately constant at v₀. Which of the following conclusions is most accurate?",
     "choices": [
       {
         "label": "A",
-        "text": "Mass density must decrease faster than 1/r²"
+        "text": "The mass density of the galaxy must decrease faster than 1/r²"
       },
       {
         "label": "B",
-        "text": "Total enclosed mass becomes constant beyond r0"
+        "text": "The total enclosed mass becomes constant for r > r₀"
       },
       {
         "label": "C",
-        "text": "Luminosity profile directly traces mass distribution"
+        "text": "The luminosity profile directly traces the mass distribution"
       },
       {
         "label": "D",
-        "text": "Enclosed mass within r grows approximately linearly with r"
+        "text": "The enclosed mass within radius r grows approximately linearly with r"
       },
       {
         "label": "E",
@@ -17286,7 +17226,7 @@ export const usaaaoMcqs = [
       "night-sky map"
     ],
     "type": "MCQ",
-    "questionText": "An official sky map shows a remote-island night sky. What is the best estimate of your latitude?",
+    "questionText": "You are stranded on a remote island somewhere on Earth, at an unknown date and time (in the 21st century). You look up and see the night sky shown below. (For avoidance of doubt, the illuminated side of the Moon is on the left.) Which of the following is the best estimate of your latitude?",
     "choices": [
       {
         "label": "A",
@@ -17339,7 +17279,7 @@ export const usaaaoMcqs = [
       "season"
     ],
     "type": "MCQ",
-    "questionText": "Using the same official night-sky map, what is the best estimate of the month of the year?",
+    "questionText": "You are stranded on a remote island somewhere on Earth, at an unknown date and time (in the 21st century). You look up and see the night sky shown below. (For avoidance of doubt, the illuminated side of the Moon is on the left.) Which of the following is the best estimate of the month of the year?",
     "choices": [
       {
         "label": "A",
@@ -17392,7 +17332,7 @@ export const usaaaoMcqs = [
       "local solar time"
     ],
     "type": "MCQ",
-    "questionText": "Using the same official night-sky map, what is the best estimate of time relative to local solar noon?",
+    "questionText": "You are stranded on a remote island somewhere on Earth, at an unknown date and time (in the 21st century). You look up and see the night sky shown below. (For avoidance of doubt, the illuminated side of the Moon is on the left.) Which of the following is the best estimate of the time of day (relative to local solar noon)?",
     "choices": [
       {
         "label": "A",
@@ -17445,7 +17385,7 @@ export const usaaaoMcqs = [
       "Schwarzschild radius"
     ],
     "type": "MCQ",
-    "questionText": "Assume a black hole radiates as a blackbody whose peak wavelength is proportional to Schwarzschild radius. How does radiated power P scale with mass M?",
+    "questionText": "One of Stephen Hawking’s most famous predictions was the existence of Hawking radiation. Specifically, black holes act like thermal blackbodies and thus must emit blackbody radiation. According to Hawking, a black hole radiates a blackbody spectrum with peak wavelength λmax proportional to its Schwarzschild radius Rs. Treat the surface of the blackbody as being at the black hole’s event horizon. According to the laws of thermodynamics and blackbody radiation, under this model, how does the power P radiated by a black hole scale with its mass M?",
     "choices": [
       {
         "label": "A",
@@ -17495,7 +17435,7 @@ export const usaaaoMcqs = [
       "concavity"
     ],
     "type": "MCQ",
-    "questionText": "Interpret Hawking-radiation power from the previous question as loss of a black hole’s mass-energy E = Mc². Which best describes the black hole mass versus time graph?",
+    "questionText": "Next, interpret the radiated power P from the previous problem as a gradual loss of the black hole’s intrinsic mass-energy E = Mc². Consider the graph of the black hole’s mass versus time. Which of the following best describes the shape of the resulting graph?",
     "choices": [
       {
         "label": "A",
@@ -17544,7 +17484,7 @@ export const usaaaoMcqs = [
       "Kepler’s law"
     ],
     "type": "MCQ",
-    "questionText": "Pallas has semimajor axis 2.77 AU. What is its orbital period around the Sun in years?",
+    "questionText": "The asteroid Pallas orbits the Sun with a semi-major axis of 2.77 AU. What is its orbital period around the Sun in years?",
     "choices": [
       {
         "label": "A",
@@ -17593,7 +17533,7 @@ export const usaaaoMcqs = [
       "Kepler’s law"
     ],
     "type": "MCQ",
-    "questionText": "A 300 kg satellite stays above a fixed point on Earth’s equator. Earth mass is 5.97 × 10^24 kg, Earth radius 6.37 × 10^6 m, and satellite period 86164 s. How far above Earth’s surface is it?",
+    "questionText": "A small satellite orbits the Earth so it stays directly above a fixed point on the equator. Using 5.97 × 10²⁴ kg for Earth’s mass and 6.37 × 10⁶ m for its radius, how far is the satellite from the surface of the Earth? Assume its mass is 300 kg and an orbital period of 86164 s. (Find the distance above the Earth’s surface, not orbital radius.)",
     "choices": [
       {
         "label": "A",
@@ -17642,7 +17582,7 @@ export const usaaaoMcqs = [
       "stellar magnitudes"
     ],
     "type": "MCQ",
-    "questionText": "Four bright stars with magnitude below 3.0 were erased from the official sky map. Which set was erased?",
+    "questionText": "Four bright stars were erased from the sky map below. All of these stars have magnitudes lower than 3.0. Select the alternative with the four stars that were erased from the sky map.",
     "choices": [
       {
         "label": "A",
@@ -17699,7 +17639,7 @@ export const usaaaoMcqs = [
       "photometry"
     ],
     "type": "MCQ",
-    "questionText": "An extraterrestrial observes a central transit of Jupiter across the Sun. Which official light curve could match the transit? The axes show hours from mid-transit and apparent bolometric magnitude.",
+    "questionText": "An extraterrestrial form of life from a distant planetary system observed a transit of Jupiter across the Sun. The transit was central, which means that the center of Jupiter’s disk intersected with the center of the Sun’s disk throughout the transit. Neglecting the effect of limb darkening, which of the light curves below could correspond to the transit of Jupiter seen by the extraterrestrial? The x-axis on the plots corresponds to the time difference in hours from the middle of the transit, and the y-axis corresponds to the apparent bolometric magnitude of the star.",
     "choices": [
       {
         "label": "A",
@@ -17752,7 +17692,7 @@ export const usaaaoMcqs = [
       "declination"
     ],
     "type": "MCQ",
-    "questionText": "What is the smallest angular separation between Algol (β Per) and the Sun during the year? Algol has declination +40°57′ and right ascension 3h08m.",
+    "questionText": "What is the smallest angular separation between Algol (β Per) and the Sun throughout the year? Algol’s declination is +40°57′, and its right ascension is 3h08min.",
     "choices": [
       {
         "label": "A",
@@ -17805,7 +17745,7 @@ export const usaaaoMcqs = [
       "Stefan-Boltzmann law"
     ],
     "type": "MCQ",
-    "questionText": "A hot gas cloud of radius R and fixed total particle number expands to radius 2R, keeping particle temperature and emissivity per particle constant. How does total observed power change for optically thin and optically thick cases, respectively?",
+    "questionText": "Consider a cloud of hot gas with radius R and total (electromagnetic) power emission rate P. Keeping the average temperature of gas particles and average emissivity per particle constant, the cloud now expands to a radius 2R. How does the net total power P radiated away, observed from far away, change in the cases where the cloud is optically thin (optical depth τ ≪ 1) and optically thick (optical depth τ ≫ 1), respectively? Assume the total number of particles remains constant.",
     "choices": [
       {
         "label": "A",
@@ -17854,7 +17794,7 @@ export const usaaaoMcqs = [
       "Kepler’s law"
     ],
     "type": "MCQ",
-    "questionText": "The Moon’s semimajor axis increases by 38 mm per year. Approximately how much does its sidereal orbital period increase each year?",
+    "questionText": "Lunar laser ranging experiments show that, due to tidal effects, the semi-major axis of the Moon’s orbit increases by around 38 mm per year. Assuming that the recession rate is constant, by approximately how much does this recession increase the Moon’s sidereal orbital period each year? The mass of the Moon is 7.3 × 10²² kg. Hint: (1 + x)^β ≈ 1 + βx for |x| ≪ 1.",
     "choices": [
       {
         "label": "A",
@@ -17903,7 +17843,7 @@ export const usaaaoMcqs = [
       "Kepler’s law"
     ],
     "type": "MCQ",
-    "questionText": "Kepler-22b has mass 4.84 × 10^25 kg and orbital period 290 days. Its Earth-like moon has semimajor axis 7.70 × 10^8 m in a prograde orbit near the ecliptic. What is the synodic lunar-month length for an observer on Kepler-22b?",
+    "questionText": "Kepler-22b is an exoplanet discovered by transiting with an orbital period of 290 days. Suppose it has a mass of 4.84 × 10²⁵ kg and a moon similar to Earth’s, with a prograde orbit near the ecliptic plane of the Kepler-22 system and a semi-major axis of 7.70 × 10⁸ m. What is the length of a synodic lunar month, i.e., the time between successive full moons, for an observer on Kepler-22b? You can neglect the mass of the moon.",
     "choices": [
       {
         "label": "A",
@@ -17952,7 +17892,7 @@ export const usaaaoMcqs = [
       "kinetic energy"
     ],
     "type": "MCQ",
-    "questionText": "A fast black hole passes through a star cluster and transfers momentum and energy to nearby stars. Long afterward, the energy is distributed through the cluster. Which statements are likely true? I: Average stellar blackbody peak wavelength decreases. II: Stars are on average farther apart. III: Stars have lower relative velocities.",
+    "questionText": "A quickly-moving black hole passes through the center of a large star cluster. While the black hole does not experience any direct collisions with any stars in the cluster or significantly disrupt any stellar atmospheres, the black hole imparts a fraction of its momentum to several stars in the cluster close to the black hole’s trajectory. (This is known as dynamic gravitational friction and can be explained purely with Newtonian mechanics.) Some time passes, and due to complex multi-body interactions, the additional energy and momentum get distributed over the entire star cluster. After a sufficiently long time, which of the following statements are likely TRUE regarding the system (compared to before the black hole event), assuming no further perturbations occur? (I) The average peak blackbody emission wavelength among stars in the cluster decreases significantly. (II) Stars are on average further apart from each other than they were before. (III) Stars have lower relative velocities with respect to each other than they had before.",
     "choices": [
       {
         "label": "A",
@@ -18001,7 +17941,7 @@ export const usaaaoMcqs = [
       "MoM-z14"
     ],
     "type": "MCQ",
-    "questionText": "MoM-z14 has redshift z = 14.44. If the CMB temperature today is 2.725 K, what was the CMB temperature at MoM-z14?",
+    "questionText": "The most distant known galaxy, MoM-z14, was recently observed by the James Webb Space Telescope and has a redshift of z = 14.44. If the current cosmic microwave background (CMB) temperature is 2.725 K, what was the CMB temperature at MoM-z14?",
     "choices": [
       {
         "label": "A",
@@ -18050,7 +17990,7 @@ export const usaaaoMcqs = [
       "calculus"
     ],
     "type": "MCQ",
-    "questionText": "A spherical star has density ρ(r) = (1 − r³/R³)ρc for 0 ≤ r ≤ R. Find ρc in terms of total mass M and radius R.",
+    "questionText": "Assume a spherical star has a density profile described by the equation ρ(r) = (1 − r³/R³) ρc, for 0 ≤ r ≤ R. Find ρc in terms of the total mass, M, and the radius of the star, R.",
     "choices": [
       {
         "label": "A",
@@ -18099,7 +18039,7 @@ export const usaaaoMcqs = [
       "stellar evolution"
     ],
     "type": "MCQ",
-    "questionText": "Some stars formed in the early universe are still observable today. If one is still on the main sequence, what mass is most likely?",
+    "questionText": "Some stars formed in the early universe are still observable today. If an observer observed one and it is still in the main sequence phase, what would most likely be its mass?",
     "choices": [
       {
         "label": "A",
@@ -18148,27 +18088,27 @@ export const usaaaoMcqs = [
       "density distribution"
     ],
     "type": "MCQ",
-    "questionText": "For a galaxy rotation curve, the low-radius best-fit curve at r ≤ 5000 ly has v(r) ∝ r. Thus M(r) ∝ r^n. Which hypothesis is most consistent?",
+    "questionText": "Consider the following graph (below), which shows the mean orbital velocity of stars around a galaxy’s center as a function of distance from the center. The graph also shows the expected orbital velocities (dashed line) from observations of visible matter. The discrepancy between the observed and expected values is assumed to be due to invisible dark matter. Consider orbital radii within the most luminous part of the disk, at around r ≤ 5000 ly. Let M(r) be the total mass (of all forms) enclosed within a distance r from the galactic center. Approximating the rotation curve by the low-radius best fit (dot-dash) line, we can infer that M(r) is roughly proportional to rⁿ for some value of n (over small r). In light of the value of n, and for r ≤ 5000 ly, which of the following hypotheses is MOST consistent with the data?",
     "choices": [
       {
         "label": "A",
-        "text": "Mass is concentrated in and nearly uniform over a 2D galactic plane"
+        "text": "Near the galactic center, the mass is concentrated in and is nearly uniform over the 2D galactic plane."
       },
       {
         "label": "B",
-        "text": "Most M(r) comes from a central supermassive black hole"
+        "text": "The majority of the contribution to M(r) comes from the existence of a supermassive black hole at the galactic center."
       },
       {
         "label": "C",
-        "text": "Dark-energy repulsion induces ρ(r) ∝ r²"
+        "text": "Dark energy-based repulsion from the galactic center induces a mass distribution of the form ρ(r) ∝ r²."
       },
       {
         "label": "D",
-        "text": "No power law can match the best-fit curve"
+        "text": "Complex gravitational interactions with the dark matter halo make such power laws impossible, with no single value of n being consistent with the best fit line."
       },
       {
         "label": "E",
-        "text": "Gas, dust, and stars are approximately uniformly distributed in 3D space with no significant radial density dependence"
+        "text": "Gas, dust, and stars are approximately uniformly distributed in 3D space near the galactic center with no significant radius dependence of density."
       }
     ],
     "correctAnswer": "E",
@@ -18201,7 +18141,7 @@ export const usaaaoMcqs = [
       "galaxy mass"
     ],
     "type": "MCQ",
-    "questionText": "Within 40,000 ly of a galactic center, an observed rotation curve is roughly 3.5 times the baryonic-matter expectation. What is the closest ratio of enclosed dark-matter mass to baryonic mass?",
+    "questionText": "Consider the following graph (below), which shows the mean orbital velocity of stars around a galaxy’s center as a function of distance from the center. The graph also shows the expected orbital velocities (dashed line) from observations of visible matter. The discrepancy between the observed and expected values is assumed to be due to invisible dark matter. Now, for larger values of r, the discrepancy between the observed and expected rotation curves begins to appear more significant. Assume that the expected rotation curve (dashed gray curve) is calculated off the distribution of all baryonic (“standard”) matter, while the observed rotation curve (solid white) is due to the combination of baryonic matter and dark matter. Within a radius of r = 40,000 ly from the galactic center, and according to the graph, which of the following is closest to the ratio between the dark matter mass and the baryonic matter mass enclosed?",
     "choices": [
       {
         "label": "A",
@@ -18254,7 +18194,7 @@ export const usaaaoMcqs = [
       "rotation curves"
     ],
     "type": "MCQ",
-    "questionText": "Which assertions about measuring a galaxy rotation curve are true? I: Interstellar dust is colder at lower r and obscures less starlight. II: O/B stars in spiral arms emit UV that ionizes nearby H-I clouds and inhibits 21-cm emission nearby. III: Lower stellar density at high r means existing stars typically move relativistically, complicating Doppler measurements.",
+    "questionText": "Consider the following graph (below), which shows the mean orbital velocity of stars around a galaxy’s center as a function of distance from the center. The graph also shows the expected orbital velocities (dashed line) from observations of visible matter. The discrepancy between the observed and expected values is assumed to be due to invisible dark matter. Consider the following three assertions related to the techniques used to measure the overall rotation curve, in the context of this figure: (I) Interstellar dust is colder at lower values of r, making the dust obscure less starlight. (II) O/B type stars in the spiral arms of galaxies emit significant quantities of UV light, ionizing nearby H-I clouds and thus inhibiting the emission of 21-cm radiation in their vicinities. (III) The lower star number density for higher values of r means that the stars that do exist typically move at relativistic speeds, complicating Doppler-based stellar velocity measurements. Which of the above are TRUE?",
     "choices": [
       {
         "label": "A",
@@ -18307,7 +18247,7 @@ export const usaaaoMcqs = [
       "homogeneous universe"
     ],
     "type": "MCQ",
-    "questionText": "Honeyhive and Gold Leaf galaxies are diametrically opposite from Earth. Earth measures Honeyhive’s supernova at z = 0.5, while Gold Leaf measures a simultaneous Milky Way supernova at z = 0.8. What redshift does Gold Leaf measure for Honeyhive’s supernova?",
+    "questionText": "Suppose the Honeyhive galaxy and the Gold Leaf galaxy are diametrically opposite when viewed from the Earth, and the following sequence of events happens: 1. A type Ia supernova happens in the Honeyhive galaxy. 2. Astronomers on Earth measure the redshift of (the spectral lines) in the Honeyhive supernova to be z = 0.5. At the same time, another supernova happens in the Milky Way galaxy. 3. Aliens in the Gold Leaf galaxy measure the redshifts of the supernovae in the Honeyhive and Milky Way galaxies. If the alien astronomers measure the redshift of the Milky Way supernova to be z = 0.8, what redshift would they measure for the Honeyhive supernova? You may assume that the local velocities of the galaxies are negligible, that the universe is simple, homogeneous, and isotropically expanding, and that redshift depends only on the scale factor and is the same function of distance for all observers.",
     "choices": [
       {
         "label": "A",
@@ -18356,7 +18296,7 @@ export const usaaaoMcqs = [
       "wavelength"
     ],
     "type": "MCQ",
-    "questionText": "Order the hydrogen Balmer-α (n = 3 to 2), H-I 21-cm hyperfine, and Lyman-α (n = 2 to 1) lines from shortest to longest wavelength.",
+    "questionText": "The Balmer-α, H-I, and Lyman-α lines are important spectral lines in astronomy, all from hydrogen. The Balmer-α line occurs when an electron in a hydrogen atom goes from the n = 3 state to n = 2. The H-I line occurs from an electron in the 1s shell of a hydrogen atom undergoing a spin-flip transition between two hyperfine levels. The Lyman-α line is the emission line that occurs when an electron in a hydrogen atom goes from n = 2 to n = 1. Order these lines from the shortest to longest wavelength.",
     "choices": [
       {
         "label": "A",
@@ -18405,7 +18345,7 @@ export const usaaaoMcqs = [
       "Stefan-Boltzmann law"
     ],
     "type": "MCQ",
-    "questionText": "Stars X and Y form an eclipsing binary. X is larger and fully blocks Y during one eclipse. The primary eclipse increases apparent magnitude by 0.200 and the secondary by 0.100. Which is a possible TX/TY? Ignore limb darkening.",
+    "questionText": "Star X and star Y form an eclipsing binary system, where star X is larger, and fully blocks star Y during an eclipse. During the primary eclipse, the apparent magnitude of the binary system increases by 0.200, and during the secondary eclipse, the apparent magnitude only increases by 0.100. If TX is the surface temperature of star X and TY is the surface temperature of star Y, which of the following is a possible value of TX/TY? Ignore limb darkening.",
     "choices": [
       {
         "label": "A",
@@ -18454,7 +18394,7 @@ export const usaaaoMcqs = [
       "orbital resonance"
     ],
     "type": "MCQ",
-    "questionText": "An official asteroid-belt semimajor-axis plot marks a gap near 2.82 AU. Jupiter has semimajor axis 5.20 AU. Which resonance causes the marked Kirkwood gap?",
+    "questionText": "When plotting the distribution of asteroids in the asteroid belt by their semi-major axis, we can see several regions, known as “Kirkwood gaps,” where asteroids’ orbits are unstable due to an orbital resonance with Jupiter (a = 5.20 AU). What orbital resonance is responsible for the gap marked with the arrow in the plot below?",
     "choices": [
       {
         "label": "A",
@@ -18507,7 +18447,7 @@ export const usaaaoMcqs = [
       "red giant branch"
     ],
     "type": "MCQ",
-    "questionText": "An official Gaia DR3 globular-cluster HR diagram labels regions A–D. Identify 1) the region of core hydrogen burning and 2) the region where helium flash occurs.",
+    "questionText": "Below is an HR diagram for a globular cluster from Gaia DR3 data. The figure has labeled regions: “A”, “B”, “C”, and “D”. 1) Identify the region where stars undergo hydrogen burning in their cores. 2) Identify the region where stars experience Helium flash.",
     "choices": [
       {
         "label": "A",
@@ -18560,7 +18500,7 @@ export const usaaaoMcqs = [
       "Solar luminosity"
     ],
     "type": "MCQ",
-    "questionText": "What is the closest ratio of the number of solar photons striking Earth each second to the number of CMB photons striking Earth each second? Treat the CMB as an isotropic 2.725 K blackbody and approximate photons at each source’s peak emission energy.",
+    "questionText": "Which of the following is closest to the ratio of the number of photons from the Sun that strike the Earth each second to the number of photons from the Cosmic Microwave Background that strike the Earth each second? (Assume the Cosmic Microwave Background to be a uniform and isotropic blackbody signal at Tc ≈ 2.725 K. As a hint, you may approximate all photons from a given source as being at the peak emission energy.)",
     "choices": [
       {
         "label": "A",
@@ -18609,7 +18549,7 @@ export const usaaaoMcqs = [
       "supernovae"
     ],
     "type": "MCQ",
-    "questionText": "Galaxy S is a spiral with blue spiral arms. Galaxy E is an elliptical with only red stars. Which statements are likely true? I: Planetary nebulae can be found in both. II: S likely has ongoing star formation. III: E likely has ongoing star formation. IV: Type II supernovae are more likely in S. V: Type Ia supernovae are likely only in E.",
+    "questionText": "Consider two galaxies: Galaxy S is a spiral galaxy with blue spiral arms. Galaxy E is an elliptical galaxy with no blue stars, only red stars. Which of the following statements are likely TRUE? (I) We can find planetary nebulae in both galaxies. (II) Galaxy S is likely to have ongoing star formation. (III) Galaxy E is likely to have ongoing star formation. (IV) Type II supernovae are more likely to be found in Galaxy S. (V) Type Ia supernovae are likely to be found only in Galaxy E.",
     "choices": [
       {
         "label": "A",

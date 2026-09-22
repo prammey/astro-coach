@@ -3682,7 +3682,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q1.png"],
     },
-    "questionText": "What is the name of the JWST component highlighted in the official figure?",
+    "questionText": "What is the name of the JWST component highlighted below?",
     "choices": [
       {
         "label": "A",
@@ -3730,7 +3730,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q2.png"],
     },
-    "questionText": "What is the name of the JWST component highlighted in the official figure?",
+    "questionText": "What is the name of the JWST component highlighted below?",
     "choices": [
       {
         "label": "A",
@@ -3778,7 +3778,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q3.png"],
     },
-    "questionText": "What is the name of the JWST component highlighted in the official figure?",
+    "questionText": "What is the name of the JWST component highlighted below?",
     "choices": [
       {
         "label": "A",
@@ -4932,7 +4932,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q29.png"],
     },
-    "questionText": "What is the name of Jupiter’s moon shown in the official figure?",
+    "questionText": "What is the name of Jupiter’s moon shown in the figure below?",
     "choices": [
       {
         "label": "A",
@@ -5024,7 +5024,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2023-iaac-final-round-images/iaac-2023-final-round-q1.png"],
     },
-    "questionText": "Which one of these shapes in the official figure illustrates an elliptical galaxy?",
+    "questionText": "Which one of these shapes (shown below) illustrates an elliptical galaxy?",
     "choices": [
       {
         "label": "A",
@@ -5072,7 +5072,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2023-iaac-final-round-images/iaac-2023-final-round-q2.png"],
     },
-    "questionText": "What is the class of the galaxy shown in the official figure?",
+    "questionText": "What is the class of the galaxy shown below?",
     "choices": [
       {
         "label": "A",
@@ -5120,7 +5120,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2023-iaac-final-round-images/iaac-2023-final-round-q3.png"],
     },
-    "questionText": "Which class of galaxies does the shape in the official figure illustrate?",
+    "questionText": "Which class of galaxies does the shape shown below illustrate?",
     "choices": [
       {
         "label": "A",
@@ -5300,7 +5300,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2023-iaac-final-round-images/iaac-2023-final-round-q7.png"],
     },
-    "questionText": "Which one of the labeled points in the official ellipse diagram is the aphelion?",
+    "questionText": "Which one of the labeled points on the ellipse shown below is the aphelion?",
     "choices": [
       {
         "label": "A",
@@ -6850,7 +6850,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2024-iaac-final-round-images/iaac-2024-final-round-q12.png"],
     },
-    "questionText": "What is the name of the region marked in the official horizontal Milky Way drawing?",
+    "questionText": "What is the name of the region marked in the horizontal Milky Way drawing below?",
     "choices": [
       {
         "label": "A",
@@ -6898,7 +6898,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2024-iaac-final-round-images/iaac-2024-final-round-q13.png"],
     },
-    "questionText": "What is the name of the region marked in the official horizontal Milky Way drawing?",
+    "questionText": "What is the name of the region marked in the horizontal Milky Way drawing below?",
     "choices": [
       {
         "label": "A",
@@ -7518,7 +7518,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2025-iaac-final-round-images/iaac-2025-final-round-q1.png"],
     },
-    "questionText": "What type of optical telescope is shown in the official image?",
+    "questionText": "What type of optical telescope is shown in the image below?",
     "choices": [
       {
         "label": "A",
@@ -7566,7 +7566,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2025-iaac-final-round-images/iaac-2025-final-round-q2.png"],
     },
-    "questionText": "What type of optical telescope is shown in the official image?",
+    "questionText": "What type of optical telescope is shown in the image below?",
     "choices": [
       {
         "label": "A",

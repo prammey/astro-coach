@@ -389,21 +389,6 @@ export const explanations: McqExplanationMap = {
     takeaway: r`An interferometer's resolution is set by its longest baseline: λ/B.`,
   },
 
-  "usaaao-2017-first-round-q27": {
-    solution: [
-      r`The diffraction limit is $\theta = 1.22\,\dfrac{\lambda}{D} = 1.22 \times \dfrac{1.2 \times 10^{-6}}{4.5} \approx 3.3 \times 10^{-7}$ rad.`,
-      r`Converting with $206{,}265''$ per radian gives about **0.07 arcseconds**.`,
-      r`None of the printed options matches this correctly; the answer options were printed with the wrong units, and the question was excluded from grading in the original exam. The official key nonetheless marks $1.9 \times 10^{-5}$: that number is right in **degrees** ($1.86 \times 10^{-5}$ degrees $\approx 0.07''$), but the options say arcsec. Take the method from this question, not the printed unit.`,
-    ],
-    wrongChoices: {
-      A: r`This is not the keyed option. Note that the options' units do not match a real diffraction limit (about 0.07″ here); compute $1.22\lambda/D$ in radians and convert to arcseconds.`,
-      C: r`This is not the keyed option. Compute $\theta = 1.22\lambda/D$ with $\lambda = 1.2 \times 10^{-6}$ m and $D = 4.5$ m; the true limit is about 0.07″, and the options were printed with faulty units.`,
-      D: r`This is not the keyed option. The real diffraction limit works out near 0.07″; the printed options carry incorrect units.`,
-      E: r`This is not the keyed option. Start from $1.22\lambda/D \approx 3.3 \times 10^{-7}$ rad and convert with 206,265″ per radian.`,
-    },
-    takeaway: r`Diffraction limit: θ = 1.22 λ/D radians, and 1 radian is 206,265 arcseconds.`,
-  },
-
   "usaaao-2017-first-round-q28": {
     solution: [
       r`Twilight is defined by how far the Sun is **below** the horizon, in three standard steps of 6°.`,

@@ -371,21 +371,6 @@ export const explanations: McqExplanationMap = {
     takeaway: r`Critical density ρ_c = 3H₀²/(8πG) ≈ 10⁻²⁶ kg/m³, a few atoms per cubic metre.`,
   },
 
-  "usaaao-2021-first-round-q27": {
-    solution: [
-      r`Gas spiralling in through the disc moves from radius $3R$ down to the star's surface at $R$. The gravitational potential energy at radius $r$ is $-\dfrac{GMm}{r}$.`,
-      r`The drop in potential energy is $\left(-\dfrac{GMm}{3R}\right) - \left(-\dfrac{GMm}{R}\right) = \dfrac{2}{3}\dfrac{GMm}{R}$, which is the energy the exam counts as lost by the test mass.`,
-      r`(In a Keplerian disc half of any potential drop stays as faster orbital motion, so the part actually radiated on the way in is $GMm/(3R)$; the key counts the full potential drop.)`,
-    ],
-    wrongChoices: {
-      A: r`This is the entire potential energy at the surface, $GMm/R$, as if the gas had fallen from infinity. It only fell from $3R$, where it already had potential energy $-GMm/(3R)$.`,
-      B: r`This is the orbital energy of a circular orbit at $R$, not the change between $3R$ and $R$. Subtract the potential at $3R$ from the potential at $R$.`,
-      C: r`Too large; more than the whole potential energy at the surface. The drop between $3R$ and $R$ is $GMm/R - GMm/(3R)$.`,
-      E: r`Not from the formula. Compute $GMm\left(\dfrac{1}{R} - \dfrac{1}{3R}\right)$.`,
-    },
-    takeaway: r`Between radii r₁ and r₂ the potential energy drop is GMm(1/r₂ − 1/r₁).`,
-  },
-
   "usaaao-2021-first-round-q28": {
     solution: [
       r`Human power density: $\dfrac{100\ \text{W}}{0.0664\ \text{m}^3} \approx 1500$ W/m³. (The Sun's is only about 0.27 W/m³, which is the fun fact.)`,
