@@ -12,6 +12,7 @@ import { iaacMcqs } from "./iaac_mcqs";
 import { baaoMcqs } from "./baao_mcqs";
 import type { CatalogQuestion, PublicQuestion, RawMcqQuestion } from "./types";
 import { classifyQuestionTopics, getPrimaryCurriculumTopic } from "./topicTaxonomy";
+import { findMcqExplanation } from "./explanations";
 
 // Turns free text into a URL-safe, lowercase slug, e.g.
 // "First Round" -> "first-round".
@@ -32,12 +33,14 @@ function buildQuestionId(question: RawMcqQuestion): string {
 function withId(question: RawMcqQuestion): CatalogQuestion {
   const curriculumTopics = classifyQuestionTopics(question.topic);
   const primaryCurriculumTopic = getPrimaryCurriculumTopic(question.topic);
+  const id = buildQuestionId(question);
 
   return {
     ...question,
-    id: buildQuestionId(question),
+    id,
     primaryCurriculumTopic,
     curriculumTopics,
+    detailedExplanation: findMcqExplanation(id),
   };
 }
 
@@ -121,11 +124,13 @@ export function findCatalogQuestionById(id: string): CatalogQuestion | undefined
 }
 
 // Strips the fields that must never reach the browser before an answer
-// is submitted: correctAnswer, explanation, and solutionMedia details.
+// is submitted: correctAnswer, both explanations, and solutionMedia details.
 export function toPublicQuestion(question: CatalogQuestion): PublicQuestion {
-  const { correctAnswer, explanation, solutionMedia, parts, ...rest } = question;
+  const { correctAnswer, explanation, detailedExplanation, solutionMedia, parts, ...rest } =
+    question;
   void correctAnswer;
   void explanation;
+  void detailedExplanation;
 
   return {
     ...rest,
