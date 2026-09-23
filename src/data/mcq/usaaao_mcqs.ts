@@ -9437,19 +9437,19 @@ export const usaaaoMcqs = [
 
   type: "MCQ",
 
-  questionText: "In a particular compact binary system consisting of a black hole and a main sequence star, the black hole has a mass of 23.2 M☉ and the main sequence star has mass of 15.6 M☉. The two stars are separated by 1 AU. A clump of gas of mass 1 M☉ detaches from the main sequence star. When the gas is 1 km from the black hole, what is its total energy? Neglect viscous forces.",
+  questionText: "In a particular compact binary system consisting of a black hole and a main sequence star, the black hole has a mass of 23.2 M☉ and the main sequence star has mass of 15.6 M☉. The two stars are separated by 1 AU. A clump of gas of mass 1 M☉ detaches from the main sequence star. When the gas is 1000 km from the black hole, what is its total energy? Neglect viscous forces. [Distance updated from the original exam’s 1 km, which lies inside the black hole’s event horizon.]",
 
   choices: [
-    { label: "A", text: "−3.06 × 10⁴⁸ J" },
-    { label: "B", text: "−6.12 × 10⁴⁸ J" },
-    { label: "C", text: "3.06 × 10⁴⁸ J" },
-    { label: "D", text: "6.12 × 10⁴⁸ J" },
+    { label: "A", text: "−3.06 × 10⁴⁵ J" },
+    { label: "B", text: "−6.12 × 10⁴⁵ J" },
+    { label: "C", text: "3.06 × 10⁴⁵ J" },
+    { label: "D", text: "6.12 × 10⁴⁵ J" },
     { label: "E", text: "0 J" },
   ],
 
   correctAnswer: "A",
 
-  explanation: "The official key gives −3.06 × 10⁴⁸ J for the gas at the stated distance from the black hole.",
+  explanation: "For a circular orbit the total energy is −GMm/(2r); with M = 23.2 M☉, m = 1 M☉ and r = 1000 km that is −3.06 × 10⁴⁵ J. The original exam placed the gas 1 km from the black hole, inside its 68 km Schwarzschild radius; the distance was changed to 1000 km and the choices rescaled in the Sept 2026 audit.",
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2020/02/2020_usaaao_first_round.pdf",

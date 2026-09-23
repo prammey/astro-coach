@@ -16,7 +16,7 @@ here checked out.
 | usaaao-2017-first-round-q22 | B (250 pc) — **fixed Sept 2026** | With the official answers to q19–q21 (8000/6000 K, radius ratio 0.6, m = 8.2) the distance is ≈ 250 pc; the original key's 85 pc cannot be reproduced. Choices replaced (180, 250, 345, 500, 1000 pc); the question text says so. Note the value inherits the graph readings behind q19–q21. |
 | usaaao-2019-first-round-q24 | B (13°, 13°) — **fixed Sept 2026** | Observer B moved from 5790 m to sea level so no horizon dip applies; both differences are then the 13° longitude gap. Key changed from D to B; the question text says so. |
 | usaaao-2020-first-round-q12 | C (42 yr, 9h 11 min) — **fixed Sept 2026** | cos H = −tan(30°5′)tan(10°) gives H ≈ 96° and a day of 9 h 11 min with the 17 h 14 min rotation. Choice C changed from 9h 28min to 9h 11min and “revolution” corrected to “rotation”; the question text says so. |
-| usaaao-2020-first-round-q23 | A (−3.06×10⁴⁸ J) | The key assumes circular-orbit energy −GMm/(2r). Note that 1 km from a 23.2 M☉ black hole is inside its 68 km Schwarzschild radius, so the setup is unphysical; explanation follows the key's Newtonian intent. **Decision pending** (delete, or move the gas to 1000 km and scale the choices). |
+| usaaao-2020-first-round-q23 | A (−3.06×10⁴⁵ J) — **fixed Sept 2026** | The original placed the gas 1 km from a 23.2 M☉ black hole, inside its 68 km Schwarzschild radius. Distance changed to 1000 km (outside the ISCO) and all choices rescaled by 10⁻³; key A unchanged; the question text says so. |
 | usaaao-2021-first-round-q9 | E (771 m/s) — **fixed Sept 2026** | The key used the 4.4 pc diameter as the radius. The angular diameter was changed from 30′ to 60′ so the true radius (4.36 pc) gives exactly 771 m/s; the question text says so. |
 | usaaao-2021-first-round-q18 | D (±0.0032298) — **fixed Sept 2026** | The question now asks for the *maximum possible* error, which justifies the linear sum of the epoch and 23×period uncertainties; the question text says so. |
 | usaaao-2025-first-round-q20 | A (43° W) — **fixed Sept 2026** | The watch reading was changed from 3:00am to 8:44am so that local mean sunrise (5:52) is 2 h 52 min behind UTC, i.e. 43° W, consistent with the westward voyage; the question text says so. |
@@ -57,6 +57,6 @@ questions across 30 exams.
   missing exponent sign has been corrected (row above).
 - **Questions edited away from the original exam** (Prameet's decision,
   2026-09-23): 2015 Practice q17, 2015 First q20/q23, 2016 q2/q7, 2017
-  q22, 2019 q24, 2020 q12, 2021 q9/q18, 2025 q20, IAAC 2021 q18. Each carries a bracketed note in its question text saying
+  q22, 2019 q24, 2020 q12/q23, 2021 q9/q18, 2025 q20, IAAC 2021 q18. Each carries a bracketed note in its question text saying
   what was updated and why. Remaining rows above whose official key physics
   cannot reproduce still follow the official sheet.
