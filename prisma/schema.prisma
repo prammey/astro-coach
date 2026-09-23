@@ -168,7 +168,8 @@ enum AiUsageKind {
 
 /// One free-response question from a real olympiad paper.
 ///
-/// Unlike the MCQ bank (static TypeScript files), FRQs live in Postgres
+/// Unlike the MCQ bank (seeded from versioned TypeScript files), FRQs live
+/// in Postgres only
 /// because they are created through the admin importer and edited before
 /// publication.
 model FrqQuestion {
@@ -516,4 +517,94 @@ model AiUsageEvent {
   @@index([kind, createdAt])
   @@index([userId])
   @@index([createdAt])
+}
+
+// ---------------------------------------------------------------------------
+// MCQ BANK
+//
+// The multiple-choice bank is served from these two tables. The versioned
+// files in src/data/mcq/ (questions) and src/data/mcq/explanations/
+// (teaching explanations) are the editing surface: edit there, run the
+// test gate, then `npm run seed:mcq` upserts them here. The ids are the
+// same stable slugs the app has always used ("usaaao-2015-first-round-q12"),
+// so UserAttempt, UserQuestionProgress, Bookmark and QuestionReport rows
+// keep pointing at the right question.
+// ---------------------------------------------------------------------------
+
+/// One multiple-choice question. `correctAnswer` and `explanation` are
+/// SERVER-ONLY: the catalog strips them before anything reaches the browser.
+model McqQuestion {
+  /// Stable slug: competition-year-exam-qN.
+  id String @id
+
+  // --- Provenance ---------------------------------------------------------
+  competition    String
+  year           Int
+  examName       String
+  questionNumber Int
+
+  // --- Classification -----------------------------------------------------
+  difficulty             String
+  /// The source file's own topic wording; the curriculum topics below are
+  /// derived from it by src/data/mcq/topicTaxonomy.ts at seed time.
+  topic                  String
+  subtopic               String
+  tags                   String[] @default([])
+  primaryCurriculumTopic String
+  curriculumTopics       String[] @default([])
+
+  // --- Content ------------------------------------------------------------
+  questionText  String
+  /// [{ label: "A", text: "..." }, ...]
+  choices       Json
+  correctAnswer String
+  /// The short one-sentence explanation (fallback when no full one exists).
+  explanation   String
+  /// { status: "complete" | "required-missing", assets: [paths] } or null.
+  questionMedia Json?
+  solutionMedia Json?
+  /// Set on a follow-up that builds on an earlier question in the same
+  /// exam; the catalog joins the two into one multi-part item.
+  continuesFrom Int?
+
+  // --- Source / rights ----------------------------------------------------
+  sourceUrl           String
+  pdfUrl              String
+  pageNumber          Int
+  answerKeyUrl        String
+  answerKeyPageNumber Int
+  attributionText     String
+  permissionStatus    String
+  status              String
+
+  /// Position in the seed files, so Previous/Next walks the bank in the
+  /// same order it always has.
+  orderIndex Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  detailedExplanation McqExplanation?
+
+  @@unique([competition, year, examName, questionNumber])
+  @@index([competition, year])
+  @@index([primaryCurriculumTopic])
+  @@index([orderIndex])
+}
+
+/// The full teaching explanation for one MCQ, one row per question.
+/// SERVER-ONLY until the student has answered: a wrong pick reveals only
+/// that choice's entry in `wrongChoices`, a right pick reveals everything.
+model McqExplanation {
+  questionId String @id
+  /// Worked solution, one step per entry, in order. May contain $LaTeX$.
+  solution     String[]
+  /// { "A": "why A is wrong", ... } — never contains the correct letter.
+  wrongChoices Json
+  takeaway     String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  question McqQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
 }

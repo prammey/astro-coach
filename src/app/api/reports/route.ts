@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
 
     // Reject reports against questions that do not exist, so the table
     // cannot be filled with junk IDs.
-    if (!findCatalogQuestionById(questionId)) {
+    if (!(await findCatalogQuestionById(questionId))) {
       return NextResponse.json({ error: 'Question not found' }, { status: 404 });
     }
 

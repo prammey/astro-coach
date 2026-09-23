@@ -4,7 +4,11 @@ import PageContainer from "@/components/PageContainer";
 import BrutalCard from "@/components/BrutalCard";
 import BrutalButton from "@/components/ui/BrutalButton";
 import TrainingBrowser from "@/components/TrainingBrowser";
-import { publicQuestionCatalog } from "@/data/mcq/catalog.server";
+import { getMcqCatalog } from "@/data/mcq/catalog.server";
+
+// Rendered per request (from the cached catalog) rather than at build
+// time, so building the site never needs a database connection.
+export const dynamic = "force-dynamic";
 
 // Check if the constants sheet PDF exists
 async function constantsSheetExists(): Promise<boolean> {
@@ -20,6 +24,7 @@ async function constantsSheetExists(): Promise<boolean> {
 // on the server, then hands it to the client-side search/filter UI.
 export default async function TrainingPage() {
   const pdfExists = await constantsSheetExists();
+  const { publicItems: publicQuestionCatalog } = await getMcqCatalog();
   const pdfPath = "public/resources/astro-coach-constants-sheet.pdf";
 
   return (

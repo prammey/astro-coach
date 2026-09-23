@@ -7,7 +7,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const question = findCatalogQuestionById(id);
+    const question = await findCatalogQuestionById(id);
 
     if (!question) {
       return NextResponse.json({ error: 'Question not found' }, { status: 404 });

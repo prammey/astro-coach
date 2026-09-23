@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
-import { questionLabelFor } from '@/lib/question-row';
+import { getQuestionLabeler } from '@/lib/question-row';
 
 // GET: Fetch user's most recent incorrect attempt per question
 export async function GET(request: NextRequest) {
@@ -20,6 +20,7 @@ export async function GET(request: NextRequest) {
 
     const prisma = getPrisma();
     const userId = user.id;
+    const questionLabelFor = await getQuestionLabeler();
 
     // Most recent incorrect attempt per question
     const incorrectAttempts = await prisma.userAttempt.findMany({

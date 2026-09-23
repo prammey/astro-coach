@@ -3,9 +3,20 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import katex from "katex";
 import MathText from "@/components/MathText";
-import { realQuestionCatalog } from "../catalog.server";
+import { buildCatalogItems, toCatalogQuestion } from "../catalog-builder";
+import { usaaaoMcqs } from "../usaaao_mcqs";
+import { iaacMcqs } from "../iaac_mcqs";
+import { baaoMcqs } from "../baao_mcqs";
 import { allMcqExplanations } from "./index";
-import type { CatalogQuestion } from "../types";
+import type { CatalogQuestion, RawMcqQuestion } from "../types";
+
+// Built from the seed files (not the database), so the gate checks exactly
+// what `npm run seed:mcq` is about to upload.
+const realQuestionCatalog = buildCatalogItems(
+  ([...usaaaoMcqs, ...iaacMcqs, ...baaoMcqs] as unknown as RawMcqQuestion[]).map((q) =>
+    toCatalogQuestion(q, (id) => allMcqExplanations[id])
+  )
+);
 
 // Every gradable question: standalone items plus each part of a joined item.
 function collectGradableQuestions(): CatalogQuestion[] {

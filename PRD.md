@@ -1028,6 +1028,11 @@ are deliberate; the earlier text is left in place for context.
 
 ### Questions live in TypeScript, not the database
 
+> **Superseded (September 2026):** the bank now lives in Postgres
+> (`McqQuestion`, `McqExplanation`), seeded from the TypeScript files with
+> `npm run seed:mcq`. The files remain the reviewed editing surface. The
+> original reasoning is kept below for context.
+
 Section 5 (Feature 5) and Section 9 describe `Competition`, `Exam`,
 `Question` and `AnswerChoice` tables. **Those tables were never built.**
 

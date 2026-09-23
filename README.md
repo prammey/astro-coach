@@ -470,9 +470,9 @@ Notes:
 
 ## Database
 
-Supabase Postgres via Prisma. Questions themselves are **not** in the
-database — they live in TypeScript files under `src/data/mcq/` and are
-loaded server-side. The database only holds what is specific to a user.
+Supabase Postgres via Prisma. The MCQ bank lives in `McqQuestion` and
+`McqExplanation` (seeded from `src/data/mcq/` with `npm run seed:mcq`, see
+**The Question Bank**); the other tables hold what is specific to a user.
 
 Current tables (`prisma/schema.prisma`):
 
@@ -752,25 +752,39 @@ rather than sending people into an unverified-app warning.
 
 ## The Question Bank
 
-Questions live in TypeScript, not the database:
+The app serves the bank from **Postgres** (tables `McqQuestion` and
+`McqExplanation`). The TypeScript files are the **editing surface** — they
+are versioned in git, reviewable in a pull request, and checked by the test
+gate before anything reaches the database:
 
 ```txt
 src/data/mcq/
-├── usaaao_mcqs.ts      394 questions
-├── iaac_mcqs.ts        252 questions
-├── baao_mcqs.ts         90 questions
-├── catalog.server.ts   combines them, generates IDs, builds multi-part items
+├── usaaao_mcqs.ts        USAAAO questions (seed file)
+├── iaac_mcqs.ts          IAAC questions (seed file)
+├── baao_mcqs.ts          BAAO questions (seed file)
+├── explanations/         one file of teaching explanations per exam
+├── catalog-builder.ts    pure: IDs, topics, multi-part items, stripping
+├── catalog.server.ts     loads the catalog from Postgres (cached 5 min)
 ├── types.ts
 └── topicTaxonomy.ts
 ```
+
+**To change a question or explanation:**
+
+1. Edit the file under `src/data/mcq/`.
+2. `npm test` — the explanation gate must pass.
+3. `npm run seed:mcq` — upserts every question and explanation (~20 s).
+   It never deletes; rows no longer in the files are listed, not removed.
+4. Running servers pick the change up within 5 minutes (no redeploy).
 
 `catalog.server.ts` is **server-only**. It holds correct answers and
 explanations, and throws if imported in the browser. Client components get
 `PublicQuestion`, which has those fields stripped.
 
-IDs are generated at load time from competition, year, exam and question
-number — for example `usaaao-2026-first-round-q13`. They are never stored
-in the data files.
+IDs are built from competition, year, exam and question number — for
+example `usaaao-2026-first-round-q13` — and are the primary key of
+`McqQuestion`, so attempts, bookmarks and reports keep pointing at the
+right question across re-seeds.
 
 ### Figures
 

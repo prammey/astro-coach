@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
-import { questionLabelFor } from '@/lib/question-row';
+import { getQuestionLabeler } from '@/lib/question-row';
 
 // GET: Fetch user's bookmarked questions, with their latest attempt (if any)
 export async function GET(request: NextRequest) {
@@ -20,6 +20,7 @@ export async function GET(request: NextRequest) {
 
     const prisma = getPrisma();
     const userId = user.id;
+    const questionLabelFor = await getQuestionLabeler();
 
     const bookmarks = await prisma.bookmark.findMany({
       where: { userId },

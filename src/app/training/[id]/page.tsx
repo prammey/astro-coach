@@ -1,11 +1,7 @@
 import { notFound } from "next/navigation";
 import PageContainer from "@/components/PageContainer";
 import QuestionView from "@/components/QuestionView";
-import {
-  findCatalogQuestionById,
-  publicQuestionCatalog,
-  toPublicQuestion,
-} from "@/data/mcq/catalog.server";
+import { getMcqCatalog, toPublicQuestion } from "@/data/mcq/catalog.server";
 
 // Server Component: looks up the full question (with the correct answer)
 // only on the server, strips the sensitive fields via toPublicQuestion,
@@ -16,7 +12,8 @@ export default async function QuestionDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const question = findCatalogQuestionById(id);
+  const { byId, publicItems: publicQuestionCatalog } = await getMcqCatalog();
+  const question = byId.get(id);
 
   if (!question) {
     notFound();

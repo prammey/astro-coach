@@ -161,7 +161,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing: questionId' }, { status: 400 });
     }
 
-    const question = findCatalogQuestionById(questionId);
+    const question = await findCatalogQuestionById(questionId);
     if (!question) {
       return NextResponse.json({ error: 'Question not found' }, { status: 404 });
     }

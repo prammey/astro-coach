@@ -1,4 +1,5 @@
-import { findCatalogQuestionById } from '@/data/mcq/catalog.server';
+import { getMcqCatalog } from '@/data/mcq/catalog.server';
+import type { McqCatalog } from '@/data/mcq/catalog-builder';
 
 // Turns a stored questionId into something a person can read, e.g.
 // "USAAAO 2026 Q13" instead of "usaaao-2026-first-round-q13".
@@ -7,8 +8,8 @@ import { findCatalogQuestionById } from '@/data/mcq/catalog.server';
 // from an earlier import, or a question that has since been renamed or
 // folded into a multi-part item. Callers show the raw ID and skip the link
 // in that case, rather than sending someone to a 404.
-export function questionLabelFor(questionId: string): string | null {
-  const question = findCatalogQuestionById(questionId);
+export function labelQuestion(catalog: McqCatalog, questionId: string): string | null {
+  const question = catalog.byId.get(questionId);
   if (!question) return null;
 
   const numbers = question.parts?.length
@@ -21,4 +22,11 @@ export function questionLabelFor(questionId: string): string | null {
       : `Q${numbers[0]}`;
 
   return `${question.competition} ${question.year} ${range}`;
+}
+
+// Loads the catalog once and returns a labeller, so a route can label a
+// whole list of rows without awaiting inside every .map().
+export async function getQuestionLabeler(): Promise<(questionId: string) => string | null> {
+  const catalog = await getMcqCatalog();
+  return (questionId) => labelQuestion(catalog, questionId);
 }

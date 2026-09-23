@@ -3,7 +3,12 @@ import BrutalCard from "@/components/BrutalCard";
 import BrutalButton from "@/components/ui/BrutalButton";
 import Chip from "@/components/ui/Chip";
 import Reveal from "@/components/ui/Reveal";
-import { publicQuestionCatalog } from "@/data/mcq/catalog.server";
+import { getMcqCatalog } from "@/data/mcq/catalog.server";
+import type { PublicQuestion } from "@/data/mcq/types";
+
+// Rendered per request (from the cached catalog) rather than at build
+// time, so building the site never needs a database connection.
+export const dynamic = "force-dynamic";
 import { CURRICULUM_TOPICS } from "@/data/mcq/topicTaxonomy";
 import { questionNumberLabel } from "@/lib/question-label";
 
@@ -41,7 +46,7 @@ function previewText(text: string, maxLength: number) {
 
 // Picks one short beginner question to show as a live preview of the bank.
 // The catalog order is fixed, so the same question shows every time.
-function pickSampleQuestion() {
+function pickSampleQuestion(publicQuestionCatalog: PublicQuestion[]) {
   return (
     publicQuestionCatalog.find(
       (question) =>
@@ -52,11 +57,12 @@ function pickSampleQuestion() {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const { publicItems: publicQuestionCatalog } = await getMcqCatalog();
   const questionCount = publicQuestionCatalog.length;
   const competitionCount = new Set(publicQuestionCatalog.map((q) => q.competition)).size;
   const topicCount = CURRICULUM_TOPICS.length;
-  const sampleQuestion = pickSampleQuestion();
+  const sampleQuestion = pickSampleQuestion(publicQuestionCatalog);
 
   return (
     <>

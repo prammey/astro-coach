@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
-import { catalogCounts } from '@/data/mcq/catalog.server';
+import { getMcqCatalog } from '@/data/mcq/catalog.server';
 
 export async function GET(request: NextRequest) {
   try {
@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
       totalAttempted,
       uniqueCorrect,
       accuracy,
-      totalQuestions: catalogCounts.total,
+      totalQuestions: (await getMcqCatalog()).counts.total,
       recentAttempts: recentAttempts.map((a) => ({
         id: a.id,
         questionId: a.questionId,

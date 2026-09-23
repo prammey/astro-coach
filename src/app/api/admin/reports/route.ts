@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPrisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/admin';
-import { findCatalogQuestionById } from '@/data/mcq/catalog.server';
+import { getMcqCatalog } from '@/data/mcq/catalog.server';
 
 // Lists reported problems for the admin page, newest first, enriched with
 // enough question detail to triage without opening each one.
@@ -21,7 +21,8 @@ export async function GET(request: NextRequest) {
       take: 200,
     });
 
-    const [openCount, resolvedCount] = await Promise.all([
+    const [catalog, openCount, resolvedCount] = await Promise.all([
+      getMcqCatalog(),
       prisma.questionReport.count({ where: { status: 'open' } }),
       prisma.questionReport.count({ where: { status: 'resolved' } }),
     ]);
@@ -29,7 +30,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       counts: { open: openCount, resolved: resolvedCount },
       reports: reports.map((report) => {
-        const question = findCatalogQuestionById(report.questionId);
+        const question = catalog.byId.get(report.questionId);
         return {
           id: report.id,
           questionId: report.questionId,

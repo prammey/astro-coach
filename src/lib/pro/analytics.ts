@@ -21,7 +21,7 @@ if (typeof window !== "undefined") {
 
 import type { PrismaClient } from "@/generated/prisma/client";
 import { getPrisma } from "@/lib/prisma";
-import { realQuestionCatalog } from "@/data/mcq/catalog.server";
+import { getMcqCatalog } from "@/data/mcq/catalog.server";
 import { CURRICULUM_TOPICS, type CurriculumTopic } from "@/data/mcq/topicTaxonomy";
 import { getUserEntitlements } from "./entitlements";
 import type { Entitlements } from "./rules";
@@ -94,19 +94,19 @@ export type ProAnalytics = {
 /// curriculum topic, so recorded attempts can be grouped without storing a
 /// topic on each attempt row.
 ///
-/// Built once per server process from the same catalog the training pages
-/// use, which is why the dashboard can never drift out of step with the
-/// filters.
-const mcqTopicById: Map<string, CurriculumTopic> = (() => {
+/// Built from the same catalog the training pages use, which is why the
+/// dashboard can never drift out of step with the filters.
+async function buildMcqTopicLookup(): Promise<Map<string, CurriculumTopic>> {
+  const { items } = await getMcqCatalog();
   const map = new Map<string, CurriculumTopic>();
-  for (const question of realQuestionCatalog) {
+  for (const question of items) {
     map.set(question.id, question.primaryCurriculumTopic);
     for (const part of question.parts ?? []) {
       map.set(part.id, part.primaryCurriculumTopic);
     }
   }
   return map;
-})();
+}
 
 // --- The report ------------------------------------------------------------
 
@@ -150,7 +150,7 @@ export async function buildProAnalytics(
     }),
   ]);
 
-  const topics = buildTopicPerformance(progressRows, submissions);
+  const topics = buildTopicPerformance(progressRows, submissions, await buildMcqTopicLookup());
   const unlockedIds = new Set(unlocks.map((unlock) => unlock.frqQuestionId));
 
   return {
@@ -237,6 +237,7 @@ function summariseFrq(submissions: GradedSubmission[], unlockedIds: Set<string>)
 function buildTopicPerformance(
   progressRows: Array<{ questionId: string; attemptCount: number; correctAttemptCount: number }>,
   submissions: GradedSubmission[],
+  mcqTopicById: Map<string, CurriculumTopic>,
 ): TopicPerformance[] {
   const byTopic = new Map<string, TopicPerformance>();
 
