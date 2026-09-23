@@ -136,7 +136,7 @@ export const explanations: McqExplanationMap = {
       A: r`Far too small. Check that the period was converted to **seconds** (8 h = 28,800 s) and the radius to metres.`,
       B: r`Too small. Use $a = 4\pi^2 r / T^2$; make sure the $4\pi^2 \approx 39.5$ is included.`,
       D: r`Too large. Recompute $4\pi^2 r / T^2$ with $r = 9.376 \times 10^6$ m and $T = 28{,}800$ s.`,
-      E: r`Too large. If you used $GM/r^2$ with the mass of Mars, the mismatch with the stated 8-hour period (Phobos's real period is shorter) explains the difference; the question intends the period route.`,
+      E: r`Too large. Neither route gives this: $4\pi^2 r/T^2$ with the stated 8-hour period is $0.446$ m/s², and even $GM/r^2$ with the given mass of Mars is only about $0.49$ m/s².`,
     },
     takeaway: r`Centripetal acceleration on a circular orbit is 4π²r/T².`,
   },

@@ -190,6 +190,7 @@ export const explanations: McqExplanationMap = {
     solution: [
       r`The Moon's phase depends on where it is relative to the Sun. A Moon that **rises just as the Sun sets** is directly opposite the Sun in the sky.`,
       r`Opposite the Sun, the side facing Earth is fully lit: that is a **full Moon**. It rises at sunset, is highest at midnight, and sets at sunrise.`,
+      r`(One slip in the question: a rising Moon is always in the **east**, opposite the sunset. Read "look west" as a typo and go by the timing.)`,
     ],
     wrongChoices: {
       A: r`A new Moon sits in the same direction as the Sun, so it rises and sets **with** the Sun and is invisible. It could not be rising at sunset.`,
