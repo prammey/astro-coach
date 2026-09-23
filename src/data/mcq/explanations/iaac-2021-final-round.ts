@@ -214,12 +214,12 @@ export const explanations: McqExplanationMap = {
   "iaac-2021-final-round-q18": {
     solution: [
       r`Rayleigh criterion: $\theta = 1.22\,\dfrac{\lambda}{D} = 1.22 \times \dfrac{10^{-6}\ \text{m}}{5\ \text{m}} = 2.44 \times 10^{-7}$ rad, about 0.05 arcseconds.`,
-      r`Written in units of $10^{-9}$ radians (nanoradians) that is $244 \times 10^{-9}$; the printed options appear to have lost the minus sign in the exponent, and the intended reading is **244 × 10⁻⁹ rad**.`,
+      r`Written in units of $10^{-9}$ radians (nanoradians) that is $\mathbf{244 \cdot 10^{-9}}$ rad.`,
     ],
     wrongChoices: {
-      A: r`This is $1.22\lambda/D$ without dividing by the 5 m aperture. Include the aperture.`,
+      A: r`This is $1.22 \times 10^{-9}$, which drops the ratio $\lambda/D$ entirely. Multiply $1.22$ by $10^{-6}/5$.`,
       B: r`This is $2.44$ with the wrong power of ten; the resolution is $2.44 \times 10^{-7}$ rad, which is $244 \times 10^{-9}$.`,
-      C: r`This has the right power of ten but omits the factor of 2 from $\lambda = 1000$ nm over 5 m... check the arithmetic: $1.22 \times 10^{-6}/5 = 2.44 \times 10^{-7}$.`,
+      C: r`Half the right value; check the arithmetic: $1.22 \times 10^{-6}/5 = 2.44 \times 10^{-7}$, not $1.22 \times 10^{-7}$.`,
     },
     takeaway: r`θ = 1.22 λ/D radians; a 5 m telescope at 1 µm resolves about 0.05 arcseconds.`,
   },
@@ -227,15 +227,15 @@ export const explanations: McqExplanationMap = {
   "iaac-2021-final-round-q19": {
     solution: [
       r`The Lorentz factor is $\gamma = \dfrac{1}{\sqrt{1 - v^2/c^2}}$. Square it and rearrange: $\dfrac{v^2}{c^2} = 1 - \dfrac{1}{\gamma^2}$.`,
-      r`With $\gamma = 3$: $\dfrac{v^2}{c^2} = 1 - \dfrac{1}{9} = \dfrac{8}{9}$, so $v = \sqrt{8/9}\,c \approx 0.943c$.`,
-      r`**Sanity check:** every answer must be slower than light. Options A, B and D are all bigger than $c$, so only C can be right. (The competition's printed solution sheet lists A for this question, which is a typo; the exam PDF's choices confirm C.)`,
+      r`With $\gamma = 3$: $\dfrac{v^2}{c^2} = 1 - \dfrac{1}{9} = \dfrac{8}{9}$, so $v = \sqrt{\dfrac{8}{9}}\,c = \dfrac{\sqrt{8}}{3}\,c \approx 0.943c$.`,
+      r`**Sanity check:** a real speed must be below $c$. $\sqrt{8}/3 \approx 0.94$ passes; $3/\sqrt{8}$ and $9/\sqrt{8}$ are both bigger than 1, so they are out immediately.`,
     ],
     wrongChoices: {
-      A: r`$\sqrt{8/3} \approx 1.63$, so this speed would be faster than light. Nothing with mass can reach $c$. Solve $\gamma = 1/\sqrt{1 - v^2/c^2}$ for $v$ and check your value is below $c$.`,
-      B: r`$3/\sqrt{8} \approx 1.06$, faster than light. No massive object can reach $c$.`,
+      B: r`$3/\sqrt{8} \approx 1.06$, faster than light. No massive object can reach $c$; you have the fraction upside down.`,
+      C: r`$\sqrt{8}/9 \approx 0.31c$ is a legal speed but not this one: it comes from putting $9$ instead of $\sqrt{9} = 3$ in the denominator. $\sqrt{8/9} = \sqrt{8}/\sqrt{9}$.`,
       D: r`$9/\sqrt{8} \approx 3.2$, more than three times the speed of light.`,
     },
-    takeaway: r`v = c √(1 − 1/γ²); for γ = 3 that is √(8/9) c ≈ 0.94c, and a real speed is always below c.`,
+    takeaway: r`v = c √(1 − 1/γ²); for γ = 3 that is (√8/3) c ≈ 0.94c, always below c.`,
   },
 
   "iaac-2021-final-round-q20": {

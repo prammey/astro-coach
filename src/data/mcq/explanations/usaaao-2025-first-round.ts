@@ -289,17 +289,17 @@ export const explanations: McqExplanationMap = {
 
   "usaaao-2025-first-round-q20": {
     solution: [
-      r`Ninety-one days after the summer solstice is about September 20, the autumnal equinox, when the Sun rises at 6:00 **apparent** solar time everywhere. The equation of time is then $+8$ min (apparent ahead of mean), so sunrise is at 5:52 local **mean** time.`,
-      r`The watch shows 3:00 UTC at that moment, so local mean time and UTC differ by $5{:}52 - 3{:}00 = 2$ h $52$ min, which is $2.867 \times 15^\circ = 43^\circ$ of longitude.`,
-      r`The key gives **43° W**, consistent with a voyage west across the Atlantic. (Strictly, a local time later than UTC would place the ship east of Greenwich, so the problem's clock reading is not fully consistent with its story; take the method: longitude from the gap between local solar time and UTC, corrected by the equation of time.)`,
+      r`Ninety-one sunrises after the summer solstice is about September 20, the autumnal equinox, when the Sun rises at 6:00 **apparent** solar time everywhere. The equation of time is then $+8$ min (apparent ahead of mean), so sunrise is at 5:52 local **mean** time.`,
+      r`The watch shows 8:44 UTC at that moment, so local mean time is $8{:}44 - 5{:}52 = 2$ h $52$ min **behind** UTC. A place whose clocks run behind Greenwich is west of it.`,
+      r`Longitude $= 2.867 \times 15^\circ \approx \mathbf{43^\circ\ W}$, consistent with a voyage west across the Atlantic.`,
     ],
     wrongChoices: {
       B: r`A round 45° would need a time difference of exactly 3 hours; the equation of time correction of 8 minutes shifts it.`,
-      C: r`Not from the numbers. The time difference between local mean sunrise (5:52) and the 3:00 watch reading is 2 h 52 min, which is 43°.`,
+      C: r`Not from the numbers. The time difference between local mean sunrise (5:52) and the 8:44 watch reading is 2 h 52 min, which is 43°.`,
       D: r`This would need a 3 h 20 min difference. The equinox sunrise is at 6:00 apparent time, 5:52 mean time.`,
       E: r`Not from the numbers. Convert the 2 h 52 min difference at 15° per hour.`,
     },
-    takeaway: r`Longitude = 15° × (local mean time − UTC), with local mean time = apparent solar time − equation of time.`,
+    takeaway: r`Longitude = 15° × (UTC − local mean time) west, with local mean time = apparent solar time − equation of time.`,
   },
 
   "usaaao-2025-first-round-q21": {

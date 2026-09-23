@@ -167,8 +167,8 @@ export const explanations: McqExplanationMap = {
   "usaaao-2020-first-round-q12": {
     solution: [
       r`I. Uranus's orbit: Kepler's law with $a = 2.87 \times 10^9$ km $= 19.2$ AU gives $P = 19.2^{1.5} \approx 84$ years. A planet's pole sees the Sun for half the orbit, so the Sun is up at the South Pole for about **42 years** at a stretch.`,
-      r`II. The sunrise equation gives the half-day hour angle: $\cos H = -\tan\phi\tan\delta = -\tan 30.1^\circ \tan 10^\circ \approx -0.10$, so $H \approx 96^\circ$ and the Sun is up for $\dfrac{2H}{360^\circ} \approx 0.53$ of a rotation.`,
-      r`With a 17 h 14 min rotation that is a little over 9 hours; the listed **9 h 28 min** is the option that pairs with the 42-year polar answer.`,
+      r`II. The sunrise equation gives the half-day hour angle: $\cos H = -\tan\phi\tan\delta = -\tan 30.1^\circ \tan 10^\circ \approx -0.102$, so $H \approx 95.9^\circ$ and the Sun is up for $\dfrac{2H}{360^\circ} \approx 0.533$ of a rotation.`,
+      r`Uranus rotates once in 17 h 14 min $= 1034$ min, so the day lasts $0.533 \times 1034 \approx 551$ min, i.e. **9 h 11 min**.`,
     ],
     wrongChoices: {
       A: r`A pole sees daylight for only **half** the orbit, 42 years, not the full 84. And at $30^\circ$ N with the Sun at $+10^\circ$, the day is only a bit longer than half a rotation, not the whole rotation.`,

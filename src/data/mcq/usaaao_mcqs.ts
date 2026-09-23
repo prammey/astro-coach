@@ -9026,19 +9026,19 @@ export const usaaaoMcqs = [
 
   type: "MCQ",
 
-  questionText: "Knowing that the distance between the Sun and Uranus is 2.87 × 10⁹ km and Uranus’ revolution period is 17h 14 min, determine the approximate amount of time that the Sun is above the horizon for an observer on Uranus in the following situations: I. At the South pole. II. At latitude 30°5′ N when the declination of the Sun is 10° N.",
+  questionText: "Knowing that the distance between the Sun and Uranus is 2.87 × 10⁹ km and Uranus’ rotation period is 17h 14 min, determine the approximate amount of time that the Sun is above the horizon for an observer on Uranus in the following situations: I. At the South pole. II. At latitude 30°5′ N when the declination of the Sun is 10° N. [Wording and choice C updated to correct errors in the original exam.]",
 
   choices: [
     { label: "A", text: "I = 84 years and II = 17h 14 min" },
     { label: "B", text: "I = 21 years and II = 12h 47 min" },
-    { label: "C", text: "I = 42 years and II = 9h 28 min" },
+    { label: "C", text: "I = 42 years and II = 9h 11 min" },
     { label: "D", text: "I = 21 years and II = 8h 37 min" },
     { label: "E", text: "I = 42 years and II = 14h 53 min" },
   ],
 
   correctAnswer: "C",
 
-  explanation: "The official solution uses an approximately 84-year Uranian orbital period for the polar case and spherical astronomy for the latitude case, giving 42 years and 9h28min.",
+  explanation: "Kepler’s law gives an 84-year orbit, so the pole sees the Sun for 42 years. At latitude 30°5′ N with δ = 10° N, cos H = −tan φ tan δ gives H ≈ 96°, so the day lasts (2H/360°) × 17h 14min ≈ 9h 11min. The original exam said “revolution” for the 17h 14min rotation and printed 9h 28min; both corrected in the Sept 2026 audit.",
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2020/02/2020_usaaao_first_round.pdf",
@@ -10086,7 +10086,7 @@ export const usaaaoMcqs = [
       "angular diameter"
     ],
     type: "MCQ",
-    questionText: "A stable open cluster of about N = 1000 Sun-like stars has an angular diameter of θ = 30 arcminutes and distance d = 500 pc. Assuming the cluster can be approximated by a sphere of uniform density, estimate the average velocities of stars in the cluster. The gravitational potential energy of a sphere of uniform density and radius r is U_sphere = −(3/5)GM_sphere²/r.",
+    questionText: "A stable open cluster of about N = 1000 Sun-like stars has an angular diameter of θ = 60 arcminutes and distance d = 500 pc. Assuming the cluster can be approximated by a sphere of uniform density, estimate the average velocities of stars in the cluster. The gravitational potential energy of a sphere of uniform density and radius r is U_sphere = −(3/5)GM_sphere²/r. [Angular diameter updated from the original exam’s 30 arcminutes so that the keyed answer follows from the stated numbers.]",
     choices: [
       {
         label: "A",
@@ -10110,7 +10110,7 @@ export const usaaaoMcqs = [
       }
     ],
     correctAnswer: "E",
-    explanation: "Estimate the cluster radius from its angular size and distance, then use the uniform-sphere virial relation to obtain about 771 m/s.",
+    explanation: "θ = 60′ = 0.01745 rad at 500 pc gives a diameter of 8.7 pc, so r = 4.36 pc = 1.35 × 10¹⁷ m. The virial theorem, 2K = |U|, gives ⟨v²⟩ = (3/5)GM/r with M = 1000 M☉, so v ≈ 771 m/s. The original exam printed 30′ but used the resulting diameter as the radius; the angular size was doubled in the Sept 2026 audit so the physics yields the key.",
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1.pdf",
     pageNumber: 3,
@@ -10530,7 +10530,7 @@ export const usaaaoMcqs = [
       "uncertainty propagation"
     ],
     type: "MCQ",
-    questionText: "TESS Object of Interest (TOI) 402.01 has an orbital period of 4.756 ± 0.000023 (days) and was last observed to transit on 2139.1 ± 0.0027008 (in TESS Julian days, i.e. BJD - 2457000). For follow-up observation, we would like to predict the next transit – this would be the 23rd transit since the last observation. In TESS Julian days, when will the next transit occur?",
+    questionText: "TESS Object of Interest (TOI) 402.01 has an orbital period of 4.756 ± 0.000023 (days) and was last observed to transit on 2139.1 ± 0.0027008 (in TESS Julian days, i.e. BJD - 2457000). For follow-up observation, we would like to predict the next transit and its maximum possible error – this would be the 23rd transit since the last observation. In TESS Julian days, when will the next transit occur? [Wording updated from the original exam to specify the maximum possible error.]",
     choices: [
       {
         label: "A",
@@ -10550,7 +10550,7 @@ export const usaaaoMcqs = [
       }
     ],
     correctAnswer: "D",
-    explanation: "Add 23 periods to the last transit time and propagate the epoch and period uncertainties to get the official prediction.",
+    explanation: "Next transit: 2139.1 + 23 × 4.756 = 2248.488 TESS JD. The maximum possible error adds the epoch error and 23 times the period error linearly: 0.0027008 + 23 × 0.000023 = 0.0032298 days. The original exam did not say “maximum possible”, which is why a quadrature sum (0.00275) could also be defended; clarified in the Sept 2026 audit.",
     sourceUrl: "https://usaaao.org/resources/past-exams/",
     pdfUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1.pdf",
     pageNumber: 6,
@@ -16532,7 +16532,7 @@ export const usaaaoMcqs = [
       "solar time"
     ],
     "type": "MCQ",
-    "questionText": "Just before dawn of the summer solstice, Christopher the sailor begins sailing due West from 50° N, 5° W. His watch is set to UTC. On seeing his 91st sunrise at sea, his watch reads 3:00am. What is his longitude? (The equation of time, in the convention solar time minus mean time, is −3 minutes on the summer solstice and 8 minutes on the autumnal equinox)",
+    "questionText": "Just before dawn of the summer solstice, Christopher the sailor begins sailing due West from 50° N, 5° W. His watch is set to UTC. On seeing his 91st sunrise at sea, his watch reads 8:44am. What is his longitude? (The equation of time, in the convention solar time minus mean time, is −3 minutes on the summer solstice and 8 minutes on the autumnal equinox) [Watch reading updated from the original exam’s 3:00am, which placed the ship east of Greenwich, contradicting the westward voyage.]",
     "choices": [
       {
         "label": "A",
@@ -16556,7 +16556,7 @@ export const usaaaoMcqs = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Using local solar time = UTC plus longitude time correction plus the equation of time at the autumnal equinox gives longitude about 43° W.",
+    "explanation": "The 91st sunrise falls at the autumnal equinox, when sunrise is 6:00 apparent solar time; the equation of time (+8 min) makes that 5:52 local mean time. The watch reads 8:44 UTC, so local mean time is 2h 52min behind UTC, i.e. 2.867 × 15° = 43° W. The original exam’s 3:00am reading put the ship east of Greenwich; corrected in the Sept 2026 audit.",
     "sourceUrl": "https://usaaao.org/resources/past-exams/",
     "pdfUrl": "https://usaaao.org/wp-content/uploads/2025/02/exam_2025.pdf",
     "pageNumber": 7,
