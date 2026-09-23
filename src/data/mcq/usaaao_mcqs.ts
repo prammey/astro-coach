@@ -1307,19 +1307,19 @@ export const usaaaoMcqs = [
   ],
   type: "MCQ",
 
-  questionText: "In a nearby star system, two stars are seen to orbit each other every 8 years. At their closest, the stars are 2” apart. At their furthest, they are 18” apart. If a parallax of 0.5” is observed for the star system, what is its combined mass in solar masses? Assume an inclination of 90 degrees.",
+  questionText: "In a nearby star system, two stars are seen to orbit each other every 8 years. At their closest, the stars are 2” apart. At their furthest, they are 18” apart. If a parallax of 0.5” is observed for the star system, what is its combined mass in solar masses? Assume the orbit is viewed face-on, so the separations are true separations. [Answer choices and the orientation wording updated to correct typos in the original exam.]",
 
   choices: [
-    { label: "A", text: "0.5" },
-    { label: "B", text: "1" },
-    { label: "C", text: "2" },
-    { label: "D", text: "4" },
-    { label: "E", text: "8" },
+    { label: "A", text: "1" },
+    { label: "B", text: "2" },
+    { label: "C", text: "15.6" },
+    { label: "D", text: "125" },
+    { label: "E", text: "729" },
   ],
 
   correctAnswer: "D",
 
-  explanation: "The supplied official answer key identifies choice D. The PDF does not state enough orbital-geometry detail to reproduce that value unambiguously from the printed separations, so this item should remain in review before publication.",
+  explanation: "Parallax 0.5″ gives 2 pc; the angular semi-major axis is (2″ + 18″)/2 = 10″, so a = 20 AU, and Kepler’s third law gives M = a³/P² = 8000/64 = 125 solar masses. Choices corrected in the Sept 2026 audit (the original exam’s key of 4 cannot be produced from the printed numbers).",
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-exam.pdf",
@@ -2244,19 +2244,19 @@ export const usaaaoMcqs = [
   ],
   type: "MCQ",
 
-  questionText: "If the hydrogen alpha line of a star, normally 656.3 nm, is observed to be 662.5 nm, what is the star’s radial velocity relative to the Earth?",
+  questionText: "If the hydrogen alpha line of a star, normally 656.3 nm, is observed to be 662.5 nm, what is the star’s radial speed relative to the Earth? [Wording and answer choices updated to remove a sign ambiguity in the original exam.]",
 
   choices: [
-    { label: "A", text: "2.83*10⁶ m/s" },
-    { label: "B", text: "-2.83*10⁶ m/s" },
-    { label: "C", text: "0.00945 m/s" },
-    { label: "D", text: "-0.00945 m/s" },
-    { label: "E", text: "-2.83*10³ m/s" },
+    { label: "A", text: "2.83 × 10⁶ m/s" },
+    { label: "B", text: "2.83 × 10³ m/s" },
+    { label: "C", text: "9.45 × 10⁻³ m/s" },
+    { label: "D", text: "9.45 × 10⁵ m/s" },
+    { label: "E", text: "2.83 × 10⁸ m/s" },
   ],
 
-  correctAnswer: "B",
+  correctAnswer: "A",
 
-  explanation: "The fractional wavelength shift gives a speed magnitude of cΔλ/λ ≈ 2.83 × 10⁶ m/s. The official key uses the negative sign in choice B for this redshifted line.",
+  explanation: "v = c·Δλ/λ₀ = 3.0 × 10⁸ × 6.2/656.3 ≈ 2.83 × 10⁶ m/s; the redshift means the star is receding. The original exam keyed −2.83 × 10⁶ with an unstated sign convention; the question now asks for the speed.",
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-exam.pdf",
@@ -2366,7 +2366,7 @@ export const usaaaoMcqs = [
   ],
   type: "MCQ",
 
-  questionText: "Calculate the planetary phase angle (counterclockwise from Earth, a = 1.0 AU) that a probe may correctly complete a Hohmann transfer orbit to Venus (a = 0.7 AU)",
+  questionText: "Calculate the total angular distance swept by Venus (a = 0.7 AU) during the flight time of a probe completing a Hohmann transfer orbit from Earth (a = 1.0 AU) to Venus. [Wording updated to remove an ambiguity in the original exam.]",
 
   choices: [
     { label: "A", text: "141 degrees" },
@@ -2378,7 +2378,7 @@ export const usaaaoMcqs = [
 
   correctAnswer: "D",
 
-  explanation: "For an inward Hohmann transfer, Venus must be at the appropriate trailing phase angle at departure. The intended counterclockwise phase angle is 241°.",
+  explanation: "The transfer ellipse has a = 0.85 AU, so the flight takes half its period, 0.5 × 0.85^1.5 ≈ 0.39 yr. Venus’s period is 0.7^1.5 ≈ 0.59 yr, so it sweeps (0.39/0.59) × 360° ≈ 241°.",
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-exam.pdf",
@@ -2745,19 +2745,19 @@ export const usaaaoMcqs = [
 
   type: "MCQ",
 
-  questionText: "If the closest distance from a planet to its host star is 1.50 AU and its farthest distance from its host star is 4.50 AU, what is the area that this planet sweeps out over the course of a full orbit (in AU²)?",
+  questionText: "If the closest distance from a planet to its host star is 1.50 AU and its farthest distance from its host star is 4.50 AU, what is the area that this planet sweeps out over the course of a full orbit (in AU²)? [Answer choices updated to correct a typo in the original exam.]",
 
   choices: [
-    { label: "A", text: "6.00π" },
-    { label: "B", text: "3.50π" },
-    { label: "C", text: "1.50π" },
-    { label: "D", text: "6.75π" },
-    { label: "E", text: "4.50π" },
+    { label: "A", text: "7.79π" },
+    { label: "B", text: "9.00π" },
+    { label: "C", text: "6.75π" },
+    { label: "D", text: "4.50π" },
+    { label: "E", text: "2.25π" },
   ],
 
   correctAnswer: "A",
 
-  explanation: "The official answer key marks A. However, using the usual ellipse-area calculation from the stated closest and farthest distances gives a value not represented by the listed choices, so this record preserves the official key rather than substituting a recalculated answer.",
+  explanation: "a = (1.50 + 4.50)/2 = 3.00 AU, c = 1.50 AU, b = √(a² − c²) = √6.75 ≈ 2.60 AU, so the full-orbit swept area is πab ≈ 7.79π AU². Choices corrected in the Sept 2026 audit (the original exam’s 6.00π cannot be derived).",
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2016/06/2016-first-round-exam.pdf",
@@ -2980,19 +2980,19 @@ export const usaaaoMcqs = [
 
   type: "MCQ",
 
-  questionText: "What delta V must an earth orbiting spacecraft apply to transfer from a 200 km parking orbit to a transfer orbit with an apogee 35,786 km above the earth’s surface? (The earth has a mass of 5.972*10²⁴ and a radius of 6371 km)",
+  questionText: "What delta V must an earth orbiting spacecraft apply to transfer from a 200 km parking orbit to a transfer orbit with an apogee 35,786 km above the earth’s surface? (The earth has a mass of 5.972*10^24 and a radius of 6371 km) [Answer choices updated to correct a typo in the original exam.]",
 
   choices: [
-    { label: "A", text: "2331 m/s" },
-    { label: "B", text: "2441 m/s" },
-    { label: "C", text: "2543 m/s" },
+    { label: "A", text: "1478 m/s" },
+    { label: "B", text: "2331 m/s" },
+    { label: "C", text: "2457 m/s" },
     { label: "D", text: "2778 m/s" },
-    { label: "E", text: "2846 m/s" },
+    { label: "E", text: "3935 m/s" },
   ],
 
   correctAnswer: "C",
 
-  explanation: "Compute the circular-orbit speed at the 200 km parking orbit and the transfer-orbit speed there using vis-viva. Their difference is about 2543 m/s.",
+  explanation: "With r₁ = 6571 km and r₂ = 42,157 km, the circular speed is 7.79 km/s and the transfer-ellipse perigee speed (vis-viva, a = 24,364 km) is 10.24 km/s, so Δv ≈ 2457 m/s. Choice C corrected from the original exam’s 2543 m/s in the Sept 2026 audit.",
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2016/06/2016-first-round-exam.pdf",
@@ -5325,19 +5325,19 @@ export const usaaaoMcqs = [
 
   type: "MCQ",
 
-  questionText: "Assuming that the radius of the smaller star is 2 solar radii, what is the distance to the system?",
+  questionText: "Assuming that the radius of the smaller star is 2 solar radii, what is the distance to the system? [Answer choices updated to correct a typo in the original exam.]",
 
   choices: [
-    { label: "A", text: "75 parsecs" },
-    { label: "B", text: "85 parsecs" },
-    { label: "C", text: "100 parsecs" },
-    { label: "D", text: "115 parsecs" },
-    { label: "E", text: "150 parsecs" },
+    { label: "A", text: "180 parsecs" },
+    { label: "B", text: "250 parsecs" },
+    { label: "C", text: "345 parsecs" },
+    { label: "D", text: "500 parsecs" },
+    { label: "E", text: "1000 parsecs" },
   ],
 
   correctAnswer: "B",
 
-  explanation: "Using the source spectrum to infer the system luminosity, then comparing luminosity with the observed flux, gives a distance of 85 parsecs.",
+  explanation: "Using the earlier answers (8000 K and 6000 K, radius ratio 0.6, m = 8.2): L ≈ 14.8 + 13.0 = 27.7 L☉, so M ≈ 1.22 and d = 10^((8.2 − 1.22 + 5)/5) ≈ 250 pc. Choices corrected in the Sept 2026 audit (the original exam’s 85 pc cannot be reproduced).",
 
   // Shares Question 19's graph: the source exam prints one spectrum plot
   // for Questions 19–22.
@@ -8207,7 +8207,7 @@ export const usaaaoMcqs = [
 
   type: "MCQ",
 
-  questionText: "Two amateur astronomers A and B living in Ecuador are standing on the Equator at the Galapagos Islands (height 0 m, longitude 91° W) and Volcán Cayambe (height 5790 m, longitude 78° W) respectively. What are the differences (in degrees) of the altitudes from the horizon and zenith distances of the Sun measured by these two astronomers on March 20, 2019 when it is local noon for observer B? Neglect refraction and give your answer to the nearest degree.",
+  questionText: "Two amateur astronomers A and B living in Ecuador are standing on the Equator at the Galapagos Islands (height 0 m, longitude 91° W) and at a sea-level site near Volcán Cayambe (height 0 m, longitude 78° W) respectively. What are the differences (in degrees) of the altitudes from the horizon and zenith distances of the Sun measured by these two astronomers on March 20, 2019 when it is local noon for observer B? Neglect refraction and give your answer to the nearest degree. [Updated from the original exam, which placed observer B at 5790 m, to remove an ambiguity about the horizon dip.]",
 
   choices: [
     { label: "A", text: "Difference in altitudes: 15, Difference in zenith distances: 13." },
@@ -8216,9 +8216,9 @@ export const usaaaoMcqs = [
     { label: "D", text: "Difference in altitudes: 11, Difference in zenith distances: 13." },
   ],
 
-  correctAnswer: "D",
+  correctAnswer: "B",
 
-  explanation: "At the equinox the Sun is on the celestial equator. The longitude difference gives a 13° zenith-distance difference; the elevation correction gives an altitude difference near 11.3°.",
+  explanation: "On the equinox the Sun is at B’s zenith at B’s noon; A is 13° of longitude further west, so the Sun is 13° from A’s zenith. With both observers at sea level, the altitude difference and the zenith-distance difference are both 13°.",
 
   sourceUrl: "https://usaaao.org/resources/past-exams/",
   pdfUrl: "https://usaaao.org/wp-content/uploads/2019/02/2019_usaaao_first_round.pdf",

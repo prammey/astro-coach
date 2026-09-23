@@ -8,14 +8,13 @@ here checked out.
 
 | Question | Stored key | Issue |
 |---|---|---|
-| usaaao-2015-practice-round-q2 | E (Supergiant) | A 70 solar-mass star with a 20 solar-radius body is also consistent with an O-type main-sequence star. The explanation follows the key (classify by extreme mass and size), but the question is ambiguous. |
-| usaaao-2015-practice-round-q17 | D (4 solar masses) | With the separations as printed (2″ and 18″, parallax 0.5″, P = 8 yr) Kepler's law gives a = 20 AU and M = 125 solar masses, not 4. The key cannot be reproduced from the printed numbers; the explanation teaches the method and says so. Consider unpublishing or correcting the numbers. |
-| usaaao-2015-first-round-q20 | B (−2.83×10⁶ m/s) | The magnitude checks out, but the key's negative sign for a **receding** (redshifted) star is the opposite of the usual convention (recession positive). The explanation states the exam's convention explicitly. |
-| usaaao-2015-first-round-q23 | D (241°) | 241° is the angle Venus sweeps during the 0.39-year Hohmann transfer. The strict launch lead angle (Venus 61° behind Earth, i.e. 299° counterclockwise) is not among the choices, so the explanation presents 241° as the timing angle the key intends. |
-| usaaao-2016-first-round-q2 | A (6.00π) | Ellipse with perihelion 1.5 AU and aphelion 4.5 AU has a = 3, b = √6.75 ≈ 2.6, area πab ≈ 7.8π AU², which is not among the choices. The key's 6.00π cannot be derived; the explanation teaches πab and says so. |
-| usaaao-2016-first-round-q7 | C (2543 m/s) | With r₁ = 6571 km, r₂ = 42,157 km and GM = 3.986×10¹⁴, Δv = 10,245 − 7,788 ≈ 2457 m/s, closer to choice B (2441) than to the key. The explanation follows the key but notes the discrepancy. |
-| usaaao-2017-first-round-q22 | B (85 pc) | Using R_hot = 2 R☉, R_cold = 3.3 R☉, T = 8000/6000 K and m = 8.2, the luminosity sum gives M ≈ 1.2 and d ≈ 250 pc, not 85 pc. The key cannot be reproduced from the graph readings; the explanation teaches the method and says so. |
-| usaaao-2019-first-round-q24 | D (alt diff 11°, zenith diff 13°) | The 13° zenith-distance difference is solid. The altitude difference depends on how the 2.4° horizon dip at 5790 m is applied; measuring altitude above the visible (dipped) horizon would give 15° (choice A). The explanation follows the official solution (11°) and notes the dip. |
+| usaaao-2015-practice-round-q17 | D (125) — **fixed Sept 2026** | The printed numbers give a = 20 AU, P = 8 yr, M = 125 solar masses; the original key of 4 cannot be reproduced. Choices replaced (1, 2, 15.6, 125, 729) and the orientation wording clarified; the question text says so. |
+| usaaao-2015-first-round-q20 | A (2.83×10⁶ m/s) — **fixed Sept 2026** | The original key's negative sign relied on an unstated convention. The question now asks for the radial *speed*, choices replaced with magnitude-based distractors; the question text says so. |
+| usaaao-2015-first-round-q23 | D (241°) — **fixed Sept 2026** | 241° is the angle Venus sweeps during the 0.39-year Hohmann transfer. The question now asks exactly that; the question text says so. |
+| usaaao-2016-first-round-q2 | A (7.79π) — **fixed Sept 2026** | πab with a = 3, b = √6.75 gives 7.79π AU²; the original key's 6.00π cannot be derived. Choices replaced (7.79π, 9.00π, 6.75π, 4.50π, 2.25π); the question text says so. |
+| usaaao-2016-first-round-q7 | C (2457 m/s) — **fixed Sept 2026** | Δv = 10,245 − 7,788 ≈ 2457 m/s. Choice C changed from 2543 to 2457; A/E replaced by the circularisation burn (1478) and the two-burn total (3935); the question text says so. |
+| usaaao-2017-first-round-q22 | B (250 pc) — **fixed Sept 2026** | With the official answers to q19–q21 (8000/6000 K, radius ratio 0.6, m = 8.2) the distance is ≈ 250 pc; the original key's 85 pc cannot be reproduced. Choices replaced (180, 250, 345, 500, 1000 pc); the question text says so. Note the value inherits the graph readings behind q19–q21. |
+| usaaao-2019-first-round-q24 | B (13°, 13°) — **fixed Sept 2026** | Observer B moved from 5790 m to sea level so no horizon dip applies; both differences are then the 13° longitude gap. Key changed from D to B; the question text says so. |
 | usaaao-2020-first-round-q12 | C (42 yr, 9h28m) | The 42-year polar half is solid. For part II, cos H = −tan(30°5′)tan(10°) gives H ≈ 96° and a day of about 9 h 11 min, not 9 h 28 min. Choice C is still the only option consistent with 42 years; the explanation says the listed value is the pairing option. |
 | usaaao-2020-first-round-q23 | A (−3.06×10⁴⁸ J) | The key assumes circular-orbit energy −GMm/(2r). Note that 1 km from a 23.2 M☉ black hole is inside its 68 km Schwarzschild radius, so the setup is unphysical; explanation follows the key's Newtonian intent. |
 | usaaao-2021-first-round-q9 | E (771 m/s) | With radius r = 2.2 pc, √((3/5)GM/r) ≈ 1090 m/s (nearest choice D). The key's 771 m/s results from using the 4.4 pc diameter as r. Explanation follows the key and states this. |
@@ -55,6 +54,8 @@ questions across 30 exams.
 - **Known source typos kept as printed**: IAAC 2021 q18 options say 10⁹
   where 10⁻⁹ is meant (explanation says so); USAAAO 2017 q12 letters its
   choices a, c, b, d, e in the PDF (stored in normal order, key unchanged).
-- **Official keys that physics cannot reproduce** (rows above): the
-  stored key follows the official sheet and the explanation says so. These
-  are the competition's own errors, not transcription errors.
+- **Questions edited away from the original exam** (Prameet's decision,
+  2026-09-23): 2015 Practice q17, 2015 First q20/q23, 2016 q2/q7, 2017
+  q22, 2019 q24. Each carries a bracketed note in its question text saying
+  what was updated and why. Remaining rows above whose official key physics
+  cannot reproduce still follow the official sheet.
