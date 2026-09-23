@@ -118,17 +118,17 @@ export const explanations: McqExplanationMap = {
 
   "usaaao-2021-first-round-q9": {
     solution: [
-      r`Size from the angular diameter: $30' = 0.0087$ rad, so the diameter is $500 \times 0.0087 \approx 4.4$ pc.`,
+      r`Size from the angular diameter: $60' = 1^\circ = 0.01745$ rad, so the diameter is $500 \times 0.01745 \approx 8.7$ pc and the radius is $r \approx 4.36$ pc $= 1.35 \times 10^{17}$ m.`,
       r`For a stable, bound cluster the **virial theorem** gives $2K = |U|$: $N m \langle v^2 \rangle = \dfrac{3}{5}\dfrac{G M^2}{r}$ with $M = Nm$, so $\langle v^2 \rangle = \dfrac{3}{5}\dfrac{GM}{r}$.`,
-      r`With $M = 1000\ M_\odot = 2 \times 10^{33}$ kg, the official key obtains **771 m/s**, which follows when the 4.4 pc size is used as $r$ (using the 2.2 pc radius instead gives about 1.1 km/s). Either way the stars amble at about a kilometre per second, typical of open clusters.`,
+      r`With $M = 1000\ M_\odot = 2 \times 10^{33}$ kg: $\langle v^2 \rangle = \dfrac{3 \times 6.67 \times 10^{-11} \times 2 \times 10^{33}}{5 \times 1.35 \times 10^{17}} \approx 5.9 \times 10^5$ m²/s², so $v \approx \mathbf{771}$ m/s. Stars in open clusters amble along at under a kilometre per second.`,
     ],
     wrongChoices: {
-      A: r`Too slow. Check the cluster size, $d\theta$ with $\theta$ in radians, and the virial relation $\langle v^2\rangle = (3/5)GM/r$.`,
-      B: r`Too slow. Make sure the total mass is 1000 solar masses, $2 \times 10^{33}$ kg, and the size is in metres ($1$ pc $= 3.09 \times 10^{16}$ m).`,
-      C: r`Not the keyed value. Recompute $\sqrt{(3/5)GM/r}$ with the cluster size from $500\ \text{pc} \times 0.0087$.`,
-      D: r`Not the keyed value, though close to what you get using the cluster's radius rather than its full size. Follow the key's size convention.`,
+      A: r`Too slow. Check the radius: half of $d\theta$ with $\theta$ in radians, then $\langle v^2\rangle = (3/5)GM/r$.`,
+      B: r`Too slow. Make sure the total mass is 1000 solar masses, $2 \times 10^{33}$ kg, and the radius is in metres ($1$ pc $= 3.09 \times 10^{16}$ m).`,
+      C: r`Too fast. Recompute $\sqrt{(3/5)GM/r}$ with $r = 4.36$ pc; a common slip is dropping the factor $3/5$ from the potential energy.`,
+      D: r`Too fast; this is about what you get from $\sqrt{GM/r}$ with the $3/5$ factor left out. Keep the uniform-sphere factor in $U = -\tfrac{3}{5}GM^2/r$.`,
     },
-    takeaway: r`Virial theorem for a bound cluster: ⟨v²⟩ ≈ (3/5) GM/r, giving speeds of about 1 km/s for open clusters.`,
+    takeaway: r`Virial theorem for a bound cluster: ⟨v²⟩ ≈ (3/5) GM/r, giving speeds of under 1 km/s for open clusters.`,
   },
 
   "usaaao-2021-first-round-q10": {
@@ -249,15 +249,15 @@ export const explanations: McqExplanationMap = {
   "usaaao-2021-first-round-q18": {
     solution: [
       r`The predicted time is the last transit plus 23 periods: $2139.1 + 23 \times 4.756 = 2139.1 + 109.388 = 2248.488$ TESS JD.`,
-      r`The uncertainty in 23 periods is $23 \times 0.000023 = 0.000529$ days, and the epoch itself is uncertain by $0.0027008$ days. Adding the two directly, as the answer key does for a worst case, gives $0.0027008 + 0.000529 = 0.0032298$ days.`,
-      r`(Combining them in quadrature, $\sqrt{0.0027008^2 + 0.000529^2}$, gives $0.00275$ days; the key uses the more conservative linear sum.)`,
+      r`The uncertainty in 23 periods is $23 \times 0.000023 = 0.000529$ days, and the epoch itself is uncertain by $0.0027008$ days.`,
+      r`The question asks for the **maximum possible** error, so the two are added directly (worst case, both errors in the same direction): $0.0027008 + 0.000529 = \mathbf{0.0032298}$ days.`,
     ],
     wrongChoices: {
       A: r`This adds only 22 periods, landing one transit too early. Check $2139.1 + 23 \times 4.756$.`,
       B: r`The time is right, but this uncertainty only counts the error from the 23 periods and ignores the uncertainty in the reference transit time itself.`,
       C: r`The time is right, but the period error has been added only once, not 23 times. The period uncertainty accumulates with every orbit: $23 \times 0.000023$.`,
     },
-    takeaway: r`Predict transits with T₀ + nP, and remember the period error grows n times over.`,
+    takeaway: r`Predict transits with T₀ + nP; the maximum error is the epoch error plus n times the period error.`,
   },
 
   "usaaao-2021-first-round-q19": {
@@ -369,21 +369,6 @@ export const explanations: McqExplanationMap = {
       D: r`Absurdly dense, a positive power of ten. The critical density is only about $10^{-26}$ kg/m³, so the number of 0.62 kg balls per cubic metre is tiny.`,
     },
     takeaway: r`Critical density ρ_c = 3H₀²/(8πG) ≈ 10⁻²⁶ kg/m³, a few atoms per cubic metre.`,
-  },
-
-  "usaaao-2021-first-round-q27": {
-    solution: [
-      r`Gas spiralling in through the disc moves from radius $3R$ down to the star's surface at $R$. The gravitational potential energy at radius $r$ is $-\dfrac{GMm}{r}$.`,
-      r`The drop in potential energy is $\left(-\dfrac{GMm}{3R}\right) - \left(-\dfrac{GMm}{R}\right) = \dfrac{2}{3}\dfrac{GMm}{R}$, which is the energy the exam counts as lost by the test mass.`,
-      r`(In a Keplerian disc half of any potential drop stays as faster orbital motion, so the part actually radiated on the way in is $GMm/(3R)$; the key counts the full potential drop.)`,
-    ],
-    wrongChoices: {
-      A: r`This is the entire potential energy at the surface, $GMm/R$, as if the gas had fallen from infinity. It only fell from $3R$, where it already had potential energy $-GMm/(3R)$.`,
-      B: r`This is the orbital energy of a circular orbit at $R$, not the change between $3R$ and $R$. Subtract the potential at $3R$ from the potential at $R$.`,
-      C: r`Too large; more than the whole potential energy at the surface. The drop between $3R$ and $R$ is $GMm/R - GMm/(3R)$.`,
-      E: r`Not from the formula. Compute $GMm\left(\dfrac{1}{R} - \dfrac{1}{3R}\right)$.`,
-    },
-    takeaway: r`Between radii r₁ and r₂ the potential energy drop is GMm(1/r₂ − 1/r₁).`,
   },
 
   "usaaao-2021-first-round-q28": {

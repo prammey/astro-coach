@@ -248,16 +248,16 @@ export const explanations: McqExplanationMap = {
   "usaaao-2015-practice-round-q17": {
     solution: [
       r`The tool for weighing a binary is Kepler's third law in solar units: $M_1 + M_2 = \dfrac{a^3}{P^2}$, with $a$ in AU, $P$ in years and the mass in solar masses.`,
-      r`Two conversions are needed. A parallax of $0.5''$ puts the system at $d = 1/0.5 = 2$ pc, and an angular semi-major axis $\alpha$ (in arcseconds) becomes $a = \alpha \times d$ in AU. The semi-major axis is the average of the closest and furthest separations.`,
-      r`The official answer key gives **4 solar masses**. Note that with the separations exactly as printed the straightforward calculation gives a much larger total, so the printed figures do not fully reproduce the key. The method above is what the question is testing.`,
+      r`A parallax of $0.5''$ puts the system at $d = 1/0.5 = 2$ pc. The angular semi-major axis is the average of the closest and furthest separations: $\alpha = \dfrac{2'' + 18''}{2} = 10''$. Arcseconds times parsecs gives AU, so $a = 10 \times 2 = 20$ AU.`,
+      r`Now $M_1 + M_2 = \dfrac{20^3}{8^2} = \dfrac{8000}{64} = \mathbf{125}$ solar masses.`,
     ],
     wrongChoices: {
-      A: r`Half a solar mass is far too small for a pair whose orbit is many AU across yet only takes 8 years. Use $M = a^3/P^2$ with $a$ in AU and $P$ in years.`,
-      B: r`One solar mass with an 8-year period would need a semi-major axis of just 4 AU, but the parallax and angular separations here give a wider orbit than that. Recompute $a$ in AU before applying Kepler's law.`,
-      C: r`Two solar masses does not match the official key for these numbers. Check that you converted the angular semi-major axis to AU with $a = \alpha \times d$, where $d = 1/p$ parsecs.`,
-      E: r`Eight solar masses is not what the official key gives. Recheck how you averaged the closest and furthest separations to get the semi-major axis before cubing it.`,
+      A: r`This uses only the **closest** separation ($2'' \times 2$ pc $= 4$ AU) as the semi-major axis. The semi-major axis is the average of the closest and furthest separations.`,
+      B: r`This comes from taking the distance as $0.5$ pc instead of $1/0.5 = 2$ pc. Distance is the **reciprocal** of the parallax.`,
+      C: r`This is $10^3/8^2$: the angular size $10''$ was used directly as AU. Multiply by the distance in parsecs first, $a = 10'' \times 2\ \text{pc} = 20$ AU.`,
+      E: r`This uses the **furthest** separation ($18'' \times 2$ pc $= 36$ AU) as the semi-major axis. Average the two extremes instead.`,
     },
-    takeaway: r`A visual binary's total mass is a³/P² in solar units, once the angular orbit is converted to AU using the distance.`,
+    takeaway: r`A visual binary's total mass is a³/P² in solar units, with a = (angular semi-major axis in arcsec) × (distance in pc).`,
   },
 
   "usaaao-2015-practice-round-q18": {

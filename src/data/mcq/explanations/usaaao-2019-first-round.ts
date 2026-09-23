@@ -335,16 +335,16 @@ export const explanations: McqExplanationMap = {
 
   "usaaao-2019-first-round-q24": {
     solution: [
-      r`On March 20, the equinox, the Sun is on the celestial equator, directly over the Equator at local noon. At B's noon the Sun is at B's zenith (zenith distance $0^\circ$).`,
-      r`A is $91^\circ - 78^\circ = 13^\circ$ of longitude further west, so the Sun is still $13^\circ$ east of A's zenith: A's zenith distance is $13^\circ$. The **difference in zenith distances is 13°**.`,
-      r`Altitudes are measured from the horizon, and from the top of a 5790 m mountain the sea-level horizon **dips** by about $\sqrt{2h/R} = \sqrt{2 \times 5790/6.371 \times 10^6} \approx 0.043$ rad $\approx 2.4^\circ$. The official solution applies this dip to B's altitude, so the altitude difference comes out about $13^\circ - 2.4^\circ \approx 11^\circ$.`,
+      r`On March 20, the equinox, the Sun is on the celestial equator, directly over the Equator at local noon. At B's noon the Sun is at B's zenith: altitude $90^\circ$, zenith distance $0^\circ$.`,
+      r`A is $91^\circ - 78^\circ = 13^\circ$ of longitude further west, so the Sun is still $13^\circ$ east of A's zenith: A sees altitude $77^\circ$ and zenith distance $13^\circ$.`,
+      r`Both observers are at sea level, so there is no horizon dip to worry about. Altitude and zenith distance always add to $90^\circ$, so the two differences are the same: **13° and 13°**.`,
     ],
     wrongChoices: {
-      A: r`The zenith-distance difference is right, but the altitude difference in the official solution accounts for the mountain observer's dipped horizon in the other direction, giving a smaller figure than 15°.`,
-      B: r`This ignores B's height. Zenith distance, measured from the true vertical, is unaffected by altitude, but the visible horizon from 5790 m is dipped by about $2.4^\circ$, which changes the altitude difference.`,
-      C: r`The longitude difference of $13^\circ$ sets the difference in **zenith distances**, not in altitudes. The altitude difference is modified by the horizon dip at B's height.`,
+      A: r`Altitude and zenith distance add to $90^\circ$ for each observer, so the two differences must be equal in size. Nothing here makes the altitude difference larger than the zenith-distance difference.`,
+      C: r`The longitude gap sets both differences equally; there is no reason for the zenith-distance difference to exceed the altitude difference.`,
+      D: r`This would need something to shave about $2^\circ$ off one observer's altitude, such as a dipped horizon from a great height. Both observers are at sea level, so the differences are equal.`,
     },
-    takeaway: r`Zenith distance is measured from the vertical, altitude from the visible horizon, and a high observer's horizon dips by about √(2h/R).`,
+    takeaway: r`On the equinox the Sun is overhead at the Equator at local noon; a longitude gap of Δλ shifts it Δλ from the zenith for the other observer.`,
   },
 
   "usaaao-2019-first-round-q25": {

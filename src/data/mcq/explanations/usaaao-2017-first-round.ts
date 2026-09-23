@@ -319,14 +319,14 @@ export const explanations: McqExplanationMap = {
   "usaaao-2017-first-round-q22": {
     solution: [
       r`The smaller star is the hot one (radius ratio 0.6), so $R_{\text{hot}} = 2\,R_\odot$ and $R_{\text{cold}} = 2/0.6 \approx 3.3\,R_\odot$.`,
-      r`Each luminosity in solar units is $\left(\dfrac{R}{R_\odot}\right)^2 \left(\dfrac{T}{T_\odot}\right)^4$. Adding both gives the system's total luminosity, which converts to an absolute magnitude via $M = 4.83 - 2.5\log_{10}(L/L_\odot)$.`,
-      r`The distance modulus $m - M = 5\log_{10}(d/10\ \text{pc})$ then gives $d$. The official key gives **85 pc**. Working the numbers through with $T_\odot = 5800$ K gives a larger distance, so the key appears to rest on slightly different graph readings; the method is what to take from this question.`,
+      r`Each luminosity in solar units is $\left(\dfrac{R}{R_\odot}\right)^2 \left(\dfrac{T}{T_\odot}\right)^4$ with $T_\odot \approx 5772$ K: the hot star gives $4 \times (8000/5772)^4 \approx 14.8$ and the cool star $11.1 \times (6000/5772)^4 \approx 13.0$, a total of about $27.7\,L_\odot$.`,
+      r`Absolute magnitude: $M = 4.83 - 2.5\log_{10}(27.7) \approx 1.22$. The distance modulus $m - M = 5\log_{10}(d/10\ \text{pc})$ with $m = 8.2$ gives $d = 10^{(8.2 - 1.22 + 5)/5} \approx \mathbf{250}$ pc.`,
     ],
     wrongChoices: {
-      A: r`Not the keyed distance. Build the total luminosity from $R^2T^4$ for both stars, convert to an absolute magnitude, and apply the distance modulus with $m = 8.2$.`,
-      C: r`Not the keyed distance. Check each step: both stars' luminosities in solar units, their sum as an absolute magnitude, then $d = 10^{(m - M + 5)/5}$ pc.`,
-      D: r`Not the keyed distance. Remember the smaller (2 solar-radius) star is the **hotter** one, and the cooler star is larger by a factor of 1/0.6.`,
-      E: r`Not the keyed distance. Recheck the luminosity sum and the distance modulus; the key's method lands closer to the low end of the choices.`,
+      A: r`This uses only the hot star's luminosity ($14.8\,L_\odot$). The magnitude $m = 8.2$ belongs to the **whole system**, so add both stars' luminosities.`,
+      C: r`This pairs the total luminosity with $m = 8.9$, the brighter star's magnitude from the previous question. The total luminosity goes with the system's magnitude, $8.2$.`,
+      D: r`Too far. Check the luminosity sum (about $28\,L_\odot$, so $M \approx 1.2$) and that $d = 10^{(m - M + 5)/5}$ pc.`,
+      E: r`Far too distant; that would need the system to be about 15 times more luminous than $R^2T^4$ gives for these two stars.`,
     },
     takeaway: r`Radius and temperature give luminosity, luminosity gives absolute magnitude, and the distance modulus gives distance.`,
   },
@@ -387,21 +387,6 @@ export const explanations: McqExplanationMap = {
       E: r`Shrinking the baseline makes the resolution **worse**, since the smallest resolvable angle is about $\lambda/B$.`,
     },
     takeaway: r`An interferometer's resolution is set by its longest baseline: λ/B.`,
-  },
-
-  "usaaao-2017-first-round-q27": {
-    solution: [
-      r`The diffraction limit is $\theta = 1.22\,\dfrac{\lambda}{D} = 1.22 \times \dfrac{1.2 \times 10^{-6}}{4.5} \approx 3.3 \times 10^{-7}$ rad.`,
-      r`Converting with $206{,}265''$ per radian gives about **0.07 arcseconds**.`,
-      r`None of the printed options matches this correctly; the answer options were printed with the wrong units, and the question was excluded from grading in the original exam. The official key nonetheless marks $0.9 \times 10^{-5}$ arcsec. Take the method from this question, not the number.`,
-    ],
-    wrongChoices: {
-      A: r`This is not the keyed option. Note that the options' units do not match a real diffraction limit (about 0.07″ here); compute $1.22\lambda/D$ in radians and convert to arcseconds.`,
-      C: r`This is not the keyed option. Compute $\theta = 1.22\lambda/D$ with $\lambda = 1.2 \times 10^{-6}$ m and $D = 4.5$ m; the true limit is about 0.07″, and the options were printed with faulty units.`,
-      D: r`This is not the keyed option. The real diffraction limit works out near 0.07″; the printed options carry incorrect units.`,
-      E: r`This is not the keyed option. Start from $1.22\lambda/D \approx 3.3 \times 10^{-7}$ rad and convert with 206,265″ per radian.`,
-    },
-    takeaway: r`Diffraction limit: θ = 1.22 λ/D radians, and 1 radian is 206,265 arcseconds.`,
   },
 
   "usaaao-2017-first-round-q28": {

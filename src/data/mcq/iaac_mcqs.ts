@@ -3022,15 +3022,15 @@ export const iaacMcqs = [
     subtopic: "Diffraction limit",
     tags: ["Rayleigh criterion", "telescope resolution", "aperture"],
     type: "MCQ",
-    questionText: "The diameter of the lens’ aperture of your telescope is 5 m and you observe at a wavelength of 1000 nm. What is the resolution of this telescope?",
+    questionText: "The diameter of the lens’ aperture of your telescope is 5 m and you observe at a wavelength of 1000 nm. What is the resolution of this telescope? [Answer choices updated to restore the negative exponents and units missing from the original exam.]",
     choices: [
-      { label: "A", text: "1.22 · 10⁹" },
-      { label: "B", text: "2.44 · 10⁹" },
-      { label: "C", text: "122 · 10⁹" },
-      { label: "D", text: "244 · 10⁹" },
+      { label: "A", text: "1.22 · 10⁻⁹ rad" },
+      { label: "B", text: "2.44 · 10⁻⁹ rad" },
+      { label: "C", text: "122 · 10⁻⁹ rad" },
+      { label: "D", text: "244 · 10⁻⁹ rad" },
     ],
     correctAnswer: "D",
-    explanation: "The supplied official answer key marks D. The printed numerical options omit a clear unit/exponent context and appear inconsistent with the standard Rayleigh calculation, so this item should be reviewed before publishing.",
+    explanation: "Rayleigh criterion: θ = 1.22 λ/D = 1.22 × 10⁻⁶ m / 5 m = 2.44 × 10⁻⁷ rad = 244 · 10⁻⁹ rad. The original exam printed the options as 10⁹ with no unit; the exponent sign and unit were restored in the Sept 2026 audit.",
     sourceUrl: "https://iaac.space/",
     pdfUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021.pdf",
     pageNumber: 4,
@@ -3052,13 +3052,13 @@ export const iaacMcqs = [
     type: "MCQ",
     questionText: "A fast travelling spaceship has a Lorentz factor of γ = 3. This corresponds to a velocity v of ...",
     choices: [
-      { label: "A", text: "√(8/3)c" },
-      { label: "B", text: "3/√8 c" },
-      { label: "C", text: "√(8/9)c" },
-      { label: "D", text: "9/√8 c" },
+      { label: "A", text: "(√8/3)c" },
+      { label: "B", text: "(3/√8)c" },
+      { label: "C", text: "(√8/9)c" },
+      { label: "D", text: "(9/√8)c" },
     ],
     correctAnswer: "A",
-    explanation: "The supplied official answer key marks A. However, substituting γ = 3 into γ = 1/√(1 − v²/c²) gives v/c = √(8/9), which matches choice C; flag this official-key versus printed-choice inconsistency for review.",
+    explanation: "γ = 1/√(1 − v²/c²) with γ = 3 gives v/c = √(1 − 1/9) = √(8/9) = √8/3 ≈ 0.943, which is choice A, matching the official solution sheet. (An earlier transcription wrote A as √(8/3), which made it look faster than light; the fractions are now written with explicit parentheses.)",
     sourceUrl: "https://iaac.space/",
     pdfUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021.pdf",
     pageNumber: 4,
@@ -3682,7 +3682,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q1.png"],
     },
-    "questionText": "What is the name of the JWST component highlighted in the official figure?",
+    "questionText": "What is the name of the JWST component highlighted below?",
     "choices": [
       {
         "label": "A",
@@ -3730,7 +3730,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q2.png"],
     },
-    "questionText": "What is the name of the JWST component highlighted in the official figure?",
+    "questionText": "What is the name of the JWST component highlighted below?",
     "choices": [
       {
         "label": "A",
@@ -3778,7 +3778,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q3.png"],
     },
-    "questionText": "What is the name of the JWST component highlighted in the official figure?",
+    "questionText": "What is the name of the JWST component highlighted below?",
     "choices": [
       {
         "label": "A",
@@ -4932,7 +4932,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2022-iaac-final-round-images/iaac-2022-final-round-q29.png"],
     },
-    "questionText": "What is the name of Jupiter’s moon shown in the official figure?",
+    "questionText": "What is the name of Jupiter’s moon shown in the figure below?",
     "choices": [
       {
         "label": "A",
@@ -5024,7 +5024,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2023-iaac-final-round-images/iaac-2023-final-round-q1.png"],
     },
-    "questionText": "Which one of these shapes in the official figure illustrates an elliptical galaxy?",
+    "questionText": "Which one of these shapes (shown below) illustrates an elliptical galaxy?",
     "choices": [
       {
         "label": "A",
@@ -5072,7 +5072,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2023-iaac-final-round-images/iaac-2023-final-round-q2.png"],
     },
-    "questionText": "What is the class of the galaxy shown in the official figure?",
+    "questionText": "What is the class of the galaxy shown below?",
     "choices": [
       {
         "label": "A",
@@ -5120,7 +5120,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2023-iaac-final-round-images/iaac-2023-final-round-q3.png"],
     },
-    "questionText": "Which class of galaxies does the shape in the official figure illustrate?",
+    "questionText": "Which class of galaxies does the shape shown below illustrate?",
     "choices": [
       {
         "label": "A",
@@ -5300,7 +5300,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2023-iaac-final-round-images/iaac-2023-final-round-q7.png"],
     },
-    "questionText": "Which one of the labeled points in the official ellipse diagram is the aphelion?",
+    "questionText": "Which one of the labeled points on the ellipse shown below is the aphelion?",
     "choices": [
       {
         "label": "A",
@@ -6850,7 +6850,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2024-iaac-final-round-images/iaac-2024-final-round-q12.png"],
     },
-    "questionText": "What is the name of the region marked in the official horizontal Milky Way drawing?",
+    "questionText": "What is the name of the region marked in the horizontal Milky Way drawing below?",
     "choices": [
       {
         "label": "A",
@@ -6898,7 +6898,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2024-iaac-final-round-images/iaac-2024-final-round-q13.png"],
     },
-    "questionText": "What is the name of the region marked in the official horizontal Milky Way drawing?",
+    "questionText": "What is the name of the region marked in the horizontal Milky Way drawing below?",
     "choices": [
       {
         "label": "A",
@@ -7518,7 +7518,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2025-iaac-final-round-images/iaac-2025-final-round-q1.png"],
     },
-    "questionText": "What type of optical telescope is shown in the official image?",
+    "questionText": "What type of optical telescope is shown in the image below?",
     "choices": [
       {
         "label": "A",
@@ -7566,7 +7566,7 @@ export const iaacMcqs = [
       status: "complete",
       assets: ["/mcq-images/iaac-images/2025-iaac-final-round-images/iaac-2025-final-round-q2.png"],
     },
-    "questionText": "What type of optical telescope is shown in the official image?",
+    "questionText": "What type of optical telescope is shown in the image below?",
     "choices": [
       {
         "label": "A",

@@ -25,13 +25,13 @@ export const explanations: McqExplanationMap = {
     solution: [
       r`The orbit is an ellipse with the star at one focus. Closest plus farthest distance is the long axis: $2a = 1.50 + 4.50$, so $a = 3.00$ AU. The star is $c = a - 1.50 = 1.50$ AU from the centre.`,
       r`The short half-axis follows from $b^2 = a^2 - c^2 = 9.00 - 2.25 = 6.75$, so $b \approx 2.60$ AU.`,
-      r`The area of an ellipse is $\pi a b$, and Kepler's second law says a full orbit sweeps out the **whole** ellipse. With these numbers $\pi a b \approx 7.8\pi$ AU². Note that this exact value is not among the choices; the official answer key marks **$6.00\pi$**, so treat this question's numbers with caution and focus on the method.`,
+      r`Kepler's second law says a full orbit sweeps out the **whole** ellipse, whose area is $\pi a b = \pi \times 3.00 \times 2.60 \approx \mathbf{7.79\pi}$ AU².`,
     ],
     wrongChoices: {
-      B: r`This does not come from the ellipse geometry. The swept area for a full orbit is $\pi a b$, with $a$ half the sum of the two distances and $b = \sqrt{a^2 - c^2}$.`,
-      C: r`Far too small; $1.50\pi$ is less than the area of a circle of radius 1.5 AU, and the orbit reaches out to 4.5 AU. Use $\pi a b$ for the whole ellipse.`,
-      D: r`This is $\pi b^2$, using the short half-axis twice. An ellipse's area needs both half-axes: $\pi a b$.`,
-      E: r`This is $\pi a c$, mixing in the focus distance. The area formula is $\pi a b$, where $b$ is the semi-minor axis, not $c$.`,
+      B: r`This is $\pi a^2$, the area of a circle of radius 3 AU. The orbit is an ellipse, which is narrower: use $\pi a b$.`,
+      C: r`This is $\pi b^2$, using the short half-axis twice. An ellipse's area needs both half-axes: $\pi a b$.`,
+      D: r`This is $\pi a c$, mixing in the focus distance. The area formula is $\pi a b$, where $b$ is the semi-minor axis, not $c$.`,
+      E: r`This is $\pi c^2$, built from the focus distance alone. Find $b$ from $b^2 = a^2 - c^2$ and use $\pi a b$.`,
     },
     takeaway: r`An orbit sweeps out the whole ellipse, area πab, with a from the two extreme distances and b from b² = a² − c².`,
   },
@@ -99,14 +99,14 @@ export const explanations: McqExplanationMap = {
   "usaaao-2016-first-round-q7": {
     solution: [
       r`A transfer starts with a burn at the parking orbit that stretches the circle into an ellipse whose far end reaches the target height. Distances are from Earth's **centre**: $r_1 = 6371 + 200 = 6571$ km and $r_2 = 6371 + 35{,}786 = 42{,}157$ km.`,
-      r`The transfer ellipse has $a = \dfrac{r_1 + r_2}{2} = 24{,}364$ km. Speed in the parking orbit: $v_c = \sqrt{GM/r_1} = \sqrt{3.986 \times 10^{14} / 6.571 \times 10^6} \approx 7.79$ km/s.`,
-      r`Speed needed at the same point on the transfer ellipse, from vis-viva: $v_t = \sqrt{GM\left(\dfrac{2}{r_1} - \dfrac{1}{a}\right)} \approx 10.2$ km/s. The burn is the difference, $\Delta v = v_t - v_c$, about **2.5 km/s**. The official key gives 2543 m/s; a careful calculation with the constants shown lands a little lower, near 2460 m/s, so the method rather than the last digits is the point here.`,
+      r`The transfer ellipse has $a = \dfrac{r_1 + r_2}{2} = 24{,}364$ km. Speed in the parking orbit: $v_c = \sqrt{GM/r_1} = \sqrt{3.986 \times 10^{14} / 6.571 \times 10^6} \approx 7788$ m/s.`,
+      r`Speed needed at the same point on the transfer ellipse, from vis-viva: $v_t = \sqrt{GM\left(\dfrac{2}{r_1} - \dfrac{1}{a}\right)} \approx 10{,}245$ m/s. The burn is the difference: $\Delta v = v_t - v_c \approx \mathbf{2457}$ m/s.`,
     ],
     wrongChoices: {
-      A: r`This is what you get if the apogee height of 35,786 km is used as a distance from Earth's **centre**. Add Earth's radius: the apogee radius is 42,157 km.`,
-      B: r`A careful calculation lands near this value, but the official key lists a slightly higher figure. Recheck each step against the key's method: circular speed at 6571 km, then vis-viva at that point with $a = 24{,}364$ km.`,
+      A: r`This is the **second** burn of a Hohmann transfer, the one at apogee that circularises the orbit at 42,157 km. The question asks only for the burn that leaves the parking orbit.`,
+      B: r`This is what you get if the apogee height of 35,786 km is used as a distance from Earth's **centre**. Add Earth's radius: the apogee radius is 42,157 km.`,
       D: r`Too large. The burn is the difference between the transfer-orbit perigee speed and the circular parking speed, both evaluated at $r_1 = 6571$ km.`,
-      E: r`Too large. Check that the parking-orbit speed uses $r = 6571$ km (Earth's radius plus 200 km) and that you subtracted it from the transfer speed.`,
+      E: r`This is the **total** of both Hohmann burns (departure plus circularisation). Only the departure burn from the parking orbit is asked for.`,
     },
     takeaway: r`A Hohmann departure burn is Δv = v_transfer(perigee) − v_circular, with vis-viva giving the transfer speed.`,
   },

@@ -284,17 +284,17 @@ export const explanations: McqExplanationMap = {
 
   "usaaao-2015-first-round-q20": {
     solution: [
-      r`The line has shifted from $656.3$ nm to $662.5$ nm, a change of $\Delta\lambda = 6.2$ nm. The Doppler formula gives $v = c\,\dfrac{\Delta\lambda}{\lambda_0} = 3.0 \times 10^8 \times \dfrac{6.2}{656.3} \approx 2.83 \times 10^6$ m/s.`,
-      r`The wavelength got **longer** (a redshift), so the star is moving **away** from Earth.`,
-      r`This exam's sign convention counts a velocity **away** from Earth as negative, so the key gives $-2.83 \times 10^6$ m/s. (Many textbooks use the opposite sign, with recession positive; the physics is the same, so always state your convention.)`,
+      r`The line has shifted from $656.3$ nm to $662.5$ nm, a change of $\Delta\lambda = 6.2$ nm.`,
+      r`For speeds well below $c$, the Doppler formula gives $v = c\,\dfrac{\Delta\lambda}{\lambda_0} = 3.0 \times 10^8 \times \dfrac{6.2}{656.3} \approx \mathbf{2.83 \times 10^6}$ m/s, just under 1% of the speed of light.`,
+      r`The wavelength got **longer** (a redshift), so the star is moving **away** from Earth at that speed.`,
     ],
     wrongChoices: {
-      A: r`The size of the speed is right, but the sign does not match the convention this exam uses, in which motion away from Earth is counted as negative. The line moved to a longer wavelength, so the star is receding.`,
-      C: r`This is just the fractional shift $\Delta\lambda/\lambda_0 = 0.00945$. To get a speed you must multiply it by the speed of light.`,
-      D: r`This is the fractional shift $\Delta\lambda/\lambda_0$ with a sign attached, not a speed. Multiply by $c = 3 \times 10^8$ m/s.`,
-      E: r`A thousand times too small. The fractional shift is nearly 1%, and 1% of the speed of light is millions of metres per second.`,
+      B: r`A thousand times too small. Use $c = 3 \times 10^8$ m/s, not km/s, when multiplying by the fractional shift.`,
+      C: r`This is just the fractional shift $\Delta\lambda/\lambda_0 = 0.00945$, a pure number. To get a speed you must multiply it by the speed of light.`,
+      D: r`This is $\Delta\lambda/\lambda_0$ times $10^8$; the factor of 3 in $c = 3 \times 10^8$ m/s was dropped.`,
+      E: r`Nearly the speed of light, which the star cannot be doing. The shift is under 1% of the wavelength, so the speed is under 1% of $c$.`,
     },
-    takeaway: r`Radial velocity is c × Δλ/λ₀; longer wavelength means the source is receding, and the sign depends on the convention.`,
+    takeaway: r`Radial speed is c × Δλ/λ₀; a longer observed wavelength means the source is moving away.`,
   },
 
   "usaaao-2015-first-round-q21": {
@@ -331,15 +331,15 @@ export const explanations: McqExplanationMap = {
     solution: [
       r`A **Hohmann transfer** is half of an ellipse touching both orbits. Its semi-major axis is the average of the two radii: $a = \dfrac{1.0 + 0.7}{2} = 0.85$ AU.`,
       r`The trip takes half a period of that ellipse: $t = \tfrac{1}{2} \times 0.85^{3/2} \approx 0.39$ years.`,
-      r`Venus's year is $0.7^{3/2} \approx 0.59$ years, so during the trip Venus sweeps through $\dfrac{0.39}{0.59} \times 360^\circ \approx 241^\circ$ of its orbit. The launch must be timed so that this $241^\circ$ of travel brings Venus to the meeting point exactly as the probe arrives $180^\circ$ from Earth; that is the phase angle the answer key quotes.`,
+      r`Venus's year is $0.7^{3/2} \approx 0.59$ years, so during the trip Venus sweeps through $\dfrac{0.39}{0.59} \times 360^\circ \approx \mathbf{241^\circ}$ of its orbit.`,
     ],
     wrongChoices: {
-      A: r`This is how far **Earth** moves during the transfer ($0.39$ of a year, about $141^\circ$), which is not the angle asked for. The timing depends on Venus's motion, since Venus is what the probe must meet.`,
-      B: r`Far too small. Venus moves through more than half a lap during a 0.39-year transfer, so the phase angle involves a large fraction of 360°.`,
+      A: r`This is how far **Earth** moves during the transfer ($0.39$ of a year, about $141^\circ$). The question asks how far Venus moves, and Venus orbits faster.`,
+      B: r`Far too small. Venus moves through more than half a lap during a 0.39-year transfer.`,
       C: r`Not quite. Compute the transfer time from the half-period of an ellipse with $a = 0.85$ AU, then find how far Venus travels in that time at its $0.59$-year period.`,
       E: r`Too large. Venus's motion during the 0.39-year transfer is $(0.39/0.59) \times 360^\circ$, which is well short of a full circle.`,
     },
-    takeaway: r`A Hohmann transfer takes half the period of the connecting ellipse, and launch timing comes from how far the target moves in that time.`,
+    takeaway: r`A Hohmann transfer takes half the period of the connecting ellipse; the target sweeps (flight time / its period) × 360° meanwhile.`,
   },
 
   "usaaao-2015-first-round-q24": {
