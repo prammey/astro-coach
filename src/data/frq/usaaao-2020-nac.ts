@@ -1,7 +1,8 @@
 // USAAAO National Astronomy Competition 2020 (Version 1): 12 free-response
 // questions in three sections — Short (S1–S5), Medium (M1–M5) and Long
-// (L1–L2). USAAAO released two versions of this exam; only Version 1 is
-// imported so the bank has no near-duplicates.
+// (L1–L2). USAAAO released two versions of this exam that differ only in
+// S4's planet mass; the full exam comes from Version 1, and Version 2's S4
+// is added on its own in usaaao-2020-nac-v2.ts.
 //
 // The paper prints a point total for each question but never splits it
 // between sub-parts, so every question is graded as a whole (no FrqParts):

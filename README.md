@@ -1360,6 +1360,7 @@ src/data/frq/
 ├── iaac-<year>-qualification.ts   IAAC Qualification Round, 2019–2025
 ├── usaaao-<year>-nac.ts           USAAAO national exams, 2014–2026
 ├── usaaao-2016-r2.ts              USAAAO 2016 Round 2 Qualification Exam
+├── usaaao-2020-nac-v2.ts          2020 Version 2's S4 only (the rest matches Version 1)
 ├── figures/<exam slug>/           cropped figures and answer sheets (PNG)
 ├── index.ts                       the list of exams that get seeded
 ├── types.ts                       the shape of an exam file

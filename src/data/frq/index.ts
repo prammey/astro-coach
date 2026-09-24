@@ -19,6 +19,7 @@ import { usaaao2017Nac } from "./usaaao-2017-nac";
 import { usaaao2018Nac } from "./usaaao-2018-nac";
 import { usaaao2019Nac } from "./usaaao-2019-nac";
 import { usaaao2020Nac } from "./usaaao-2020-nac";
+import { usaaao2020NacV2 } from "./usaaao-2020-nac-v2";
 import { usaaao2021Nac } from "./usaaao-2021-nac";
 import { usaaao2022Nac } from "./usaaao-2022-nac";
 import { usaaao2023Nac } from "./usaaao-2023-nac";
@@ -41,6 +42,7 @@ export const frqExams: FrqSeedExam[] = [
   usaaao2018Nac,
   usaaao2019Nac,
   usaaao2020Nac,
+  usaaao2020NacV2,
   usaaao2021Nac,
   usaaao2022Nac,
   usaaao2023Nac,
