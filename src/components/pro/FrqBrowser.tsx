@@ -24,12 +24,20 @@ type FrqListResponse = {
 
 const ALL = "All";
 
+// How a question is answered: checked instantly for free, or AI-graded.
+const QUICK_CHECK = "Free instant check";
+const AI_GRADED = "AI graded";
+const DIFFICULTY_ORDER = ["Beginner", "Intermediate", "Advanced"];
+
 export default function FrqBrowser() {
   const [data, setData] = useState<FrqListResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [topic, setTopic] = useState(ALL);
   const [competition, setCompetition] = useState(ALL);
+  const [year, setYear] = useState(ALL);
+  const [difficulty, setDifficulty] = useState(ALL);
+  const [answerType, setAnswerType] = useState(ALL);
 
   useEffect(() => {
     let active = true;
@@ -55,14 +63,27 @@ export default function FrqBrowser() {
     [data],
   );
 
+  // Newest year first, like the question list itself.
+  const years = useMemo(
+    () => [ALL, ...unique(data?.questions.map((q) => String(q.year)) ?? []).reverse()],
+    [data],
+  );
+  const difficulties = useMemo(() => {
+    const present = new Set(data?.questions.map((q) => q.difficulty ?? "") ?? []);
+    return [ALL, ...DIFFICULTY_ORDER.filter((level) => present.has(level))];
+  }, [data]);
+
   const visible = useMemo(
     () =>
       (data?.questions ?? []).filter(
         (question) =>
           (topic === ALL || question.primaryCurriculumTopic === topic) &&
-          (competition === ALL || question.competition === competition),
+          (competition === ALL || question.competition === competition) &&
+          (year === ALL || String(question.year) === year) &&
+          (difficulty === ALL || question.difficulty === difficulty) &&
+          (answerType === ALL || (answerType === QUICK_CHECK) === question.quickCheck),
       ),
-    [data, topic, competition],
+    [data, topic, competition, year, difficulty, answerType],
   );
 
   if (loading) {
@@ -101,6 +122,14 @@ export default function FrqBrowser() {
           value={competition}
           options={competitions}
           onChange={setCompetition}
+        />
+        <Filter label="Year" value={year} options={years} onChange={setYear} />
+        <Filter label="Difficulty" value={difficulty} options={difficulties} onChange={setDifficulty} />
+        <Filter
+          label="Answer type"
+          value={answerType}
+          options={[ALL, QUICK_CHECK, AI_GRADED]}
+          onChange={setAnswerType}
         />
 
         {data.signedIn && data.creditsRemaining !== null && (

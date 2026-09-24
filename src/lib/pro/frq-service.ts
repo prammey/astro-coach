@@ -271,7 +271,7 @@ export type FrqDetail = {
   /// the student has already earned full marks on. Solving a part fully is
   /// its own unlock — the student gains nothing new by reading it, and
   /// seeing the clean version is how correct answers get reinforced.
-  earnedPartSolutions: Array<{ label: string; officialSolution: string }>;
+  earnedPartSolutions: Array<{ label: string; officialSolution: string; figures: SignedFigure[] }>;
   /// Quick-check questions only: the student's latest free check, so their
   /// answers and ticks survive a reload.
   lastCheck: {
@@ -402,7 +402,20 @@ export async function getFrqForStudent(
         : null,
 
     earnedPartSolutions:
-      mayRead && !unlocked ? earnedPartSolutionsFor(question.parts, submissions) : [],
+      mayRead && !unlocked
+        ? await Promise.all(
+            earnedPartSolutionsFor(question.parts, submissions).map(async (part) => ({
+              label: part.label,
+              officialSolution: part.officialSolution,
+              // Only the solution figures this earned part itself uses.
+              figures: await signFigures(
+                solutionFigures.filter(
+                  (item) => item.frqPartId === part.id || (item.key && mentionsFigure(part.officialSolution, item.key)),
+                ),
+              ),
+            })),
+          )
+        : [],
 
     lastCheck: mayRead ? lastExactCheck(submissions) : null,
 
@@ -470,7 +483,7 @@ function bestScoreOf(submissions: ScoredSubmission[]): number | null {
 function earnedPartSolutionsFor(
   parts: Array<{ id: string; label: string; officialSolution: string | null }>,
   submissions: ScoredSubmission[],
-): Array<{ label: string; officialSolution: string }> {
+): Array<{ id: string; label: string; officialSolution: string }> {
   const earned = new Set<string>();
   for (const submission of submissions.filter(isScored)) {
     const scores = Array.isArray(submission.partScores) ? submission.partScores : [];
@@ -482,7 +495,12 @@ function earnedPartSolutionsFor(
   }
   return parts
     .filter((part) => earned.has(part.id) && part.officialSolution)
-    .map((part) => ({ label: part.label, officialSolution: part.officialSolution as string }));
+    .map((part) => ({ id: part.id, label: part.label, officialSolution: part.officialSolution as string }));
+}
+
+/// Whether a text places the figure with this key ([[figure:key]]).
+function mentionsFigure(text: string, key: string): boolean {
+  return text.includes(`[[figure:${key}]]`);
 }
 
 /// The most recent free check, restored into the form on reload.

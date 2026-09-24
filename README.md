@@ -1145,9 +1145,9 @@ In Supabase Dashboard → **Storage** → **New bucket**, create these three.
 | `frq-source-pdfs` | **OFF** | 50 MB | `application/pdf` | Admin-imported question and solution papers |
 | `frq-question-media` | **OFF** | 10 MB | `image/jpeg`, `image/png`, `image/webp` | Figures belonging to published questions |
 
-`frq-question-media` is not written to yet — nothing in the importer
-attaches figures, so it stays empty until that is built. Create it anyway
-so the code has somewhere to read from.
+`frq-question-media` holds the figures and answer sheets of the curated
+free-response bank, uploaded by `npm run seed:frq` under
+`curated/<exam slug>/`. The admin importer does not attach figures yet.
 
 **Do not create any Storage policies.** That is deliberate, and it is the
 safe configuration rather than a shortcut.
@@ -1346,6 +1346,62 @@ and a clean production build contains no reference to it.
    `/admin/reports`.
 
 Then add every new variable to the Vercel project as well, before deploying.
+
+## The curated free-response bank
+
+Real past papers, transcribed by hand and checked against the official
+PDFs, live in `src/data/frq/` — one file per exam — and are seeded into
+Postgres (`FrqQuestion`, `FrqPart`, `FrqMedia`). Like the MCQ files, they
+hold solutions and accepted answers, so only the seed script and the tests
+import them.
+
+```txt
+src/data/frq/
+├── iaac-<year>-qualification.ts   IAAC Qualification Round, 2019–2025
+├── usaaao-<year>-nac.ts           USAAAO national exams, 2014–2026
+├── usaaao-2016-r2.ts              USAAAO 2016 Round 2 Qualification Exam
+├── figures/<exam slug>/           cropped figures and answer sheets (PNG)
+├── index.ts                       the list of exams that get seeded
+├── types.ts                       the shape of an exam file
+└── validate.ts                    checks run by the tests and the seed
+```
+
+**How each question is answered**
+
+- **Short answer** (names, labels, matching, single numbers): the student
+  types into blanks and gets an instant, free check. Each blank turns green
+  or red; no AI credit is used. The solution unlocks when every blank is
+  right. Numbers are accepted within a tolerance, in the units the blank
+  asks for or in listed alternative units ("23.5 m" or "2350 cm").
+- **Worked** (derivations, calculations, explanations): one big answer box
+  (typed, photos or PDF), AI-graded against the official marking scheme or
+  an Astro Coach marking guide. This costs one grading credit.
+- **Drawing**: like worked, plus a printable answer sheet to draw on and
+  photograph.
+
+When the paper gives no points per sub-part, the question is graded as a
+whole and the student labels their own parts. Half points are only used
+where the official rubric awards them.
+
+**Solutions** are labelled by source: *official* (word for word),
+*adapted* (lightly simplified) or *Astro Coach* (written by us when the
+official solution is missing or answer-only). Where an official answer is
+wrong, the solution gives the correct one and says what was changed. Each
+exam file's header comment lists those corrections.
+
+**To add or change an exam:**
+
+1. Edit or add the file under `src/data/frq/` (add a new one to `index.ts`).
+   While writing a new file you can check it alone:
+   `FRQ_FILE=src/data/frq/usaaao-2025-nac.ts npx vitest run src/data/frq`
+2. `npm test` — the bank gate checks point totals, figures, LaTeX, that every
+   blank accepts its own answers, and that every question would publish.
+3. `npm run seed:frq` (or `npm run seed:frq -- <exam slug>` for one exam).
+   It uploads figures and upserts questions by slug; re-running is safe.
+   Anything that fails the publish check is saved as NEEDS_REVIEW instead.
+
+Figures are cropped from the official PDFs with a local helper
+(`source-pdfs/tools/fig.py`, gitignored along with the PDFs).
 
 ## Importing free-response questions
 

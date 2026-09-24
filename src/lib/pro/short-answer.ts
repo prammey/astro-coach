@@ -19,6 +19,14 @@ export type ShortAnswerBlank = {
   /// Accept any number within `tolerance` of `value` (absolute). Useful
   /// for numeric blanks where rounding legitimately varies.
   numeric?: { value: number; tolerance: number };
+  /// The same number written in other units, e.g. a blank that asks for
+  /// metres but should also accept "2350 cm". Each option only counts when
+  /// the student wrote one of its unit spellings right after the number.
+  numericInOtherUnits?: Array<{ value: number; tolerance: number; units: string[] }>;
+  /// Accept any answer that contains every one of these words, for blanks
+  /// where a short free phrase is fine ("a comet visible to the naked eye"
+  /// contains "comet").
+  containsAll?: string[];
 };
 
 /// What the browser is allowed to know about a blank: never the answer.
@@ -39,7 +47,8 @@ export function parseBlanks(value: unknown): ShortAnswerBlank[] {
       typeof blank === "object" &&
       blank !== null &&
       typeof (blank as ShortAnswerBlank).label === "string" &&
-      Array.isArray((blank as ShortAnswerBlank).accept),
+      (Array.isArray((blank as ShortAnswerBlank).accept) ||
+        Array.isArray((blank as ShortAnswerBlank).containsAll)),
   );
 }
 
@@ -64,17 +73,47 @@ export function normaliseAnswer(text: string): string {
     .replace(/^the /, "");
 }
 
-/// Pulls the first number out of a student's answer, understanding
-/// "1.5e5", "1.5 × 10^5", "1.5x10^5", "-0.5" and "1,400" (thousands commas).
-export function extractNumber(text: string): number | null {
-  const cleaned = text
-    .replace(/(\d),(\d{3})/g, "$1$2")
+/// Number words a student may write after a number: "393 billion".
+const MAGNITUDE_WORDS: Record<string, number> = {
+  thousand: 1e3,
+  million: 1e6,
+  billion: 1e9,
+  trillion: 1e12,
+};
+
+/// Rewrites a student's answer so the first number in it is easy to read:
+/// thousands commas removed, "×10^5" turned into "e5", unicode minus fixed.
+function cleanNumberText(text: string): string {
+  return text
+    .replace(/(\d),(?=\d{3}(?!\d))/g, "$1")
     .replace(/[−–]/g, "-")
     .replace(/\s*[×x*]\s*10\s*\^?\s*\(?\s*([+-]?\d+)\s*\)?/gi, "e$1");
-  const match = cleaned.match(/[+-]?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?/i);
+}
+
+const NUMBER_PATTERN = /[+-]?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?/i;
+
+/// Pulls the first number out of a student's answer, understanding
+/// "1.5e5", "1.5 × 10^5", "1.5x10^5", "-0.5", "1,400" (thousands commas)
+/// and number words such as "393 billion".
+export function extractNumber(text: string): number | null {
+  const cleaned = cleanNumberText(text);
+  const match = cleaned.match(NUMBER_PATTERN);
   if (!match) return null;
-  const value = Number(match[0]);
+  let value = Number(match[0]);
+  const after = cleaned.slice((match.index ?? 0) + match[0].length).trim().toLowerCase();
+  const word = after.match(/^[a-z]+/)?.[0];
+  if (word && MAGNITUDE_WORDS[word]) value *= MAGNITUDE_WORDS[word];
   return Number.isFinite(value) ? value : null;
+}
+
+/// The unit written straight after the first number, lowercased: "cm" in
+/// "2350 cm", "m" in "23.5m", "km/s" in "7.2 km/s". Empty when there is none.
+export function unitAfterNumber(text: string): string {
+  const cleaned = cleanNumberText(text);
+  const match = cleaned.match(NUMBER_PATTERN);
+  if (!match) return "";
+  const after = cleaned.slice((match.index ?? 0) + match[0].length).trim().toLowerCase();
+  return after.match(/^[a-zµ°%/]+/)?.[0] ?? "";
 }
 
 /// Whether one student answer is right for one blank.
@@ -82,15 +121,25 @@ export function isBlankCorrect(blank: ShortAnswerBlank, answer: string | undefin
   if (!answer || !answer.trim()) return false;
 
   const given = normaliseAnswer(answer);
-  if (blank.accept.some((accepted) => normaliseAnswer(accepted) === given)) return true;
+  if ((blank.accept ?? []).some((accepted) => normaliseAnswer(accepted) === given)) return true;
 
-  if (blank.numeric) {
-    const number = extractNumber(answer);
-    if (number !== null && Math.abs(number - blank.numeric.value) <= blank.numeric.tolerance) {
-      return true;
-    }
+  if (blank.containsAll && blank.containsAll.length > 0) {
+    const words = ` ${given} `;
+    if (blank.containsAll.every((word) => words.includes(` ${normaliseAnswer(word)}`))) return true;
   }
-  return false;
+
+  const number = extractNumber(answer);
+  if (number === null) return false;
+  if (blank.numeric && Math.abs(number - blank.numeric.value) <= blank.numeric.tolerance) {
+    return true;
+  }
+  // Other units only count when the student actually wrote that unit.
+  const unit = unitAfterNumber(answer);
+  return (blank.numericInOtherUnits ?? []).some(
+    (option) =>
+      option.units.some((spelling) => spelling.toLowerCase() === unit) &&
+      Math.abs(number - option.value) <= option.tolerance,
+  );
 }
 
 export type PartCheck = {

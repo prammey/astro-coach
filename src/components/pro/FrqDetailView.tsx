@@ -10,11 +10,11 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { ApiError, apiGet, apiPost, uploadSolutionFiles } from "@/lib/pro/client";
-import type { FrqDetail } from "@/lib/pro/frq-service";
+import type { FrqDetail, SignedFigure } from "@/lib/pro/frq-service";
 import ConfirmDialog from "./ConfirmDialog";
 import GradeResult, { type Feedback, type PartScore } from "./GradeResult";
 import SolutionUploader, { type PendingFile } from "./SolutionUploader";
-import FrqText from "./FrqText";
+import FrqText, { figuresPlacedIn } from "./FrqText";
 import QuickCheckForm from "./QuickCheckForm";
 import LoadingStar from "../ui/LoadingStar";
 
@@ -178,29 +178,32 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
 
           {content.parts.length > 0 && (
             <ol className="mt-6 space-y-4">
-              {content.parts.map((part) => (
-                <li key={part.id} className="space-y-3">
-                  {part.leadIn && <FrqText text={part.leadIn} />}
-                  <div className="rounded-lg border-2 border-ink bg-cream p-4">
-                    <p className="flex flex-wrap items-center gap-2 font-extrabold text-navy">
-                      <span>{part.label}</span>
-                      <span className="font-normal">
-                        ({part.maxPoints} {part.maxPoints === 1 ? "point" : "points"})
-                      </span>
-                      {part.answerFormat === "DRAWING" && (
-                        <span className="rounded border-2 border-ink bg-white px-2 py-0.5 text-xs">
-                          Draw on the answer sheet
+              {content.parts.map((part) => {
+                // A part's figures go where its set-up text places them;
+                // the rest belong with the part's own prompt.
+                const partFigures = content.figures.filter((figure) => figure.partId === part.id);
+                const leadInFigures = part.leadIn ? figuresPlacedIn(part.leadIn, partFigures) : [];
+                const promptFigures = partFigures.filter((figure) => !leadInFigures.includes(figure));
+                return (
+                  <li key={part.id} className="space-y-3">
+                    {part.leadIn && <FrqText text={part.leadIn} figures={leadInFigures} />}
+                    <div className="rounded-lg border-2 border-ink bg-cream p-4">
+                      <p className="flex flex-wrap items-center gap-2 font-extrabold text-navy">
+                        <span>{part.label}</span>
+                        <span className="font-normal">
+                          ({part.maxPoints} {part.maxPoints === 1 ? "point" : "points"})
                         </span>
-                      )}
-                    </p>
-                    <FrqText
-                      className="mt-2"
-                      text={part.prompt}
-                      figures={content.figures.filter((figure) => figure.partId === part.id)}
-                    />
-                  </div>
-                </li>
-              ))}
+                        {part.answerFormat === "DRAWING" && (
+                          <span className="rounded border-2 border-ink bg-white px-2 py-0.5 text-xs">
+                            Draw on the answer sheet
+                          </span>
+                        )}
+                      </p>
+                      <FrqText className="mt-2" text={part.prompt} figures={promptFigures} />
+                    </div>
+                  </li>
+                );
+              })}
             </ol>
           )}
 
@@ -339,7 +342,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
             {detail.earnedPartSolutions.map((part) => (
               <li key={part.label} className="rounded-lg border-2 border-ink bg-white p-4">
                 <p className="font-extrabold text-navy">{part.label}</p>
-                <FrqText className="mt-1" text={part.officialSolution} />
+                <FrqText className="mt-1" text={part.officialSolution} figures={part.figures} />
               </li>
             ))}
           </ol>
@@ -375,7 +378,11 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
           </p>
 
           {solution.questionSolution && (
-            <FrqText className="mt-4" text={solution.questionSolution} />
+            <FrqText
+              className="mt-4"
+              text={solution.questionSolution}
+              figures={figuresPlacedIn(solution.questionSolution, solution.figures)}
+            />
           )}
 
           {solution.parts.filter((part) => part.officialSolution).length > 0 && (
@@ -385,21 +392,20 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
                 .map((part) => (
                   <li key={part.label} className="rounded-lg border-2 border-ink bg-white p-4">
                     <p className="font-extrabold text-navy">{part.label}</p>
-                    <FrqText className="mt-1" text={part.officialSolution ?? ""} />
+                    <FrqText
+                      className="mt-1"
+                      text={part.officialSolution ?? ""}
+                      figures={figuresPlacedIn(part.officialSolution ?? "", solution.figures)}
+                    />
                   </li>
                 ))}
             </ol>
           )}
 
-          {solution.figures.map((figure) => (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img
-              key={figure.id}
-              src={figure.url}
-              alt={figure.caption ?? "Solution figure"}
-              className="mt-4 w-full rounded-lg border-[3px] border-ink"
-            />
-          ))}
+          {/* Solution figures that no solution text places are shown last. */}
+          {unplacedFigures(solution).length > 0 && (
+            <FrqText className="mt-4" text="" figures={unplacedFigures(solution)} />
+          )}
         </section>
       )}
 
@@ -493,6 +499,13 @@ function disabledExplanation(reason: string | null): string {
     default:
       return "Grading is not available for this question right now.";
   }
+}
+
+/// Solution figures not placed by [[figure:key]] in any solution text.
+function unplacedFigures(solution: NonNullable<FrqDetail["solution"]>): SignedFigure[] {
+  const texts = [solution.questionSolution ?? "", ...solution.parts.map((part) => part.officialSolution ?? "")];
+  const placed = new Set(texts.flatMap((text) => figuresPlacedIn(text, solution.figures)).map((figure) => figure.id));
+  return solution.figures.filter((figure) => !placed.has(figure.id));
 }
 
 function solutionHeading(source: "OFFICIAL" | "ADAPTED" | "ASTRO_COACH"): string {

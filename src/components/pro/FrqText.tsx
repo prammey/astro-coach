@@ -59,6 +59,13 @@ export default function FrqText({
   );
 }
 
+/// The figures a text places with [[figure:key]], for texts (such as
+/// solutions) whose figures come from a shared pool.
+export function figuresPlacedIn(text: string, figures: SignedFigure[]): SignedFigure[] {
+  const keys = new Set([...text.matchAll(FIGURE_MARKER)].map((match) => match[1].toLowerCase()));
+  return figures.filter((figure) => figure.key && keys.has(figure.key.toLowerCase()));
+}
+
 function Paragraphs({ text }: { text: string }) {
   return (
     <>
@@ -66,7 +73,7 @@ function Paragraphs({ text }: { text: string }) {
         .split(/\n\s*\n/)
         .map((paragraph) => paragraph.trim())
         .filter(Boolean)
-        .map((paragraph, index) =>
+        .map((paragraph, index) => (
           // A paragraph that is only display maths is centred by KaTeX; a
           // plain <div> avoids nesting its block output inside a <p>.
           <div key={index} className="leading-relaxed [overflow-wrap:anywhere]">
@@ -75,17 +82,43 @@ function Paragraphs({ text }: { text: string }) {
             {paragraph.includes("$$") ? (
               <MathText text={paragraph} />
             ) : (
-              paragraph.split("\n").map((line, lineIndex, lines) => (
-                <span key={lineIndex}>
-                  <MathText text={line} />
-                  {lineIndex < lines.length - 1 && <br />}
-                </span>
-              ))
+              lineGroups(paragraph).map((group, groupIndex) =>
+                group.bullets ? (
+                  <ul key={groupIndex} className="list-disc space-y-1 pl-6">
+                    {group.lines.map((line, lineIndex) => (
+                      <li key={lineIndex}>
+                        <MathText text={line.replace(BULLET, "")} />
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  group.lines.map((line, lineIndex) => (
+                    <span key={`${groupIndex}-${lineIndex}`} className="block">
+                      <MathText text={line} />
+                    </span>
+                  ))
+                ),
+              )
             )}
           </div>
-        )}
+        ))}
     </>
   );
+}
+
+const BULLET = /^\s*-\s+/;
+
+/// Splits a paragraph's lines into runs of "- " bullet lines (shown as a
+/// list) and ordinary lines (shown one per line), keeping their order.
+function lineGroups(paragraph: string): Array<{ bullets: boolean; lines: string[] }> {
+  const groups: Array<{ bullets: boolean; lines: string[] }> = [];
+  for (const line of paragraph.split("\n")) {
+    const bullets = BULLET.test(line);
+    const last = groups[groups.length - 1];
+    if (last && last.bullets === bullets) last.lines.push(line);
+    else groups.push({ bullets, lines: [line] });
+  }
+  return groups;
 }
 
 function Figure({ figure }: { figure: SignedFigure }) {

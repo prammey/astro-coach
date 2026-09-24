@@ -14,6 +14,9 @@ describe("short-answer checking", () => {
     expect(extractNumber("1.5x10^-3")).toBe(0.0015);
     expect(extractNumber("1,400 km")).toBe(1400);
     expect(extractNumber("no number")).toBeNull();
+    expect(extractNumber("392,699,081,699 stars")).toBe(392699081699);
+    expect(extractNumber("393 billion")).toBe(393e9);
+    expect(extractNumber("about 2.5 million years")).toBe(2.5e6);
   });
 
   it("accepts listed spellings and numbers within tolerance", () => {
@@ -24,6 +27,26 @@ describe("short-answer checking", () => {
     expect(isBlankCorrect({ label: "3", accept: ["Jupiter"] }, "jupiter")).toBe(true);
     expect(isBlankCorrect({ label: "3", accept: ["Jupiter"] }, "Saturn")).toBe(false);
     expect(isBlankCorrect({ label: "3", accept: ["Jupiter"] }, "")).toBe(false);
+  });
+
+  it("accepts the same number in another unit only when that unit is written", () => {
+    const blank: ShortAnswerBlank = {
+      label: "Earth–Sun",
+      accept: [],
+      numeric: { value: 23.5, tolerance: 0.3 },
+      numericInOtherUnits: [{ value: 2351, tolerance: 30, units: ["cm", "centimetres", "centimeters"] }],
+    };
+    expect(isBlankCorrect(blank, "23.5 m")).toBe(true);
+    expect(isBlankCorrect(blank, "2350 cm")).toBe(true);
+    expect(isBlankCorrect(blank, "2350cm")).toBe(true);
+    expect(isBlankCorrect(blank, "2350")).toBe(false);
+    expect(isBlankCorrect(blank, "2350 km")).toBe(false);
+  });
+
+  it("accepts a short phrase containing the key words", () => {
+    const blank: ShortAnswerBlank = { label: "3", accept: [], containsAll: ["comet"] };
+    expect(isBlankCorrect(blank, "A bright comet you could see with the naked eye")).toBe(true);
+    expect(isBlankCorrect(blank, "An asteroid")).toBe(false);
   });
 
   it("scores a part by the fraction right, rounded down to the point step", () => {
