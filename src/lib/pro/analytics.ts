@@ -24,6 +24,7 @@ import { getPrisma } from "@/lib/prisma";
 import { getMcqCatalog } from "@/data/mcq/catalog.server";
 import { CURRICULUM_TOPICS, type CurriculumTopic } from "@/data/mcq/topicTaxonomy";
 import { getUserEntitlements } from "./entitlements";
+import { FRQ_SOLVED_SHARE, topicMastery, type TopicMastery } from "@/lib/progress/mastery";
 import type { Entitlements } from "./rules";
 
 // --- How much evidence is enough -------------------------------------------
@@ -50,6 +51,8 @@ export type TopicPerformance = {
   frqPointsPossible: number;
   frqPercentage: number | null;
   hasEnoughData: boolean;
+  /// Level in this topic (Novice … Olympian) and what the next one needs.
+  mastery: TopicMastery;
 };
 
 export type ProAnalytics = {
@@ -114,14 +117,14 @@ export async function buildProAnalytics(
   userId: string,
   prisma: PrismaClient = getPrisma(),
 ): Promise<ProAnalytics> {
-  const [entitlements, progressRows, submissions, unlocks] = await Promise.all([
+  const [entitlements, progressRows, submissions, unlocks, scoredFrqs, frqCounts, catalog] = await Promise.all([
     getUserEntitlements(userId, prisma),
     // One row per question the user has worked on, which is the right
     // denominator for accuracy: repeatedly retrying one question should not
     // dominate the figure.
     prisma.userQuestionProgress.findMany({
       where: { userId },
-      select: { questionId: true, attemptCount: true, correctAttemptCount: true },
+      select: { questionId: true, attemptCount: true, correctAttemptCount: true, isCorrect: true },
     }),
     prisma.frqSubmission.findMany({
       where: { userId, creditConsumed: true, status: "GRADED" },
@@ -148,9 +151,39 @@ export async function buildProAnalytics(
       where: { userId },
       select: { frqQuestionId: true },
     }),
+    // For mastery, free exact checks count as well as charged AI grades.
+    prisma.frqSubmission.findMany({
+      where: {
+        userId,
+        status: "GRADED",
+        awardedPoints: { not: null },
+        OR: [{ creditConsumed: true }, { gradingMethod: "EXACT" }],
+      },
+      select: {
+        frqQuestionId: true,
+        awardedPoints: true,
+        maximumPoints: true,
+        question: { select: { primaryCurriculumTopic: true } },
+      },
+    }),
+    // How many published FRQs each topic has.
+    prisma.frqQuestion.groupBy({
+      by: ["primaryCurriculumTopic"],
+      where: { status: "PUBLISHED" },
+      _count: { _all: true },
+    }),
+    getMcqCatalog(),
   ]);
 
-  const topics = buildTopicPerformance(progressRows, submissions, await buildMcqTopicLookup());
+  const mcqTopicById = await buildMcqTopicLookup();
+  const topics = buildTopicPerformance(progressRows, submissions, mcqTopicById);
+  addMastery(topics, {
+    progressRows,
+    scoredFrqs,
+    mcqTopicById,
+    mcqAvailable: countBy(catalog.items.map((item) => item.primaryCurriculumTopic)),
+    frqAvailable: new Map(frqCounts.map((row) => [row.primaryCurriculumTopic, row._count._all])),
+  });
   const unlockedIds = new Set(unlocks.map((unlock) => unlock.frqQuestionId));
 
   return {
@@ -252,6 +285,8 @@ function buildTopicPerformance(
       frqPointsPossible: 0,
       frqPercentage: null,
       hasEnoughData: false,
+      // Filled in by addMastery once every attempt has been counted.
+      mastery: topicMastery({ tried: 0, solved: 0, available: 0, accuracy: null, hasFrqs: false, frqFullMarks: 0 }),
     });
   }
 
@@ -291,6 +326,69 @@ function buildTopicPerformance(
   }
 
   return Array.from(byTopic.values());
+}
+
+/// Counts how many times each string appears.
+function countBy(values: string[]): Map<string, number> {
+  const counts = new Map<string, number>();
+  for (const value of values) counts.set(value, (counts.get(value) ?? 0) + 1);
+  return counts;
+}
+
+/// Works out each topic's mastery level from different questions tried
+/// and solved (see src/lib/progress/mastery.ts for the rules).
+function addMastery(
+  topics: TopicPerformance[],
+  data: {
+    progressRows: Array<{ questionId: string; attemptCount: number; correctAttemptCount: number; isCorrect: boolean }>;
+    scoredFrqs: Array<{
+      frqQuestionId: string;
+      awardedPoints: number | null;
+      maximumPoints: number;
+      question: { primaryCurriculumTopic: string };
+    }>;
+    mcqTopicById: Map<string, CurriculumTopic>;
+    mcqAvailable: Map<string, number>;
+    frqAvailable: Map<string, number>;
+  },
+): void {
+  for (const entry of topics) {
+    // MCQs: one progress row per question tried.
+    const mcqRows = data.progressRows.filter((row) => data.mcqTopicById.get(row.questionId) === entry.topic);
+    const mcqAttempts = mcqRows.reduce((sum, row) => sum + row.attemptCount, 0);
+    const mcqCorrectAttempts = mcqRows.reduce((sum, row) => sum + row.correctAttemptCount, 0);
+
+    // FRQs: each question's best share of its points.
+    const bestShare = new Map<string, number>();
+    let frqEarned = 0;
+    let frqPossible = 0;
+    for (const score of data.scoredFrqs) {
+      if (score.question.primaryCurriculumTopic !== entry.topic || score.maximumPoints <= 0) continue;
+      const share = (score.awardedPoints ?? 0) / score.maximumPoints;
+      bestShare.set(score.frqQuestionId, Math.max(bestShare.get(score.frqQuestionId) ?? 0, share));
+      frqEarned += score.awardedPoints ?? 0;
+      frqPossible += score.maximumPoints;
+    }
+    const shares = [...bestShare.values()];
+
+    // Accuracy: MCQ accuracy where there are MCQ attempts, else FRQ score.
+    const accuracy =
+      mcqAttempts > 0
+        ? Math.round((mcqCorrectAttempts / mcqAttempts) * 100)
+        : frqPossible > 0
+          ? Math.round((frqEarned / frqPossible) * 100)
+          : null;
+
+    const frqAvailable = data.frqAvailable.get(entry.topic) ?? 0;
+    entry.mastery = topicMastery({
+      tried: mcqRows.length + bestShare.size,
+      solved: mcqRows.filter((row) => row.isCorrect).length + shares.filter((s) => s >= FRQ_SOLVED_SHARE).length,
+      available: (data.mcqAvailable.get(entry.topic) ?? 0) + frqAvailable,
+      accuracy,
+      hasFrqs: frqAvailable > 0,
+      frqFullMarks: shares.filter((share) => share >= 1).length,
+    });
+  }
 }
 
 /// Names a strongest topic and one to practise next, using only topics that

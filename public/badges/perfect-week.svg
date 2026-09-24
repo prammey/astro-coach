@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c5cff"/>
+      <stop offset="1" stop-color="#3cc7ff"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#g)" stroke="#1a1446" stroke-width="7" stroke-linejoin="round"><path d="M144.7,29.3 Q170.7,29.3 170.7,55.3 L170.7,144.7 Q170.7,170.7 144.7,170.7 L55.3,170.7 Q29.3,170.7 29.3,144.7 L29.3,55.3 Q29.3,29.3 55.3,29.3 Z"/></g>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.45" stroke-width="4" stroke-linejoin="round"><path d="M137.4,40.6 Q159.4,40.6 159.4,62.6 L159.4,137.4 Q159.4,159.4 137.4,159.4 L62.6,159.4 Q40.6,159.4 40.6,137.4 L40.6,62.6 Q40.6,40.6 62.6,40.6 Z"/></g>
+  <ellipse cx="74" cy="56" rx="30" ry="14" transform="rotate(-28 74 56)" fill="#ffffff" fill-opacity="0.28"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+  <rect x="50" y="56" width="100" height="92" rx="12" fill="#ffffff" stroke="#1a1446" stroke-width="5"/>
+  <path d="M50,68 Q50,56 62,56 L138,56 Q150,56 150,68 L150,80 L50,80 Z" fill="#ff5c8a" stroke="#1a1446" stroke-width="5"/>
+  <path d="M72,46 L72,64 M128,46 L128,64" stroke="#1a1446" stroke-width="5"/>
+  <circle cx="66.0" cy="98" r="8" fill="#3cc7ff" stroke="#1a1446" stroke-width="3.5"/><circle cx="88.5" cy="98" r="8" fill="#3cc7ff" stroke="#1a1446" stroke-width="3.5"/><circle cx="111.0" cy="98" r="8" fill="#3cc7ff" stroke="#1a1446" stroke-width="3.5"/><circle cx="133.5" cy="98" r="8" fill="#3cc7ff" stroke="#1a1446" stroke-width="3.5"/><circle cx="66.0" cy="124" r="8" fill="#3cc7ff" stroke="#1a1446" stroke-width="3.5"/><circle cx="88.5" cy="124" r="8" fill="#3cc7ff" stroke="#1a1446" stroke-width="3.5"/><circle cx="111.0" cy="124" r="8" fill="#ffd23f" stroke="#1a1446" stroke-width="3.5"/>
+  <path d="M123,124 L130,131 L142,116" fill="none" stroke="#1a1446" stroke-width="5"/></g>
+  <path d="M42,35 Q43.62,42.38 51,44 Q43.62,45.62 42,53 Q40.38,45.62 33,44 Q40.38,42.38 42,35 Z" fill="#ffffff"/><path d="M160,143 Q161.26,148.74 167,150 Q161.26,151.26 160,157 Q158.74,151.26 153,150 Q158.74,148.74 160,143 Z" fill="#ffffff"/>
+</svg>

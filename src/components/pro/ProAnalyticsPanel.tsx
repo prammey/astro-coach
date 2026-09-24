@@ -92,14 +92,17 @@ export default function ProAnalyticsPanel() {
               key={topic.topic}
               className="rounded-lg border-[3px] border-ink bg-cream p-4"
             >
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <h3 className="font-extrabold text-navy">{topic.topic}</h3>
-                {!topic.hasEnoughData && (
-                  <span className="text-xs font-semibold text-navy/60">
-                    Not enough data yet
-                  </span>
-                )}
+                <MasteryPill level={topic.mastery.level} name={topic.mastery.name} />
               </div>
+              <p className="mt-1 text-xs text-navy/70">
+                {topic.mastery.solved} of {topic.mastery.available} questions solved
+                {topic.mastery.nextStep ? ` · ${topic.mastery.nextStep}` : " · Top level reached!"}
+              </p>
+              {!topic.hasEnoughData && (
+                <p className="mt-1 text-xs font-semibold text-navy/60">Not enough data yet for accuracy figures</p>
+              )}
 
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 <Meter
@@ -307,7 +310,36 @@ function TrendChart({ points }: { points: ProAnalytics["trend"] }) {
   );
 }
 
-function LockedPreview() {
+/// Colours for each mastery level, from Not started (0) to Olympian (5).
+const MASTERY_STYLES = [
+  "bg-white text-navy/60",
+  "bg-sky-100 text-navy",
+  "bg-electric text-white",
+  "bg-purple text-white",
+  "bg-yellow text-navy",
+  "bg-gradient-to-r from-yellow via-orange-400 to-pink-500 text-navy",
+];
+
+/// A topic's mastery level as a pill with five pips, e.g. "Adept ●●●○○".
+export function MasteryPill({ level, name }: { level: number; name: string }) {
+  return (
+    <span
+      className={`inline-flex items-center gap-2 rounded-full border-2 border-ink px-3 py-0.5 text-xs font-extrabold ${MASTERY_STYLES[level] ?? MASTERY_STYLES[0]}`}
+    >
+      {name}
+      <span aria-hidden className="flex gap-0.5">
+        {[1, 2, 3, 4, 5].map((pip) => (
+          <span
+            key={pip}
+            className={`h-1.5 w-1.5 rounded-full border border-ink ${pip <= level ? "bg-ink" : "bg-white/70"}`}
+          />
+        ))}
+      </span>
+    </span>
+  );
+}
+
+export function LockedPreview() {
   return (
     <section className="rounded-xl border-[3px] border-ink bg-purple p-6 text-white shadow-brutal">
       <div className="flex items-start gap-3">

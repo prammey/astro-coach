@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b44cff"/>
+      <stop offset="1" stop-color="#ff5cc8"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#g)" stroke="#1a1446" stroke-width="7" stroke-linejoin="round"><path d="M100,14 C130,26 158,28 176,30 C178,98 160,150 100,186 C40,150 22,98 24,30 C42,28 70,26 100,14 Z"/></g>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.45" stroke-width="4" stroke-linejoin="round"><path d="M100,30 C124,40 146,42 160,44 C160,98 146,138 100,168 C54,138 40,98 40,44 C54,42 76,40 100,30 Z"/></g>
+  <ellipse cx="74" cy="56" rx="30" ry="14" transform="rotate(-28 74 56)" fill="#ffffff" fill-opacity="0.28"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+  <path d="M100,70 C84,60 64,60 50,66 L50,140 C64,134 84,134 100,144 Z" fill="#ffffff" stroke="#1a1446" stroke-width="5"/>
+  <path d="M100,70 C116,60 136,60 150,66 L150,140 C136,134 116,134 100,144 Z" fill="#fff4f9" stroke="#1a1446" stroke-width="5"/>
+  <path d="M62,84 L88,82 M62,98 L88,96 M62,112 L84,111" stroke="#c9a3ff" stroke-width="4"/>
+  <path d="M125.0,82.0 L129.8,93.4 L142.1,94.4 L132.7,102.5 L135.6,114.6 L125.0,108.1 L114.4,114.6 L117.3,102.5 L107.9,94.4 L120.2,93.4 Z" fill="#ffd23f" stroke="#1a1446" stroke-width="4" stroke-linejoin="round"/></g>
+  <path d="M44,32 Q45.44,38.56 52,40 Q45.44,41.44 44,48 Q42.56,41.44 36,40 Q42.56,38.56 44,32 Z" fill="#ffffff"/><path d="M158,33 Q159.26,38.74 165,40 Q159.26,41.26 158,47 Q156.74,41.26 151,40 Q156.74,38.74 158,33 Z" fill="#ffffff"/><path d="M100,164 Q101.08,168.92 106,170 Q101.08,171.08 100,176 Q98.92,171.08 94,170 Q98.92,168.92 100,164 Z" fill="#ffffff"/>
+</svg>

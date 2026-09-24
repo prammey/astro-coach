@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff4d6d"/>
+      <stop offset="1" stop-color="#ff9e3d"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#g)" stroke="#1a1446" stroke-width="7" stroke-linejoin="round"><circle cx="100" cy="100" r="84"/></g>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.45" stroke-width="4" stroke-linejoin="round"><circle cx="100" cy="100" r="70"/></g>
+  <ellipse cx="74" cy="56" rx="30" ry="14" transform="rotate(-28 74 56)" fill="#ffffff" fill-opacity="0.28"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="96" cy="104" r="50" fill="#ffffff" stroke="#1a1446" stroke-width="5"/>
+  <circle cx="96" cy="104" r="34" fill="#ff4d6d" stroke="#1a1446" stroke-width="4"/>
+  <circle cx="96" cy="104" r="19" fill="#ffffff" stroke="#1a1446" stroke-width="4"/>
+  <circle cx="96" cy="104" r="7" fill="#ff4d6d"/>
+  <path d="M96,104 L150,50" stroke="#1a1446" stroke-width="5"/>
+  <path d="M146,40 L152,48 L160,46 M150,52 L158,58 L156,66" fill="none" stroke="#1a1446" stroke-width="5"/></g>
+  <path d="M42,35 Q43.62,42.38 51,44 Q43.62,45.62 42,53 Q40.38,45.62 33,44 Q40.38,42.38 42,35 Z" fill="#ffffff"/><path d="M160,143 Q161.26,148.74 167,150 Q161.26,151.26 160,157 Q158.74,151.26 153,150 Q158.74,148.74 160,143 Z" fill="#ffffff"/>
+</svg>

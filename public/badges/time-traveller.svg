@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffb347"/>
+      <stop offset="1" stop-color="#ff6f61"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#g)" stroke="#1a1446" stroke-width="7" stroke-linejoin="round"><path d="M123.7,18.7 Q133.7,18.7 140.7,25.8 L174.2,59.3 Q181.3,66.3 181.3,76.3 L181.3,123.7 Q181.3,133.7 174.2,140.7 L140.7,174.2 Q133.7,181.3 123.7,181.3 L76.3,181.3 Q66.3,181.3 59.3,174.2 L25.8,140.7 Q18.7,133.7 18.7,123.7 L18.7,76.3 Q18.7,66.3 25.8,59.3 L59.3,25.8 Q66.3,18.7 76.3,18.7 Z"/></g>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.45" stroke-width="4" stroke-linejoin="round"><path d="M119.3,31.6 Q128.3,31.6 134.7,38.0 L162.0,65.3 Q168.4,71.7 168.4,80.7 L168.4,119.3 Q168.4,128.3 162.0,134.7 L134.7,162.0 Q128.3,168.4 119.3,168.4 L80.7,168.4 Q71.7,168.4 65.3,162.0 L38.0,134.7 Q31.6,128.3 31.6,119.3 L31.6,80.7 Q31.6,71.7 38.0,65.3 L65.3,38.0 Q71.7,31.6 80.7,31.6 Z"/></g>
+  <ellipse cx="74" cy="56" rx="30" ry="14" transform="rotate(-28 74 56)" fill="#ffffff" fill-opacity="0.28"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+  <rect x="64" y="44" width="72" height="12" rx="4" fill="#8a4dff" stroke="#1a1446" stroke-width="5"/>
+  <rect x="64" y="144" width="72" height="12" rx="4" fill="#8a4dff" stroke="#1a1446" stroke-width="5"/>
+  <path d="M74,56 L126,56 C126,82 106,92 106,100 C106,108 126,118 126,144 L74,144 C74,118 94,108 94,100 C94,92 74,82 74,56 Z" fill="#ffffff" stroke="#1a1446" stroke-width="5"/>
+  <path d="M84,70 L116,70 C112,82 102,88 100,94 C98,88 88,82 84,70 Z" fill="#ffd23f"/>
+  <path d="M82,138 C86,124 96,120 100,112 C104,120 114,124 118,138 Z" fill="#ffd23f"/>
+  <path d="M100,96 L100,112" stroke="#ffd23f" stroke-width="3" stroke-dasharray="2 5"/></g>
+  <path d="M42,35 Q43.62,42.38 51,44 Q43.62,45.62 42,53 Q40.38,45.62 33,44 Q40.38,42.38 42,35 Z" fill="#ffffff"/><path d="M160,143 Q161.26,148.74 167,150 Q161.26,151.26 160,157 Q158.74,151.26 153,150 Q158.74,148.74 160,143 Z" fill="#ffffff"/>
+</svg>

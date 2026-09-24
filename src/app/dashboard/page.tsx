@@ -7,6 +7,10 @@ import { supabase } from '@/lib/auth';
 import DashboardTabs from '@/components/DashboardTabs';
 import SubscriptionCard from '@/components/pro/SubscriptionCard';
 import ProAnalyticsPanel from '@/components/pro/ProAnalyticsPanel';
+import ActivitySection from '@/components/progress/ActivitySection';
+import BadgesBox from '@/components/progress/BadgesBox';
+import ProLockedPreview from '@/components/progress/ProLockedPreview';
+import { fetchEntitlements } from '@/lib/pro/client';
 import BrutalCard from '@/components/BrutalCard';
 import BrutalButton from '@/components/ui/BrutalButton';
 import LoadingStar from '@/components/ui/LoadingStar';
@@ -34,6 +38,9 @@ export default function DashboardPage() {
   const [stats, setStats] = useState<ProgressStats | null>(null);
   const [statsLoading, setStatsLoading] = useState(true);
   const [error, setError] = useState('');
+  // Whether this account is Pro, used only to choose the layout. The server
+  // still decides what data each section may receive.
+  const [isPro, setIsPro] = useState<boolean | null>(null);
 
   // Redirect to login if not authenticated
   useEffect(() => {
@@ -81,6 +88,14 @@ export default function DashboardPage() {
     if (user) {
       fetchStats();
     }
+  }, [user]);
+
+  // Fetch the plan, to lay the dashboard out for Pro or Free.
+  useEffect(() => {
+    if (!user) return;
+    fetchEntitlements()
+      .then((entitlements) => setIsPro(entitlements.isPro))
+      .catch(() => setIsPro(false));
   }, [user]);
 
   const handleLogout = async () => {
@@ -159,19 +174,28 @@ export default function DashboardPage() {
               </Reveal>
             </div>
 
+            {/* Pro: the activity calendar and streaks, right under the stats. */}
+            {isPro && <ActivitySection />}
+
+            {/* Badges, for every signed-in account. */}
+            <BadgesBox />
+
             {/* Plan, credits and subscription management. */}
             <SubscriptionCard />
 
-            {/* Pro analytics — or, for a Free account, a locked preview of
-                them. The server sends no figures at all to a Free account,
-                so the lock is real rather than a blur over real data. */}
-            <ProAnalyticsPanel />
+            {/* Pro analytics, including topic mastery levels. */}
+            {isPro && <ProAnalyticsPanel />}
 
             {/* Questions Tabs */}
             <div>
               <h2 className="text-2xl font-extrabold text-white mb-4">My Questions</h2>
               <DashboardTabs />
             </div>
+
+            {/* Free: a blurred example of the Pro insights, with a lock. The
+                server sends a Free account none of these figures, so the
+                picture is made-up example data, not real data hidden. */}
+            {isPro === false && <ProLockedPreview />}
 
             {/* CTA */}
             <div>
