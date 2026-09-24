@@ -3,9 +3,20 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Session, User } from '@supabase/supabase-js';
 import { supabase } from './auth';
+import { canSwitchViews, VIEW_AS_COOKIE, viewAsFromCookieHeader, type ViewAs } from './view-as';
 
 interface AuthContextType {
+  /// The user the site should act for. In the owner's simulated "Guest"
+  /// view this is null, so every page behaves as if signed out.
   user: User | null;
+  /// Who is really signed in, whatever view is being simulated.
+  realUser: User | null;
+  /// The simulated view (owner only), or null for the real account.
+  viewAs: ViewAs | null;
+  /// Whether the signed-in account may switch views.
+  canSwitchView: boolean;
+  /// Switches view and reloads, so every page and request picks it up.
+  setViewAs: (view: ViewAs | null) => void;
   session: Session | null;
   loading: boolean;
   signUp: (email: string, password: string, firstName?: string, lastName?: string) => Promise<void>;
@@ -20,6 +31,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(false);
+  // The owner's chosen view, read from its cookie. On the server there is
+  // no document, but that is fine: the view only matters once the signed-in
+  // user has loaded in the browser.
+  const [cookieView] = useState<ViewAs | null>(() =>
+    typeof document === 'undefined' ? null : viewAsFromCookieHeader(document.cookie),
+  );
 
   // Initialize auth state on mount
   useEffect(() => {
@@ -126,9 +143,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (error) throw error;
   };
 
+  // Only the owner's account can switch views; anyone else's cookie is
+  // ignored here (and, more importantly, on the server).
+  const canSwitchView = canSwitchViews(user?.email);
+  const viewAs = canSwitchView ? cookieView : null;
+
+  const setViewAs = (view: ViewAs | null) => {
+    document.cookie = view
+      ? `${VIEW_AS_COOKIE}=${view}; path=/; max-age=${60 * 60 * 24 * 30}; samesite=lax`
+      : `${VIEW_AS_COOKIE}=; path=/; max-age=0; samesite=lax`;
+    window.location.reload();
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, session, loading, signUp, signIn, signInWithGoogle, signOut }}
+      value={{
+        user: viewAs === 'guest' ? null : user,
+        realUser: user,
+        viewAs,
+        canSwitchView,
+        setViewAs,
+        session,
+        loading,
+        signUp,
+        signIn,
+        signInWithGoogle,
+        signOut,
+      }}
     >
       {children}
     </AuthContext.Provider>

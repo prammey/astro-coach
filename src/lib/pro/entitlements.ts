@@ -27,6 +27,7 @@ import {
   type QuestionHistorySnapshot,
   type SubscriptionSnapshot,
 } from "./rules";
+import { simulatedProSubscription, viewOverrideFor } from "./view-as.server";
 
 export type { Entitlements, QuestionHistorySnapshot } from "./rules";
 
@@ -109,7 +110,15 @@ export async function getUserEntitlements(
   prisma: PrismaClient = getPrisma(),
   now: Date = new Date(),
 ): Promise<Entitlements> {
-  const subscription = await getSubscriptionSnapshot(userId, prisma);
+  // The site owner can simulate the Free or Pro view (src/lib/view-as.ts).
+  // For everyone else this is always null and the real subscription is used.
+  const view = await viewOverrideFor(userId);
+  const subscription =
+    view === "pro"
+      ? simulatedProSubscription(now)
+      : view === "free"
+        ? null
+        : await getSubscriptionSnapshot(userId, prisma);
   const usage = await getCreditUsage(userId, subscription, prisma, now);
   return computeEntitlements(subscription, usage, now);
 }

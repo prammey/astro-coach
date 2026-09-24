@@ -3,9 +3,10 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
+import { ViewAsOptions } from './ViewAsSwitcher';
 
 export default function ProfileDropdown() {
-  const { user, signOut } = useAuth();
+  const { user, signOut, canSwitchView } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -77,11 +78,19 @@ export default function ProfileDropdown() {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute left-0 right-0 z-50 mt-2 animate-pop-in rounded-lg border-2 border-ink bg-white shadow-brutal">
+        <div className="absolute right-0 z-50 mt-2 w-56 min-w-full animate-pop-in rounded-lg border-2 border-ink bg-white shadow-brutal">
           <div className="px-4 py-3 border-b-2 border-ink">
             <p className="text-sm font-semibold text-navy">{username}</p>
             <p className="text-xs text-navy/70 truncate">{user.email}</p>
           </div>
+
+          {/* Owner only: switch between Guest, Free and Pro views. */}
+          {canSwitchView && (
+            <div className="border-b-2 border-ink">
+              <p className="px-4 pt-3 text-xs font-bold uppercase text-navy/60">View as (admin)</p>
+              <ViewAsOptions />
+            </div>
+          )}
 
           <ul className="divide-y-2 divide-ink">
             <li>

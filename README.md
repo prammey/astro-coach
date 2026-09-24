@@ -1098,6 +1098,23 @@ The rules are pure functions in `src/lib/progress/` with tests.
   sends them none of the Pro figures (`/api/dashboard/activity` returns a
   lock), so nothing real is hidden behind the blur.
 
+## Owner-only "View as" switch
+
+The site owner's account (prameet.guha@gmail.com, set in `src/lib/view-as.ts`)
+gets a **View as (admin)** section in the profile dropdown: *My real
+account*, *Guest* (signed out), *Free account* or *Pro*. The choice is saved
+in a cookie and the page reloads; while a simulated view is on, a yellow
+"Viewing as …" pill in the bottom-right corner switches back (in Guest view
+the dropdown is hidden, just as for a real visitor).
+
+The server makes the view real and never trusts the cookie on its own: it
+applies the view only after confirming, via Supabase, that the signed-in
+account is the owner's (`src/lib/pro/view-as.server.ts`). Guest view makes
+`requireUser` answer "not signed in"; Free and Pro views change what
+`getUserEntitlements` returns. The Pro view is simulated in memory only —
+nothing is written to the database or Stripe — but AI grading in that view
+is real and calls the model.
+
 ## The rules that guard money
 
 A grading credit is spent in exactly one place: after a confirmed

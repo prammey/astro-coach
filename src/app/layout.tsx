@@ -4,6 +4,7 @@ import "./globals.css";
 // Typesetting styles for the maths in MCQ explanations (see MathText).
 import "katex/dist/katex.min.css";
 import Navbar from "@/components/Navbar";
+import { ViewAsPill } from "@/components/ViewAsSwitcher";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/lib/auth-context";
 import { TrainingModeProvider } from "@/lib/training-mode-context";
@@ -53,6 +54,8 @@ export default function RootLayout({
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
+            {/* Owner only: floating reminder while a simulated view is on. */}
+            <ViewAsPill />
           </TrainingModeProvider>
         </AuthProvider>
       </body>

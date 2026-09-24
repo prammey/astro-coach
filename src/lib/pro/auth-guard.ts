@@ -15,6 +15,8 @@ if (typeof window !== "undefined") {
 import { createClient as createServerSupabase } from "@/lib/supabase/server";
 import { supabase as anonSupabase } from "@/lib/auth";
 import { adminUserIds } from "./config";
+import { canSwitchViews } from "@/lib/view-as";
+import { requestedView } from "./view-as.server";
 
 export type AuthedUser = { id: string; email: string | null };
 
@@ -28,6 +30,18 @@ export type AuthResult =
 /// fetches send), then falls back to the session cookie (what Server
 /// Components and form posts have).
 export async function requireUser(request?: Request): Promise<AuthResult> {
+  const auth = await resolveRealUser(request);
+
+  // The site owner's "Guest" view: treat them exactly like a signed-out
+  // visitor. Only honoured for an account allowed to switch views.
+  if (auth.ok && canSwitchViews(auth.user.email) && (await requestedView(request)) === "guest") {
+    return { ok: false, status: 401, error: "Not signed in" };
+  }
+  return auth;
+}
+
+/// Who is really signed in, ignoring any simulated view.
+async function resolveRealUser(request?: Request): Promise<AuthResult> {
   const authHeader = request?.headers.get("Authorization");
 
   if (authHeader?.startsWith("Bearer ")) {
