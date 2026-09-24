@@ -285,7 +285,12 @@ export function canPublish(draft: {
   totalPoints: number;
   rightsStatus: string;
   officialSolution: string | null;
-  parts: Array<{ maxPoints: number; officialSolution: string | null }>;
+  parts: Array<{
+    maxPoints: number;
+    officialSolution: string | null;
+    answerFormat?: string;
+    acceptedAnswers?: unknown;
+  }>;
 }): { ok: true } | { ok: false; reasons: string[] } {
   const reasons: string[] = [];
 
@@ -303,17 +308,28 @@ export function canPublish(draft: {
 
   if (draft.parts.length > 0) {
     const sum = draft.parts.reduce((total, part) => total + part.maxPoints, 0);
-    if (sum !== draft.totalPoints) {
+    // Points may be halves (1.5), so compare with a tolerance, not ===.
+    if (Math.abs(sum - draft.totalPoints) > 1e-6) {
       reasons.push(`Part points add up to ${sum}, but the total is ${draft.totalPoints}.`);
     }
     if (draft.parts.some((part) => part.maxPoints <= 0)) {
       reasons.push("Every part needs the point value printed in the paper.");
     }
-    if (!draft.parts.some((part) => part.officialSolution)) {
-      reasons.push("No official solution on any part.");
+    // A worked solution may be written once for the whole question or
+    // part by part; either is fine, but there must be one.
+    if (!draft.officialSolution && !draft.parts.some((part) => part.officialSolution)) {
+      reasons.push("No solution on the question or any part.");
+    }
+    const shortWithoutAnswers = draft.parts.filter(
+      (part) =>
+        part.answerFormat === "SHORT_ANSWER" &&
+        (!Array.isArray(part.acceptedAnswers) || part.acceptedAnswers.length === 0),
+    );
+    if (shortWithoutAnswers.length > 0) {
+      reasons.push("A short-answer part has no accepted answers to check against.");
     }
   } else if (!draft.officialSolution) {
-    reasons.push("No official solution.");
+    reasons.push("No solution.");
   }
 
   // Third-party material is never assumed to be cleared for reuse.

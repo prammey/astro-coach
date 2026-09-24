@@ -14,6 +14,8 @@ import type { FrqDetail } from "@/lib/pro/frq-service";
 import ConfirmDialog from "./ConfirmDialog";
 import GradeResult, { type Feedback, type PartScore } from "./GradeResult";
 import SolutionUploader, { type PendingFile } from "./SolutionUploader";
+import FrqText from "./FrqText";
+import QuickCheckForm from "./QuickCheckForm";
 import LoadingStar from "../ui/LoadingStar";
 
 type Dialog = "none" | "submit" | "giveUp";
@@ -145,59 +147,105 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
           <span className="rounded border-2 border-ink bg-white px-2 py-0.5 text-xs font-semibold text-navy">
             {meta.primaryCurriculumTopic}
           </span>
+          {meta.section && (
+            <span className="rounded border-2 border-ink bg-white px-2 py-0.5 text-xs font-semibold text-navy">
+              {meta.section}
+            </span>
+          )}
+          {meta.quickCheck && (
+            <span className="rounded border-2 border-ink bg-success px-2 py-0.5 text-xs font-extrabold text-white">
+              Free instant check
+            </span>
+          )}
         </div>
 
         <h1 className="mt-3 text-3xl font-extrabold text-navy">
           {meta.competition} {meta.year} — Question {meta.questionNumber}
         </h1>
-        <p className="text-navy/70">{meta.examName}</p>
+        <p className="text-navy/70">
+          {meta.examName}
+          {meta.title ? ` · ${meta.title}` : ""}
+        </p>
       </header>
 
       {/* 2 & 3. The question itself, or the Pro wall in its place. */}
       {content ? (
         <section className="rounded-xl border-[3px] border-ink bg-white p-6 shadow-brutal">
-          <p className="whitespace-pre-wrap text-navy">{content.questionText}</p>
-
-          {content.figures.length > 0 && (
-            <div className="mt-4 space-y-4">
-              {content.figures.map((figure) => (
-                <figure key={figure.id}>
-                  {/* Signed, short-lived URLs from a private bucket. */}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={figure.url}
-                    alt={figure.caption ?? "Question figure"}
-                    className="w-full rounded-lg border-[3px] border-ink"
-                  />
-                  {figure.caption && (
-                    <figcaption className="mt-1 text-xs text-navy/70">
-                      {figure.caption}
-                    </figcaption>
-                  )}
-                </figure>
-              ))}
-            </div>
-          )}
+          <FrqText
+            text={content.questionText}
+            figures={content.figures.filter((figure) => !figure.partId)}
+          />
 
           {content.parts.length > 0 && (
             <ol className="mt-6 space-y-4">
               {content.parts.map((part) => (
-                <li key={part.id} className="rounded-lg border-2 border-ink bg-cream p-4">
-                  <p className="font-extrabold text-navy">
-                    {part.label} <span className="font-normal">({part.maxPoints} points)</span>
-                  </p>
-                  <p className="mt-1 whitespace-pre-wrap text-navy">{part.prompt}</p>
+                <li key={part.id} className="space-y-3">
+                  {part.leadIn && <FrqText text={part.leadIn} />}
+                  <div className="rounded-lg border-2 border-ink bg-cream p-4">
+                    <p className="flex flex-wrap items-center gap-2 font-extrabold text-navy">
+                      <span>{part.label}</span>
+                      <span className="font-normal">
+                        ({part.maxPoints} {part.maxPoints === 1 ? "point" : "points"})
+                      </span>
+                      {part.answerFormat === "DRAWING" && (
+                        <span className="rounded border-2 border-ink bg-white px-2 py-0.5 text-xs">
+                          Draw on the answer sheet
+                        </span>
+                      )}
+                    </p>
+                    <FrqText
+                      className="mt-2"
+                      text={part.prompt}
+                      figures={content.figures.filter((figure) => figure.partId === part.id)}
+                    />
+                  </div>
                 </li>
               ))}
             </ol>
+          )}
+
+          {content.answerSheets.length > 0 && (
+            <div className="mt-6 rounded-lg border-2 border-ink bg-yellow/30 p-4">
+              <p className="font-extrabold text-navy">Answer sheets</p>
+              <p className="mt-1 text-sm text-navy/80">
+                Print (or draw on screen), complete the drawing parts, then photograph
+                the page and upload it with your solution.
+              </p>
+              <ul className="mt-2 flex flex-wrap gap-3">
+                {content.answerSheets.map((sheet, index) => (
+                  <li key={sheet.id}>
+                    <a
+                      href={sheet.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      download
+                      className="inline-block rounded-lg border-[3px] border-ink bg-white px-4 py-2 text-sm font-bold text-navy shadow-brutal-sm hover:bg-cream"
+                    >
+                      Download {sheet.caption ?? `answer sheet ${index + 1}`}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </section>
       ) : (
         <LockedQuestionNotice />
       )}
 
+      {/* Short-answer questions: checked instantly and free, no AI. */}
+      {content && meta.quickCheck && (
+        <QuickCheckForm
+          questionId={questionId}
+          parts={content.parts}
+          lastCheck={detail.lastCheck}
+          solutionUnlocked={Boolean(solution)}
+          onChecked={load}
+        />
+      )}
+
       {/* 4–9. The workspace, only when the student can read the question. */}
-      {content && (
+      {content && !meta.quickCheck && (
         <section className="space-y-4">
           <h2 className="text-2xl font-extrabold text-navy">Your solution</h2>
 
@@ -208,7 +256,11 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
               onChange={(event) => setTypedResponse(event.target.value)}
               rows={10}
               disabled={!state.canSubmit || busy}
-              placeholder="Set out your reasoning here. You can also, or instead, upload photos of handwritten work."
+              placeholder={
+                content.parts.length > 0
+                  ? "Answer every part here, labelled (a), (b), (c)(i)… and show your working. You can also, or instead, upload photos of handwritten work."
+                  : "Set out your reasoning here. You can also, or instead, upload photos of handwritten work."
+              }
               className="mt-2 w-full rounded-lg border-[3px] border-ink bg-white p-3 font-normal text-navy focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:bg-navy/5"
             />
           </label>
@@ -275,6 +327,25 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
         </section>
       )}
 
+      {/* Model solutions for the parts already solved in full. */}
+      {detail.earnedPartSolutions.length > 0 && (
+        <section className="rounded-xl border-[3px] border-ink bg-cream p-6 shadow-brutal">
+          <h2 className="text-2xl font-extrabold text-navy">Parts you&apos;ve solved</h2>
+          <p className="mt-1 text-sm text-navy/70">
+            Full marks on these parts, so here is the model solution for each. Keep
+            going on the rest.
+          </p>
+          <ol className="mt-4 space-y-3">
+            {detail.earnedPartSolutions.map((part) => (
+              <li key={part.label} className="rounded-lg border-2 border-ink bg-white p-4">
+                <p className="font-extrabold text-navy">{part.label}</p>
+                <FrqText className="mt-1" text={part.officialSolution} />
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
       {/* 11 & 12. Every attempt, newest last, loaded from the database. */}
       {attempts.length > 0 && (
         <section className="space-y-4">
@@ -298,13 +369,13 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
       {/* 13. The official solution, only once it has genuinely been unlocked. */}
       {solution && (
         <section className="rounded-xl border-[3px] border-ink bg-cream p-6 shadow-brutal">
-          <h2 className="text-2xl font-extrabold text-navy">Official solution</h2>
-          <p className="mt-1 text-sm text-navy/70">{unlockExplanation(solution.reason)}</p>
+          <h2 className="text-2xl font-extrabold text-navy">{solutionHeading(solution.source)}</h2>
+          <p className="mt-1 text-sm text-navy/70">
+            {unlockExplanation(solution.reason)} {solutionSourceNote(solution.source)}
+          </p>
 
           {solution.questionSolution && (
-            <p className="mt-4 whitespace-pre-wrap text-navy">
-              {solution.questionSolution}
-            </p>
+            <FrqText className="mt-4" text={solution.questionSolution} />
           )}
 
           {solution.parts.filter((part) => part.officialSolution).length > 0 && (
@@ -314,9 +385,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
                 .map((part) => (
                   <li key={part.label} className="rounded-lg border-2 border-ink bg-white p-4">
                     <p className="font-extrabold text-navy">{part.label}</p>
-                    <p className="mt-1 whitespace-pre-wrap text-navy">
-                      {part.officialSolution}
-                    </p>
+                    <FrqText className="mt-1" text={part.officialSolution ?? ""} />
                   </li>
                 ))}
             </ol>
@@ -423,6 +492,21 @@ function disabledExplanation(reason: string | null): string {
       return "This question is part of Astro Coach Pro.";
     default:
       return "Grading is not available for this question right now.";
+  }
+}
+
+function solutionHeading(source: "OFFICIAL" | "ADAPTED" | "ASTRO_COACH"): string {
+  return source === "ASTRO_COACH" ? "Worked solution" : "Official solution";
+}
+
+function solutionSourceNote(source: "OFFICIAL" | "ADAPTED" | "ASTRO_COACH"): string {
+  switch (source) {
+    case "OFFICIAL":
+      return "This is the competition's published solution.";
+    case "ADAPTED":
+      return "Based on the competition's published solution, lightly simplified.";
+    case "ASTRO_COACH":
+      return "Written by Astro Coach: the competition published only final answers for this question.";
   }
 }
 

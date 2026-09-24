@@ -14,6 +14,9 @@ export type GradingPart = {
   label: string;
   prompt: string;
   maxPoints: number;
+  /// How the part is answered. DRAWING parts are judged from the
+  /// student's photographed answer sheet.
+  answerFormat?: "WORKED" | "SHORT_ANSWER" | "DRAWING";
   /// Server-only context. The grader is told to use it to judge the work,
   /// and told not to hand it back to the student before unlock.
   officialSolution: string | null;
@@ -35,6 +38,9 @@ export type GradingInput = {
     questionNumber: string;
     questionText: string;
     totalPoints: number;
+    /// The smallest score step the marking scheme uses (1, or 0.5 where the
+    /// official rubric awards halves). Every score is rounded to it.
+    pointStep?: number;
     /// Used when the question has no lettered parts.
     officialSolution: string | null;
     gradingRubric: string | null;

@@ -144,10 +144,11 @@ describe("what may be published", () => {
     if (!result.ok) expect(result.reasons.join(" ")).toContain("add up to 5");
   });
 
-  it("refuses when no part carries an official solution", () => {
+  it("refuses when neither the question nor any part has a solution", () => {
     expect(
       canPublish({
         ...clean,
+        officialSolution: null,
         totalPoints: 5,
         parts: [
           { maxPoints: 2, officialSolution: null },
@@ -155,6 +156,28 @@ describe("what may be published", () => {
         ],
       }).ok,
     ).toBe(false);
+  });
+
+  it("accepts one worked solution written for the whole question", () => {
+    const parts = [
+      { maxPoints: 2, officialSolution: null },
+      { maxPoints: 3, officialSolution: null },
+    ];
+    expect(canPublish({ ...clean, totalPoints: 5, parts }).ok).toBe(true);
+  });
+
+  it("accepts half points that add up exactly", () => {
+    const parts = [
+      { maxPoints: 1.5, officialSolution: "a" },
+      { maxPoints: 1.5, officialSolution: "b" },
+      { maxPoints: 2, officialSolution: "c" },
+    ];
+    expect(canPublish({ ...clean, totalPoints: 5, parts }).ok).toBe(true);
+  });
+
+  it("refuses a short-answer part with nothing to check against", () => {
+    const parts = [{ maxPoints: 5, officialSolution: "a", answerFormat: "SHORT_ANSWER", acceptedAnswers: [] }];
+    expect(canPublish({ ...clean, totalPoints: 5, parts }).ok).toBe(false);
   });
 
   it("never assumes third-party material may be reused", () => {

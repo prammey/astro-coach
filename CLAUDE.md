@@ -80,11 +80,20 @@ product either loses money or misleads a student.
   not be sent and then blurred. If the server decides someone may not read
   it, it sends nothing to read.
 - **Official solutions are server-only** until an `FrqSolutionUnlock` row
-  exists for that user and question.
-- **A credit is spent in exactly one place**, after a real grade comes back
-  — `submitGradedAttempt` in `src/lib/pro/frq-service.ts`. Opening a
+  exists for that user and question. The one exception: once a student has
+  scored full marks on a part (in a graded attempt or a free check), that
+  part's model solution is shown to them (`earnedPartSolutions`).
+- **A credit is spent in exactly one place**, after a real AI grade comes
+  back — `submitGradedAttempt` in `src/lib/pro/frq-service.ts`. Opening a
   question, uploading, failing validation, an unreadable photo and a
   provider outage all cost nothing.
+- **Short answers are free.** A question whose parts are all
+  `SHORT_ANSWER` (fill-in, matching, naming) is checked exactly on the
+  server by `checkShortAnswers` — no AI, no credit, no attempt used, and the
+  right answer is never revealed until every blank is right. Credits pay
+  for AI grading only (worked and drawing answers).
+- **Grade to the rubric's own step.** Scores are whole points unless the
+  official marking scheme awards halves (`FrqQuestion.pointStep`).
 - **Stripe webhooks are the source of truth** for who is Pro. Landing on a
   success URL grants nothing.
 - **Limits live in `src/lib/pro/config.ts`.** Never hardcode 3, 50, 8 or a
@@ -92,7 +101,12 @@ product either loses money or misleads a student.
 - **Nothing publishes automatically.** An imported FRQ is DRAFT or
   NEEDS_REVIEW until a human approves it, and cannot be published with
   unresolved warnings, a missing point value, parts that do not add up, no
-  official solution, or unreviewed rights.
+  solution, or unreviewed rights. The curated bank in `src/data/frq/` is
+  owner-approved (permission from USAAAO and IAAC confirmed 2026-09-24);
+  `npm run seed:frq` publishes only questions that pass `canPublish`.
+- **Label where a solution came from** (`solutionSource`): OFFICIAL,
+  ADAPTED (official, lightly simplified), or ASTRO_COACH (written by us
+  because the source gave only an answer or nothing).
 - **The importer never invents.** A point value that is not printed is
   flagged missing, not estimated.
 - **Never normalise scores to /10.** A 3-point question is scored out of 3.

@@ -14,6 +14,12 @@ import type { GradingInput } from "./types";
 
 /// The persistent instructions: who the model is and what the rules are.
 export function buildSystemPrompt(input: GradingInput): string {
+  const step = input.question.pointStep ?? 1;
+  const stepRule =
+    step === 1
+      ? `Award whole points only. The marking scheme does not use half points.`
+      : `Award points in multiples of ${step}, as the official marking scheme does.`;
+
   const spoilerRule = input.solutionAlreadyVisible
     ? `The student has already unlocked the official solution, so you may refer to it directly.`
     : [
@@ -39,7 +45,28 @@ export function buildSystemPrompt(input: GradingInput): string {
     `Use the competition's own point values exactly as given. Never rescale to`,
     `a percentage or out of ten. Award part-marks the way a real marker would:`,
     `credit correct method even when the arithmetic slips, and do not award`,
-    `marks for work that is absent.`,
+    `marks for work that is absent. Where a MARKING SCHEME is given, follow its`,
+    `point allocation step by step.`,
+    stepRule,
+    ``,
+    `ONE ANSWER BOX`,
+    `The student writes the whole question in one place (typed and/or photos).`,
+    `They are asked to label each part, e.g. (a), (b), (c)(i), but may not.`,
+    `Work out which piece of their work answers which part from the labels,`,
+    `the order, and what each piece calculates. Credit correct work wherever it`,
+    `appears. A part with no attempt anywhere scores zero.`,
+    ``,
+    `DRAWING PARTS`,
+    `Parts marked [drawing] are answered on a printed answer sheet the student`,
+    `photographs. Judge them from the photo against the solution's criteria`,
+    `(correct lines, labels, positions). If no drawing is visible, score zero.`,
+    ``,
+    `FEEDBACK STYLE`,
+    `For a part that earns full marks, keep the comment to one short sentence`,
+    `such as "Correct." — the student will be shown the model solution for it.`,
+    `For every part that loses marks, be specific and personal: point to the`,
+    `exact step, quantity or assumption in THEIR work that went wrong and what`,
+    `to re-examine. Refer to what they actually wrote, not generic advice.`,
     ``,
     spoilerRule,
     ``,
@@ -103,7 +130,7 @@ export function buildUserPrompt(input: GradingInput): string {
         `PARTS`,
         ...input.parts.map((part) =>
           [
-            `[${part.label}] (${part.maxPoints} points)`,
+            `[${part.label}] (${part.maxPoints} points)${part.answerFormat === "DRAWING" ? " [drawing]" : ""}`,
             part.prompt,
             part.officialSolution
               ? `OFFICIAL SOLUTION (do not reveal): ${part.officialSolution}`

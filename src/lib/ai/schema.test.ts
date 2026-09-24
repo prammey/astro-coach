@@ -67,10 +67,19 @@ describe("normalising a grade", () => {
 
   it("recomputes the total from the part scores rather than trusting the model", () => {
     const lying = gradedPayload({ total_awarded: 10 });
-    const result = normaliseGrade(lying, PARTS, 10);
+    // This marking scheme awards half points.
+    const result = normaliseGrade(lying, PARTS, 10, 0.5);
     if (result.outcome !== "graded") throw new Error("expected a grade");
 
     expect(result.awardedPoints).toBe(6.5); // 2 + 1.5 + 3
+  });
+
+  it("rounds to whole points when the marking scheme has no halves", () => {
+    const result = normaliseGrade(gradedPayload(), PARTS, 10);
+    if (result.outcome !== "graded") throw new Error("expected a grade");
+
+    expect(result.partScores.map((score) => score.awardedPoints)).toEqual([2, 2, 3]); // 1.5 -> 2
+    expect(Number.isInteger(result.awardedPoints)).toBe(true);
   });
 
   it("clamps a part score the model awarded above its maximum", () => {

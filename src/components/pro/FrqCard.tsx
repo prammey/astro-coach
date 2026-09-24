@@ -54,6 +54,7 @@ export default function FrqCard({
       <div className="mt-3 flex flex-wrap gap-2">
         <Chip tone="neutral">{question.primaryCurriculumTopic}</Chip>
         {question.partCount > 0 && <Chip tone="neutral">{question.partCount} parts</Chip>}
+        {question.quickCheck && <Chip tone="neutral">Free instant check</Chip>}
         {question.difficulty && <Chip tone="neutral">{question.difficulty}</Chip>}
       </div>
 
@@ -62,6 +63,11 @@ export default function FrqCard({
           <p className="flex items-center gap-2 font-bold text-purple">
             <LockIcon />
             {signedIn ? "Unlock with Astro Coach Pro" : "Sign in to practise"}
+          </p>
+        ) : question.quickCheck && question.bestScore !== null ? (
+          <p className="font-semibold text-navy">
+            Best {question.bestScore} / {question.totalPoints}
+            {question.solutionUnlocked && " · solution unlocked"}
           </p>
         ) : attempted ? (
           <p className="font-semibold text-navy">

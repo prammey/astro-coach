@@ -69,16 +69,19 @@ export function extractJson(text: string): unknown | null {
   }
 }
 
-/// Rounds to half a point. Olympiad rubrics award halves; anything finer is
-/// a model artefact rather than a real distinction.
-function roundToHalf(value: number): number {
-  return Math.round(value * 2) / 2;
+/// Rounds to the marking scheme's own step: whole points unless the
+/// official rubric itself awards halves. Anything finer is a model artefact
+/// rather than a real distinction. The tiny epsilon keeps 2.4999999 from a
+/// float sum rounding the wrong way.
+export function roundToStep(value: number, step: number = 1): number {
+  const safeStep = step > 0 ? step : 1;
+  return Math.round(value / safeStep + 1e-9) * safeStep;
 }
 
 /// Forces one part score into the range the competition actually allows.
-function clampPartScore(awarded: number, maxPoints: number): number {
+function clampPartScore(awarded: number, maxPoints: number, step: number): number {
   if (!Number.isFinite(awarded)) return 0;
-  return Math.min(Math.max(roundToHalf(awarded), 0), maxPoints);
+  return Math.min(Math.max(roundToStep(awarded, step), 0), maxPoints);
 }
 
 /// Turns a validated model response into the result we store, or explains
@@ -91,6 +94,7 @@ export function normaliseGrade(
   raw: unknown,
   parts: GradingPart[],
   questionTotalPoints: number,
+  pointStep: number = 1,
 ): GradingOutcome {
   const parsed = modelResponseSchema.safeParse(raw);
   if (!parsed.success) {
@@ -155,7 +159,7 @@ export function normaliseGrade(
     return {
       partId: part.id,
       label: part.label,
-      awardedPoints: clampPartScore(match?.awarded_points ?? 0, part.maxPoints),
+      awardedPoints: clampPartScore(match?.awarded_points ?? 0, part.maxPoints, pointStep),
       maxPoints: part.maxPoints,
       comment: match?.comment?.trim() ?? "",
     };
@@ -163,8 +167,9 @@ export function normaliseGrade(
 
   // The stored total is our arithmetic on clamped part scores, never the
   // model's claimed total.
-  const awardedPoints = roundToHalf(
+  const awardedPoints = roundToStep(
     partScores.reduce((sum, score) => sum + score.awardedPoints, 0),
+    Math.min(pointStep, 0.5),
   );
   const maximumPoints = partScores.reduce((sum, score) => sum + score.maxPoints, 0);
 

@@ -56,6 +56,7 @@ import {
   statFile,
 } from "./storage";
 import { gradeFrqSubmission } from "@/lib/ai/grader";
+import { checkPart, parseBlanks, toPublicBlanks, type PublicBlank } from "./short-answer";
 import type { GradingAttachment, GradingPart } from "@/lib/ai/types";
 
 /// Thrown inside the reservation transaction when the locked re-check says
@@ -84,6 +85,9 @@ export type FrqCard = {
   difficulty: string | null;
   totalPoints: number;
   partCount: number;
+  section: string | null;
+  /// True when every part is a short answer: checked for free, no credit.
+  quickCheck: boolean;
   /// Per-user state, all derived server-side. Null for signed-out visitors.
   attemptsUsed: number;
   maxAttempts: number;
@@ -100,7 +104,7 @@ export async function listFrqCards(
 ): Promise<{ cards: FrqCard[]; entitlements: Entitlements | null }> {
   const questions = await prisma.frqQuestion.findMany({
     where: { status: "PUBLISHED" },
-    orderBy: [{ competition: "asc" }, { year: "desc" }, { questionNumber: "asc" }],
+    orderBy: [{ competition: "asc" }, { year: "desc" }, { orderIndex: "asc" }],
     select: {
       id: true,
       slug: true,
@@ -113,6 +117,8 @@ export async function listFrqCards(
       curriculumTopics: true,
       difficulty: true,
       totalPoints: true,
+      section: true,
+      parts: { select: { answerFormat: true } },
       _count: { select: { parts: true } },
     },
   });
@@ -134,9 +140,15 @@ export async function listFrqCards(
 
   const [entitlements, submissions, unlocks] = await Promise.all([
     getUserEntitlements(userId, prisma),
+    // Charged AI grades and free exact checks both count towards the best
+    // score; only the charged ones count as attempts.
     prisma.frqSubmission.findMany({
-      where: { userId, creditConsumed: true },
-      select: { frqQuestionId: true, awardedPoints: true },
+      where: {
+        userId,
+        status: "GRADED",
+        OR: [{ creditConsumed: true }, { gradingMethod: "EXACT" }],
+      },
+      select: { frqQuestionId: true, awardedPoints: true, creditConsumed: true },
     }),
     prisma.frqSolutionUnlock.findMany({
       where: { userId },
@@ -151,7 +163,7 @@ export async function listFrqCards(
       best: null,
     };
     attemptsByQuestion.set(submission.frqQuestionId, {
-      count: current.count + 1,
+      count: current.count + (submission.creditConsumed ? 1 : 0),
       best:
         submission.awardedPoints == null
           ? current.best
@@ -195,8 +207,16 @@ type QuestionRow = {
   curriculumTopics: string[];
   difficulty: string | null;
   totalPoints: number;
+  section: string | null;
+  parts: Array<{ answerFormat: string }>;
   _count: { parts: number };
 };
+
+/// A question whose parts are all short answers is checked for free on the
+/// server. Anything with a worked or drawn part goes to the AI grader.
+function isQuickCheck(parts: Array<{ answerFormat: string }>): boolean {
+  return parts.length > 0 && parts.every((part) => part.answerFormat === "SHORT_ANSWER");
+}
 
 function toCardBase(question: QuestionRow) {
   return {
@@ -212,6 +232,8 @@ function toCardBase(question: QuestionRow) {
     difficulty: question.difficulty,
     totalPoints: question.totalPoints,
     partCount: question._count.parts,
+    section: question.section,
+    quickCheck: isQuickCheck(question.parts),
   };
 }
 
@@ -222,15 +244,39 @@ export type FrqDetail = {
   /// Present only when this user is allowed to read the question.
   content: {
     questionText: string;
-    parts: Array<{ id: string; label: string; prompt: string; maxPoints: number }>;
-    figures: Array<{ id: string; url: string; caption: string | null }>;
+    parts: Array<{
+      id: string;
+      label: string;
+      prompt: string;
+      maxPoints: number;
+      answerFormat: "WORKED" | "SHORT_ANSWER" | "DRAWING";
+      leadIn: string | null;
+      /// SHORT_ANSWER only: the blanks to fill, never their answers.
+      blanks: PublicBlank[];
+    }>;
+    figures: SignedFigure[];
+    /// Printable pages for DRAWING parts, offered as downloads.
+    answerSheets: SignedFigure[];
+    pointStep: number;
   } | null;
   /// Present only once the solution is genuinely unlocked.
   solution: {
     reason: "FULL_CREDIT" | "ATTEMPTS_EXHAUSTED" | "GIVE_UP";
+    source: "OFFICIAL" | "ADAPTED" | "ASTRO_COACH";
     questionSolution: string | null;
     parts: Array<{ label: string; officialSolution: string | null }>;
-    figures: Array<{ id: string; url: string; caption: string | null }>;
+    figures: SignedFigure[];
+  } | null;
+  /// Before the whole solution unlocks: the model solution for each part
+  /// the student has already earned full marks on. Solving a part fully is
+  /// its own unlock — the student gains nothing new by reading it, and
+  /// seeing the clean version is how correct answers get reinforced.
+  earnedPartSolutions: Array<{ label: string; officialSolution: string }>;
+  /// Quick-check questions only: the student's latest free check, so their
+  /// answers and ticks survive a reload.
+  lastCheck: {
+    answers: Record<string, Record<string, string>>;
+    results: Record<string, Record<string, boolean>>;
   } | null;
   attempts: AttemptSummary[];
   state: {
@@ -242,6 +288,16 @@ export type FrqDetail = {
     creditsRemaining: number;
     nextAttemptNumber: number;
   };
+};
+
+export type SignedFigure = {
+  id: string;
+  url: string;
+  caption: string | null;
+  /// Placement name used in the text as [[figure:key]].
+  key: string | null;
+  /// Set when the figure belongs to one part rather than the question stem.
+  partId: string | null;
 };
 
 export type AttemptSummary = {
@@ -295,7 +351,9 @@ export async function getFrqForStudent(
   const decision = decideGradeAttempt(entitlements, history);
 
   const questionFigures = question.media.filter((item) => item.kind === "QUESTION");
+  const answerSheets = question.media.filter((item) => item.kind === "ANSWER_SHEET");
   const solutionFigures = question.media.filter((item) => item.kind === "SOLUTION");
+  const unlocked = mayReadSolution && history.unlockReason !== null;
 
   return {
     meta: {
@@ -314,8 +372,16 @@ export async function getFrqForStudent(
             label: part.label,
             prompt: part.prompt,
             maxPoints: part.maxPoints,
+            answerFormat: part.answerFormat,
+            leadIn: part.leadIn,
+            blanks:
+              part.answerFormat === "SHORT_ANSWER"
+                ? toPublicBlanks(parseBlanks(part.acceptedAnswers))
+                : [],
           })),
           figures: await signFigures(questionFigures),
+          answerSheets: await signFigures(answerSheets),
+          pointStep: question.pointStep,
         }
       : null,
 
@@ -325,6 +391,7 @@ export async function getFrqForStudent(
       mayReadSolution && history.unlockReason
         ? {
             reason: history.unlockReason,
+            source: question.solutionSource,
             questionSolution: question.officialSolution,
             parts: question.parts.map((part) => ({
               label: part.label,
@@ -333,6 +400,11 @@ export async function getFrqForStudent(
             figures: await signFigures(solutionFigures),
           }
         : null,
+
+    earnedPartSolutions:
+      mayRead && !unlocked ? earnedPartSolutionsFor(question.parts, submissions) : [],
+
+    lastCheck: mayRead ? lastExactCheck(submissions) : null,
 
     attempts: submissions
       // Rows that were never charged are internal bookkeeping, not history.
@@ -369,31 +441,80 @@ export async function getFrqForStudent(
   };
 }
 
-function bestScoreOf(
-  submissions: Array<{ awardedPoints: number | null; creditConsumed: boolean }>,
-): number | null {
-  const scores = submissions
-    .filter((submission) => submission.creditConsumed && submission.awardedPoints != null)
-    .map((submission) => submission.awardedPoints as number);
+type ScoredSubmission = {
+  awardedPoints: number | null;
+  creditConsumed: boolean;
+  gradingMethod: string;
+  status: string;
+  partScores: unknown;
+  feedback: unknown;
+  typedResponse: string | null;
+};
+
+/// Counts charged AI grades and free exact checks alike.
+function isScored(submission: ScoredSubmission): boolean {
+  return (
+    submission.status === "GRADED" &&
+    (submission.creditConsumed || submission.gradingMethod === "EXACT") &&
+    submission.awardedPoints != null
+  );
+}
+
+function bestScoreOf(submissions: ScoredSubmission[]): number | null {
+  const scores = submissions.filter(isScored).map((submission) => submission.awardedPoints as number);
   return scores.length > 0 ? Math.max(...scores) : null;
 }
 
+/// The model solution of every part this student has scored full marks on
+/// in any graded attempt or check.
+function earnedPartSolutionsFor(
+  parts: Array<{ id: string; label: string; officialSolution: string | null }>,
+  submissions: ScoredSubmission[],
+): Array<{ label: string; officialSolution: string }> {
+  const earned = new Set<string>();
+  for (const submission of submissions.filter(isScored)) {
+    const scores = Array.isArray(submission.partScores) ? submission.partScores : [];
+    for (const score of scores as Array<{ partId?: string; awardedPoints?: number; maxPoints?: number }>) {
+      if (score.partId && score.maxPoints && (score.awardedPoints ?? 0) >= score.maxPoints) {
+        earned.add(score.partId);
+      }
+    }
+  }
+  return parts
+    .filter((part) => earned.has(part.id) && part.officialSolution)
+    .map((part) => ({ label: part.label, officialSolution: part.officialSolution as string }));
+}
+
+/// The most recent free check, restored into the form on reload.
+function lastExactCheck(submissions: ScoredSubmission[]): FrqDetail["lastCheck"] {
+  const latest = [...submissions].reverse().find((submission) => submission.gradingMethod === "EXACT");
+  if (!latest) return null;
+  try {
+    const answers = JSON.parse(latest.typedResponse ?? "{}") as Record<string, Record<string, string>>;
+    const results = ((latest.feedback as { results?: unknown } | null)?.results ?? {}) as Record<
+      string,
+      Record<string, boolean>
+    >;
+    return { answers, results };
+  } catch {
+    return null;
+  }
+}
+
 async function signFigures(
-  media: Array<{ id: string; storagePath: string; caption: string | null }>,
-): Promise<Array<{ id: string; url: string; caption: string | null }>> {
+  media: Array<{ id: string; storagePath: string; caption: string | null; key: string | null; frqPartId: string | null }>,
+): Promise<SignedFigure[]> {
   const signed = await Promise.all(
     media.map(async (item) => ({
       id: item.id,
       caption: item.caption,
+      key: item.key,
+      partId: item.frqPartId,
       url: await createSignedReadUrl(QUESTION_MEDIA_BUCKET, item.storagePath),
     })),
   );
 
-  return signed
-    .filter((item): item is { id: string; caption: string | null; url: string } =>
-      Boolean(item.url),
-    )
-    .map((item) => ({ id: item.id, url: item.url, caption: item.caption }));
+  return signed.filter((item): item is SignedFigure => Boolean(item.url));
 }
 
 /// Signs a URL for one of the student's own uploaded pages, after checking
@@ -436,7 +557,8 @@ export type SubmitResult =
         | "SOLUTION_ALREADY_UNLOCKED"
         | "DUPLICATE_SUBMISSION"
         | "UNREADABLE_WORK"
-        | "GRADING_UNAVAILABLE";
+        | "GRADING_UNAVAILABLE"
+        | "USE_QUICK_CHECK";
       message: string;
       unclearPages?: number[];
     };
@@ -466,6 +588,16 @@ export async function submitGradedAttempt(
   });
   if (!question) {
     return { ok: false, code: "QUESTION_NOT_FOUND", message: "Question not found." };
+  }
+
+  // A question made only of short answers never needs the AI, so it can
+  // never cost a credit: it is checked for free by checkShortAnswers.
+  if (isQuickCheck(question.parts)) {
+    return {
+      ok: false,
+      code: "USE_QUICK_CHECK",
+      message: "This question is checked instantly for free — use Check answers.",
+    };
   }
 
   // 2. Permission. Re-derived here even though the browser already knows
@@ -608,6 +740,7 @@ export async function submitGradedAttempt(
     label: part.label,
     prompt: part.prompt,
     maxPoints: part.maxPoints,
+    answerFormat: part.answerFormat,
     officialSolution: part.officialSolution,
     gradingRubric: part.gradingRubric,
   }));
@@ -620,6 +753,7 @@ export async function submitGradedAttempt(
         questionNumber: question.questionNumber,
         questionText: question.questionText,
         totalPoints: question.totalPoints,
+        pointStep: question.pointStep,
         officialSolution: question.officialSolution,
         gradingRubric: question.gradingRubric,
       },
@@ -842,6 +976,115 @@ async function previousFeedbackFor(
       return feedback?.overall ?? "";
     })
     .filter(Boolean);
+}
+
+// --- Free short-answer checks ---------------------------------------------
+
+export type CheckResult =
+  | {
+      ok: true;
+      /// Per part ID, per blank label: right or wrong. Never the answers.
+      results: Record<string, Record<string, boolean>>;
+      awardedPoints: number;
+      maximumPoints: number;
+      solutionUnlocked: boolean;
+    }
+  | {
+      ok: false;
+      code: "QUESTION_NOT_FOUND" | "QUESTION_LOCKED" | "NOT_QUICK_CHECK" | "DUPLICATE_SUBMISSION";
+      message: string;
+    };
+
+/// Checks a quick-check question's blanks exactly, on the server.
+///
+/// Free and unlimited: no AI is called, so no credit is spent and no graded
+/// attempt is used. Like the MCQ trainer, it only says which blanks are
+/// right or wrong — never what the right answer is — until every blank is
+/// right, which unlocks the full solution.
+export async function checkShortAnswers(
+  userId: string,
+  questionId: string,
+  answers: Record<string, Record<string, string>>,
+  prisma: PrismaClient = getPrisma(),
+): Promise<CheckResult> {
+  const question = await prisma.frqQuestion.findFirst({
+    where: { id: questionId, status: "PUBLISHED" },
+    include: { parts: { orderBy: { orderIndex: "asc" } } },
+  });
+  if (!question) {
+    return { ok: false, code: "QUESTION_NOT_FOUND", message: "Question not found." };
+  }
+  if (!isQuickCheck(question.parts)) {
+    return { ok: false, code: "NOT_QUICK_CHECK", message: "This question is graded by submission." };
+  }
+
+  const [entitlements, history] = await Promise.all([
+    getUserEntitlements(userId, prisma),
+    getQuestionHistory(userId, questionId, prisma),
+  ]);
+  if (!canViewFrqContent(entitlements, history)) {
+    return { ok: false, code: "QUESTION_LOCKED", message: "This question is part of Astro Coach Pro." };
+  }
+
+  const results: Record<string, Record<string, boolean>> = {};
+  const partScores = question.parts.map((part) => {
+    const check = checkPart(
+      parseBlanks(part.acceptedAnswers),
+      answers[part.id] ?? {},
+      part.maxPoints,
+      question.pointStep,
+    );
+    results[part.id] = check.results;
+    return {
+      partId: part.id,
+      label: part.label,
+      awardedPoints: check.awardedPoints,
+      maxPoints: part.maxPoints,
+      comment: `${check.correctCount} of ${check.blankCount} correct.`,
+    };
+  });
+
+  const awardedPoints = partScores.reduce((sum, score) => sum + score.awardedPoints, 0);
+  const maximumPoints = partScores.reduce((sum, score) => sum + score.maxPoints, 0);
+  const allCorrect = awardedPoints >= maximumPoints && maximumPoints > 0;
+
+  try {
+    await prisma.$transaction(async (tx) => {
+      const previous = await tx.frqSubmission.aggregate({
+        where: { userId, frqQuestionId: questionId },
+        _max: { sequenceNumber: true },
+      });
+      await tx.frqSubmission.create({
+        data: {
+          userId,
+          frqQuestionId: questionId,
+          sequenceNumber: (previous._max.sequenceNumber ?? 0) + 1,
+          gradingMethod: "EXACT",
+          status: "GRADED",
+          // Free by construction: no credit, no attempt number.
+          creditConsumed: false,
+          typedResponse: JSON.stringify(answers),
+          awardedPoints,
+          maximumPoints,
+          partScores,
+          feedback: { results },
+          provider: "exact-match",
+          gradedAt: new Date(),
+        },
+      });
+      if (allCorrect) {
+        await tx.frqSolutionUnlock.upsert({
+          where: { userId_frqQuestionId: { userId, frqQuestionId: questionId } },
+          create: { userId, frqQuestionId: questionId, reason: "FULL_CREDIT" },
+          update: {},
+        });
+      }
+    });
+  } catch {
+    return { ok: false, code: "DUPLICATE_SUBMISSION", message: "That check is already running." };
+  }
+
+  return { ok: true, results, awardedPoints, maximumPoints, solutionUnlocked: allCorrect };
 }
 
 // --- Giving up -------------------------------------------------------------

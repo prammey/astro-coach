@@ -157,6 +157,34 @@ enum PlanTier {
 enum FrqMediaKind {
   QUESTION
   SOLUTION
+  /// A printable blank page (sky map, graph grid) the student downloads,
+  /// draws on, and photographs back. Shown with the question.
+  ANSWER_SHEET
+}
+
+// How a part is answered, which decides how it is graded.
+//
+// WORKED       — reasoning and calculation; graded by the AI (costs a credit).
+// SHORT_ANSWER — a fixed word, label or value per blank (fill-in, matching,
+//                naming); checked exactly on the server, free, no AI.
+// DRAWING      — drawn on a downloadable answer sheet and photographed;
+//                graded by the AI from the photo (costs a credit).
+enum FrqAnswerFormat {
+  WORKED
+  SHORT_ANSWER
+  DRAWING
+}
+
+// Where a question's solution came from, shown to the student with it.
+//
+// OFFICIAL    — the competition's solution, used as published.
+// ADAPTED     — the official solution, lightly simplified or reworded.
+// ASTRO_COACH — written by Astro Coach because the source gave only a final
+//               answer, or no solution at all.
+enum FrqSolutionSource {
+  OFFICIAL
+  ADAPTED
+  ASTRO_COACH
 }
 
 // What an AI call was for, so grading spend and importer spend can be
@@ -168,10 +196,9 @@ enum AiUsageKind {
 
 /// One free-response question from a real olympiad paper.
 ///
-/// Unlike the MCQ bank (seeded from versioned TypeScript files), FRQs live
-/// in Postgres only
-/// because they are created through the admin importer and edited before
-/// publication.
+/// Like the MCQ bank, the curated FRQ bank is typed into versioned files
+/// (src/data/frq/) and upserted with `npm run seed:frq`. The admin importer
+/// can still add drafts directly for review.
 model FrqQuestion {
   id   String @id @default(uuid())
   /// Human-readable stable identifier, e.g. "usaaao-2019-second-round-q3".
@@ -196,8 +223,18 @@ model FrqQuestion {
 
   // --- Content ------------------------------------------------------------
   questionText     String
-  /// The competition's own point value. Never normalised to /10.
-  totalPoints      Int
+  /// The competition's own point value. Never normalised to /10. A Float
+  /// only because a few papers print half points (2026: "1.5 points").
+  totalPoints      Float
+  /// The smallest score step the marking scheme uses: 1 for whole points,
+  /// 0.5 only where the official rubric itself awards halves. Every grade
+  /// is rounded to this, so the grader never invents finer marks.
+  pointStep        Float             @default(1)
+  /// Which section of the paper, e.g. "Short Questions" or "Long Questions".
+  section          String?
+  /// Order within the exam, so question 10 sorts after question 9.
+  orderIndex       Int               @default(0)
+  solutionSource   FrqSolutionSource @default(OFFICIAL)
   /// Solution and rubric for a question with no explicit lettered parts.
   /// For a multi-part question these live on each FrqPart instead.
   /// SERVER-ONLY: never included in a student response before unlock.
@@ -251,7 +288,14 @@ model FrqPart {
   prompt           String
   /// The competition's point value for this part. The parts' maxPoints
   /// must sum to the question's totalPoints.
-  maxPoints        Int
+  maxPoints        Float
+  answerFormat     FrqAnswerFormat @default(WORKED)
+  /// Text shown above this part that introduces a group of sub-parts, e.g.
+  /// the set-up paragraph before (h)(i), (h)(ii).
+  leadIn           String?
+  /// SHORT_ANSWER only. SERVER-ONLY. One entry per blank:
+  /// [{ "label": "1", "accept": ["8.3", "8.3 minutes"], "numeric": { "value": 8.3, "tolerance": 0.2 } }]
+  acceptedAnswers  Json?
   /// SERVER-ONLY. Never leaves the server before the student unlocks.
   officialSolution String?
   gradingRubric    String?
@@ -277,6 +321,9 @@ model FrqMedia {
   kind          FrqMediaKind @default(QUESTION)
   /// Path inside the Supabase Storage bucket — not a public URL.
   storagePath   String
+  /// Short name used to place the figure in the text with [[figure:key]].
+  /// A figure the text never mentions is shown after the text it belongs to.
+  key           String?
   caption       String?
   orderIndex    Int          @default(0)
   sourcePage    Int?
@@ -330,7 +377,10 @@ model FrqSubmission {
 
   // --- Grade --------------------------------------------------------------
   awardedPoints Float?
-  maximumPoints Int
+  maximumPoints Float
+  /// "AI" for a graded worked answer (charged), "EXACT" for a free
+  /// short-answer check done on the server without any AI call.
+  gradingMethod String  @default("AI")
   /// [{ partId, label, awarded, max, comment }] — validated before saving.
   partScores    Json?
   /// The structured grading feedback, exactly as validated. Re-displaying

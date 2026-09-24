@@ -137,7 +137,7 @@ export class GeminiGradingProvider implements GradingProvider {
               errorCode: "INVALID_RESPONSE",
               message: "The grading service returned a response we could not read.",
             } as const)
-          : normaliseGrade(json, input.parts, input.question.totalPoints);
+          : normaliseGrade(json, input.parts, input.question.totalPoints, input.question.pointStep ?? 1);
 
       return { outcome, usage: this.usage(startedAt, payload) };
     } catch (error) {

@@ -79,7 +79,8 @@ export class MockGradingProvider implements GradingProvider {
           ];
 
     const partScores: GradedPartScore[] = structure.map((part, index) => {
-      const awarded = Math.round(part.maxPoints * fractionForPart(index) * 2) / 2;
+      const step = input.question.pointStep ?? 1;
+      const awarded = Math.round((part.maxPoints * fractionForPart(index)) / step) * step;
       return {
         partId: part.partId,
         label: part.label,

@@ -52,7 +52,7 @@ export async function GET(
 const patchSchema = z.object({
   questionText: z.string().min(1).optional(),
   title: z.string().max(300).nullish(),
-  totalPoints: z.number().int().min(0).optional(),
+  totalPoints: z.number().min(0).optional(),
   officialSolution: z.string().nullish(),
   gradingRubric: z.string().nullish(),
   primaryCurriculumTopic: z.string().min(1).optional(),
@@ -79,7 +79,7 @@ const patchSchema = z.object({
         id: z.string(),
         label: z.string().min(1).max(20),
         prompt: z.string().min(1),
-        maxPoints: z.number().int().min(0),
+        maxPoints: z.number().min(0),
         officialSolution: z.string().nullish(),
         gradingRubric: z.string().nullish(),
       }),
