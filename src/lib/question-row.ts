@@ -1,6 +1,12 @@
 import { getMcqCatalog } from '@/data/mcq/catalog.server';
 import type { McqCatalog } from '@/data/mcq/catalog-builder';
 
+// The most rows a dashboard question list returns. The whole question bank
+// is about 750 items, so this covers even a very busy student's full
+// history; if it is ever reached, the list says so rather than silently
+// stopping.
+export const MAX_DASHBOARD_ROWS = 2000;
+
 // Turns a stored questionId into something a person can read, e.g.
 // "USAAAO 2026 Q13" instead of "usaaao-2026-first-round-q13".
 //

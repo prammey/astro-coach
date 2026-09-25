@@ -20,6 +20,9 @@ export const LEVEL_COLOURS = ["rgba(255,255,255,0.08)", "#1e3a8a", "#1d4ed8", "#
 
 const WEEKDAY_LABELS = ["", "Mon", "", "Wed", "", "Fri", ""];
 
+/// Below this width the squares stop shrinking and the calendar scrolls.
+const MIN_GRID_WIDTH = 640;
+
 /// "Wed, Sep 24, 2026" for a "2026-09-24" day key.
 function formatDay(day: string): string {
   return new Date(`${day}T00:00:00Z`).toLocaleDateString(undefined, {
@@ -89,59 +92,88 @@ export default function ActivityCalendar({
             {totalThisYear} question{totalThisYear === 1 ? "" : "s"} in the last year
           </p>
 
+          {/* A grid: weekday labels in the first column, then one column per
+              week that stretches to fill the card. Below MIN_GRID_WIDTH it
+              stops shrinking and scrolls sideways instead. */}
           <div ref={scrollRef} className="mt-3 overflow-x-auto pb-2">
-            <div className="inline-flex gap-[3px]">
-              {/* Weekday labels */}
-              <div className="mr-1 mt-[18px] grid grid-rows-7 gap-[3px] text-[10px] leading-[11px] text-white/50">
-                {WEEKDAY_LABELS.map((label, index) => (
-                  <span key={index} className="h-[11px]">
-                    {label}
-                  </span>
-                ))}
-              </div>
-
-              {weeks.map((week) => {
-                // Label a column with its month when the month starts in it.
+            <div
+              className="grid gap-[3px]"
+              style={{
+                gridTemplateColumns: `28px repeat(${weeks.length}, minmax(0, 1fr))`,
+                minWidth: MIN_GRID_WIDTH,
+              }}
+            >
+              {/* Month labels, on the column where each month starts */}
+              {weeks.map((week, weekIndex) => {
                 const firstOfMonth = week.find((day) => day.endsWith("-01"));
+                if (!firstOfMonth) return null;
                 return (
-                  <div key={week[0]} className="flex flex-col gap-[3px]">
-                    <span className="h-[15px] w-[11px] overflow-visible whitespace-nowrap text-[10px] leading-[11px] text-white/50">
-                      {firstOfMonth ? monthName(firstOfMonth) : ""}
-                    </span>
-                    {week.map((day) => {
-                      const counts = countsByDay.get(day);
-                      const level = activityLevel((counts?.mcq ?? 0) + (counts?.frq ?? 0));
-                      const square = (
-                        <span
-                          className="block h-[11px] w-[11px] rounded-[3px]"
-                          style={{ backgroundColor: LEVEL_COLOURS[level] }}
-                        />
-                      );
-                      if (!interactive) return <span key={day}>{square}</span>;
-                      const text = describeDay(day, counts);
-                      return (
-                        <HoverTip
-                          key={day}
-                          content={
-                            <>
-                              <span className="block font-extrabold">{text.title}</span>
-                              <span className="block text-xs text-navy/70">{text.detail}</span>
-                            </>
-                          }
-                        >
-                          <button
-                            type="button"
-                            aria-label={`${text.title}, ${text.detail}`}
-                            className="block rounded-[3px] focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow"
-                          >
-                            {square}
-                          </button>
-                        </HoverTip>
-                      );
-                    })}
-                  </div>
+                  <span
+                    key={`month-${week[0]}`}
+                    className="whitespace-nowrap text-[10px] leading-3 text-white/50"
+                    style={{ gridColumn: weekIndex + 2, gridRow: 1 }}
+                  >
+                    {monthName(firstOfMonth)}
+                  </span>
                 );
               })}
+
+              {/* Weekday labels */}
+              {WEEKDAY_LABELS.map((label, dayIndex) =>
+                label ? (
+                  <span
+                    key={`weekday-${label}`}
+                    className="self-center text-[10px] leading-none text-white/50"
+                    style={{ gridColumn: 1, gridRow: dayIndex + 2 }}
+                  >
+                    {label}
+                  </span>
+                ) : null,
+              )}
+
+              {/* One square per day */}
+              {weeks.flatMap((week, weekIndex) =>
+                week.map((day, dayIndex) => {
+                  const counts = countsByDay.get(day);
+                  const level = activityLevel((counts?.mcq ?? 0) + (counts?.frq ?? 0));
+                  const place = { gridColumn: weekIndex + 2, gridRow: dayIndex + 2 };
+                  const square = (
+                    <span
+                      className="block aspect-square w-full rounded-[3px]"
+                      style={{ backgroundColor: LEVEL_COLOURS[level] }}
+                    />
+                  );
+                  if (!interactive) {
+                    return (
+                      <span key={day} style={place}>
+                        {square}
+                      </span>
+                    );
+                  }
+                  const text = describeDay(day, counts);
+                  return (
+                    <span key={day} style={place}>
+                      <HoverTip
+                        className="block"
+                        content={
+                          <>
+                            <span className="block font-extrabold">{text.title}</span>
+                            <span className="block text-xs text-navy/70">{text.detail}</span>
+                          </>
+                        }
+                      >
+                        <button
+                          type="button"
+                          aria-label={`${text.title}, ${text.detail}`}
+                          className="block w-full rounded-[3px] focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow"
+                        >
+                          {square}
+                        </button>
+                      </HoverTip>
+                    </span>
+                  );
+                }),
+              )}
             </div>
           </div>
 

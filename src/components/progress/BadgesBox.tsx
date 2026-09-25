@@ -15,7 +15,7 @@ import HoverTip from "./HoverTip";
 import { browserTimeZone } from "./ActivitySection";
 import LoadingStar from "../ui/LoadingStar";
 
-export default function BadgesBox() {
+export default function BadgesBox({ matchHeight = false }: { matchHeight?: boolean }) {
   const [badges, setBadges] = useState<BadgeStatus[] | null>(null);
   const [failed, setFailed] = useState(false);
 
@@ -31,15 +31,27 @@ export default function BadgesBox() {
 
   if (failed) return <p className="text-sm text-white/70">Could not load your badges.</p>;
   if (!badges) return <LoadingStar tone="light" label="Loading your badges…" />;
-  return <BadgesGrid badges={badges} />;
+  return <BadgesGrid badges={badges} matchHeight={matchHeight} />;
 }
 
 /// Draws the badges box for a list of badge results.
-export function BadgesGrid({ badges }: { badges: BadgeStatus[] }) {
+export function BadgesGrid({
+  badges,
+  matchHeight = false,
+}: {
+  badges: BadgeStatus[];
+  /// On wide screens, take exactly the height of the panel beside it and
+  /// scroll the rest, instead of growing the row.
+  matchHeight?: boolean;
+}) {
   const earnedCount = badges.filter((badge) => badge.earned).length;
 
   return (
-    <section className="rounded-xl border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
+    <section
+      className={`flex flex-col rounded-xl border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal ${
+        matchHeight ? "lg:h-0 lg:min-h-full" : ""
+      }`}
+    >
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="text-2xl font-extrabold">Badges</h2>
         <p className="text-sm font-bold text-navy/70">
@@ -48,7 +60,11 @@ export function BadgesGrid({ badges }: { badges: BadgeStatus[] }) {
       </div>
 
       {/* Scrolls when there are more badges than fit. */}
-      <ul className="mt-4 grid max-h-[360px] grid-cols-3 gap-3 overflow-y-auto pr-1 sm:grid-cols-5 lg:grid-cols-6">
+      <ul
+        className={`mt-4 grid max-h-[430px] min-h-0 flex-1 content-start grid-cols-3 gap-2 overflow-y-auto pr-1 sm:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 ${
+          matchHeight ? "lg:max-h-none" : ""
+        }`}
+      >
         {badges.map((badge) => (
           <li key={badge.id}>
             <HoverTip className="block" content={<BadgeDetails badge={badge} />}>
@@ -63,7 +79,7 @@ export function BadgesGrid({ badges }: { badges: BadgeStatus[] }) {
                   width={80}
                   height={80}
                   unoptimized
-                  className={`h-16 w-16 sm:h-20 sm:w-20 ${badge.earned ? "drop-shadow-[3px_3px_0_rgba(0,0,0,0.35)]" : "opacity-40 grayscale"}`}
+                  className={`h-14 w-14 sm:h-16 sm:w-16 ${badge.earned ? "drop-shadow-[3px_3px_0_rgba(0,0,0,0.35)]" : "opacity-40 grayscale"}`}
                 />
                 <span
                   className={`mt-1 text-center text-xs font-bold leading-tight ${badge.earned ? "text-navy" : "text-navy/50"}`}

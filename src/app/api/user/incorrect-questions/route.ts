@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
-import { getQuestionLabeler } from '@/lib/question-row';
+import { getQuestionLabeler, MAX_DASHBOARD_ROWS } from '@/lib/question-row';
 
 // GET: Fetch user's most recent incorrect attempt per question
 export async function GET(request: NextRequest) {
@@ -27,11 +27,13 @@ export async function GET(request: NextRequest) {
       where: { userId, isCorrect: false },
       orderBy: { createdAt: 'desc' },
       distinct: ['questionId'],
-      take: 100,
+      // One extra row tells us whether the list was cut off.
+      take: MAX_DASHBOARD_ROWS + 1,
     });
 
     return NextResponse.json({
-      attempts: incorrectAttempts.map((a) => ({
+      truncated: incorrectAttempts.length > MAX_DASHBOARD_ROWS,
+      attempts: incorrectAttempts.slice(0, MAX_DASHBOARD_ROWS).map((a) => ({
         id: a.id,
         questionId: a.questionId,
         questionLabel: questionLabelFor(a.questionId),

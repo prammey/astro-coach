@@ -46,6 +46,8 @@ export default function DashboardTabs() {
   const [allAttempts, setAllAttempts] = useState<AttemptRow[]>([]);
   const [bookmarkedAttempts, setBookmarkedAttempts] = useState<AttemptRow[]>([]);
   const [incorrectAttempts, setIncorrectAttempts] = useState<AttemptRow[]>([]);
+  // Which lists hit the server's row limit (very rare), so we can say so.
+  const [truncated, setTruncated] = useState<Record<TabType, boolean>>({ all: false, bookmarked: false, incorrect: false });
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -66,9 +68,17 @@ export default function DashboardTabs() {
           fetch('/api/user/incorrect-questions', { headers }),
         ]);
 
-        if (allRes.ok) setAllAttempts((await allRes.json()).attempts);
-        if (bookmarkedRes.ok) setBookmarkedAttempts((await bookmarkedRes.json()).attempts);
-        if (incorrectRes.ok) setIncorrectAttempts((await incorrectRes.json()).attempts);
+        const all = allRes.ok ? await allRes.json() : null;
+        const bookmarked = bookmarkedRes.ok ? await bookmarkedRes.json() : null;
+        const incorrect = incorrectRes.ok ? await incorrectRes.json() : null;
+        if (all) setAllAttempts(all.attempts);
+        if (bookmarked) setBookmarkedAttempts(bookmarked.attempts);
+        if (incorrect) setIncorrectAttempts(incorrect.attempts);
+        setTruncated({
+          all: Boolean(all?.truncated),
+          bookmarked: Boolean(bookmarked?.truncated),
+          incorrect: Boolean(incorrect?.truncated),
+        });
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
       } finally {
@@ -114,14 +124,15 @@ export default function DashboardTabs() {
       </div>
 
       {/* Table content */}
-      {/* The table scrolls sideways inside this box on narrow screens, so
-          the page itself never grows wider than the phone. */}
-      <div className="relative z-10 -mt-1 overflow-x-auto overflow-y-hidden rounded-b-2xl rounded-tr-2xl bg-cream shadow-[0_6px_16px_rgba(0,0,0,0.15)]">
+      {/* About ten rows show at once and the rest scroll inside this box
+          (it also scrolls sideways on narrow screens, so the page itself
+          never grows wider than the phone). The header row stays put. */}
+      <div className="relative z-10 -mt-1 max-h-[560px] overflow-auto rounded-b-2xl rounded-tr-2xl bg-cream shadow-[0_6px_16px_rgba(0,0,0,0.15)]">
         {isLoading ? (
           <p className="p-6 text-navy/70">Loading...</p>
         ) : (
           <table className="w-full">
-            <thead className="bg-space">
+            <thead className="sticky top-0 z-10 bg-space">
               <tr>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-white">Question</th>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-white">Your Answer</th>
@@ -192,6 +203,9 @@ export default function DashboardTabs() {
           </table>
         )}
       </div>
+      {truncated[activeTab] && (
+        <p className="mt-2 text-xs text-white/60">Showing your most recent {currentRows.length.toLocaleString()} rows.</p>
+      )}
     </div>
   );
 }

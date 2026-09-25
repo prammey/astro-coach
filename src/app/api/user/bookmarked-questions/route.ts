@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
-import { getQuestionLabeler } from '@/lib/question-row';
+import { getQuestionLabeler, MAX_DASHBOARD_ROWS } from '@/lib/question-row';
 
 // GET: Fetch user's bookmarked questions, with their latest attempt (if any)
 export async function GET(request: NextRequest) {
@@ -25,8 +25,11 @@ export async function GET(request: NextRequest) {
     const bookmarks = await prisma.bookmark.findMany({
       where: { userId },
       orderBy: { createdAt: 'desc' },
-      take: 100,
+      // One extra row tells us whether the list was cut off.
+      take: MAX_DASHBOARD_ROWS + 1,
     });
+    const truncated = bookmarks.length > MAX_DASHBOARD_ROWS;
+    bookmarks.length = Math.min(bookmarks.length, MAX_DASHBOARD_ROWS);
 
     const questionIds = bookmarks.map((b) => b.questionId);
 
@@ -39,6 +42,7 @@ export async function GET(request: NextRequest) {
     const attemptByQuestionId = new Map(attempts.map((a) => [a.questionId, a]));
 
     return NextResponse.json({
+      truncated,
       attempts: bookmarks.map((b) => {
         const attempt = attemptByQuestionId.get(b.questionId);
         return {

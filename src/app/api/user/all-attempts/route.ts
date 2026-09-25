@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
-import { getQuestionLabeler } from '@/lib/question-row';
+import { getQuestionLabeler, MAX_DASHBOARD_ROWS } from '@/lib/question-row';
 
 // GET: Fetch all of the user's attempts (correct and incorrect), most recent first
 export async function GET(request: NextRequest) {
@@ -25,11 +25,13 @@ export async function GET(request: NextRequest) {
     const attempts = await prisma.userAttempt.findMany({
       where: { userId },
       orderBy: { createdAt: 'desc' },
-      take: 100,
+      // One extra row tells us whether the list was cut off.
+      take: MAX_DASHBOARD_ROWS + 1,
     });
 
     return NextResponse.json({
-      attempts: attempts.map((a) => ({
+      truncated: attempts.length > MAX_DASHBOARD_ROWS,
+      attempts: attempts.slice(0, MAX_DASHBOARD_ROWS).map((a) => ({
         id: a.id,
         questionId: a.questionId,
         questionLabel: questionLabelFor(a.questionId),

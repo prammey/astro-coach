@@ -24,7 +24,7 @@ import { getPrisma } from "@/lib/prisma";
 import { getMcqCatalog } from "@/data/mcq/catalog.server";
 import { CURRICULUM_TOPICS, type CurriculumTopic } from "@/data/mcq/topicTaxonomy";
 import { getUserEntitlements } from "./entitlements";
-import { FRQ_SOLVED_SHARE, topicMastery, type TopicMastery } from "@/lib/progress/mastery";
+import { topicStrength, type TopicStrength } from "@/lib/progress/strength";
 import type { Entitlements } from "./rules";
 
 // --- How much evidence is enough -------------------------------------------
@@ -51,8 +51,8 @@ export type TopicPerformance = {
   frqPointsPossible: number;
   frqPercentage: number | null;
   hasEnoughData: boolean;
-  /// Level in this topic (Novice … Olympian) and what the next one needs.
-  mastery: TopicMastery;
+  /// The Strengths panel's score for this topic (see progress/strength.ts).
+  strength: TopicStrength;
 };
 
 export type ProAnalytics = {
@@ -177,7 +177,7 @@ export async function buildProAnalytics(
 
   const mcqTopicById = await buildMcqTopicLookup();
   const topics = buildTopicPerformance(progressRows, submissions, mcqTopicById);
-  addMastery(topics, {
+  addStrength(topics, {
     progressRows,
     scoredFrqs,
     mcqTopicById,
@@ -285,8 +285,8 @@ function buildTopicPerformance(
       frqPointsPossible: 0,
       frqPercentage: null,
       hasEnoughData: false,
-      // Filled in by addMastery once every attempt has been counted.
-      mastery: topicMastery({ tried: 0, solved: 0, available: 0, accuracy: null, hasFrqs: false, frqFullMarks: 0 }),
+      // Filled in by addStrength once every attempt has been counted.
+      strength: { score: 0, accuracy: null, answered: 0 },
     });
   }
 
@@ -335,9 +335,9 @@ function countBy(values: string[]): Map<string, number> {
   return counts;
 }
 
-/// Works out each topic's mastery level from different questions tried
-/// and solved (see src/lib/progress/mastery.ts for the rules).
-function addMastery(
+/// Works out each topic's strength score from every MCQ check and every
+/// scored FRQ (see src/lib/progress/strength.ts for the rules).
+function addStrength(
   topics: TopicPerformance[],
   data: {
     progressRows: Array<{ questionId: string; attemptCount: number; correctAttemptCount: number; isCorrect: boolean }>;
@@ -353,69 +353,52 @@ function addMastery(
   },
 ): void {
   for (const entry of topics) {
-    // MCQs: one progress row per question tried.
+    // MCQs: one progress row per question tried, with its attempt counts.
     const mcqRows = data.progressRows.filter((row) => data.mcqTopicById.get(row.questionId) === entry.topic);
-    const mcqAttempts = mcqRows.reduce((sum, row) => sum + row.attemptCount, 0);
-    const mcqCorrectAttempts = mcqRows.reduce((sum, row) => sum + row.correctAttemptCount, 0);
 
-    // FRQs: each question's best share of its points.
-    const bestShare = new Map<string, number>();
-    let frqEarned = 0;
-    let frqPossible = 0;
+    // FRQs: each question's best result, so retries don't count twice.
+    const best = new Map<string, { earned: number; possible: number }>();
     for (const score of data.scoredFrqs) {
       if (score.question.primaryCurriculumTopic !== entry.topic || score.maximumPoints <= 0) continue;
-      const share = (score.awardedPoints ?? 0) / score.maximumPoints;
-      bestShare.set(score.frqQuestionId, Math.max(bestShare.get(score.frqQuestionId) ?? 0, share));
-      frqEarned += score.awardedPoints ?? 0;
-      frqPossible += score.maximumPoints;
+      const earned = score.awardedPoints ?? 0;
+      const previous = best.get(score.frqQuestionId);
+      if (!previous || earned > previous.earned) {
+        best.set(score.frqQuestionId, { earned, possible: score.maximumPoints });
+      }
     }
-    const shares = [...bestShare.values()];
+    const frqResults = [...best.values()];
 
-    // Accuracy: MCQ accuracy where there are MCQ attempts, else FRQ score.
-    const accuracy =
-      mcqAttempts > 0
-        ? Math.round((mcqCorrectAttempts / mcqAttempts) * 100)
-        : frqPossible > 0
-          ? Math.round((frqEarned / frqPossible) * 100)
-          : null;
-
-    const frqAvailable = data.frqAvailable.get(entry.topic) ?? 0;
-    entry.mastery = topicMastery({
-      tried: mcqRows.length + bestShare.size,
-      solved: mcqRows.filter((row) => row.isCorrect).length + shares.filter((s) => s >= FRQ_SOLVED_SHARE).length,
-      available: (data.mcqAvailable.get(entry.topic) ?? 0) + frqAvailable,
-      accuracy,
-      hasFrqs: frqAvailable > 0,
-      frqFullMarks: shares.filter((share) => share >= 1).length,
+    entry.strength = topicStrength({
+      mcqAttempts: mcqRows.reduce((sum, row) => sum + row.attemptCount, 0),
+      mcqCorrectAttempts: mcqRows.reduce((sum, row) => sum + row.correctAttemptCount, 0),
+      mcqQuestionsTried: mcqRows.length,
+      frqQuestionsScored: frqResults.length,
+      frqPointsEarned: frqResults.reduce((sum, result) => sum + result.earned, 0),
+      frqPointsPossible: frqResults.reduce((sum, result) => sum + result.possible, 0),
+      questionsAvailable: (data.mcqAvailable.get(entry.topic) ?? 0) + (data.frqAvailable.get(entry.topic) ?? 0),
     });
   }
 }
 
-/// Names a strongest topic and one to practise next, using only topics that
-/// cleared the sample-size rule. Returns nulls when nothing qualifies, or
-/// when only one topic does — a single data point is not a comparison.
+/// Names a strongest topic and one to practise next, from the same
+/// strength scores the bars show. Only topics with at least
+/// MIN_ANSWERS_TO_RANK different questions answered are compared, and
+/// nothing is named until two topics qualify — one topic is not a ranking.
+const MIN_ANSWERS_TO_RANK = 3;
+
 function pickStrongestAndWeakest(topics: TopicPerformance[]): {
   strongestTopic: string | null;
   topicToPractiseNext: string | null;
 } {
-  const scored = topics
-    .filter((topic) => topic.hasEnoughData)
-    .map((topic) => ({
-      topic: topic.topic,
-      // Where both exist, weight them equally; otherwise use whichever we
-      // actually have. This ranks topics — it is not shown as a score.
-      score:
-        topic.mcqAccuracy !== null && topic.frqPercentage !== null
-          ? (topic.mcqAccuracy + topic.frqPercentage) / 2
-          : (topic.mcqAccuracy ?? topic.frqPercentage) as number,
-    }))
-    .sort((a, b) => b.score - a.score);
+  const ranked = topics
+    .filter((topic) => topic.strength.answered >= MIN_ANSWERS_TO_RANK)
+    .sort((a, b) => b.strength.score - a.strength.score);
 
-  if (scored.length < 2) return { strongestTopic: null, topicToPractiseNext: null };
+  if (ranked.length < 2) return { strongestTopic: null, topicToPractiseNext: null };
 
   return {
-    strongestTopic: scored[0].topic,
-    topicToPractiseNext: scored[scored.length - 1].topic,
+    strongestTopic: ranked[0].topic,
+    topicToPractiseNext: ranked[ranked.length - 1].topic,
   };
 }
 

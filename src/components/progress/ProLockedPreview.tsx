@@ -10,7 +10,7 @@
 import Link from "next/link";
 import { addDays } from "@/lib/progress/activity";
 import ActivityCalendar from "./ActivityCalendar";
-import { MasteryPill } from "../pro/ProAnalyticsPanel";
+import StrengthsPanel, { type StrengthRow } from "../dashboard/StrengthsPanel";
 
 /// A fixed "today" for the example, so it looks the same for everyone.
 const EXAMPLE_TODAY = "2026-09-24";
@@ -38,11 +38,19 @@ function exampleDays() {
   return days.reverse();
 }
 
-const EXAMPLE_TOPICS = [
-  { topic: "Gravity & Orbits", level: 4, name: "Expert" },
-  { topic: "Stars & Black Holes", level: 3, name: "Adept" },
-  { topic: "Light & Spectra", level: 2, name: "Apprentice" },
-  { topic: "Galaxies & Universe", level: 1, name: "Novice" },
+/// One made-up topic row for the blurred example.
+function example(topic: string, score: number, accuracy: number, answered: number): StrengthRow {
+  return { topic, strength: { score, accuracy, answered } };
+}
+
+/// Made-up strengths for the blurred example.
+const EXAMPLE_STRENGTHS: StrengthRow[] = [
+  example("Gravity & Orbits", 91, 88, 64),
+  example("Stars & Black Holes", 78, 81, 40),
+  example("Light & Spectra", 66, 72, 25),
+  example("Math, Data & Coordinates", 58, 69, 31),
+  example("Galaxies & Universe", 44, 55, 18),
+  example("Solar System", 31, 50, 9),
 ];
 
 export default function ProLockedPreview() {
@@ -51,18 +59,18 @@ export default function ProLockedPreview() {
       {/* The blurred example. Hidden from screen readers and not clickable. */}
       <div aria-hidden className="pointer-events-none select-none space-y-4 bg-navy p-4 blur-[6px]">
         <ActivityCalendar days={exampleDays()} streaks={{ current: 12, longest: 31 }} today={EXAMPLE_TODAY} interactive={false} />
-        <div className="grid gap-3 sm:grid-cols-2">
-          {EXAMPLE_TOPICS.map((topic) => (
-            <div key={topic.topic} className="rounded-lg border-[3px] border-ink bg-cream p-4">
-              <div className="flex items-center justify-between gap-2">
-                <span className="font-extrabold text-navy">{topic.topic}</span>
-                <MasteryPill level={topic.level} name={topic.name} />
-              </div>
-              <div className="mt-3 h-3 rounded-full border-2 border-ink bg-white">
-                <div className="h-full rounded-full bg-electric" style={{ width: `${topic.level * 20}%` }} />
-              </div>
-            </div>
-          ))}
+        <div className="grid gap-4 md:grid-cols-2">
+          <StrengthsPanel
+            topics={EXAMPLE_STRENGTHS}
+            strongestTopic="Gravity & Orbits"
+            topicToPractiseNext="Solar System"
+            interactive={false}
+          />
+          <div className="rounded-xl border-[3px] border-ink bg-cream p-5">
+            <div className="h-6 w-40 rounded bg-navy/20" />
+            <div className="mt-4 h-32 rounded bg-purple/30" />
+            <div className="mt-4 h-20 rounded bg-electric/25" />
+          </div>
         </div>
       </div>
 
@@ -74,7 +82,7 @@ export default function ProLockedPreview() {
           </span>
           <h2 className="mt-3 text-xl font-extrabold">Pro users only</h2>
           <p className="mt-1 text-sm text-navy/75">
-            Your activity calendar, streaks, topic mastery levels and detailed analytics.
+            Your activity calendar, streaks, strengths by topic and free-response insights.
           </p>
           <Link
             href="/pricing"

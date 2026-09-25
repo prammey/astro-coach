@@ -12,7 +12,7 @@ import {
   safeTimeZone,
 } from "./activity";
 import { BADGES, evaluateBadges, type BadgeFacts } from "./badges";
-import { topicMastery } from "./mastery";
+import { strengthColour, topicStrength, type StrengthInput } from "./strength";
 
 describe("activity days", () => {
   it("uses the student's own time zone for the day", () => {
@@ -131,36 +131,64 @@ describe("badges", () => {
   });
 });
 
-describe("topic mastery", () => {
-  const base = { tried: 0, solved: 0, available: 100, accuracy: null, hasFrqs: true, frqFullMarks: 0 };
-
-  it("starts at Not started, then Novice after one try", () => {
-    expect(topicMastery(base).name).toBe("Not started");
-    expect(topicMastery({ ...base, tried: 1, accuracy: 0 }).name).toBe("Novice");
+describe("topic strength", () => {
+  const none: StrengthInput = {
+    mcqAttempts: 0,
+    mcqCorrectAttempts: 0,
+    mcqQuestionsTried: 0,
+    frqQuestionsScored: 0,
+    frqPointsEarned: 0,
+    frqPointsPossible: 0,
+    questionsAvailable: 100,
+  };
+  const mcq = (tried: number, right: number): StrengthInput => ({
+    ...none,
+    mcqAttempts: tried,
+    mcqCorrectAttempts: right,
+    mcqQuestionsTried: tried,
   });
 
-  it("needs both coverage and accuracy for each level", () => {
-    expect(topicMastery({ ...base, tried: 30, solved: 26, accuracy: 65 }).name).toBe("Adept");
-    expect(topicMastery({ ...base, tried: 30, solved: 26, accuracy: 55 }).name).toBe("Apprentice");
+  it("is empty with no answers", () => {
+    expect(topicStrength(none)).toEqual({ score: 0, accuracy: null, answered: 0 });
   });
 
-  it("asks for a full-mark FRQ before Olympian when the topic has FRQs", () => {
-    const strong = { ...base, tried: 90, solved: 85, accuracy: 90 };
-    expect(topicMastery(strong).name).toBe("Expert");
-    expect(topicMastery({ ...strong, frqFullMarks: 1 }).name).toBe("Olympian");
-    expect(topicMastery({ ...strong, hasFrqs: false }).name).toBe("Olympian");
+  it("does not crown a topic from two lucky answers", () => {
+    const tiny = topicStrength(mcq(2, 2));
+    const solid = topicStrength(mcq(40, 34));
+    expect(tiny.accuracy).toBe(100);
+    expect(tiny.score).toBeLessThan(60);
+    expect(solid.score).toBeGreaterThan(tiny.score);
+    expect(solid.score).toBeGreaterThan(80);
   });
 
-  it("scales to small topics without letting one answer level them up", () => {
-    const small = { ...base, available: 12, tried: 2, solved: 2, accuracy: 100 };
-    expect(topicMastery(small).name).toBe("Novice"); // Apprentice needs at least 3 solved
-    expect(topicMastery({ ...small, solved: 3, tried: 3 }).name).toBe("Apprentice");
+  it("rewards covering more of a topic at the same accuracy", () => {
+    expect(topicStrength(mcq(30, 24)).score).toBeGreaterThan(topicStrength(mcq(10, 8)).score);
   });
 
-  it("explains the next step in plain words", () => {
-    const result = topicMastery({ ...base, tried: 12, solved: 12, accuracy: 55 });
-    expect(result.name).toBe("Apprentice");
-    expect(result.nextStep).toBe("To reach Adept: Solve 13 more questions, and raise your accuracy to 60% (now 55%).");
-    expect(topicMastery({ ...base, tried: 90, solved: 85, accuracy: 90, frqFullMarks: 1 }).nextStep).toBeNull();
+  it("stays honest about weak topics", () => {
+    expect(topicStrength(mcq(50, 20)).score).toBeLessThan(55);
+    expect(topicStrength(mcq(3, 0)).score).toBeLessThan(35);
+  });
+
+  it("only nears full with lots of accurate work", () => {
+    expect(topicStrength(mcq(60, 60)).score).toBeGreaterThanOrEqual(95);
+    expect(topicStrength(mcq(60, 60)).score).toBeLessThanOrEqual(100);
+  });
+
+  it("counts free-response work, weighted by its points", () => {
+    const withFrq = topicStrength({ ...mcq(10, 7), frqQuestionsScored: 3, frqPointsEarned: 27, frqPointsPossible: 30 });
+    expect(withFrq.answered).toBe(13);
+    expect(withFrq.score).toBeGreaterThan(topicStrength(mcq(10, 7)).score);
+  });
+
+  it("colours bars red, orange, yellow, green, then blue", () => {
+    const hue = (score: number) => Number(strengthColour(score).match(/hsl\((\d+)/)![1]);
+    expect(hue(0)).toBe(0);
+    expect(hue(40)).toBe(28);
+    expect(hue(60)).toBe(48);
+    expect(hue(80)).toBe(130);
+    expect(hue(100)).toBe(205);
+    expect(hue(70)).toBeGreaterThan(48);
+    expect(hue(70)).toBeLessThan(130);
   });
 });

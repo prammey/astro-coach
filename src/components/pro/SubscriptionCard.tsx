@@ -19,7 +19,7 @@ import {
 } from "@/lib/pro/client";
 import { PUBLIC_PRO_CONFIG } from "@/lib/pro/public-config";
 
-export default function SubscriptionCard() {
+export default function SubscriptionCard({ className = "" }: { className?: string }) {
   const [entitlements, setEntitlements] = useState<EntitlementsResponse | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -53,7 +53,7 @@ export default function SubscriptionCard() {
   const { isPro, status, credits, currentPeriodEnd, isFoundingPrice } = entitlements;
 
   return (
-    <div className="rounded-xl border-[3px] border-ink bg-cream p-6 shadow-brutal">
+    <div className={`rounded-xl border-[3px] border-ink bg-cream p-6 shadow-brutal ${className}`}>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-sm text-navy">Your plan</p>
