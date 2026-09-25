@@ -1088,10 +1088,10 @@ The rules are pure functions in `src/lib/progress/` with tests.
   orange → yellow → green → blue as it fills; hovering shows plain
   accuracy and how many questions it rests on. The score
   (`src/lib/progress/strength.ts`) leans towards a cautious 30% while there
-  are few answers and is fully trusted after 20 different questions (or
+  are few answers and is fully trusted after 15 different questions (or
   the whole topic, if smaller). Accuracy is stretched away from 50%, so
   strong topics read higher and weak ones lower, with 100% staying 100%.
-  Examples: 2 of 2 → 52, 10 at 80% → 69, 40 at 85% → 90, 60 of 60 → 100,
+  Examples: 2 of 2 → 56, 10 at 80% → 76, 40 at 85% → 90, 60 of 60 → 100,
   50 at 40% → 37. An FRQ counts as three MCQ answers of evidence, at its
   share of points.
 - **Badges (every signed-in account):** 18 badges, grey until earned, with

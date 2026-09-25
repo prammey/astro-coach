@@ -153,8 +153,8 @@ describe("topic strength", () => {
   });
 
   it("matches the agreed examples", () => {
-    expect(topicStrength(mcq(2, 2)).score).toBe(52);
-    expect(topicStrength(mcq(10, 8)).score).toBe(69);
+    expect(topicStrength(mcq(2, 2)).score).toBe(56);
+    expect(topicStrength(mcq(10, 8)).score).toBe(76);
     expect(topicStrength(mcq(40, 34)).score).toBe(90);
     expect(topicStrength(mcq(60, 60)).score).toBe(100);
     expect(topicStrength(mcq(50, 20)).score).toBe(37);
@@ -168,7 +168,7 @@ describe("topic strength", () => {
   });
 
   it("reaches 100% for perfect work once there is enough of it", () => {
-    expect(topicStrength(mcq(20, 20)).score).toBe(100);
+    expect(topicStrength(mcq(15, 15)).score).toBe(100);
     expect(topicStrength(mcq(5, 5)).score).toBeLessThan(100);
   });
 

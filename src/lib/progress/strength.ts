@@ -13,7 +13,7 @@
 //      flattered. 0% stays 0% and 100% stays 100%.
 //
 // A few results (MCQs only):
-//   2 of 2 right → 52     10 at 80% → 69     40 at 85% → 90
+//   2 of 2 right → 56     10 at 80% → 76     40 at 85% → 90
 //   60 of 60     → 100    50 at 40% → 37
 //
 // Pure functions only, so every rule is unit-tested.
@@ -23,7 +23,7 @@
 export const FRQ_EVIDENCE_WEIGHT = 3;
 
 /// Different questions answered before a topic's score is fully trusted.
-export const CONFIDENT_ANSWERS = 20;
+export const CONFIDENT_ANSWERS = 15;
 
 /// Where a score starts while there is little evidence (as a fraction).
 export const STARTING_SCORE = 0.3;
