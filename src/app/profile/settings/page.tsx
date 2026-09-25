@@ -254,11 +254,15 @@ export default function ProfileSettingsPage() {
                 {/* Avatar Preview */}
                 <div className="flex h-24 w-24 items-center justify-center rounded-full bg-electric text-white font-bold text-3xl border-2 border-ink">
                   {profileImageUrl ? (
-                    <img
-                      src={profileImageUrl}
-                      alt="Profile"
-                      className="h-full w-full rounded-full object-cover"
-                    />
+                    <>
+                      {/* A user-supplied photo from any host, so next/image's allow-list does not apply. */}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={profileImageUrl}
+                        alt="Profile"
+                        className="h-full w-full rounded-full object-cover"
+                      />
+                    </>
                   ) : (
                     avatarInitial
                   )}

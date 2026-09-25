@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import katex from "katex";
@@ -9,6 +9,10 @@ import { iaacMcqs } from "../iaac_mcqs";
 import { baaoMcqs } from "../baao_mcqs";
 import { allMcqExplanations } from "./index";
 import type { CatalogQuestion, RawMcqQuestion } from "../types";
+
+// These tests typeset every explanation in the bank, which takes several
+// seconds when the whole suite runs in parallel.
+vi.setConfig({ testTimeout: 30_000 });
 
 // Built from the seed files (not the database), so the gate checks exactly
 // what `npm run seed:mcq` is about to upload.

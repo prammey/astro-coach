@@ -51,6 +51,7 @@ function buildPrisma() {
         officialSolution: "Use the virial theorem.",
         gradingRubric: null,
         parts: [],
+        media: [],
       }),
     },
     subscription: {

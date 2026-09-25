@@ -56,10 +56,21 @@ export function buildSystemPrompt(input: GradingInput): string {
     `the order, and what each piece calculates. Credit correct work wherever it`,
     `appears. A part with no attempt anywhere scores zero.`,
     ``,
+    `REFERENCE FIGURES`,
+    `Images labelled "Reference figure" come from the question itself, not`,
+    `from the student. Question figures are what the student saw (the text`,
+    `marks where each goes as [[figure:key]]). Solution figures are official`,
+    `solution diagrams: use them to judge, and treat them like the official`,
+    `solution under the spoiler rule. Answer sheets are the blank sheets that`,
+    `drawing parts are drawn on. Only images after "STUDENT'S UPLOADED PAGES"`,
+    `are the student's work, and page numbers count those images only.`,
+    ``,
     `DRAWING PARTS`,
     `Parts marked [drawing] are answered on a printed answer sheet the student`,
     `photographs. Judge them from the photo against the solution's criteria`,
-    `(correct lines, labels, positions). If no drawing is visible, score zero.`,
+    `(correct lines, labels, positions), comparing with the blank answer sheet`,
+    `and any solution figure when they are attached. If no drawing is visible,`,
+    `score zero.`,
     ``,
     `FEEDBACK STYLE`,
     `For a part that earns full marks, keep the comment to one short sentence`,
@@ -178,6 +189,15 @@ export function buildUserPrompt(input: GradingInput): string {
       ? `STUDENT'S TYPED WORK\n${input.student.typedResponse.trim()}`
       : `STUDENT'S TYPED WORK\n(none — see the uploaded pages)`,
   );
+
+  const figures = input.referenceFigures ?? [];
+  if (figures.length > 0) {
+    sections.push(
+      `REFERENCE FIGURES\n` +
+        `${figures.length} figure(s) from the question are attached first, each introduced` +
+        ` by a "Reference figure" label. They are not the student's work.`,
+    );
+  }
 
   if (input.student.attachments.length > 0) {
     sections.push(

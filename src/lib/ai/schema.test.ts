@@ -237,6 +237,20 @@ describe("spoiler-safe prompting", () => {
     expect(prompt).toContain("attempt 2 of 3");
     expect(prompt).toContain("Check your units.");
   });
+
+  it("tells the grader which images are the question's figures, not the student's", () => {
+    const withFigures = buildUserPrompt(
+      gradingInput({
+        referenceFigures: [
+          { role: "QUESTION", label: 'Question figure "orbit"', mimeType: "image/png", bytes: new Uint8Array([1]) },
+        ],
+      }),
+    );
+    expect(withFigures).toContain("REFERENCE FIGURES");
+    expect(withFigures).toContain("They are not the student's work");
+    expect(buildUserPrompt(gradingInput())).not.toContain("REFERENCE FIGURES");
+    expect(buildSystemPrompt(gradingInput())).toContain("treat them like the official");
+  });
 });
 
 describe("the mock grader", () => {

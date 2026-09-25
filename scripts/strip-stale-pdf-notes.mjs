@@ -25,26 +25,6 @@ const FILES = [
 const NOTE =
   /(?:\\n|\s)*\[[^\]]*?(?:\bPDF\b|official exam|All choices are visual plots)[^\]]*?\]/gi;
 
-function matchBrace(text, openIdx) {
-  let depth = 0;
-  let quote = null;
-  for (let i = openIdx; i < text.length; i++) {
-    const ch = text[i];
-    if (quote) {
-      if (ch === '\\') i++;
-      else if (ch === quote) quote = null;
-      continue;
-    }
-    if (ch === '"' || ch === "'" || ch === '`') quote = ch;
-    else if (ch === '{') depth++;
-    else if (ch === '}') {
-      depth--;
-      if (depth === 0) return i;
-    }
-  }
-  throw new Error('unbalanced braces');
-}
-
 // Splits the exported array into the source span of each top-level object.
 // Comments must be skipped explicitly: an apostrophe in a code comment
 // ("Question 17's light curve") would otherwise look like a string quote

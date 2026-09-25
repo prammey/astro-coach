@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/auth';
+import Image from 'next/image';
 
 export default function QuestionAnsweredIndicator({ questionId }: { questionId: string }) {
   const [isAnswered, setIsAnswered] = useState(false);
@@ -46,9 +47,11 @@ export default function QuestionAnsweredIndicator({ questionId }: { questionId: 
 
   return (
     <div className="inline-flex items-center gap-2 ml-3">
-      <img
+      <Image
         src="/icons/eye.png"
         alt="You've answered this question before"
+        width={20}
+        height={20}
         className="w-5 h-5 object-contain"
         title="You've answered this question before"
       />

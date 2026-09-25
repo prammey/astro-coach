@@ -38,8 +38,12 @@ function resolveProvider(): GradingProvider {
   }
 
   // Falling back to the mock grader is fine locally and in tests, but in
-  // production it would mean handing students invented marks. Refuse.
-  if (process.env.NODE_ENV === "production" && configured !== "mock") {
+  // production it would mean handing students invented marks. Refuse —
+  // unless someone has deliberately set AI_GRADING_PROVIDER=mock. (A
+  // missing key also resolves to "mock", so checking `configured` alone
+  // would let production grade with the mock by accident.)
+  const mockChosenOnPurpose = process.env.AI_GRADING_PROVIDER?.trim().toLowerCase() === "mock";
+  if (process.env.NODE_ENV === "production" && !mockChosenOnPurpose) {
     throw new Error(
       "AI grading is not configured: GEMINI_API_KEY is missing. Refusing to " +
         "fall back to the mock grader in production.",

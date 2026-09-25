@@ -57,6 +57,12 @@ export const MAX_UPLOAD_PAGES_PER_SUBMISSION = 8;
 export const MAX_UPLOAD_FILE_BYTES = 10 * 1024 * 1024; // 10 MB per file
 export const MAX_UPLOAD_TOTAL_BYTES = 40 * 1024 * 1024; // 40 MB per submission
 
+/// How many of a question's own figures (question figures, solution
+/// diagrams, answer sheets) are sent to the grader with each submission,
+/// and the largest one sent. More images cost more tokens per grade.
+export const MAX_GRADING_REFERENCE_FIGURES = 8;
+export const MAX_GRADING_REFERENCE_FIGURE_BYTES = 4 * 1024 * 1024; // 4 MB
+
 /// The file types a student may upload as solution work.
 export const ALLOWED_UPLOAD_MIME_TYPES = [
   "image/jpeg",

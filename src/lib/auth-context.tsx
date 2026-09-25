@@ -30,7 +30,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   // The owner's chosen view, read from its cookie. On the server there is
   // no document, but that is fine: the view only matters once the signed-in
   // user has loaded in the browser.

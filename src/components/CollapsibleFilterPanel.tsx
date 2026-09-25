@@ -284,7 +284,7 @@ export default function CollapsibleFilterPanel({
       count++;
     }
     return count;
-  }, [filters, competitions.length, yearRange]);
+  }, [filters, competitions.length, difficultyLevels.length, yearRange]);
 
   return (
     <div className="rounded-lg border-[3px] border-ink bg-white shadow-brutal-sm">

@@ -54,9 +54,18 @@ export class GeminiGradingProvider implements GradingProvider {
   async grade(input: GradingInput): Promise<GradingResult> {
     const startedAt = Date.now();
 
-    // Uploaded pages are attached inline after the text, in the order the
-    // student arranged them.
+    // The question's own figures come first, each with a label so the
+    // model never mistakes them for the student's work.
     const parts: Array<Record<string, unknown>> = [{ text: buildUserPrompt(input) }];
+    (input.referenceFigures ?? []).forEach((figure, index) => {
+      parts.push({ text: `Reference figure ${index + 1} — ${figure.label}` });
+      parts.push({ inline_data: { mime_type: figure.mimeType, data: toBase64(figure.bytes) } });
+    });
+
+    // Then the student's uploaded pages, in the order they arranged them.
+    if (input.student.attachments.length > 0) {
+      parts.push({ text: "STUDENT'S UPLOADED PAGES (page 1 onwards):" });
+    }
     for (const attachment of input.student.attachments) {
       parts.push({
         inline_data: {

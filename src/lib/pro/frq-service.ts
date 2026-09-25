@@ -27,6 +27,8 @@ import {
   estimateAiCostUsd as estimateAiCostUsdRef,
   GRADING_RESERVATION_TTL_MS,
   MAX_GRADED_ATTEMPTS_PER_FRQ,
+  MAX_GRADING_REFERENCE_FIGURE_BYTES,
+  MAX_GRADING_REFERENCE_FIGURES,
   QUESTION_MEDIA_BUCKET,
   STUDENT_WORK_BUCKET,
 } from "./config";
@@ -57,7 +59,7 @@ import {
 } from "./storage";
 import { gradeFrqSubmission } from "@/lib/ai/grader";
 import { checkPart, parseBlanks, toPublicBlanks, type PublicBlank } from "./short-answer";
-import type { GradingAttachment, GradingPart } from "@/lib/ai/types";
+import type { GradingAttachment, GradingPart, ReferenceFigure } from "@/lib/ai/types";
 
 /// Thrown inside the reservation transaction when the locked re-check says
 /// no. It exists so the rollback carries the real reason back out — a plain
@@ -602,7 +604,7 @@ export async function submitGradedAttempt(
   // 1. The question.
   const question = await prisma.frqQuestion.findFirst({
     where: { id: questionId, status: "PUBLISHED" },
-    include: { parts: { orderBy: { orderIndex: "asc" } } },
+    include: { parts: { orderBy: { orderIndex: "asc" } }, media: { orderBy: { orderIndex: "asc" } } },
   });
   if (!question) {
     return { ok: false, code: "QUESTION_NOT_FOUND", message: "Question not found." };
@@ -777,6 +779,7 @@ export async function submitGradedAttempt(
       },
       parts: gradingParts,
       student: { typedResponse: input.typedResponse, attachments },
+      referenceFigures: await loadReferenceFigures(question.media, question.parts),
       attemptNumber: decision.attemptNumber,
       maxAttempts: MAX_GRADED_ATTEMPTS_PER_FRQ,
       previousFeedback: await previousFeedbackFor(userId, questionId, prisma),
@@ -974,6 +977,50 @@ async function loadAttachments(uploads: CountedUpload[]): Promise<GradingAttachm
   }
 
   return attachments;
+}
+
+/// The question's own figures, for the grader: question figures first, then
+/// answer sheets, then solution diagrams, up to the configured limit. A
+/// figure that cannot be fetched is simply left out — figures help the
+/// grader but are not essential, so they never block a grade.
+async function loadReferenceFigures(
+  media: Array<{ kind: string; storagePath: string; caption: string | null; key: string | null; frqPartId: string | null }>,
+  parts: Array<{ id: string; label: string }>,
+): Promise<ReferenceFigure[]> {
+  const order = ["QUESTION", "ANSWER_SHEET", "SOLUTION"];
+  const chosen = media
+    .filter((item) => order.includes(item.kind) && /\.(png|jpe?g|webp)$/i.test(item.storagePath))
+    .sort((a, b) => order.indexOf(a.kind) - order.indexOf(b.kind))
+    .slice(0, MAX_GRADING_REFERENCE_FIGURES);
+
+  const figures: ReferenceFigure[] = [];
+  for (const item of chosen) {
+    const bytes = await downloadFile(QUESTION_MEDIA_BUCKET, item.storagePath);
+    if (!bytes || bytes.length > MAX_GRADING_REFERENCE_FIGURE_BYTES) continue;
+
+    const role = item.kind as ReferenceFigure["role"];
+    const part = parts.find((p) => p.id === item.frqPartId)?.label;
+    const kindName = role === "QUESTION" ? "Question figure" : role === "SOLUTION" ? "Solution figure" : "Answer sheet";
+    figures.push({
+      role,
+      label: [
+        `${kindName}${item.key ? ` "${item.key}"` : ""}${part ? ` (part ${part})` : ""}`,
+        item.caption,
+      ]
+        .filter(Boolean)
+        .join(": "),
+      mimeType: mimeTypeForPath(item.storagePath),
+      bytes,
+    });
+  }
+  return figures;
+}
+
+/// The image type for a stored figure, from its file extension.
+function mimeTypeForPath(path: string): string {
+  if (/\.png$/i.test(path)) return "image/png";
+  if (/\.webp$/i.test(path)) return "image/webp";
+  return "image/jpeg";
 }
 
 /// The overall comments from earlier attempts, so a retry can build on them.

@@ -47,27 +47,31 @@ export default function ProfileDropdown() {
     <div ref={dropdownRef} className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-lg border-2 border-yellow px-3 py-2 transition-colors duration-200 hover:bg-yellow hover:text-navy"
+        className="group flex items-center gap-2 rounded-lg border-2 border-yellow px-3 py-2 transition-colors duration-200 hover:bg-yellow hover:text-navy"
       >
         {/* Profile Avatar */}
         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-electric text-white font-bold text-sm overflow-hidden flex-shrink-0">
           {profileImageUrl ? (
-            <img
-              src={profileImageUrl}
-              alt={username}
-              className="h-full w-full object-cover"
-            />
+            <>
+              {/* A user-supplied photo from any host, so next/image's allow-list does not apply. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={profileImageUrl}
+                alt={username}
+                className="h-full w-full object-cover"
+              />
+            </>
           ) : (
             username.charAt(0).toUpperCase()
           )}
         </div>
         {/* Username */}
-        <span className="text-base font-bold text-yellow hidden sm:inline truncate max-w-[180px]">
+        <span className="text-base font-bold text-yellow group-hover:text-navy hidden sm:inline truncate max-w-[180px]">
           {username}
         </span>
         {/* Dropdown Arrow */}
         <svg
-          className={`h-4 w-4 text-yellow transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          className={`h-4 w-4 text-yellow group-hover:text-navy transition-transform ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

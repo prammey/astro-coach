@@ -14,6 +14,10 @@ import type { FrqSeedExam } from "./types";
 
 const FIGURE_ROOT = path.join(process.cwd(), "src/data/frq/figures");
 
+// Typesetting every formula in the bank takes a few seconds, more when the
+// whole suite runs in parallel, so these tests get longer than the default.
+const HEAVY_RENDER_TIMEOUT_MS = 30_000;
+
 // While writing a new exam file, check just that file before it is added
 // to index.ts:  FRQ_FILE=src/data/frq/usaaao-2025-nac.ts npx vitest run src/data/frq
 async function examsToCheck(): Promise<FrqSeedExam[]> {
@@ -69,7 +73,7 @@ describe("curated FRQ bank", () => {
       }
     }
     expect(broken).toEqual([]);
-  });
+  }, HEAVY_RENDER_TIMEOUT_MS);
 
   it("every text renders with no stray $ or ** left over", () => {
     const stray: string[] = [];
@@ -82,7 +86,7 @@ describe("curated FRQ bank", () => {
       }
     }
     expect(stray).toEqual([]);
-  });
+  }, HEAVY_RENDER_TIMEOUT_MS);
 
   it("every blank accepts its own listed answers", () => {
     const rejected: string[] = [];

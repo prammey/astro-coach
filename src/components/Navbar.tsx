@@ -102,7 +102,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href={logoHref}
-          className="flex items-center gap-2 text-2xl font-extrabold tracking-tight text-yellow transition-opacity hover:opacity-80"
+          className="flex shrink-0 items-center gap-2 whitespace-nowrap text-2xl font-extrabold tracking-tight text-yellow transition-opacity hover:opacity-80"
         >
           <Image
             src="/star-icon.png"
@@ -116,7 +116,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden items-center gap-7 md:flex">
+        <ul className="ml-6 hidden items-center gap-5 lg:flex xl:gap-7">
           {links.map((link) => (
             <li key={link.href}>
               <NavLink href={link.href} active={isActive(link.href)}>
@@ -134,7 +134,7 @@ export default function Navbar() {
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="flex h-11 w-11 items-center justify-center rounded-lg border-2 border-yellow text-yellow transition-colors hover:bg-yellow hover:text-navy md:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-lg border-2 border-yellow text-yellow transition-colors hover:bg-yellow hover:text-navy lg:hidden"
         >
           <MenuIcon open={isMenuOpen} />
         </button>
@@ -144,7 +144,7 @@ export default function Navbar() {
       {isMenuOpen && (
         <div
           id="mobile-menu"
-          className="animate-rise-in border-t-2 border-yellow/40 bg-navy px-5 pb-6 pt-2 md:hidden"
+          className="animate-rise-in border-t-2 border-yellow/40 bg-navy px-5 pb-6 pt-2 lg:hidden"
         >
           <ul className="flex flex-col">
             {links.map((link) => (

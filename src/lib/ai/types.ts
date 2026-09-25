@@ -31,6 +31,22 @@ export type GradingAttachment = {
   fileName: string;
 };
 
+/// One of the question's own figures, fetched server-side so the grader
+/// can see what the student saw — and, for solution figures, what a
+/// correct answer looks like. SERVER-ONLY: solution figures are part of
+/// the official solution.
+export type ReferenceFigure = {
+  /// QUESTION: shown with the question. SOLUTION: an official solution
+  /// diagram (never described to the student before unlock).
+  /// ANSWER_SHEET: the blank sheet a drawing part is answered on.
+  role: "QUESTION" | "SOLUTION" | "ANSWER_SHEET";
+  /// How the figure is introduced to the model, e.g.
+  /// 'Question figure "orbit" (part (b)): The planet's orbit'.
+  label: string;
+  mimeType: string;
+  bytes: Uint8Array;
+};
+
 export type GradingInput = {
   question: {
     competition: string;
@@ -50,6 +66,8 @@ export type GradingInput = {
     typedResponse: string | null;
     attachments: GradingAttachment[];
   };
+  /// The question's own figures, attached before the student's pages.
+  referenceFigures?: ReferenceFigure[];
   /// 1, 2 or 3.
   attemptNumber: number;
   maxAttempts: number;
