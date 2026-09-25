@@ -2,13 +2,19 @@
 // 100 per curriculum topic.
 //
 // Raw accuracy alone is misleading: two questions right would read as 100%
-// and outrank a topic with 40 questions at 85%. So the score blends three
-// things, each explained below:
+// and outrank a topic with 40 questions at 85%. So the score combines two
+// ideas, each explained below:
 //
-//   1. accuracy, shrunk towards 50% until there is enough evidence;
-//   2. how much of the topic the student has covered;
-//   3. a gentle lift, so solid work reads as encouraging but a topic still
-//      has to be earned to look full.
+//   1. Confidence: with only a few answers, the score leans towards a
+//      cautious starting value. After CONFIDENT_ANSWERS different questions
+//      (or the whole topic, if it is smaller) it is fully trusted.
+//   2. Stretch: accuracy above 50% is nudged up and accuracy below 50% is
+//      nudged down, so real strengths stand out and weak spots are not
+//      flattered. 0% stays 0% and 100% stays 100%.
+//
+// A few results (MCQs only):
+//   2 of 2 right → 52     10 at 80% → 69     40 at 85% → 90
+//   60 of 60     → 100    50 at 40% → 37
 //
 // Pure functions only, so every rule is unit-tested.
 
@@ -16,22 +22,16 @@
 /// so each scored FRQ counts as this many MCQ answers of evidence.
 export const FRQ_EVIDENCE_WEIGHT = 3;
 
-/// Accuracy starts as if the student had already answered this many
-/// questions at 50%. Real answers quickly outweigh it: after 5 answers the
-/// prior is half the evidence, after 45 only a tenth.
-export const PRIOR_ANSWERS = 5;
-export const PRIOR_ACCURACY = 0.5;
+/// Different questions answered before a topic's score is fully trusted.
+export const CONFIDENT_ANSWERS = 20;
 
-/// Covering this many different questions (or the whole topic, if it is
-/// smaller) earns full credit for breadth.
-export const COVERAGE_TARGET = 25;
+/// Where a score starts while there is little evidence (as a fraction).
+export const STARTING_SCORE = 0.3;
 
-/// Breadth can scale the score between this and 100%.
-export const COVERAGE_FLOOR = 0.75;
-
-/// Raising to this power below 1 lifts the middle of the range a little
-/// (0.50 → 0.55, 0.80 → 0.83) while keeping 0 at 0 and 1 at 1.
-export const LIFT = 0.85;
+/// How strongly accuracy is stretched away from 50% (0 = not at all).
+/// Anything up to 1 keeps the curve rising, so more accuracy always means
+/// a higher score.
+export const STRETCH = 0.6;
 
 export type StrengthInput = {
   /// Every MCQ check in this topic, and how many were right.
@@ -56,31 +56,34 @@ export type TopicStrength = {
   answered: number;
 };
 
+/// Pushes an accuracy (0–1) away from 50%: 0.85 → 0.90, 0.40 → 0.37.
+export function stretchAccuracy(accuracy: number): number {
+  return accuracy + STRETCH * accuracy * (1 - accuracy) * (2 * accuracy - 1);
+}
+
 export function topicStrength(input: StrengthInput): TopicStrength {
-  // Evidence, in "MCQ answers": each FRQ counts FRQ_EVIDENCE_WEIGHT times,
-  // at its share of points earned.
-  const frqEvidence = FRQ_EVIDENCE_WEIGHT * input.frqQuestionsScored;
-  const frqShare = input.frqPointsPossible > 0 ? input.frqPointsEarned / input.frqPointsPossible : 0;
-  const evidence = input.mcqAttempts + frqEvidence;
-  const correct = input.mcqCorrectAttempts + frqShare * frqEvidence;
   const answered = input.mcqQuestionsTried + input.frqQuestionsScored;
 
-  if (evidence <= 0) return { score: 0, accuracy: null, answered };
+  // Accuracy over every MCQ check plus each FRQ's share of points, with
+  // each FRQ counting FRQ_EVIDENCE_WEIGHT times.
+  const frqEvidence = FRQ_EVIDENCE_WEIGHT * input.frqQuestionsScored;
+  const frqShare = input.frqPointsPossible > 0 ? input.frqPointsEarned / input.frqPointsPossible : 0;
+  const checks = input.mcqAttempts + frqEvidence;
+  if (checks <= 0) return { score: 0, accuracy: null, answered };
+  const accuracy = (input.mcqCorrectAttempts + frqShare * frqEvidence) / checks;
 
-  // 1. Accuracy, shrunk towards 50% while evidence is thin.
-  const shrunkAccuracy = (correct + PRIOR_ANSWERS * PRIOR_ACCURACY) / (evidence + PRIOR_ANSWERS);
+  // 1. Confidence: rises with different questions answered (FRQs weighted),
+  // reaching 1 at CONFIDENT_ANSWERS, or at the topic's size if smaller.
+  const evidence = input.mcqQuestionsTried + frqEvidence;
+  const needed = Math.max(1, Math.min(CONFIDENT_ANSWERS, input.questionsAvailable));
+  const confidence = Math.sqrt(Math.min(1, evidence / needed));
 
-  // 2. Breadth: from COVERAGE_FLOOR up to 1 as more of the topic is covered.
-  const target = Math.max(1, Math.min(COVERAGE_TARGET, input.questionsAvailable));
-  const coverage = Math.min(1, answered / target);
-  const breadth = COVERAGE_FLOOR + (1 - COVERAGE_FLOOR) * coverage;
-
-  // 3. The gentle lift.
-  const score = Math.pow(shrunkAccuracy * breadth, LIFT) * 100;
+  // 2. Blend the stretched accuracy with the cautious starting score.
+  const score = confidence * stretchAccuracy(accuracy) + (1 - confidence) * STARTING_SCORE;
 
   return {
-    score: Math.round(Math.min(100, Math.max(0, score))),
-    accuracy: Math.round((correct / evidence) * 100),
+    score: Math.round(Math.min(1, Math.max(0, score)) * 100),
+    accuracy: Math.round(accuracy * 100),
     answered,
   };
 }

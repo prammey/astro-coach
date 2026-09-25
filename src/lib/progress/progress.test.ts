@@ -12,7 +12,7 @@ import {
   safeTimeZone,
 } from "./activity";
 import { BADGES, evaluateBadges, type BadgeFacts } from "./badges";
-import { strengthColour, topicStrength, type StrengthInput } from "./strength";
+import { stretchAccuracy, strengthColour, topicStrength, type StrengthInput } from "./strength";
 
 describe("activity days", () => {
   it("uses the student's own time zone for the day", () => {
@@ -152,27 +152,47 @@ describe("topic strength", () => {
     expect(topicStrength(none)).toEqual({ score: 0, accuracy: null, answered: 0 });
   });
 
+  it("matches the agreed examples", () => {
+    expect(topicStrength(mcq(2, 2)).score).toBe(52);
+    expect(topicStrength(mcq(10, 8)).score).toBe(69);
+    expect(topicStrength(mcq(40, 34)).score).toBe(90);
+    expect(topicStrength(mcq(60, 60)).score).toBe(100);
+    expect(topicStrength(mcq(50, 20)).score).toBe(37);
+  });
+
   it("does not crown a topic from two lucky answers", () => {
     const tiny = topicStrength(mcq(2, 2));
-    const solid = topicStrength(mcq(40, 34));
     expect(tiny.accuracy).toBe(100);
-    expect(tiny.score).toBeLessThan(60);
-    expect(solid.score).toBeGreaterThan(tiny.score);
-    expect(solid.score).toBeGreaterThan(80);
+    expect(topicStrength(mcq(10, 8)).score).toBeGreaterThan(tiny.score);
+    expect(topicStrength(mcq(40, 34)).score).toBeGreaterThan(tiny.score);
+  });
+
+  it("reaches 100% for perfect work once there is enough of it", () => {
+    expect(topicStrength(mcq(20, 20)).score).toBe(100);
+    expect(topicStrength(mcq(5, 5)).score).toBeLessThan(100);
   });
 
   it("rewards covering more of a topic at the same accuracy", () => {
     expect(topicStrength(mcq(30, 24)).score).toBeGreaterThan(topicStrength(mcq(10, 8)).score);
   });
 
-  it("stays honest about weak topics", () => {
-    expect(topicStrength(mcq(50, 20)).score).toBeLessThan(55);
-    expect(topicStrength(mcq(3, 0)).score).toBeLessThan(35);
+  it("scores weak topics below their raw accuracy", () => {
+    expect(topicStrength(mcq(50, 20)).score).toBeLessThan(40);
+    expect(topicStrength(mcq(3, 0)).score).toBeLessThan(25);
   });
 
-  it("only nears full with lots of accurate work", () => {
-    expect(topicStrength(mcq(60, 60)).score).toBeGreaterThanOrEqual(95);
-    expect(topicStrength(mcq(60, 60)).score).toBeLessThanOrEqual(100);
+  it("lets a small topic reach full confidence", () => {
+    expect(topicStrength({ ...mcq(12, 12), questionsAvailable: 12 }).score).toBe(100);
+  });
+
+  it("stretches accuracy away from 50% but keeps the ends and the order", () => {
+    expect(stretchAccuracy(0)).toBe(0);
+    expect(stretchAccuracy(0.5)).toBe(0.5);
+    expect(stretchAccuracy(1)).toBe(1);
+    expect(stretchAccuracy(0.85)).toBeGreaterThan(0.85);
+    expect(stretchAccuracy(0.4)).toBeLessThan(0.4);
+    const samples = Array.from({ length: 101 }, (_, i) => stretchAccuracy(i / 100));
+    expect(samples.every((value, i) => i === 0 || value > samples[i - 1])).toBe(true);
   });
 
   it("counts free-response work, weighted by its points", () => {
