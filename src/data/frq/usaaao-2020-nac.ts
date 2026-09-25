@@ -612,7 +612,7 @@ Deduct within an item for missing expressions (the question requires all express
       topics: ["Stars & Black Holes", "Galaxies & Universe", "Telescopes & Observing"],
       difficulty: "Advanced",
       points: 30,
-      text: String.raw`M15 is a globular cluster in the constellation Pegasus. The Hertzsprung–Russell diagram (apparent visual magnitude versus color index) of the cluster is shown in Figure 1. Considering that the mass ($M$)–luminosity ($L$) relation for main sequence stars is given by $\dfrac{M^3}{L} = \text{constant}$, answer the following questions. In this problem, ignore the interstellar reddening and dust extinction effects.
+      text: String.raw`M15 is a globular cluster in the constellation Pegasus. The Hertzsprung–Russell diagram (apparent visual magnitude versus color index) of the cluster is shown in Figure 1. Considering that the mass ($M$)–luminosity ($L$) relation for main sequence stars is given by $\dfrac{L}{M^3} = \text{constant}$, answer the following questions. In this problem, ignore the interstellar reddening and dust extinction effects.
 
 [[figure:m15-hr-diagram]]
 

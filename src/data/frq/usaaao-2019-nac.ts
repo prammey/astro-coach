@@ -22,6 +22,8 @@
 //     up to 30. The printed part values are kept (scored out of 30), with a
 //     note in the question text.
 //   - Q11(f) has no official solution, so Astro Coach wrote one.
+//   - Q10(f): the official unit for κ, "T s²/(kg m)", is corrected to T m s/kg
+//     (T m³ divided by kg m² s⁻¹).
 import type { FrqSeedExam } from "./types";
 
 const SHORT = "Short Questions";
@@ -562,13 +564,15 @@ where $\gamma$ (like $e/2m$ for a particle) depends only on the object's own pro
           prompt: String.raw`The surface magnetic moments for Mercury and the Sun are $5 \times 10^{12}$ T m$^3$ and $3 \times 10^{23}$ T m$^3$ respectively. Assuming the bodies are perfect spheres, evaluate the constant $\kappa$ for Mercury and the Sun. Comment on the values obtained and if they fit into the model developed in parts (c) and (d).`,
           solution: String.raw`Estimate each angular momentum as a uniform sphere, $L = \tfrac25 MR^2\omega$:
 
-- Mercury ($M = 3.3\times10^{23}$ kg, $R = 2.44\times10^{6}$ m, rotation period 58.6 days): $L \approx 10^{30}$ kg m$^2$/s, so $\kappa \approx \dfrac{5\times10^{12}}{10^{30}} = 5\times10^{-18}$ T s$^2$/(kg m).
-- Sun ($M = 2\times10^{30}$ kg, $R = 7\times10^{8}$ m, rotation period about 25 days): $L \approx 10^{42}$ kg m$^2$/s, so $\kappa \approx 3\times10^{-19}$ T s$^2$/(kg m).
+- Mercury ($M = 3.3\times10^{23}$ kg, $R = 2.44\times10^{6}$ m, rotation period 58.6 days): $L \approx 10^{30}$ kg m$^2$/s, so $\kappa \approx \dfrac{5\times10^{12}}{10^{30}} = 5\times10^{-18}$ T m s/kg.
+- Sun ($M = 2\times10^{30}$ kg, $R = 7\times10^{8}$ m, rotation period about 25 days): $L \approx 10^{42}$ kg m$^2$/s, so $\kappa \approx 3\times10^{-19}$ T m s/kg.
+
+(The unit of $\kappa$ is T m$^3$ divided by kg m$^2$ s$^{-1}$, i.e. T m s/kg; the official solution prints it as T s$^2$/(kg m).)
 
 The two values agree to within about an order of magnitude even though the angular momenta differ by $10^{12}$. This suggests the same kind of mechanism (a dynamo) generates the magnetic dipole in both, as the simple $\mathcal{M}_{\text{surf}} = \kappa L$ model assumes.`,
           rubric: `Astro Coach marking guide (3 points):
 - Angular momenta estimated as Iω (about 10^30 for Mercury and 10^42 kg m²/s for the Sun): 1 point.
-- κ ≈ 5 × 10^−18 (Mercury) and ≈ 3 × 10^−19 (Sun) T s²/(kg m), within an order of magnitude: 1 point.
+- κ ≈ 5 × 10^−18 (Mercury) and ≈ 3 × 10^−19 (Sun) T m s/kg, within an order of magnitude: 1 point.
 - Comment: similar κ (within an order of magnitude) suggests a similar dynamo mechanism, consistent with the model: 1 point.`,
         },
         {

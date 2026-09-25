@@ -17,7 +17,7 @@
 //   - The paper's answer sheets are not in the PDF. The Problem 3 sheet is
 //     the exam's own sky map; the Problem 6 grid paper and the Problem 9
 //     sheet (sketch axes + tick table) were rebuilt by Astro Coach.
-//   - Solution figures cannot be placed inside solution text, so the
+//   - Solution figures are shown after the solution text, so the
 //     solutions refer to "the figures at the end of the solution".
 import type { FrqSeedExam } from "./types";
 
@@ -251,7 +251,7 @@ Accepted band: a nearly straight line from the lower-left rim near the Pleiades 
 
 See the annotated map at the end of the solution.`,
           rubric: `Official marking scheme (3 points): each pole correctly marked and labelled within the accepted circle is 1 point. The available poles are the North Celestial Pole, North Ecliptic Pole and North Galactic Pole (no south poles are visible).
-Accepted positions (fraction of R from the centre, clock direction): NCP ≈ 0.65 R towards ≈ 4:40 (at Polaris); NEP ≈ 0.8 R towards ≈ 4 o'clock; NGP ≈ 0.35 R towards ≈ 2 o'clock. Marking a south pole or mislabelling north/south earns nothing for that pole.`,
+Accepted positions (fraction of R from the centre, clock direction): NCP ≈ 0.65 R towards ≈ 4:40 (at Polaris); NEP ≈ 0.8 R towards ≈ 4 o'clock; NGP ≈ 0.3 R towards ≈ 2 o'clock. Marking a south pole or mislabelling north/south earns nothing for that pole.`,
         },
         {
           label: "(f)",
@@ -259,7 +259,7 @@ Accepted positions (fraction of R from the centre, clock direction): NCP ≈ 0.6
           format: "DRAWING",
           prompt: String.raw`Are there any planets seen in the sky? If yes, mark and label the planets.`,
           solution: String.raw`Yes — one planet: **Jupiter**, the brightest "star" on the map, a little below and to the left of the centre (in Gemini, right on the ecliptic). See the annotated map at the end of the solution.`,
-          rubric: `Official marking scheme (1.5 points): 1 point for marking Jupiter correctly (the brightest dot, about 0.35 R from the centre towards ≈ 7 o'clock), 0.5 point for labelling it "Jupiter". 0 points if more than one planet is marked/labelled.`,
+          rubric: `Official marking scheme (1.5 points): 1 point for marking Jupiter correctly (the brightest dot, about 0.35–0.4 R from the centre towards ≈ 7–7:30 o'clock), 0.5 point for labelling it "Jupiter". 0 points if more than one planet is marked/labelled.`,
         },
         {
           label: "(g)",
@@ -414,7 +414,7 @@ The escape speed from Saturn at Enceladus' distance is
 
 $$v_{\text{esc},S} = \sqrt{\frac{2GM}{a}} = \sqrt{\frac{2(6.674\times10^{-11})(5.7\times10^{26})}{2.4\times10^{8}}}\ \text{m/s} \approx 18{,}000\ \text{m/s}$$
 
-To compare, we must switch to Saturn's frame: the water starts with Enceladus' orbital speed, $v_{\text{esc},S}/\sqrt{2} \approx 12{,}700\ \text{m/s}$, plus at most 400 m/s — still far below 18,000 m/s. So the material **stays bound to Saturn** and goes into orbit around it. (This is the source of Saturn's E ring!)`,
+To compare, we must switch to Saturn's frame: the water starts with Enceladus' orbital speed, $v_{\text{esc},S}/\sqrt{2} \approx 12{,}600\ \text{m/s}$, plus at most 400 m/s — still far below 18,000 m/s. So the material **stays bound to Saturn** and goes into orbit around it. (This is the source of Saturn's E ring!)`,
           rubric: `Official marking scheme (10 points):
 - Escape velocity formula v = √(2Gm/R): 1 point.
 - Rewriting it in terms of known quantities, v = √(2gR): 2 points.
@@ -713,7 +713,7 @@ $$5\log_{10}\!\left(\frac{352\ \text{ly}}{19.9\ \text{ly}}\right) \approx 6.24\ 
 
 so she sees $m \approx 1.25 - 6.24 \approx$ **$-5.0$**.
 
-Note: the official solution rounds the angular separation to 4.4° and states a separation of 41.6 ly, giving $m = -4.89$. Recomputing with the given coordinates gives 4.25° and 39.8 ly (19.9 ly for Kirara), so $m \approx -4.99$. The method is the same, and answers from about −4.8 to −5.1 should be treated as correct.`,
+Note: the official solution states an angular separation of 4.4° and a separation of 41.6 ly, giving $m = -4.89$. Both are slips: its own rounded inputs (153.1°, 149.7°, 5.3°) give 4.24°, and even 4.4° would give 40.3 ly, not 41.6 ly. Recomputing with the given coordinates gives 4.25° and 39.8 ly (19.9 ly for Kirara), so $m \approx -4.99$. The method is the same, and answers from about −4.8 to −5.1 should be treated as correct.`,
           rubric: `Astro Coach marking guide (20 points; the official solution gives no breakdown):
 - Angular separation from the spherical law of cosines with polar distances 153.1° and 149.7° and an RA difference of 21m 7s = 5.28°, giving ≈ 4.25° (the official solution's 4.4° is also accepted): 6 points.
 - Linear Acrux–Mimosa distance from the plane law of cosines, ≈ 39.8 ly (the official 41.6 ly is also accepted): 5 points.

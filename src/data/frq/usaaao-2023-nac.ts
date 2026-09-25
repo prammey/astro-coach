@@ -14,7 +14,10 @@
 //   - M3(a): the official table used a = 20.4 km for P5; the paper says 20.3 km.
 //   - M3(e): the star's luminosity works out to 2.9e14 W, not 3.23e14 W.
 //   - L2(e)/(f): a typo (128 -> 180) and a missing factor of 10^-7.
+//   - L3(g): solving precisely gives ωt ≈ 16.49°, not 16.45° (answer unchanged).
 //   - L3(i): solving the equation precisely gives about 45 s, not 48 s.
+// L2(f) also notes the comet's second (outbound) ecliptic crossing, which
+// the question's wording allows; the rubric accepts either crossing.
 // None of these changes the official final conclusions.
 //
 // Only S3 uses half points, because only its official marking scheme
@@ -812,12 +815,15 @@ $$\mu_\alpha = |\vec{\mu}|\cos i = 4.00\times10^{-7}\ \text{rad/s} = 0.082''/\te
 
 $$\mu_\delta = -|\vec{\mu}|\sin i = -7.03\times10^{-8}\ \text{rad/s} = -0.015''/\text{s}$$
 
-(The official solution prints $|\vec{\mu}| = 4.059$ rad/s; the factor $10^{-7}$ is missing there.)`,
+(The official solution prints $|\vec{\mu}| = 4.059$ rad/s; the factor $10^{-7}$ is missing there.)
+
+Note: strictly, the comet crosses the ecliptic twice, because the other node (towards $\alpha = 12^\text{h}$, the ascending node) is at true anomaly $107.6^\circ$, inside the asymptote at $135^\circ$. The official solution uses the first, inbound crossing above. At the second, outbound crossing, $r \approx 2.62\times10^{11}$ m, $v_\perp \approx 17000$ m/s, $|\vec{\mu}| \approx 6.50\times10^{-8}$ rad/s, and the comet heads north: $\mu_\alpha \approx +6.40\times10^{-8}$ rad/s ($0.013''$/s) and $\mu_\delta \approx +1.13\times10^{-8}$ rad/s ($0.0023''$/s).`,
           rubric: `Astro Coach marking guide (10 points):
 - Ecliptic crossing identified as the node through Aries (descending node) and its distance from the conic equation, r ≈ 1.05 × 10¹¹ m: 3 points.
 - Perpendicular velocity from angular momentum, v⊥ = v∞b/r ≈ 4.25 × 10⁴ m/s: 3 points.
 - Angular speed |μ| = v⊥/r ≈ 4.06 × 10⁻⁷ rad/s: 2 points.
-- Components μ_α ≈ +4.00 × 10⁻⁷ rad/s (0.082″/s) and μ_δ ≈ −7.0 × 10⁻⁸ rad/s (−0.015″/s), with correct signs: 2 points.`,
+- Components μ_α ≈ +4.00 × 10⁻⁷ rad/s (0.082″/s) and μ_δ ≈ −7.0 × 10⁻⁸ rad/s (−0.015″/s), with correct signs: 2 points.
+(The comet also crosses the ecliptic a second time, outbound, at the ascending node. Give full credit to a student who clearly works that crossing instead: r ≈ 2.62 × 10¹¹ m, v⊥ ≈ 1.70 × 10⁴ m/s, |μ| ≈ 6.5 × 10⁻⁸ rad/s, μ_α ≈ +6.4 × 10⁻⁸ rad/s, μ_δ ≈ +1.1 × 10⁻⁸ rad/s.)`,
         },
       ],
       solutionSource: "ADAPTED",
@@ -979,11 +985,13 @@ As in part (e), we can isolate $\omega t$ and try numerical iteration:
 
 $$\omega t = 4\arctan\left(\frac{\tan\delta}{\cos(\omega t - \alpha)} - \frac{\sin(\omega t - \alpha)\cot\beta}{\cos(\omega t/4)\cos(\omega t - \alpha)}\right)$$
 
-This diverges for most starting values, but we are given that $\omega t$ is within $\alpha \pm 2^\circ$, which is a good enough range to find the solution $\omega t \approx 16.45^\circ$ (for example by bisection).
+This diverges for most starting values, but we are given that $\omega t$ is within $\alpha \pm 2^\circ$, which is a good enough range to find the solution $\omega t \approx 16.49^\circ$ (for example by bisection).
 
 Finally, the law of sines in $\triangle X\chi N$ gives
 
-$$\chi X = \arcsin\left(\frac{\cos\delta\sin(\omega t - \alpha)}{\sin\beta}\right) \approx 6.06^\circ$$`,
+$$\chi X = \arcsin\left(\frac{\cos\delta\sin(\omega t - \alpha)}{\sin\beta}\right) \approx 6.06^\circ$$
+
+Note: the official solution quotes $\omega t \approx 16.45^\circ$; solving the equation precisely (with $\beta = 14^\circ$ or $\arctan\tfrac14$) gives $16.49^\circ$. The final answer, $6.06^\circ$, is the same either way.`,
           rubric: `Astro Coach marking guide (15 points):
 - Triangle NXχ set up with Nχ = 90° − δ, NX = 90° − ωt/4, angle ωt − α at N and β at X: 4 points.
 - Correct four-parts (or equivalent) equation for ωt: 4 points.

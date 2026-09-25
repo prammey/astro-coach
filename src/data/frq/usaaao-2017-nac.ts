@@ -91,7 +91,7 @@ $$L_\odot = \frac{2}{5}M_\odot R_\odot^2\,\Omega = \frac{2}{5}(1.99\times10^{30}
 
 $$L_J = 1.90\times10^{27}\sqrt{(6.67\times10^{-11})(1.99\times10^{30})(5.2 \times 1.50\times10^{11})} \approx 1.9\times10^{43}\ \text{kg m}^2\,\text{s}^{-1}$$
 
-**Comparison.** The angular momentum of Jupiter's orbit is larger — about 20 times the Sun's spin, even though the Sun has 99.9% of the mass.
+**Comparison.** The angular momentum of Jupiter's orbit is larger — about 17 times the Sun's spin, even though the Sun has 99.9% of the mass.
 
 **What it tells us.** The Sun and planets formed from a single rotating cloud. During formation there was significant transfer (partitioning) of angular momentum from the Sun into its protoplanetary disk, and that angular momentum is now carried by the planets. (If the real, centrally concentrated Sun is used, its $I$ is even smaller, which strengthens the conclusion.)`,
       rubric: String.raw`Astro Coach marking guide (5 points):
@@ -120,7 +120,7 @@ $$L_J = 1.90\times10^{27}\sqrt{(6.67\times10^{-11})(1.99\times10^{30})(5.2 \time
       figures: [
         { key: "quasar-jet", file: "quasar-jet.png", caption: "Figure 1: the jet travels from A to B at angle θ to the line of sight to the Earth.", sourcePage: 2 },
       ],
-      solution: String.raw`*Here "the jet from A/B arriving at the Earth" means the light the jet gives off at A and at B.*
+      solution: String.raw`Here "the jet from A/B arriving at the Earth" means the light the jet gives off at A and at B.
 
 The jet travels a distance $v\tau$ from A to B. Draw a line from B perpendicular to the line of sight through A, meeting it at point C. Light from B and light from C are then the same distance from the (very distant) Earth, so they take the same time to arrive. We only need to compare the light from A with the jet over the stretch before that.
 
@@ -224,7 +224,7 @@ The distance $R$ cancels, so the limit depends only on the mass.
       difficulty: "Intermediate",
       points: 10,
       text: String.raw`You are observing a star with declination $\delta = 42^\circ21'$ N and hour angle $H = 8^\text{h}16^\text{m}42^\text{s}$. If you are in a place with latitude $\varphi = 60^\circ$, compute the star's azimuth angle ($A$) and its height above the horizon ($h$) at the moment of observation.`,
-      solution: String.raw`This solution measures the azimuth $A$ clockwise from **south** (the convention of *Fundamental Astronomy* by Karttunen et al.).
+      solution: String.raw`This solution measures the azimuth $A$ clockwise from **south** (the convention of Fundamental Astronomy by Karttunen et al.).
 
 **Set-up.** Convert the hour angle: $H = 8^\text{h}16^\text{m}42^\text{s} = 124^\circ10.5'$. In the astronomical triangle, let $Z$ be the zenith, $P$ the north celestial pole and $X$ the star. Then $\angle ZPX = H$ and
 
@@ -244,7 +244,7 @@ $$\cos A = \frac{\cos PZ\cos ZX - \cos PX}{\sin PZ\sin ZX} = -0.7513 \quad\Longr
 
 The star is west of the meridian ($H > 0$), so $A = 138.7^\circ$ west of south — that is, in the north-west, at azimuth $318.7^\circ$ measured from north through east.
 
-*Note: the official solution prints $A = 138.37^\circ$ ($138^\circ22'12''$). That is an arithmetic slip — its own value $\cos A = -0.75134$ gives $A = 138.7^\circ$.*`,
+Note: the official solution prints $A = 138.37^\circ$ ($138^\circ22'12''$). That is an arithmetic slip — its own value $\cos A = -0.75134$ gives $A = 138.7^\circ$.`,
       rubric: String.raw`Astro Coach marking guide (10 points):
 - Hour angle converted to degrees (124.18°): 1 point.
 - Astronomical triangle set up with sides 90° − φ, 90° − δ and angle H at the pole: 2 points.
@@ -451,7 +451,7 @@ Find $R$ as a function of $R_0$ — the galactocentric radius of the Sun, $V_0$ 
           sourcePage: 8,
         },
       ],
-      solution: String.raw`*For more background, see section 24.3, "Kinematics of the Milky Way", in Carroll and Ostlie, and Roman-Duval et al. (2009), arXiv:0905.0723.*
+      solution: String.raw`For more background, see section 24.3, "Kinematics of the Milky Way", in Carroll and Ostlie, and Roman-Duval et al. (2009), arXiv:0905.0723.
 
 **i)** A neutral hydrogen atom in its ground state has two hyperfine levels: the electron and proton spins can be parallel (slightly higher energy) or antiparallel (lower energy). Collisions put atoms into the parallel state, and occasionally one spontaneously flips to the antiparallel state, emitting a photon with the tiny energy difference, $5.9\times10^{-6}$ eV — wavelength 21.1 cm. Each atom flips only about once every 10 million years, but there is so much hydrogen that the line is easily detected.
 
@@ -461,7 +461,11 @@ Find $R$ as a function of $R_0$ — the galactocentric radius of the Sun, $V_0$ 
 
 $$X = A, \qquad Y = C, \qquad Z = B$$
 
-**iv)** See Figure 6. For a cloud at galactocentric radius $R$ and distance $d$, the radial and transverse velocities relative to the Sun are
+**iv)** See Figure 6.
+
+[[figure:rotation-geometry]]
+
+For a cloud at galactocentric radius $R$ and distance $d$, the radial and transverse velocities relative to the Sun are
 
 $$V_r = V(R)\cos\alpha - V_0\sin l, \qquad V_t = V(R)\sin\alpha - V_0\cos l$$
 

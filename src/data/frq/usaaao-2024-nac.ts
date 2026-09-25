@@ -284,7 +284,7 @@ $$v = 1.0763\times10^3\ \text{m/s} - \frac{2\pi}{365.2564\cdot 24\cdot 3600\ \te
           label: "(e)",
           points: 6,
           prompt: String.raw`What is the diameter of the Moon's shadow on the observer?`,
-          solution: String.raw`Use similar triangles $XKA$ and $XOE$, where $X$ is the tip of the Moon's shadow cone, $O$ is the observer and $A$ is the point where the cone touches the Moon.
+          solution: String.raw`Use similar triangles $XKA$ and $XOE$, where $X$ is the tip of the Moon's shadow cone, $K$ is the centre of the Moon (drawn with the Moon symbol in the figure), $A$ is the point where the cone touches the Moon, $O$ is the observer and $E$ is the edge of the shadow at the observer.
 
 [[figure:sol-shadow]]
 

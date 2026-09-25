@@ -353,7 +353,7 @@ $$1 - 0.988 = 0.012$$`,
           label: "(d)",
           points: 2,
           prompt: tex`Stupendous Man finds that the Sun is currently exactly overhead at some point in the flight and is able to activate his device! What is the current month? Only give one answer.`,
-          solution: tex`The Sun can only be overhead on the part of the path between $23^\circ$ N and $23.5^\circ$ N, so its declination must be close to its maximum of $23.5^\circ$ N. The date must therefore be near the June solstice: the month is **June** (July is also accepted, as the Sun's declination is above $23^\circ$ from early June to mid-July).`,
+          solution: tex`The Sun can only be overhead on the part of the path between $23^\circ$ N and $23.5^\circ$ N, so its declination must be close to its maximum of $23.5^\circ$ N. The date must therefore be near the June solstice: the month is **June** (July is also accepted: the official answer is "June/July", since the Sun's declination stays above $23^\circ$ from about June 10 to July 2).`,
           rubric: `Astro Coach marking guide (2 points):
 - The Sun's declination must be between about 23° and 23.5° N, i.e. near the June solstice: 1 point.
 - Answer: June (July also accepted): 1 point.`,

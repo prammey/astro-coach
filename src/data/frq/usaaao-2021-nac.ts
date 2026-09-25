@@ -174,9 +174,7 @@ $$\frac{E}{m} = \frac{v^2}{2} - \frac{GM}{r} = 14.5 - \frac{3.986\times10^{5}}{1
 
 $$e = \sqrt{1 + \frac{2\,(E/m)\,(L/m)^2}{(GM)^2}} = \sqrt{1 + \frac{2(-20.46)(53000)^2}{(3.986\times10^{5})^2}} = \sqrt{1 - 0.723} \approx 0.53$$
 
-Alternatively, the eccentricity is the magnitude of the Laplace–Runge–Lenz vector divided by $GMm^2$: $e = \left|\dfrac{\vec{v}\times(\vec{r}\times\vec{v})}{GM} - \hat{r}\right| \approx 0.53$.
-
-(The official solution writes the energy per unit mass as $v^2 - GM/r$; the kinetic term should be $v^2/2$, as used here. The answer 0.53 is unchanged.)`,
+Alternatively, the eccentricity is the magnitude of the Laplace–Runge–Lenz vector divided by $GMm^2$: $e = \left|\dfrac{\vec{v}\times(\vec{r}\times\vec{v})}{GM} - \hat{r}\right| \approx 0.53$.`,
       rubric: String.raw`Astro Coach marking guide (5 points), based on the official solution:
 - Specific energy E/m = v²/2 − GM/r ≈ −20.5 km²/s²: 2 points.
 - Specific angular momentum L/m = |r × v| = 53,000 km²/s: 1 point.
@@ -391,7 +389,7 @@ Numerically: $\delta v_1 \approx 10.7$, $\delta v_2 \approx 3.2$, $\delta v_3 \a
 - (g) Chooses the Hohmann transfer because it is both faster and needs less δv: 4 points.`,
       solutionSource: "ADAPTED",
       questionPages: [3, 4],
-      solutionPages: [7, 8, 9, 10],
+      solutionPages: [7, 8, 9, 10, 11],
     },
 
     // --- M3: Launching a satellite from a space station --------------------

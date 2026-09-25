@@ -54,9 +54,9 @@ The Ly-$\alpha$ spectral line is produced when an electron transitions from the 
 Calculate the object's approximate distance from us in Mpc (assuming Hubble's constant $H_0 = 70\ \text{km/s/Mpc}$).`,
       solution: String.raw`To find the wavelength of the spectral line, we note that
 
-$$\frac{hc}{\lambda} = E_2 - E_1 \quad\Longrightarrow\quad \lambda = \frac{hc}{E_2 - E_1} = \frac{1239.8\ \text{eV nm}}{13.606\left(1 - \frac{1}{4}\right)\ \text{eV}} \approx 121.52\ \text{nm}$$
+$$\frac{hc}{\lambda} = E_2 - E_1 \quad\Longrightarrow\quad \lambda = \frac{hc}{E_2 - E_1} = \frac{1239.8\ \text{eV nm}}{13.606\left(1 - \frac{1}{4}\right)\ \text{eV}} \approx 121.50\ \text{nm}$$
 
-Answers within $\pm0.5$ nm of this result are accepted due to potential differences in rounding.
+(The official solution gives 121.52 nm, using $hc \approx 1240\ \text{eV nm}$.) Answers within $\pm0.5$ nm of this result are accepted due to potential differences in rounding.
 
 To calculate the recessional velocity, we use the fact that $\Delta\lambda$ results from the redshift due to motion away from us:
 
