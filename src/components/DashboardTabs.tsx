@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/auth';
@@ -23,22 +23,32 @@ const TABS: { id: TabType; label: string }[] = [
   { id: 'incorrect', label: 'Incorrect' },
 ];
 
-// Rounded trapezoid shape (like a browser tab): tapered sides, rounded top
-// corners, square bottom corners so it sits flush against the panel below.
-// Applied as a mask so it scales non-uniformly to fill each flex-width tab.
-const TAB_SHAPE_SVG =
-  "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 56' preserveAspectRatio='none'>" +
-  "<path d='M 0,56 L 4,24 A 24,24 0 0 1 22,0 L 178,0 A 24,24 0 0 1 196,24 L 200,56 Z' fill='white'/>" +
-  '</svg>';
-const TAB_SHAPE_MASK = `url("data:image/svg+xml,${encodeURIComponent(TAB_SHAPE_SVG)}")`;
-const tabShapeStyle: CSSProperties = {
-  WebkitMaskImage: TAB_SHAPE_MASK,
-  maskImage: TAB_SHAPE_MASK,
-  WebkitMaskSize: '100% 100%',
-  maskSize: '100% 100%',
-  WebkitMaskRepeat: 'no-repeat',
-  maskRepeat: 'no-repeat',
-};
+// Each tab is drawn like a browser tab: a flat middle between two fixed-size
+// end caps. The caps give the soft trapezoid sides, rounded top corners and
+// the little curved "feet" where the tab meets the table. They are separate
+// shapes (not one stretched image) so the curves never distort however wide
+// the tab gets.
+const CAP_WIDTH = 22;
+const TAB_HEIGHT = 46;
+
+// The left cap, in a 22 x 46 box: a concave foot at the bottom left, a gently
+// slanted side, and a rounded top corner. The right cap is its mirror image.
+const LEFT_CAP_PATH = `M0,${TAB_HEIGHT} C6,${TAB_HEIGHT} 7,${TAB_HEIGHT - 3} 8,${TAB_HEIGHT - 9} L11,12 C12.5,4 16,0 ${CAP_WIDTH},0 L${CAP_WIDTH},${TAB_HEIGHT} Z`;
+
+/// One end of a tab, filled with the tab's colour (`fillClass`).
+function TabCap({ side, fillClass }: { side: 'left' | 'right'; fillClass: string }) {
+  return (
+    <svg
+      aria-hidden
+      width={CAP_WIDTH}
+      height={TAB_HEIGHT}
+      viewBox={`0 0 ${CAP_WIDTH} ${TAB_HEIGHT}`}
+      className={`shrink-0 ${fillClass} ${side === 'right' ? '-scale-x-100' : ''}`}
+    >
+      <path d={LEFT_CAP_PATH} />
+    </svg>
+  );
+}
 
 export default function DashboardTabs() {
   const { user } = useAuth();
@@ -102,22 +112,32 @@ export default function DashboardTabs() {
 
   return (
     <div>
-      {/* Chrome-style tab bar — rounded trapezoids */}
-      <div className="flex w-full gap-1.5">
+      {/* Browser-style tab bar. The active tab is the same colour as the
+          table header, so it flows straight into the table below. */}
+      <div className="relative z-20 flex w-full px-2" role="tablist">
         {TABS.map((tab) => {
           const isActive = activeTab === tab.id;
+          const fillClass = isActive ? 'fill-space' : 'fill-white/10 group-hover:fill-white/20';
           return (
             <button
               key={tab.id}
+              role="tab"
+              aria-selected={isActive}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex h-[47px] min-w-0 flex-1 items-center justify-center px-2 text-sm font-extrabold text-yellow transition-all duration-200 ease-snappy sm:px-6 sm:text-lg ${
-                isActive
-                  ? 'bg-cream z-20 shadow-[0_-4px_12px_rgba(0,0,0,0.15)]'
-                  : 'bg-space hover:bg-space/80 z-10 opacity-80 hover:opacity-100'
+              className={`group -mx-1.5 flex min-w-0 flex-1 items-end focus:outline-none focus-visible:[&>span]:underline ${
+                isActive ? 'z-10' : 'z-0'
               }`}
-              style={tabShapeStyle}
+              style={{ height: TAB_HEIGHT }}
             >
-              {tab.label}
+              <TabCap side="left" fillClass={fillClass} />
+              <span
+                className={`flex h-full min-w-0 flex-1 items-center justify-center truncate text-sm font-extrabold transition-colors duration-200 sm:text-base ${
+                  isActive ? 'bg-space text-yellow' : 'bg-white/10 text-white/70 group-hover:bg-white/20 group-hover:text-white'
+                }`}
+              >
+                {tab.label}
+              </span>
+              <TabCap side="right" fillClass={fillClass} />
             </button>
           );
         })}
@@ -127,11 +147,19 @@ export default function DashboardTabs() {
       {/* About ten rows show at once and the rest scroll inside this box
           (it also scrolls sideways on narrow screens, so the page itself
           never grows wider than the phone). The header row stays put. */}
-      <div className="relative z-10 -mt-1 max-h-[560px] overflow-auto rounded-b-2xl rounded-tr-2xl bg-cream shadow-[0_6px_16px_rgba(0,0,0,0.15)]">
+      <div className="relative z-10 max-h-[560px] overflow-auto rounded-b-2xl rounded-t-md bg-cream shadow-[0_6px_16px_rgba(0,0,0,0.15)]">
         {isLoading ? (
           <p className="p-6 text-navy/70">Loading...</p>
         ) : (
-          <table className="w-full">
+          // Fixed column widths, so the headings stay put when switching
+          // tabs; below 640px the table scrolls sideways instead.
+          <table className="w-full min-w-[640px] table-fixed">
+            <colgroup>
+              <col className="w-[40%]" />
+              <col className="w-[20%]" />
+              <col className="w-[22%]" />
+              <col className="w-[18%]" />
+            </colgroup>
             <thead className="sticky top-0 z-10 bg-space">
               <tr>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-white">Question</th>
