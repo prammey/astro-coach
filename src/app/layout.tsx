@@ -48,7 +48,9 @@ export default function RootLayout({
       className={`h-full antialiased ${bodyFont.variable}`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
+      {/* Browser extensions such as Grammarly add attributes to <body>;
+          this stops React warning about them. */}
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <AuthProvider>
           <TrainingModeProvider>
             <Navbar />

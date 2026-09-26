@@ -82,7 +82,9 @@ export default function OlympiadsPage() {
 
       <div className="mt-8 flex flex-col gap-5">
         {OLYMPIADS.map((olympiad, index) => (
-          <Reveal key={olympiad.name} delay={Math.min(index, 4) * 60}>
+          // All cards fade in on page load (a quick ripple down the list),
+          // so nothing waits for you to scroll.
+          <Reveal key={olympiad.name} delay={Math.min(index, 6) * 50} immediate>
             <OlympiadCard data={olympiad} />
           </Reveal>
         ))}

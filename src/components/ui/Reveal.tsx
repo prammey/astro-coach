@@ -12,16 +12,23 @@ import { useEffect, useRef, type ReactNode } from "react";
 // The attribute is set straight on the DOM node rather than through React
 // state, because nothing else needs to re-render when it changes.
 //
+// With `immediate`, the animation plays as soon as the page loads instead
+// of waiting for the element to scroll into view — useful for a list you
+// want fully visible straight away, still with the gentle fade-in.
+//
 // If the browser has no IntersectionObserver, or the user prefers reduced
 // motion, the content simply shows immediately.
 export default function Reveal({
   children,
   delay = 0,
   className = "",
+  immediate = false,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
+  /// Play on page load rather than on scroll.
+  immediate?: boolean;
 }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -40,6 +47,13 @@ export default function Reveal({
       return;
     }
 
+    // On page load: wait one frame so the hidden starting state is drawn,
+    // then fade in (so the transition actually plays).
+    if (immediate) {
+      const frame = requestAnimationFrame(show);
+      return () => cancelAnimationFrame(frame);
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
@@ -54,7 +68,7 @@ export default function Reveal({
 
     observer.observe(wrapper);
     return () => observer.disconnect();
-  }, []);
+  }, [immediate]);
 
   return (
     <div
