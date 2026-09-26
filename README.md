@@ -1107,7 +1107,9 @@ The rules are pure functions in `src/lib/progress/` with tests.
 
 The site owner's account (prameet.guha@gmail.com, set in `src/lib/view-as.ts`)
 gets a **View as (admin)** section in the profile dropdown: *My real
-account*, *Guest* (signed out), *Free account* or *Pro*. The choice is saved
+account*, *Guest* (signed out), *Free account*, *Pro*, or *Pro, out of
+credits* (every monthly grade used — for testing the out-of-credits screens
+and buying extra credits with Stripe's test card). The choice is saved
 in a cookie and the page reloads; while a simulated view is on, a yellow
 "Viewing as …" pill in the bottom-right corner switches back (in Guest view
 the dropdown is hidden, just as for a real visitor).
@@ -1119,6 +1121,27 @@ account is the owner's (`src/lib/pro/view-as.server.ts`). Guest view makes
 `getUserEntitlements` returns. The Pro view is simulated in memory only —
 nothing is written to the database or Stripe — but AI grading in that view
 is real and calls the model.
+
+## Extra AI grading credits
+
+When a Pro student has used all 50 monthly grades, the dashboard shows a
+red "out of AI grades" strip with the reset date and a **Buy extra AI
+grades** panel: type 5–50 credits, see the price ($0.15 each), and pay on a
+one-time Stripe Checkout (`/api/pro/credits/checkout`). The price is built
+on the server; the browser only sends a quantity.
+
+Credits are added only when Stripe's webhook confirms the payment
+(`checkout.session.completed` in payment mode → `grantPurchasedCredits`,
+recorded once per checkout session as a `CreditGrant`). The dashboard
+re-checks for a few seconds after returning from Stripe so they appear on
+their own. Bought credits never expire, are spent after the monthly 50, stay
+usable if Pro is cancelled, and show on top of the allowance ("89 of 50").
+
+Free students who run out are offered Pro instead. What still works with no
+credits, to keep practice stress-free: every question already started, every
+instant-check question, reading any question a Pro student can open, and
+"Give up & view solution". A Free student opening a new worked question sees
+a blurred made-up template with a lock — nothing real is sent.
 
 ## The rules that guard money
 

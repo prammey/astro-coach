@@ -4,7 +4,9 @@
 
 import { describe, expect, it } from "vitest";
 import {
+  canBuyCredits,
   canGiveUp,
+  checkCreditPurchase,
   creditChargeForOutcome,
   canViewFrqContent,
   canViewOfficialSolution,
@@ -375,5 +377,54 @@ describe("what a grading outcome costs", () => {
     // between does not move it.
     expect(creditChargeForOutcome("unreadable").consumesAttempt).toBe(false);
     expect(decideGradeAttempt(pro, afterOneGrade)).toMatchObject({ attemptNumber: 2 });
+  });
+});
+
+describe("buying extra credits", () => {
+  it("shows the plan's own allowance as the total, with bought credits on top", () => {
+    const credits = computeCredits(
+      proSubscription(),
+      { ...NO_USAGE, proPeriodUsed: 11, purchasedGranted: 50 },
+      NOW,
+    );
+    expect(credits.remaining).toBe(89); // "89 of 50"
+    expect(credits.total).toBe(50);
+  });
+
+  it("spends the monthly credits first, then bought ones, which never reset", () => {
+    const usage = { ...NO_USAGE, proPeriodUsed: 50, purchasedGranted: 10, purchasedUsed: 4 };
+    const credits = computeCredits(proSubscription(), usage, NOW);
+    expect(credits.remaining).toBe(6);
+    expect(credits.nextSource).toBe("PURCHASED");
+  });
+
+  it("keeps bought credits usable after Pro ends", () => {
+    const credits = computeCredits(null, { ...NO_USAGE, freeLifetimeUsed: 3, purchasedGranted: 10 }, NOW);
+    expect(credits.remaining).toBe(10);
+    expect(credits.nextSource).toBe("PURCHASED");
+  });
+
+  it("lets only a Pro student who has run out buy more", () => {
+    const outPro = computeEntitlements(proSubscription(), { ...NO_USAGE, proPeriodUsed: 50 }, NOW);
+    const busyPro = computeEntitlements(proSubscription(), { ...NO_USAGE, proPeriodUsed: 20 }, NOW);
+    const outFree = computeEntitlements(null, { ...NO_USAGE, freeLifetimeUsed: 3 }, NOW);
+    expect(canBuyCredits(outPro)).toBe(true);
+    expect(canBuyCredits(busyPro)).toBe(false);
+    expect(canBuyCredits(outFree)).toBe(false);
+  });
+
+  it("accepts 5 to 50 whole credits at $0.15 each", () => {
+    expect(checkCreditPurchase(5)).toEqual({ ok: true, quantity: 5, totalCents: 75 });
+    expect(checkCreditPurchase(50)).toEqual({ ok: true, quantity: 50, totalCents: 750 });
+    expect(checkCreditPurchase(4).ok).toBe(false);
+    expect(checkCreditPurchase(51).ok).toBe(false);
+    expect(checkCreditPurchase(7.5).ok).toBe(false);
+    expect(checkCreditPurchase("20").ok).toBe(false);
+  });
+
+  it("keeps instant-check questions open to everyone, even with no credits", () => {
+    const outFree = computeEntitlements(null, { ...NO_USAGE, freeLifetimeUsed: 3 }, NOW);
+    expect(canViewFrqContent(outFree, FRESH_QUESTION)).toBe(false);
+    expect(canViewFrqContent(outFree, FRESH_QUESTION, true)).toBe(true);
   });
 });

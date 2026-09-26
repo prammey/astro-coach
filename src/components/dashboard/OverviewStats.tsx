@@ -27,12 +27,16 @@ export default function OverviewStats({
   mcq,
   frq,
   credits,
+  isPro,
 }: {
   mcq: McqStats;
   /// Pro only; null for a Free account.
   frq: ProAnalytics["frqOverview"] | null;
   credits: Credits | null;
+  isPro: boolean | null;
 }) {
+  const outOfCredits = credits !== null && credits.remaining === 0;
+
   return (
     <section className="rounded-xl border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
       <div className="grid gap-5 md:grid-cols-2 md:divide-x-2 md:divide-ink/15">
@@ -76,17 +80,40 @@ export default function OverviewStats({
               label="AI grades left"
               value={credits ? `${credits.remaining}` : "—"}
               sub={credits ? `of ${credits.total}` : undefined}
-              colour="text-purple"
+              colour={outOfCredits ? "text-danger" : "text-purple"}
             />
           </div>
         </div>
       </div>
 
-      {credits?.hitPeriodCap && (
-        <p className="mt-4 rounded-lg border-2 border-ink bg-yellow px-3 py-2 text-sm font-bold">
-          You have used all {credits.total} AI grades for this billing period.
-          {credits.resetsAt && ` They reset on ${new Date(credits.resetsAt).toLocaleDateString()}.`}
-        </p>
+      {/* Out of AI grades: say so in red, and what to do next. */}
+      {outOfCredits && (
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border-2 border-danger bg-danger/10 px-4 py-3">
+          <p className="text-sm font-bold text-danger">
+            You&apos;re out of AI grades.
+            {isPro && credits?.resetsAt && (
+              <span className="font-semibold text-navy/80">
+                {" "}Your 50 reset on {new Date(credits.resetsAt).toLocaleDateString()}.
+              </span>
+            )}
+            {!isPro && <span className="font-semibold text-navy/80"> Pro gives you 50 every month.</span>}
+          </p>
+          {isPro ? (
+            <a
+              href="#buy-credits"
+              className="rounded-lg border-2 border-ink bg-yellow px-4 py-1.5 text-sm font-extrabold shadow-brutal-sm"
+            >
+              Buy credits
+            </a>
+          ) : (
+            <Link
+              href="/pricing"
+              className="rounded-lg border-2 border-ink bg-yellow px-4 py-1.5 text-sm font-extrabold shadow-brutal-sm"
+            >
+              Upgrade to Pro
+            </Link>
+          )}
+        </div>
       )}
     </section>
   );

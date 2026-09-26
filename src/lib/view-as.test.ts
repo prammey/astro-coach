@@ -19,6 +19,7 @@ describe("view as", () => {
     expect(viewAsFromCookieHeader("other=pro")).toBeNull();
     expect(viewAsFromCookieHeader(null)).toBeNull();
     expect(parseViewAs("free")).toBe("free");
+    expect(parseViewAs("pro-out")).toBe("pro-out");
     expect(parseViewAs("FREE")).toBeNull();
   });
 

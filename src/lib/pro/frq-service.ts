@@ -191,7 +191,7 @@ export async function listFrqCards(
         maxAttempts: MAX_GRADED_ATTEMPTS_PER_FRQ,
         bestScore: attempts?.best ?? null,
         solutionUnlocked: unlockedIds.has(question.id),
-        accessible: canViewFrqContent(entitlements, history),
+        accessible: canViewFrqContent(entitlements, history, isQuickCheck(question.parts)),
       };
     }),
   };
@@ -288,6 +288,10 @@ export type FrqDetail = {
     blockedReason: string | null;
     canGiveUp: boolean;
     creditsRemaining: number;
+    /// For the out-of-credits message: Pro students see when their
+    /// monthly grades reset and can buy more; Free students see Pro.
+    isPro: boolean;
+    creditsResetAt: string | null;
     nextAttemptNumber: number;
   };
 };
@@ -348,7 +352,7 @@ export async function getFrqForStudent(
     }),
   ]);
 
-  const mayRead = canViewFrqContent(entitlements, history);
+  const mayRead = canViewFrqContent(entitlements, history, isQuickCheck(question.parts));
   const mayReadSolution = canViewOfficialSolution(history);
   const decision = decideGradeAttempt(entitlements, history);
 
@@ -451,6 +455,8 @@ export async function getFrqForStudent(
       blockedReason: decision.allowed ? null : decision.reason,
       canGiveUp: mayRead && history.unlockReason === null,
       creditsRemaining: entitlements.credits.remaining,
+      isPro: entitlements.isPro,
+      creditsResetAt: entitlements.credits.resetsAt?.toISOString() ?? null,
       nextAttemptNumber: history.gradedAttempts + 1,
     },
   };
@@ -1087,7 +1093,8 @@ export async function checkShortAnswers(
     getUserEntitlements(userId, prisma),
     getQuestionHistory(userId, questionId, prisma),
   ]);
-  if (!canViewFrqContent(entitlements, history)) {
+  // Instant-check questions are open to every signed-in student.
+  if (!canViewFrqContent(entitlements, history, true)) {
     return { ok: false, code: "QUESTION_LOCKED", message: "This question is part of Astro Coach Pro." };
   }
 
@@ -1170,7 +1177,7 @@ export async function giveUpAndUnlock(
 ): Promise<GiveUpResult> {
   const question = await prisma.frqQuestion.findFirst({
     where: { id: questionId, status: "PUBLISHED" },
-    select: { id: true },
+    select: { id: true, parts: { select: { answerFormat: true } } },
   });
   if (!question) {
     return { ok: false, code: "QUESTION_NOT_FOUND", message: "Question not found." };
@@ -1182,7 +1189,7 @@ export async function giveUpAndUnlock(
   ]);
 
   // Someone who cannot open the question cannot use it to read a solution.
-  if (!canViewFrqContent(entitlements, history)) {
+  if (!canViewFrqContent(entitlements, history, isQuickCheck(question.parts))) {
     return {
       ok: false,
       code: "QUESTION_LOCKED",

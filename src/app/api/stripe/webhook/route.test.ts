@@ -48,6 +48,13 @@ vi.mock("@/lib/stripe/sync", async (importOriginal) => {
   };
 });
 
+// Credit purchases are checked on their own in src/lib/stripe/credits.test.ts;
+// here we only confirm the route hands a paid checkout to them.
+const grantPurchasedCredits = vi.fn(async () => ({ granted: true }));
+vi.mock("@/lib/stripe/credits", () => ({
+  grantPurchasedCredits: (...args: unknown[]) => grantPurchasedCredits(...(args as [])),
+}));
+
 const { POST } = await import("./route");
 
 /// The subscription Stripe would hand back when the route refetches it.
@@ -231,5 +238,29 @@ describe("the webhook's trust boundary", () => {
 
     expect(response.status).toBe(500);
     expect(releaseWebhookEvent).toHaveBeenCalled();
+  });
+});
+
+describe("credit purchases", () => {
+  it("hands a completed one-time checkout to the credit granter", async () => {
+    const response = await POST(
+      signedRequest({
+        id: "evt_credits_1",
+        object: "event",
+        type: "checkout.session.completed",
+        data: {
+          object: {
+            id: "cs_test_credits",
+            object: "checkout.session",
+            mode: "payment",
+            payment_status: "paid",
+            metadata: { kind: "grading_credits", supabaseUserId: "user-1", credits: "10" },
+          },
+        },
+      }),
+    );
+    expect(response.status).toBe(200);
+    expect(grantPurchasedCredits).toHaveBeenCalledTimes(1);
+    expect(retrieveSubscription).not.toHaveBeenCalled();
   });
 });

@@ -10,7 +10,10 @@
 // ./entitlements.ts.
 
 import {
+  CREDIT_PRICE_CENTS,
   FREE_LIFETIME_GRADE_CREDITS,
+  MAX_CREDIT_PURCHASE,
+  MIN_CREDIT_PURCHASE,
   MAX_GRADED_ATTEMPTS_PER_FRQ,
   PRO_PERIOD_GRADE_CREDITS,
 } from "./config";
@@ -90,7 +93,8 @@ export function proStatus(
 export type CreditState = {
   /// Grades the user can still run right now.
   remaining: number;
-  /// The allowance the remaining count is measured against.
+  /// The plan's own allowance (50 for Pro, 3 for Free). Bought credits
+  /// roll over on top, so `remaining` can be larger — "89 of 50".
   total: number;
   used: number;
   /// Which pool the NEXT grade would be drawn from. Null when exhausted.
@@ -128,7 +132,7 @@ export function computeCredits(
 
     return {
       remaining: periodRemaining + purchasedRemaining,
-      total: PRO_PERIOD_GRADE_CREDITS + usage.purchasedGranted,
+      total: PRO_PERIOD_GRADE_CREDITS,
       used: usage.proPeriodUsed + usage.purchasedUsed,
       nextSource: periodRemaining > 0
         ? "PRO_PERIOD"
@@ -147,7 +151,7 @@ export function computeCredits(
 
   return {
     remaining: freeRemaining + purchasedRemaining,
-    total: FREE_LIFETIME_GRADE_CREDITS + usage.purchasedGranted,
+    total: FREE_LIFETIME_GRADE_CREDITS,
     used: usage.freeLifetimeUsed + usage.purchasedUsed,
     nextSource: freeRemaining > 0
       ? "FREE_LIFETIME"
@@ -217,7 +221,11 @@ export type QuestionHistorySnapshot = {
 export function canViewFrqContent(
   entitlements: Entitlements,
   history: QuestionHistorySnapshot,
+  /// Instant-check questions are checked for free, with no AI and no
+  /// credit, so they stay open to every signed-in student.
+  isQuickCheck: boolean = false,
 ): boolean {
+  if (isQuickCheck) return true;
   if (entitlements.isPro) return true;
   if (history.hasSubmitted) return true;
   if (history.unlockReason !== null) return true;
@@ -329,4 +337,31 @@ export function creditChargeForOutcome(outcome: GradingOutcomeKind): {
 } {
   const graded = outcome === "graded";
   return { chargeCredit: graded, consumesAttempt: graded };
+}
+
+// --- Buying extra credits --------------------------------------------------
+
+/// Extra credits are for Pro students who have used up their allowance.
+/// (Free students are offered Pro instead.)
+export function canBuyCredits(entitlements: Entitlements): boolean {
+  return entitlements.isPro && entitlements.credits.remaining === 0;
+}
+
+export type CreditPurchaseCheck =
+  | { ok: true; quantity: number; totalCents: number }
+  | { ok: false; message: string };
+
+/// Checks a requested number of credits: a whole number within the
+/// allowed range. Returns the price in cents when it is valid.
+export function checkCreditPurchase(quantity: unknown): CreditPurchaseCheck {
+  if (typeof quantity !== "number" || !Number.isInteger(quantity)) {
+    return { ok: false, message: "Enter a whole number of credits." };
+  }
+  if (quantity < MIN_CREDIT_PURCHASE || quantity > MAX_CREDIT_PURCHASE) {
+    return {
+      ok: false,
+      message: `You can buy between ${MIN_CREDIT_PURCHASE} and ${MAX_CREDIT_PURCHASE} credits at a time.`,
+    };
+  }
+  return { ok: true, quantity, totalCents: quantity * CREDIT_PRICE_CENTS };
 }

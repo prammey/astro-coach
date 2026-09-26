@@ -28,6 +28,7 @@ import {
   type SubscriptionSnapshot,
 } from "./rules";
 import { simulatedProSubscription, viewOverrideFor } from "./view-as.server";
+import { PRO_PERIOD_GRADE_CREDITS } from "./config";
 
 export type { Entitlements, QuestionHistorySnapshot } from "./rules";
 
@@ -114,12 +115,15 @@ export async function getUserEntitlements(
   // For everyone else this is always null and the real subscription is used.
   const view = await viewOverrideFor(userId);
   const subscription =
-    view === "pro"
+    view === "pro" || view === "pro-out"
       ? simulatedProSubscription(now)
       : view === "free"
         ? null
         : await getSubscriptionSnapshot(userId, prisma);
   const usage = await getCreditUsage(userId, subscription, prisma, now);
+  // "Pro, out of credits": every monthly grade counts as used, so only
+  // real bought credits (if any) remain.
+  if (view === "pro-out") usage.proPeriodUsed = PRO_PERIOD_GRADE_CREDITS;
   return computeEntitlements(subscription, usage, now);
 }
 

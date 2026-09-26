@@ -56,7 +56,6 @@ is no longer out of scope. What remains deliberately unbuilt, and should
 not be added without a decision:
 
 - Open-ended "Ask AI" follow-up chat after a grade
-- Buying extra grading credits
 - Annual, family or school billing
 - Automatic figure cropping out of source PDFs
 
@@ -87,6 +86,13 @@ product either loses money or misleads a student.
   back — `submitGradedAttempt` in `src/lib/pro/frq-service.ts`. Opening a
   question, uploading, failing validation, an unreadable photo and a
   provider outage all cost nothing.
+- **Extra credits are bought, never assumed.** Only a Pro student with 0
+  credits left can buy more, 5–50 at $0.15 each (`CREDIT_PRICE_CENTS`,
+  `MIN_CREDIT_PURCHASE`, `MAX_CREDIT_PURCHASE`). Credits are granted only by
+  the verified Stripe webhook (`grantPurchasedCredits`), once per checkout
+  session. Bought credits never expire, are spent after the monthly 50, and
+  survive cancelling Pro. The display total stays the plan allowance
+  ("89 of 50").
 - **Short answers are free.** A question whose parts are all
   `SHORT_ANSWER` (fill-in, matching, naming) is checked exactly on the
   server by `checkShortAnswers` — no AI, no credit, no attempt used, and the

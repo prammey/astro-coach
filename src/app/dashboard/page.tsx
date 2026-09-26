@@ -29,6 +29,7 @@ import ProLockedPreview from '@/components/progress/ProLockedPreview';
 import OverviewStats, { type Credits, type McqStats } from '@/components/dashboard/OverviewStats';
 import StrengthsPanel from '@/components/dashboard/StrengthsPanel';
 import FrqInsights from '@/components/dashboard/FrqInsights';
+import BuyCreditsPanel from '@/components/pro/BuyCreditsPanel';
 import BrutalButton from '@/components/ui/BrutalButton';
 import LoadingStar from '@/components/ui/LoadingStar';
 
@@ -45,6 +46,11 @@ export default function DashboardPage() {
   const [credits, setCredits] = useState<Credits | null>(null);
   // Pro analytics (strengths, free-response insights), loaded once.
   const [analytics, setAnalytics] = useState<ProAnalytics | null>(null);
+  // True when the student has just come back from buying credits. (The
+  // first render is a loading screen, so reading the URL here is safe.)
+  const [creditsJustBought] = useState(
+    () => typeof window !== 'undefined' && window.location.search.includes('credits=success'),
+  );
 
   // Send signed-out visitors to the login page.
   useEffect(() => {
@@ -111,6 +117,26 @@ export default function DashboardPage() {
     };
   }, [user]);
 
+  // Back from Stripe after buying credits: Stripe's webhook adds them a
+  // moment later, so re-check the credit count for up to half a minute.
+  useEffect(() => {
+    if (!user || !creditsJustBought) return;
+    window.history.replaceState(null, '', '/dashboard');
+
+    let checks = 0;
+    const timer = window.setInterval(async () => {
+      checks++;
+      try {
+        const entitlements = await fetchEntitlements();
+        setCredits(entitlements.credits);
+        if (entitlements.credits.remaining > 0 || checks >= 15) window.clearInterval(timer);
+      } catch {
+        if (checks >= 15) window.clearInterval(timer);
+      }
+    }, 2000);
+    return () => window.clearInterval(timer);
+  }, [user, creditsJustBought]);
+
   const handleLogout = async () => {
     try {
       await signOut();
@@ -163,8 +189,20 @@ export default function DashboardPage() {
           </div>
         ) : stats ? (
           <div className="space-y-8">
+            {/* A thank-you after buying credits. */}
+            {creditsJustBought && (
+              <p role="status" className="rounded-lg border-[3px] border-ink bg-success px-4 py-3 font-bold text-white">
+                {credits && credits.remaining > 0
+                  ? `Payment received — you now have ${credits.remaining} AI grades. Happy solving!`
+                  : 'Payment received — your credits will appear here in a moment.'}
+              </p>
+            )}
+
             {/* 2. Overview */}
-            <OverviewStats mcq={stats} frq={analytics?.frqOverview ?? null} credits={credits} />
+            <OverviewStats mcq={stats} frq={analytics?.frqOverview ?? null} credits={credits} isPro={isPro} />
+
+            {/* Out of AI grades on Pro: buy more, 5 to 50 at a time. */}
+            {isPro && credits?.remaining === 0 && <BuyCreditsPanel />}
 
             {/* 3. Activity (Pro) */}
             {isPro && <ActivitySection />}

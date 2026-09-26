@@ -9,13 +9,16 @@
 // a cookie set by anyone else is ignored.
 
 /// The views the owner can switch to. Absent = their real account.
-export type ViewAs = "guest" | "free" | "pro";
+/// "pro-out" is Pro with every monthly credit used, for testing the
+/// out-of-credits screens and buying extra credits.
+export type ViewAs = "guest" | "free" | "pro" | "pro-out";
 
 export const VIEW_AS_OPTIONS: Array<{ value: ViewAs | null; label: string; description: string }> = [
   { value: null, label: "My real account", description: "No simulation" },
   { value: "guest", label: "Guest", description: "Signed out" },
   { value: "free", label: "Free account", description: "Signed in, no Pro" },
   { value: "pro", label: "Pro", description: "Signed in with Pro" },
+  { value: "pro-out", label: "Pro, out of credits", description: "All 50 monthly grades used" },
 ];
 
 /// The cookie holding the chosen view.
@@ -31,7 +34,7 @@ export function canSwitchViews(email: string | null | undefined): boolean {
 
 /// Reads a cookie value as a view, ignoring anything unexpected.
 export function parseViewAs(value: string | null | undefined): ViewAs | null {
-  return value === "guest" || value === "free" || value === "pro" ? value : null;
+  return value === "guest" || value === "free" || value === "pro" || value === "pro-out" ? value : null;
 }
 
 /// Finds the view in a raw Cookie header ("a=1; astro_view_as=pro").

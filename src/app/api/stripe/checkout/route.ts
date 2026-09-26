@@ -11,6 +11,7 @@ import { NextResponse } from "next/server";
 import { requireUser } from "@/lib/pro/auth-guard";
 import { getPrisma } from "@/lib/prisma";
 import { getStripe, isStripeConfigured } from "@/lib/stripe/client";
+import { ensureStripeCustomer } from "@/lib/stripe/customer";
 import { siteUrl, stripePriceIdForNewCheckout } from "@/lib/pro/config";
 
 export async function POST(request: Request) {
@@ -56,20 +57,7 @@ export async function POST(request: Request) {
 
     // Reuse the Stripe customer if we have one, so a resubscribing user
     // keeps a single billing history.
-    let customerId = existing?.stripeCustomerId ?? null;
-    if (!customerId) {
-      const customer = await stripe.customers.create({
-        email: auth.user.email ?? undefined,
-        metadata: { supabaseUserId: userId },
-      });
-      customerId = customer.id;
-
-      await prisma.subscription.upsert({
-        where: { userId },
-        create: { userId, stripeCustomerId: customerId },
-        update: { stripeCustomerId: customerId },
-      });
-    }
+    const customerId = await ensureStripeCustomer(prisma, auth.user);
 
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",

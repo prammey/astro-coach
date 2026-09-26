@@ -29,6 +29,14 @@ export const FREE_LIFETIME_GRADE_CREDITS = 3;
 /// The window is the subscription's own period, not a calendar month.
 export const PRO_PERIOD_GRADE_CREDITS = 50;
 
+/// Extra grading credits a Pro student can buy once their 50 run out:
+/// the price of one credit (in US cents) and how many one purchase may
+/// buy. Kept in public-config because the purchase form shows them; the
+/// server always re-checks against these same values.
+export const CREDIT_PRICE_CENTS = PUBLIC_PRO_CONFIG.creditPriceCents;
+export const MIN_CREDIT_PURCHASE = PUBLIC_PRO_CONFIG.minCreditPurchase;
+export const MAX_CREDIT_PURCHASE = PUBLIC_PRO_CONFIG.maxCreditPurchase;
+
 // --- Attempts --------------------------------------------------------------
 
 /// How many AI-graded attempts a student gets at any single FRQ. This is

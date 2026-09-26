@@ -17,6 +17,7 @@ import SolutionUploader, { type PendingFile } from "./SolutionUploader";
 import FrqText, { figuresPlacedIn } from "./FrqText";
 import QuickCheckForm from "./QuickCheckForm";
 import LoadingStar from "../ui/LoadingStar";
+import LockIcon from "../ui/LockIcon";
 
 type Dialog = "none" | "submit" | "giveUp";
 
@@ -233,7 +234,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
           )}
         </section>
       ) : (
-        <LockedQuestionNotice />
+        <LockedQuestionPreview />
       )}
 
       {/* Short-answer questions: checked instantly and free, no AI. */}
@@ -317,7 +318,10 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
           </div>
 
           {/* A disabled button always says why it is disabled. */}
-          {!state.canSubmit && (
+          {!state.canSubmit && state.blockedReason === "NO_CREDITS" && (
+            <OutOfCreditsNotice isPro={state.isPro} resetsAt={state.creditsResetAt} />
+          )}
+          {!state.canSubmit && state.blockedReason !== "NO_CREDITS" && (
             <p className="text-sm font-semibold text-navy/80">
               {disabledExplanation(state.blockedReason)}
             </p>
@@ -455,34 +459,83 @@ function AttemptState({ state }: { state: FrqDetail["state"] }) {
       <span>
         Graded attempts used: {state.attemptsUsed} of {state.maxAttempts}
       </span>
-      <span>
+      <span className={state.creditsRemaining === 0 ? "text-danger" : ""}>
         AI grading credits left: {state.creditsRemaining}
       </span>
     </div>
   );
 }
 
-function LockedQuestionNotice() {
+/// Shown in place of a question the student cannot open (a Free account
+/// with no AI grades left). Behind the blur is a made-up question template
+/// — the server sent nothing real — so there is nothing to uncover.
+function LockedQuestionPreview() {
   return (
-    <section className="rounded-xl border-[3px] border-ink bg-purple p-6 text-white shadow-brutal">
-      <h2 className="text-2xl font-extrabold">This question is part of Astro Coach Pro</h2>
-      <p className="mt-2 text-white/90">
-        You have used your 3 free AI grades. Everything you have already
-        worked on stays yours — Pro opens the rest of the free-response bank.
-      </p>
-      <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-white/90">
-        <li>50 AI grades every month</li>
-        <li>Rubric-based, part-by-part feedback on real olympiad problems</li>
-        <li>Handwritten and PDF submissions</li>
-        <li>Detailed topic analytics and progress trends</li>
-      </ul>
-      <Link
-        href="/pricing"
-        className="mt-5 inline-block rounded-lg border-[3px] border-ink bg-yellow px-6 py-3 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
-      >
-        Unlock Astro Coach Pro
-      </Link>
+    <section className="relative overflow-hidden rounded-xl border-[3px] border-ink bg-white shadow-brutal">
+      <div aria-hidden className="pointer-events-none select-none space-y-4 p-6 blur-[7px]">
+        <div className="h-5 w-3/4 rounded bg-navy/30" />
+        <div className="h-4 w-full rounded bg-navy/20" />
+        <div className="h-4 w-11/12 rounded bg-navy/20" />
+        <div className="h-4 w-2/3 rounded bg-navy/20" />
+        <div className="mx-auto h-40 w-2/3 rounded-lg border-[3px] border-navy/30 bg-electric/15" />
+        {["(a)", "(b)", "(c)"].map((label) => (
+          <div key={label} className="rounded-lg border-2 border-navy/20 bg-cream p-4">
+            <div className="h-4 w-16 rounded bg-navy/30" />
+            <div className="mt-2 h-4 w-5/6 rounded bg-navy/20" />
+          </div>
+        ))}
+      </div>
+
+      <div className="absolute inset-0 flex items-center justify-center bg-navy/30 p-4">
+        <div className="max-w-sm rounded-xl border-[3px] border-ink bg-white p-6 text-center text-navy shadow-brutal">
+          <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-ink bg-yellow">
+            <LockIcon />
+          </span>
+          <h2 className="mt-3 text-xl font-extrabold">You&apos;re out of AI grades</h2>
+          <p className="mt-1 text-sm text-navy/75">
+            Astro Coach Pro opens every free-response question with 50 AI grades a month. Questions you&apos;ve
+            already worked on — and every instant-check question — stay open for free.
+          </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            <Link
+              href="/pricing"
+              className="rounded-lg border-[3px] border-ink bg-yellow px-4 py-2 font-extrabold shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+            >
+              Upgrade to Pro
+            </Link>
+            <Link href="/dashboard" className="rounded-lg border-[3px] border-ink bg-white px-4 py-2 font-bold hover:bg-cream">
+              Go to dashboard
+            </Link>
+          </div>
+        </div>
+      </div>
     </section>
+  );
+}
+
+/// Shown where the submit button would work, when the student has no AI
+/// grades left. They can still read the question and work on it.
+function OutOfCreditsNotice({ isPro, resetsAt }: { isPro: boolean; resetsAt: string | null }) {
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border-2 border-danger bg-danger/10 px-4 py-3">
+      <p className="flex items-center gap-2 text-sm font-bold text-danger">
+        <LockIcon size={18} />
+        <span>
+          You&apos;re out of AI grades.
+          <span className="font-semibold text-navy/80">
+            {isPro
+              ? ` ${resetsAt ? `Your 50 reset on ${new Date(resetsAt).toLocaleDateString()}. ` : ""}You can buy extra credits from your dashboard.`
+              : " Upgrade to Pro for 50 AI grades a month."}
+          </span>
+        </span>
+      </p>
+      <Link
+        href={isPro ? "/dashboard#buy-credits" : "/pricing"}
+        className="rounded-lg border-2 border-ink bg-yellow px-4 py-1.5 text-sm font-extrabold shadow-brutal-sm"
+      >
+        {isPro ? "Go to dashboard" : "Upgrade to Pro"}
+      </Link>
+    </div>
   );
 }
 

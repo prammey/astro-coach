@@ -9,6 +9,9 @@
 //      is acknowledged without being processed twice.
 //   3. Attribution  — the Supabase user comes from subscription metadata we
 //      set ourselves at checkout, never from the request body's say-so.
+//
+// It also grants extra grading credits when a one-time credit purchase is
+// paid — again only from a verified event, never from a success URL.
 
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
@@ -23,6 +26,7 @@ import {
   releaseWebhookEvent,
   upsertSubscription,
 } from "@/lib/stripe/sync";
+import { grantPurchasedCredits } from "@/lib/stripe/credits";
 
 // The events we act on. Anything else is acknowledged and ignored, so
 // enabling extra events in the Stripe dashboard cannot break this route.
@@ -100,6 +104,13 @@ export async function POST(request: Request) {
     switch (event.type) {
       case "checkout.session.completed": {
         const session = event.data.object as Stripe.Checkout.Session;
+
+        // A one-time purchase of extra grading credits.
+        if (session.mode === "payment") {
+          await grantPurchasedCredits(session, getPrisma());
+          break;
+        }
+
         if (session.mode === "subscription" && session.subscription) {
           const id =
             typeof session.subscription === "string"

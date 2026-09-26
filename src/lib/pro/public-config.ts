@@ -19,4 +19,9 @@ export const PUBLIC_PRO_CONFIG = {
   proPeriodGrades: 50,
   maxAttemptsPerFrq: 3,
   maxUploadPages: 8,
+  /// Extra AI grading credits, for Pro students who have used their 50.
+  /// Shown on the purchase form; the server re-checks every value.
+  creditPriceCents: 15,
+  minCreditPurchase: 5,
+  maxCreditPurchase: 50,
 } as const;

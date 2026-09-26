@@ -78,6 +78,13 @@ export function fetchEntitlements(): Promise<EntitlementsResponse> {
   return apiGet<EntitlementsResponse>("/api/pro/entitlements");
 }
 
+/// Sends a Pro student to Stripe Checkout to buy `quantity` extra grading
+/// credits. The price is set on the server; credits arrive via the webhook.
+export async function startCreditCheckout(quantity: number): Promise<void> {
+  const { url } = await apiPost<{ url: string }>("/api/pro/credits/checkout", { quantity });
+  window.location.href = url;
+}
+
 /// Sends the user to Stripe Checkout. The price is chosen server-side.
 export async function startProCheckout(): Promise<void> {
   const { url } = await apiPost<{ url: string }>("/api/stripe/checkout", {});
