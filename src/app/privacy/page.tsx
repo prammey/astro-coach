@@ -20,9 +20,9 @@ export default function PrivacyPage() {
         <BrutalCard tone="cream">
           <h2 className="text-xl font-bold text-purple">The short version</h2>
           <p className="mt-2 text-navy">
-            Astro Coach is a free, independent study tool for astronomy olympiad
-            students. It stores the minimum needed to keep you signed in and show
-            your progress. It does not sell your data and does not show ads. It
+            Astro Coach is an independent study tool for astronomy olympiad
+            students, free to use with an optional paid Pro plan. It stores the
+            minimum needed to keep you signed in and show your progress. It does not sell your data and does not show ads. It
             uses Google Analytics to understand how the site is used.
           </p>
         </BrutalCard>
@@ -85,7 +85,10 @@ export default function PrivacyPage() {
           </h2>
           <ul className="mt-2 list-disc space-y-1 pl-6 text-navy">
             <li>No advertising or marketing trackers</li>
-            <li>No payment details — Astro Coach is free and takes no payments</li>
+            <li>
+              No card details — payments are handled by Stripe, and Astro Coach
+              never sees your card number
+            </li>
             <li>No precise location data</li>
           </ul>
         </BrutalCard>
@@ -109,6 +112,11 @@ export default function PrivacyPage() {
             <li>
               <strong>Google</strong> — sign-in, only if you choose to sign in
               with Google
+            </li>
+            <li>
+              <strong>Stripe</strong> — payments for Pro and extra grading
+              credits, only if you buy them. Astro Coach keeps just your plan
+              status and a Stripe customer reference.
             </li>
             <li>
               <strong>Google Analytics</strong> — site usage statistics, not
