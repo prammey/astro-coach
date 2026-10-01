@@ -99,6 +99,12 @@ export default function LoginPage() {
                 placeholder="••••••••"
                 disabled={isSubmitting}
               />
+              {/* Sends a reset link by email; see /forgot-password. */}
+              <div className="mt-2 text-right">
+                <Link href="/forgot-password" className="text-sm font-semibold text-electric hover:underline">
+                  Forgot password?
+                </Link>
+              </div>
             </div>
 
             <BrutalButton type="submit" variant="primary" className="mt-6 w-full" disabled={isSubmitting}>

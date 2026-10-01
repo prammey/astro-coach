@@ -7,6 +7,7 @@ import { useAuth } from '@/lib/auth-context';
 import GoogleSignInButton from '@/components/GoogleSignInButton';
 import BrutalButton from '@/components/ui/BrutalButton';
 import LoadingStar from '@/components/ui/LoadingStar';
+import { validateNewPassword } from '@/lib/password';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -47,16 +48,10 @@ export default function SignupPage() {
       return;
     }
 
-    // Validate passwords match
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      setIsSubmitting(false);
-      return;
-    }
-
-    // Validate password length
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters');
+    // Validate the password (matches its confirmation, long enough)
+    const passwordError = validateNewPassword(password, confirmPassword);
+    if (passwordError) {
+      setError(passwordError);
       setIsSubmitting(false);
       return;
     }
