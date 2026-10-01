@@ -133,6 +133,10 @@ export default function PrivacyPage() {
               with Google
             </li>
             <li>
+              <strong>Gmail</strong> — sends account emails, such as password
+              reset links
+            </li>
+            <li>
               <strong>Google Gemini</strong> — grading free-response answers,
               only when you submit one for AI grading
             </li>
