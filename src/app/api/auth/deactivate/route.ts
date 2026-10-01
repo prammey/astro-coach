@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
-import { getPrisma } from '@/lib/prisma';
+import { deleteAllUserData } from '@/lib/account/delete-account';
 
 // Permanently deletes the signed-in user's account and everything stored
 // about them. This is what the "Deactivate Account" modal promises, so it
@@ -48,16 +48,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Clear their practice data first. If this fails, nothing has been lost
-    // and the user can safely retry.
-    const prisma = getPrisma();
+    // Stop their billing, then delete their files and data. Every step is
+    // safe to repeat, so after a failure the user can simply try again.
     const userId = user.id;
 
-    await prisma.$transaction([
-      prisma.userAttempt.deleteMany({ where: { userId } }),
-      prisma.userQuestionProgress.deleteMany({ where: { userId } }),
-      prisma.bookmark.deleteMany({ where: { userId } }),
-    ]);
+    try {
+      await deleteAllUserData(userId);
+    } catch (dataError) {
+      console.error('Delete user data error:', dataError);
+      return NextResponse.json(
+        {
+          error:
+            'Could not delete your account. Your login was not removed — please try again.',
+        },
+        { status: 500 },
+      );
+    }
 
     // Then remove the account itself. Retrying after a failure here is safe:
     // the data deletion above is idempotent.
