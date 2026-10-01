@@ -380,6 +380,12 @@ export default function ProfileSettingsPage() {
                 <li>Delete all your profile data</li>
                 <li>Delete all your saved progress</li>
                 <li>Delete all your attempt history</li>
+                <li>Delete your free-response answers and uploaded work</li>
+                <li>
+                  Cancel Astro Coach Pro immediately, with no refund for the rest
+                  of the month
+                </li>
+                <li>Lose any unused grading credits you bought</li>
                 <li>Remove your account permanently</li>
               </ul>
               <p className="font-semibold text-danger mt-4">This cannot be undone.</p>
