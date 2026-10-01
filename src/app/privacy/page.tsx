@@ -60,6 +60,25 @@ export default function PrivacyPage() {
             your saved and missed questions.
           </p>
 
+          <h3 className="mt-4 font-bold text-navy">
+            Free-response answers and AI grading
+          </h3>
+          <ul className="mt-2 list-disc space-y-1 pl-6 text-navy">
+            <li>The answers you type for free-response questions</li>
+            <li>
+              Photos or PDFs of your written work, if you upload them. These are
+              kept in private storage, and the app shows them only to you.
+            </li>
+            <li>The score and feedback each graded attempt receives</li>
+          </ul>
+          <p className="mt-2 text-navy">
+            When you submit an answer for AI grading, your answer and any pages
+            you uploaded are sent to Google&apos;s Gemini AI service, together
+            with the question and its marking scheme, so it can be graded. Your
+            name and email address are not sent. Short-answer questions are
+            checked by Astro Coach itself and are never sent to an AI service.
+          </p>
+
           <h3 className="mt-4 font-bold text-navy">Site usage (Google Analytics)</h3>
           <p className="mt-2 text-navy">
             Google Analytics records which pages are visited, roughly where
@@ -104,7 +123,7 @@ export default function PrivacyPage() {
           <ul className="mt-2 list-disc space-y-1 pl-6 text-navy">
             <li>
               <strong>Supabase</strong> — accounts, sign-in, the database of your
-              progress, and profile picture storage
+              progress, and storage for profile pictures and uploaded work
             </li>
             <li>
               <strong>Vercel</strong> — hosting and serving the website
@@ -112,6 +131,10 @@ export default function PrivacyPage() {
             <li>
               <strong>Google</strong> — sign-in, only if you choose to sign in
               with Google
+            </li>
+            <li>
+              <strong>Google Gemini</strong> — grading free-response answers,
+              only when you submit one for AI grading
             </li>
             <li>
               <strong>Stripe</strong> — payments for Pro and extra grading
