@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 // Typesetting styles for the maths in MCQ explanations (see MathText).
 import "katex/dist/katex.min.css";
@@ -36,6 +37,10 @@ export const metadata: Metadata = {
   },
 };
 
+// The Google Analytics measurement ID. It is only set on Vercel, so local
+// development visits are never counted. Without it, no tag is loaded.
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
+
 // The root layout wraps every page with the shared Navbar and Footer.
 export default function RootLayout({
   children,
@@ -60,6 +65,26 @@ export default function RootLayout({
             <ViewAsPill />
           </TrainingModeProvider>
         </AuthProvider>
+
+        {/* Google Analytics (gtag.js). Lives in the root layout so it loads
+            exactly once on every page. "afterInteractive" waits until the
+            page is usable, so it never slows the first paint. */}
+        {GA_MEASUREMENT_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

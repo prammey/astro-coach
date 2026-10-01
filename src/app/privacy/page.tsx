@@ -14,7 +14,7 @@ export default function PrivacyPage() {
       <h1 className="text-3xl font-extrabold text-navy sm:text-4xl">
         Privacy Policy
       </h1>
-      <p className="mt-2 text-sm text-navy/60">Last updated: 4 September 2026</p>
+      <p className="mt-2 text-sm text-navy/60">Last updated: 1 October 2026</p>
 
       <div className="mt-8 space-y-6">
         <BrutalCard tone="cream">
@@ -22,8 +22,8 @@ export default function PrivacyPage() {
           <p className="mt-2 text-navy">
             Astro Coach is a free, independent study tool for astronomy olympiad
             students. It stores the minimum needed to keep you signed in and show
-            your progress. It does not sell your data, does not show ads, and does
-            not run third-party analytics or tracking.
+            your progress. It does not sell your data and does not show ads. It
+            uses Google Analytics to understand how the site is used.
           </p>
         </BrutalCard>
 
@@ -59,6 +59,24 @@ export default function PrivacyPage() {
             This is what produces your dashboard: accuracy, attempt history, and
             your saved and missed questions.
           </p>
+
+          <h3 className="mt-4 font-bold text-navy">Site usage (Google Analytics)</h3>
+          <p className="mt-2 text-navy">
+            Google Analytics records which pages are visited, roughly where
+            visitors are (country or city level), the type of device and
+            browser, and how people arrive at the site. It uses cookies to tell
+            repeat visits apart. This is only used to see which parts of Astro
+            Coach are useful. It is not linked to your account, and it is not
+            used for advertising. You can block it with a browser extension or
+            Google&apos;s{" "}
+            <a
+              href="https://tools.google.com/dlpage/gaoptout"
+              className="font-bold text-electric underline"
+            >
+              opt-out add-on
+            </a>
+            .
+          </p>
         </BrutalCard>
 
         <BrutalCard className="bg-white">
@@ -67,9 +85,8 @@ export default function PrivacyPage() {
           </h2>
           <ul className="mt-2 list-disc space-y-1 pl-6 text-navy">
             <li>No advertising or marketing trackers</li>
-            <li>No third-party analytics</li>
             <li>No payment details — Astro Coach is free and takes no payments</li>
-            <li>No location data, and nothing from your device beyond your session</li>
+            <li>No precise location data</li>
           </ul>
         </BrutalCard>
 
@@ -79,7 +96,7 @@ export default function PrivacyPage() {
           </h2>
           <p className="mt-2 text-navy">
             Your data is never sold or shared for advertising. It is handled by
-            three service providers, purely so the app can run:
+            these service providers, to run and improve the app:
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-6 text-navy">
             <li>
@@ -90,7 +107,12 @@ export default function PrivacyPage() {
               <strong>Vercel</strong> — hosting and serving the website
             </li>
             <li>
-              <strong>Google</strong> — only if you choose to sign in with Google
+              <strong>Google</strong> — sign-in, only if you choose to sign in
+              with Google
+            </li>
+            <li>
+              <strong>Google Analytics</strong> — site usage statistics, not
+              linked to your account, as described above
             </li>
           </ul>
         </BrutalCard>
