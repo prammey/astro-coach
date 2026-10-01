@@ -97,6 +97,16 @@ export async function openBillingPortal(): Promise<void> {
   window.location.href = url;
 }
 
+/// Cancels Pro at the end of the paid month. The account stays.
+export async function cancelPro(): Promise<void> {
+  await apiPost("/api/stripe/subscription", { action: "cancel" });
+}
+
+/// Undoes a cancellation before the paid month ends.
+export async function resumePro(): Promise<void> {
+  await apiPost("/api/stripe/subscription", { action: "resume" });
+}
+
 /// Uploads solution files straight to private storage, then returns the
 /// paths to attach to a submission.
 ///
