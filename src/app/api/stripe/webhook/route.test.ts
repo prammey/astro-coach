@@ -181,6 +181,29 @@ describe("renewal invoices", () => {
   });
 });
 
+describe("deleted accounts", () => {
+  it("does not recreate a subscription row once the customer is deleted", async () => {
+    retrieveSubscription.mockResolvedValue({
+      ...subscriptionFromStripe(),
+      status: "canceled",
+      customer: { id: "cus_123", object: "customer", deleted: true },
+    });
+
+    const response = await POST(
+      signedRequest({
+        id: "evt_sub_updated_1",
+        object: "event",
+        type: "customer.subscription.updated",
+        data: { object: { id: "sub_123", object: "subscription" } },
+      }),
+    );
+
+    expect(response.status).toBe(200);
+    expect(retrieveSubscription).toHaveBeenCalledWith("sub_123", { expand: ["customer"] });
+    expect(upsertSubscription).not.toHaveBeenCalled();
+  });
+});
+
 describe("the webhook's trust boundary", () => {
   it("rejects a payload signed with the wrong secret", async () => {
     const payload = JSON.stringify(

@@ -48,6 +48,14 @@ async function syncSubscriptionById(subscriptionId: string): Promise<void> {
     expand: ["customer"],
   });
 
+  // The customer is deleted only when the student deleted their account
+  // (src/lib/account/delete-account.ts). Their data is already gone, so a
+  // late event must not write a fresh Subscription row back for them.
+  const customer = subscription.customer;
+  if (typeof customer !== "string" && "deleted" in customer && customer.deleted) {
+    return;
+  }
+
   const userId = readSupabaseUserId(subscription);
   if (!userId) {
     console.error(
