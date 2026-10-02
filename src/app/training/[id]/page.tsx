@@ -18,7 +18,7 @@ function previewText(text: string, maxLength = 155): string {
 }
 
 // Each question gets its own title, so a shared link says which question
-// it is ("USAAAO 2024 First Round · Question 3") instead of a generic name.
+// it is ("USAAAO 2014 National Astronomy Olympiad · Question 1").
 export async function generateMetadata({
   params,
 }: {
@@ -30,7 +30,7 @@ export async function generateMetadata({
   if (!question) return { title: "Question not found" };
 
   const publicQuestion = toPublicQuestion(question);
-  const title = `${question.examName} · ${questionNumberLabel(publicQuestion)}`;
+  const title = `${question.competition} ${question.year} ${question.examName} · ${questionNumberLabel(publicQuestion)}`;
   const firstText = question.questionText || question.parts?.[0]?.questionText || "";
 
   return {

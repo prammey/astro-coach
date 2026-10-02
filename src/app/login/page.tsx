@@ -70,11 +70,7 @@ export default function LoginPage() {
 
           <GoogleSignInButton />
 
-          <div className="my-6 flex items-center gap-3">
-            <span className="h-0.5 flex-1 bg-navy/20" />
-            <span className="text-xs font-bold uppercase tracking-wide text-navy/60">or</span>
-            <span className="h-0.5 flex-1 bg-navy/20" />
-          </div>
+          {/* Renders nothing while Google sign-in is switched off. */}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>

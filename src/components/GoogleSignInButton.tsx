@@ -6,8 +6,9 @@ import { useAuth } from '@/lib/auth-context';
 // Google sign-in is fully wired up, but it stays switched off until the
 // project has its own domain and Google's brand verification passes —
 // a *.vercel.app URL cannot be verified, since the domain is Vercel's.
-// Until then the button shows as a disabled placeholder rather than
-// sending people into an "unverified app" warning or a Supabase error.
+// Until then the button (and the "or" divider under it) is hidden, so the
+// login and signup pages show only email and password — no unfinished-
+// looking "coming soon" button, no "unverified app" warning.
 //
 // To turn it on: flip this to true (and make sure Google is enabled in
 // the Supabase dashboard). Nothing else needs to change.
@@ -15,10 +16,10 @@ const GOOGLE_SIGN_IN_ENABLED = false;
 
 // Google's four-colour "G". Inline rather than a hosted image so it always
 // renders, even offline, and never flashes in late.
-function GoogleLogo({ muted = false }: { muted?: boolean }) {
+function GoogleLogo() {
   return (
     <svg
-      className={`h-5 w-5 flex-shrink-0 ${muted ? 'opacity-60' : ''}`}
+      className="h-5 w-5 flex-shrink-0"
       viewBox="0 0 48 48"
       aria-hidden="true"
     >
@@ -62,21 +63,8 @@ export default function GoogleSignInButton({ label = 'Continue with Google' }: {
     }
   };
 
-  // Placeholder state: same button, no action, clearly labelled.
-  if (!GOOGLE_SIGN_IN_ENABLED) {
-    return (
-      <button
-        type="button"
-        disabled
-        aria-disabled="true"
-        title="Google sign-in is not available yet — use email and password for now"
-        className="flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-lg border-[3px] border-ink bg-white px-6 py-3 font-bold text-navy opacity-60 shadow-brutal-sm"
-      >
-        <GoogleLogo muted />
-        Google coming soon!
-      </button>
-    );
-  }
+  // Switched off: show nothing at all.
+  if (!GOOGLE_SIGN_IN_ENABLED) return null;
 
   return (
     <div>
@@ -91,6 +79,13 @@ export default function GoogleSignInButton({ label = 'Continue with Google' }: {
       </button>
 
       {error && <p className="mt-2 text-sm font-semibold text-danger">{error}</p>}
+
+      {/* Separates Google from the email form below it. */}
+      <div className="my-6 flex items-center gap-3">
+        <span className="h-0.5 flex-1 bg-navy/20" />
+        <span className="text-xs font-bold uppercase tracking-wide text-navy/60">or</span>
+        <span className="h-0.5 flex-1 bg-navy/20" />
+      </div>
     </div>
   );
 }
