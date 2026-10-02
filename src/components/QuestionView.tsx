@@ -97,26 +97,35 @@ export default function QuestionView({
         <ReportProblemButton questionId={question.id} />
       </div>
 
+      {/* Where this question came from. The permission status stays in the
+          data for our own records; it is not something students need. */}
       <BrutalCard tone="white" className="mt-8">
-        <h2 className="font-bold text-purple">Source Metadata</h2>
-        <dl className="mt-2 space-y-1 text-sm text-navy">
-          <div>
-            <dt className="inline font-bold">Source URL: </dt>
-            <dd className="inline">{question.sourceUrl}</dd>
-          </div>
-          <div>
-            <dt className="inline font-bold">PDF URL: </dt>
-            <dd className="inline">{question.pdfUrl}</dd>
-          </div>
-          <div>
-            <dt className="inline font-bold">Attribution: </dt>
-            <dd className="inline">{question.attributionText}</dd>
-          </div>
-          <div>
-            <dt className="inline font-bold">Permission Status: </dt>
-            <dd className="inline">{question.permissionStatus}</dd>
-          </div>
-        </dl>
+        <h2 className="font-bold text-purple">Source</h2>
+        {question.attributionText && (
+          <p className="mt-2 text-sm text-navy">{question.attributionText}</p>
+        )}
+        <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
+          {question.pdfUrl && (
+            <a
+              href={question.pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-electric underline decoration-2 underline-offset-4 hover:text-purple"
+            >
+              Original paper (PDF) ↗
+            </a>
+          )}
+          {question.sourceUrl && (
+            <a
+              href={question.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-electric underline decoration-2 underline-offset-4 hover:text-purple"
+            >
+              Source page ↗
+            </a>
+          )}
+        </div>
       </BrutalCard>
     </>
   );

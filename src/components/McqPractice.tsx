@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { PublicQuestion } from "@/data/mcq/types";
 import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/lib/auth";
@@ -57,6 +59,8 @@ export default function McqPractice({
   onAnswerSubmitted?: () => void;
 }) {
   const { user } = useAuth();
+  // Signing in from here comes back to this exact question.
+  const pathname = usePathname();
   // One selected label per part, keyed by part ID. A standalone question
   // is treated as a single part so both paths share the same state.
   const [selections, setSelections] = useState<Record<string, string>>({});
@@ -281,7 +285,13 @@ export default function McqPractice({
 
       {!user && (
         <p className="mt-4 text-sm font-bold text-purple">
-          Sign in to save your progress.
+          <Link
+            href={`/login?next=${encodeURIComponent(pathname ?? "/training")}`}
+            className="underline decoration-2 underline-offset-4 hover:text-electric"
+          >
+            Sign in
+          </Link>{" "}
+          to save your progress.
         </p>
       )}
 
