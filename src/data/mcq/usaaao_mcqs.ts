@@ -50,7 +50,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 1.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -89,7 +89,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 2.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -128,7 +128,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 3.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -168,7 +168,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 4.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -207,7 +207,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 5.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -246,7 +246,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 6.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -285,7 +285,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 7.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -324,7 +324,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 8.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -363,7 +363,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 9.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -402,7 +402,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 10.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -441,7 +441,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 11.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -481,7 +481,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 12.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -521,7 +521,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 13.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -560,7 +560,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 14.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -599,7 +599,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 15.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -639,7 +639,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2014-nao-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO National Astronomy Olympiad 2013–2014, Section A: Multiple Choice, Question 16.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -679,7 +679,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 1.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -719,7 +719,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 2.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -760,7 +760,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 3.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -801,7 +801,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 4.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -841,7 +841,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 5.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -881,7 +881,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 6.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -922,7 +922,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 7.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -962,7 +962,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 8.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1002,7 +1002,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 9.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1042,7 +1042,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 10.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1082,7 +1082,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 11.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1123,7 +1123,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 12.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1163,7 +1163,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 13.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1204,7 +1204,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 14.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1245,7 +1245,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 15.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1286,7 +1286,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 16.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1327,7 +1327,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 17.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1368,7 +1368,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 18.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1409,7 +1409,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 19.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1450,7 +1450,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-practice-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO Practice Round 2015, Question 20.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1490,7 +1490,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 1.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1530,7 +1530,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 2.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1571,7 +1571,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 3.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1612,7 +1612,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 4.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1653,7 +1653,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 5.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1694,7 +1694,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 6.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1735,7 +1735,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 7.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1776,7 +1776,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 8.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1816,7 +1816,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 9.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1856,7 +1856,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 10.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1896,7 +1896,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 11.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1943,7 +1943,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 12. The question depends on the diagram printed on the source PDF page.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -1983,7 +1983,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 13.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2023,7 +2023,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 14.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2063,7 +2063,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 15.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2103,7 +2103,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 16.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2143,7 +2143,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 17.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2184,7 +2184,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 18.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2224,7 +2224,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 19.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2264,7 +2264,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 20.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2304,7 +2304,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 21.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2345,7 +2345,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 22.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2386,7 +2386,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 23.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2427,7 +2427,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 24.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2468,7 +2468,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 25.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2509,7 +2509,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 26.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2550,7 +2550,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 27.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2591,7 +2591,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 28.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2632,7 +2632,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 29.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2673,7 +2673,7 @@ export const usaaaoMcqs = [
   answerKeyUrl: "https://usaaao.org/wp-content/uploads/2016/06/2015-first-round-solutions.pdf",
   answerKeyPageNumber: 1,
   attributionText: "Source: USAAAO First Round 2015, Question 30.",
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2721,7 +2721,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 1.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2768,7 +2768,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 2. The official answer key marks option A; this item should receive a content review before publication.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2815,7 +2815,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 3.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2862,7 +2862,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 4.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2909,7 +2909,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 5. The official answer key marks option B; the numerical inputs merit review before publication.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -2956,7 +2956,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 6.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3003,7 +3003,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 7.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3050,7 +3050,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 8.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3097,7 +3097,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 9.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3144,7 +3144,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 10.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3191,7 +3191,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 11.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3237,7 +3237,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 12.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3284,7 +3284,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 13.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3330,7 +3330,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 14.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3376,7 +3376,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 15.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3423,7 +3423,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 16.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3470,7 +3470,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 17.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3517,7 +3517,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 19.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3564,7 +3564,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 20.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3611,7 +3611,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 21.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3658,7 +3658,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 22.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3705,7 +3705,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 23.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3752,7 +3752,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 24.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3799,7 +3799,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 25.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3846,7 +3846,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 26.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3893,7 +3893,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 27.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3940,7 +3940,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 28.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -3987,7 +3987,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 29.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4033,7 +4033,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 30.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4080,7 +4080,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 31.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4127,7 +4127,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 32.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4174,7 +4174,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 33.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4221,7 +4221,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2016 First Round, Question 34.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4268,7 +4268,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 1.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4315,7 +4315,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 2.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4362,7 +4362,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 3.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4409,7 +4409,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 4.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4464,7 +4464,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 5.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4511,7 +4511,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 6.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4558,7 +4558,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 7.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4605,7 +4605,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 8.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4660,7 +4660,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 9.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4724,7 +4724,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 10. The coordinate table and worked spherical-trigonometry diagram appear on source pages 6–7.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4771,7 +4771,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 11.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4826,7 +4826,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 12. The question depends on the source photos printed on page 8.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4873,7 +4873,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 13.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4934,7 +4934,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 14. The question depends on the Moon–Sun image printed on source page 9.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -4981,7 +4981,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 15.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5036,7 +5036,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 16. The question depends on the rotation-curve graph printed on page 11.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5083,7 +5083,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 17.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5130,7 +5130,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 18.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5185,7 +5185,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 19. The question depends on the spectrum graph printed on source page 13.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5243,7 +5243,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 20. The question depends on the spectrum graph printed on source page 13.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5301,7 +5301,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 21. The question depends on the spectrum graph printed on source page 13.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5359,7 +5359,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 22. The question depends on the spectrum graph printed on source page 13.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5406,7 +5406,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 23.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5453,7 +5453,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 24.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5508,7 +5508,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 25. The question depends on the Hubble velocity–distance graph printed on source page 15.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5555,7 +5555,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 26.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5602,7 +5602,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 28.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5649,7 +5649,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 29.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5704,7 +5704,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 30. The question depends on the precession image printed on source pages 17–18.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5751,7 +5751,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2017 First Round, Question 31.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5798,7 +5798,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 1.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5844,7 +5844,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 2.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5890,7 +5890,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 3.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5936,7 +5936,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 4.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -5982,7 +5982,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 5.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6028,7 +6028,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 6.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6074,7 +6074,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 7.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6120,7 +6120,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 8.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6166,7 +6166,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 9.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6212,7 +6212,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 10.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6258,7 +6258,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 11.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6304,7 +6304,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 12.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6350,7 +6350,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 13.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6396,7 +6396,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 14.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6442,7 +6442,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 15.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6488,7 +6488,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 16.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6534,7 +6534,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 17.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6580,7 +6580,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 18.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6626,7 +6626,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 19.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6672,7 +6672,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 20.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6718,7 +6718,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 21.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6764,7 +6764,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 22.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6810,7 +6810,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 23.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6856,7 +6856,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 24.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6902,7 +6902,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 25.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6948,7 +6948,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 26.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -6994,7 +6994,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 27.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7040,7 +7040,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 28.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7086,7 +7086,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 29.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7132,7 +7132,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2018 First Round, Question 30.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7177,7 +7177,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 1.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7222,7 +7222,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 2.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7267,7 +7267,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 3.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7313,7 +7313,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 4.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7358,7 +7358,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 5.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7403,7 +7403,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 6.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7448,7 +7448,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 7.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7494,7 +7494,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 8.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7540,7 +7540,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 9.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7586,7 +7586,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 10.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7632,7 +7632,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 11.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7678,7 +7678,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 12.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7724,7 +7724,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 13.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7770,7 +7770,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 14.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7816,7 +7816,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 15.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7862,7 +7862,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 16.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7908,7 +7908,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 17.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -7954,7 +7954,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 18.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8000,7 +8000,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 19.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8046,7 +8046,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 20.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8092,7 +8092,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 21.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8138,7 +8138,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 22.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8184,7 +8184,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 23.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8229,7 +8229,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 24.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8274,7 +8274,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 25.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8319,7 +8319,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 26.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8365,7 +8365,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 27.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8410,7 +8410,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 28.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8455,7 +8455,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 29.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8500,7 +8500,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2019 First Round, Question 30.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8545,7 +8545,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 1.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8590,7 +8590,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 2.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8635,7 +8635,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 3.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8681,7 +8681,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 4.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8727,7 +8727,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 5.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8773,7 +8773,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 6.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8819,7 +8819,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 7.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8865,7 +8865,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 8.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8911,7 +8911,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 9.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -8957,7 +8957,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 10.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9003,7 +9003,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 11.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9049,7 +9049,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 12.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9095,7 +9095,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 13.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9139,7 +9139,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 14.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9184,7 +9184,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 15.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9230,7 +9230,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 18.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9276,7 +9276,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 19.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9322,7 +9322,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 20.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9368,7 +9368,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 21.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9414,7 +9414,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 22.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9460,7 +9460,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 23.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9506,7 +9506,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 25.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9552,7 +9552,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 26.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9598,7 +9598,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 27.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9644,7 +9644,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 28.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9690,7 +9690,7 @@ export const usaaaoMcqs = [
 
   attributionText: "Source: USAAAO 2020 First Round, Question 29.",
 
-  permissionStatus: "needs-review",
+  permissionStatus: "permission-granted",
   status: "draft",
 },
 
@@ -9737,7 +9737,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 2,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -9787,7 +9787,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 2,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -9833,7 +9833,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 3,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -9879,7 +9879,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 3,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -9925,7 +9925,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 3,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -9971,7 +9971,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 4,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10017,7 +10017,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 5,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10067,7 +10067,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 5,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10117,7 +10117,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 6,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10167,7 +10167,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 6,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10217,7 +10217,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 7,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10263,7 +10263,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 8,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10309,7 +10309,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 8,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10365,7 +10365,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 9,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10415,7 +10415,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 10,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10465,7 +10465,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 11,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10511,7 +10511,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 12,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10557,7 +10557,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 12,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10603,7 +10603,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 13,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10653,7 +10653,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 13,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10707,7 +10707,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 14,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10753,7 +10753,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 14,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10803,7 +10803,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 15,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10849,7 +10849,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 16,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10895,7 +10895,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 16,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10941,7 +10941,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 17,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -10991,7 +10991,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 18,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11041,7 +11041,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 18,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11091,7 +11091,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2021/02/usaaao2021_exam1_solutions.pdf",
     answerKeyPageNumber: 20,
     attributionText: "USAAAO 2021 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11145,7 +11145,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 3,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11195,7 +11195,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 4,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11254,7 +11254,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 5,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11304,7 +11304,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 6,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11354,7 +11354,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 7,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11404,7 +11404,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 8,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11454,7 +11454,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 8,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11504,7 +11504,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 9,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11554,7 +11554,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 10,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11604,7 +11604,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 10,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11663,7 +11663,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 12,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11713,7 +11713,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 12,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11763,7 +11763,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 13,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11817,7 +11817,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 14,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11867,7 +11867,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 15,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11917,7 +11917,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 16,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -11971,7 +11971,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 17,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12027,7 +12027,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 17,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12077,7 +12077,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 18,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12127,7 +12127,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 18,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12177,7 +12177,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 19,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12228,7 +12228,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 19,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12278,7 +12278,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 20,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12328,7 +12328,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 21,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12378,7 +12378,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 21,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12437,7 +12437,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 24,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12487,7 +12487,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 24,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12537,7 +12537,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 25,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12587,7 +12587,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 25,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12637,7 +12637,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2022/02/usaaao_first_exam_2022_solutions-1.pdf",
     answerKeyPageNumber: 27,
     attributionText: "USAAAO 2022 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12687,7 +12687,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 1,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12737,7 +12737,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 2,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12787,7 +12787,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 2,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12837,7 +12837,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 2,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12887,7 +12887,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 3,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12937,7 +12937,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 3,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -12987,7 +12987,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 3,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13037,7 +13037,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 4,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13087,7 +13087,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 5,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13137,7 +13137,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 6,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13187,7 +13187,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 6,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13237,7 +13237,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 7,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13287,7 +13287,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 7,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13337,7 +13337,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 8,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13387,7 +13387,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 9,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13446,7 +13446,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 10,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13496,7 +13496,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 11,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13547,7 +13547,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 11,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13597,7 +13597,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 12,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13647,7 +13647,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 13,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13697,7 +13697,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 13,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13747,7 +13747,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 15,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13797,7 +13797,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 16,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13847,7 +13847,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 16,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13897,7 +13897,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 16,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13947,7 +13947,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 17,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -13997,7 +13997,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 18,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -14047,7 +14047,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 19,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -14101,7 +14101,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 20,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -14161,7 +14161,7 @@ export const usaaaoMcqs = [
     answerKeyUrl: "https://usaaao.org/wp-content/uploads/2023/02/usaaao_first_exam_2023_solutions.pdf",
     answerKeyPageNumber: 21,
     attributionText: "USAAAO 2023 First Round. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
 
@@ -14212,7 +14212,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "USAAAO 2024 First Round, Question 1. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14261,7 +14261,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "USAAAO 2024 First Round, Question 2. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14310,7 +14310,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "USAAAO 2024 First Round, Question 3. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14363,7 +14363,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 3,
     "attributionText": "USAAAO 2024 First Round, Question 4. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official image omitted; consult the cited exam page for the visual prompt.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14412,7 +14412,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 4,
     "attributionText": "USAAAO 2024 First Round, Question 5. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14465,7 +14465,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 5,
     "attributionText": "USAAAO 2024 First Round, Question 6. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official orbit diagram omitted; consult the cited exam page.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14514,7 +14514,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 6,
     "attributionText": "USAAAO 2024 First Round, Question 7. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14563,7 +14563,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 6,
     "attributionText": "USAAAO 2024 First Round, Question 8. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14616,7 +14616,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 7,
     "attributionText": "USAAAO 2024 First Round, Question 9. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14665,7 +14665,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 7,
     "attributionText": "USAAAO 2024 First Round, Question 10. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14714,7 +14714,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 8,
     "attributionText": "USAAAO 2024 First Round, Question 11. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14764,7 +14764,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 8,
     "attributionText": "USAAAO 2024 First Round, Question 12. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14817,7 +14817,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 9,
     "attributionText": "USAAAO 2024 First Round, Question 13. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official snapshot diagram omitted; consult the cited exam page.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14866,7 +14866,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 10,
     "attributionText": "USAAAO 2024 First Round, Question 14. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14915,7 +14915,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 10,
     "attributionText": "USAAAO 2024 First Round, Question 15. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -14964,7 +14964,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 11,
     "attributionText": "USAAAO 2024 First Round, Question 16. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15013,7 +15013,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 11,
     "attributionText": "USAAAO 2024 First Round, Question 17. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15066,7 +15066,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 12,
     "attributionText": "USAAAO 2024 First Round, Question 18. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15120,7 +15120,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 13,
     "attributionText": "USAAAO 2024 First Round, Question 19. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15169,7 +15169,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 14,
     "attributionText": "USAAAO 2024 First Round, Question 20. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15218,7 +15218,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 15,
     "attributionText": "USAAAO 2024 First Round, Question 21. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15267,7 +15267,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 16,
     "attributionText": "USAAAO 2024 First Round, Question 22. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15316,7 +15316,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 17,
     "attributionText": "USAAAO 2024 First Round, Question 24. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15365,7 +15365,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 18,
     "attributionText": "USAAAO 2024 First Round, Question 25. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15414,7 +15414,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 18,
     "attributionText": "USAAAO 2024 First Round, Question 26. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15463,7 +15463,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 19,
     "attributionText": "USAAAO 2024 First Round, Question 27. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15512,7 +15512,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 19,
     "attributionText": "USAAAO 2024 First Round, Question 28. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15561,7 +15561,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_2024.pdf",
     "answerKeyPageNumber": 20,
     "attributionText": "USAAAO 2024 First Round, Question 29. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15610,7 +15610,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "USAAAO 2025 First Round, Question 1. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15659,7 +15659,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "USAAAO 2025 First Round, Question 2. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15709,7 +15709,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "USAAAO 2025 First Round, Question 3. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15758,7 +15758,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "USAAAO 2025 First Round, Question 4. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15811,7 +15811,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 3,
     "attributionText": "USAAAO 2025 First Round, Question 5. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15864,7 +15864,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 4,
     "attributionText": "USAAAO 2025 First Round, Question 6. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15917,7 +15917,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 5,
     "attributionText": "USAAAO 2025 First Round, Question 7. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -15966,7 +15966,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 6,
     "attributionText": "USAAAO 2025 First Round, Question 8. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16015,7 +16015,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 7,
     "attributionText": "USAAAO 2025 First Round, Question 9. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16068,7 +16068,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 8,
     "attributionText": "USAAAO 2025 First Round, Question 10. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official sky map omitted; consult cited exam page.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16117,7 +16117,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 9,
     "attributionText": "USAAAO 2025 First Round, Question 11. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16167,7 +16167,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 10,
     "attributionText": "USAAAO 2025 First Round, Question 12. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16216,7 +16216,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 10,
     "attributionText": "USAAAO 2025 First Round, Question 13. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16265,7 +16265,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 11,
     "attributionText": "USAAAO 2025 First Round, Question 14. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16314,7 +16314,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 11,
     "attributionText": "USAAAO 2025 First Round, Question 15. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16367,7 +16367,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 12,
     "attributionText": "USAAAO 2025 First Round, Question 16. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official diagram omitted; consult cited exam page.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16416,7 +16416,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 13,
     "attributionText": "USAAAO 2025 First Round, Question 17. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16465,7 +16465,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 14,
     "attributionText": "USAAAO 2025 First Round, Question 18. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16514,7 +16514,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 14,
     "attributionText": "USAAAO 2025 First Round, Question 19. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16563,7 +16563,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 15,
     "attributionText": "USAAAO 2025 First Round, Question 20. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16616,7 +16616,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 15,
     "attributionText": "USAAAO 2025 First Round, Question 21. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16669,7 +16669,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 16,
     "attributionText": "USAAAO 2025 First Round, Question 22. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16718,7 +16718,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 17,
     "attributionText": "USAAAO 2025 First Round, Question 23. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16767,7 +16767,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 18,
     "attributionText": "USAAAO 2025 First Round, Question 24. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16816,7 +16816,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 18,
     "attributionText": "USAAAO 2025 First Round, Question 25. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16865,7 +16865,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 19,
     "attributionText": "USAAAO 2025 First Round, Question 26. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16914,7 +16914,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 20,
     "attributionText": "USAAAO 2025 First Round, Question 27. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -16963,7 +16963,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 21,
     "attributionText": "USAAAO 2025 First Round, Question 28. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17012,7 +17012,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 21,
     "attributionText": "USAAAO 2025 First Round, Question 29. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17061,7 +17061,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2025/09/usaaao_first_exam_sol_2025-1.pdf",
     "answerKeyPageNumber": 22,
     "attributionText": "USAAAO 2025 First Round, Question 30. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17110,7 +17110,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "USAAAO 2026 First Round, Question 1. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17159,7 +17159,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "USAAAO 2026 First Round, Question 2. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17208,7 +17208,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 3,
     "attributionText": "USAAAO 2026 First Round, Question 3. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17261,7 +17261,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 5,
     "attributionText": "USAAAO 2026 First Round, Question 4. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official sky map omitted; consult cited exam page.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17314,7 +17314,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 5,
     "attributionText": "USAAAO 2026 First Round, Question 5. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official sky map omitted; consult cited exam page.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17367,7 +17367,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 5,
     "attributionText": "USAAAO 2026 First Round, Question 6. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official sky map omitted; consult cited exam page.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17416,7 +17416,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 6,
     "attributionText": "USAAAO 2026 First Round, Question 7. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17466,7 +17466,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 6,
     "attributionText": "USAAAO 2026 First Round, Question 8. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17515,7 +17515,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 7,
     "attributionText": "USAAAO 2026 First Round, Question 9. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17564,7 +17564,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 7,
     "attributionText": "USAAAO 2026 First Round, Question 10. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17621,7 +17621,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 8,
     "attributionText": "USAAAO 2026 First Round, Question 11. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official sky map omitted; consult cited exam page.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17674,7 +17674,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 9,
     "attributionText": "USAAAO 2026 First Round, Question 12. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official light-curve choices omitted; consult cited exam pages.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17727,7 +17727,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 13,
     "attributionText": "USAAAO 2026 First Round, Question 13. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17776,7 +17776,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 14,
     "attributionText": "USAAAO 2026 First Round, Question 14. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17825,7 +17825,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 15,
     "attributionText": "USAAAO 2026 First Round, Question 15. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17874,7 +17874,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 16,
     "attributionText": "USAAAO 2026 First Round, Question 16. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17923,7 +17923,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 16,
     "attributionText": "USAAAO 2026 First Round, Question 17. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -17972,7 +17972,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 17,
     "attributionText": "USAAAO 2026 First Round, Question 18. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -18021,7 +18021,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 18,
     "attributionText": "USAAAO 2026 First Round, Question 19. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -18070,7 +18070,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 18,
     "attributionText": "USAAAO 2026 First Round, Question 20. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -18123,7 +18123,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 19,
     "attributionText": "USAAAO 2026 First Round, Question 21. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official rotation curve omitted; consult cited exam page.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -18176,7 +18176,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 20,
     "attributionText": "USAAAO 2026 First Round, Question 22. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official rotation curve omitted; consult cited exam page.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -18229,7 +18229,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 20,
     "attributionText": "USAAAO 2026 First Round, Question 23. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -18278,7 +18278,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 21,
     "attributionText": "USAAAO 2026 First Round, Question 24. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -18327,7 +18327,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 22,
     "attributionText": "USAAAO 2026 First Round, Question 25. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -18376,7 +18376,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 22,
     "attributionText": "USAAAO 2026 First Round, Question 26. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -18429,7 +18429,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 23,
     "attributionText": "USAAAO 2026 First Round, Question 27. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official graph omitted; consult cited exam page.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -18482,7 +18482,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 24,
     "attributionText": "USAAAO 2026 First Round, Question 28. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs. Official HR diagram omitted; consult cited exam page.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -18531,7 +18531,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 25,
     "attributionText": "USAAAO 2026 First Round, Question 29. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -18580,7 +18580,7 @@ export const usaaaoMcqs = [
     "answerKeyUrl": "https://usaaao.org/wp-content/uploads/2026/02/usaaao_first_exam_solution_2026.pdf",
     "answerKeyPageNumber": 26,
     "attributionText": "USAAAO 2026 First Round, Question 30. Question text, choices, and answer were transcribed from the official USAAAO exam and solutions PDFs.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
 ] as const;

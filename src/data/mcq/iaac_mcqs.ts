@@ -29,7 +29,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -57,7 +57,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -85,7 +85,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -113,7 +113,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -141,7 +141,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -169,7 +169,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -197,7 +197,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -225,7 +225,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -253,7 +253,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -281,7 +281,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -309,7 +309,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -337,7 +337,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -365,7 +365,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -393,7 +393,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -421,7 +421,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -449,7 +449,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -477,7 +477,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -505,7 +505,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -537,7 +537,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. Figure-dependent item: consult the official PDF page 5 for the NASA image.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -565,7 +565,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -593,7 +593,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -621,7 +621,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -649,7 +649,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -677,7 +677,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -705,7 +705,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -733,7 +733,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -761,7 +761,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -789,7 +789,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -817,7 +817,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -845,7 +845,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -873,7 +873,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -901,7 +901,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -929,7 +929,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -957,7 +957,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -985,7 +985,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1013,7 +1013,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1041,7 +1041,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1069,7 +1069,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1097,7 +1097,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1125,7 +1125,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2019/IAAC_Final_Round_2019_Solution.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2019. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1153,7 +1153,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1181,7 +1181,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1209,7 +1209,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1237,7 +1237,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1265,7 +1265,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1293,7 +1293,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1321,7 +1321,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1349,7 +1349,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1377,7 +1377,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1405,7 +1405,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1433,7 +1433,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1461,7 +1461,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1489,7 +1489,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1517,7 +1517,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1545,7 +1545,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1573,7 +1573,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1601,7 +1601,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1629,7 +1629,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1657,7 +1657,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1685,7 +1685,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1713,7 +1713,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1741,7 +1741,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1769,7 +1769,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1797,7 +1797,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1829,7 +1829,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. Figure-dependent item: consult the official PDF page 5 for the galaxy image.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1857,7 +1857,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1885,7 +1885,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1913,7 +1913,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1941,7 +1941,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1969,7 +1969,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -1997,7 +1997,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2025,7 +2025,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2053,7 +2053,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2081,7 +2081,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2109,7 +2109,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2137,7 +2137,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2165,7 +2165,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2193,7 +2193,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2221,7 +2221,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2249,7 +2249,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2277,7 +2277,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2305,7 +2305,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2333,7 +2333,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2361,7 +2361,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2389,7 +2389,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2417,7 +2417,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2445,7 +2445,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2473,7 +2473,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2501,7 +2501,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2529,7 +2529,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2020/IAAC_Final_Round_2020_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2020. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2557,7 +2557,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2585,7 +2585,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2613,7 +2613,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2641,7 +2641,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2669,7 +2669,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2697,7 +2697,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2725,7 +2725,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2753,7 +2753,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2781,7 +2781,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2809,7 +2809,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2841,7 +2841,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. Figure-dependent item: consult the official PDF page 3 for the image.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2869,7 +2869,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2897,7 +2897,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2925,7 +2925,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2953,7 +2953,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -2981,7 +2981,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3009,7 +3009,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3037,7 +3037,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. Needs mathematical/typographical review: preserve the official answer key, but verify the source’s printed units and exponents.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3065,7 +3065,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. Needs mathematical/answer-key review: the printed official key marks A, while the displayed Lorentz-factor relation appears to support C.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3093,7 +3093,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3121,7 +3121,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3149,7 +3149,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3177,7 +3177,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3205,7 +3205,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3233,7 +3233,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3265,7 +3265,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. Figure-dependent item: consult the official PDF page 6 for the telescope sketch.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3293,7 +3293,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3321,7 +3321,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3349,7 +3349,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3377,7 +3377,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
     {
@@ -3405,7 +3405,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. The supplied official solution PDF lists answer keys only through Question 30; this answer is independently derived.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3433,7 +3433,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. The supplied official solution PDF lists answer keys only through Question 30; this answer is independently derived.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3461,7 +3461,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. The supplied official solution PDF lists answer keys only through Question 30; this answer is independently derived.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3493,7 +3493,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. Figure-dependent item: consult the official PDF page 7 for the comet-orbit diagram. The supplied official solution PDF lists answer keys only through Question 30; this answer is independently derived.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3521,7 +3521,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. The supplied official solution PDF lists answer keys only through Question 30; this answer is independently derived.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3549,7 +3549,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. The supplied official solution PDF lists answer keys only through Question 30; this answer is independently derived.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3577,7 +3577,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. The supplied official solution PDF lists answer keys only through Question 30; this answer is independently derived.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3605,7 +3605,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. The supplied official solution PDF lists answer keys only through Question 30; this answer is independently derived.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3633,7 +3633,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. The supplied official solution PDF lists answer keys only through Question 30; this answer is independently derived.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
   {
@@ -3661,7 +3661,7 @@ export const iaacMcqs = [
     answerKeyUrl: "https://iaac.space/docs/problems/2021/IAAC_Final_Round_2021_Solution.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2021. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original. The supplied official solution PDF lists answer keys only through Question 30; this answer is independently derived.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft",
   },
 {
@@ -3709,7 +3709,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3757,7 +3757,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3805,7 +3805,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3849,7 +3849,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3894,7 +3894,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3938,7 +3938,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3986,7 +3986,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4030,7 +4030,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4074,7 +4074,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4118,7 +4118,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4162,7 +4162,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4206,7 +4206,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4250,7 +4250,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4294,7 +4294,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4338,7 +4338,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4382,7 +4382,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4426,7 +4426,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4471,7 +4471,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4515,7 +4515,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4559,7 +4559,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4603,7 +4603,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4647,7 +4647,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4691,7 +4691,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4735,7 +4735,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4779,7 +4779,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4823,7 +4823,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4867,7 +4867,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4911,7 +4911,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4959,7 +4959,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5003,7 +5003,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2022/IAAC_Final_Round_2022_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2022. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5051,7 +5051,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5099,7 +5099,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5147,7 +5147,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5191,7 +5191,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5235,7 +5235,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5279,7 +5279,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5327,7 +5327,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5371,7 +5371,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5415,7 +5415,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5460,7 +5460,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5504,7 +5504,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5548,7 +5548,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5592,7 +5592,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5636,7 +5636,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5680,7 +5680,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5724,7 +5724,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5768,7 +5768,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5812,7 +5812,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5860,7 +5860,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5904,7 +5904,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5948,7 +5948,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -5992,7 +5992,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6036,7 +6036,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6080,7 +6080,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6124,7 +6124,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6168,7 +6168,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6212,7 +6212,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6256,7 +6256,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6300,7 +6300,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6344,7 +6344,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2023/IAAC_Final_Round_2023_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2023. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
 
@@ -6389,7 +6389,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6433,7 +6433,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6477,7 +6477,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6521,7 +6521,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6565,7 +6565,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6609,7 +6609,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6653,7 +6653,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6697,7 +6697,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6741,7 +6741,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6785,7 +6785,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6829,7 +6829,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6877,7 +6877,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6925,7 +6925,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -6969,7 +6969,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7013,7 +7013,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7057,7 +7057,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7101,7 +7101,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7145,7 +7145,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7189,7 +7189,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7233,7 +7233,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7277,7 +7277,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7321,7 +7321,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7365,7 +7365,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7409,7 +7409,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7453,7 +7453,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7497,7 +7497,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2024/IAAC_Final_Round_2024_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2024. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7545,7 +7545,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7593,7 +7593,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7637,7 +7637,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7681,7 +7681,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7725,7 +7725,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7769,7 +7769,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7813,7 +7813,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7857,7 +7857,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7901,7 +7901,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7945,7 +7945,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -7989,7 +7989,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8033,7 +8033,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8077,7 +8077,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8121,7 +8121,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8165,7 +8165,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8209,7 +8209,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8253,7 +8253,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8297,7 +8297,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8341,7 +8341,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8385,7 +8385,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8429,7 +8429,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8473,7 +8473,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8517,7 +8517,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8561,7 +8561,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8605,7 +8605,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8649,7 +8649,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8693,7 +8693,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8737,7 +8737,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8781,7 +8781,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8825,7 +8825,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8869,7 +8869,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8913,7 +8913,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -8957,7 +8957,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -9001,7 +9001,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -9045,7 +9045,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -9089,7 +9089,7 @@ export const iaacMcqs = [
     "answerKeyUrl": "https://iaac.space/docs/problems/2025/IAAC_Final_Round_2025_Solution.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: International Astronomy and Astrophysics Competition (IAAC), Final Round 2025. Question wording and answer-choice text are transcribed from the official training PDF; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   }
 ] as const;
