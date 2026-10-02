@@ -45,9 +45,11 @@ export const metadata: Metadata = {
     title: `${SITE_NAME} — Astronomy Olympiad Training`,
     description: SITE_DESCRIPTION,
   },
+  // Small copies of the star logo (the original is 907px / 575 KB), so
+  // browsers are not sent half a megabyte just for a tab icon.
   icons: {
-    icon: "/star-icon.png",
-    apple: "/star-icon.png",
+    icon: "/icon-64.png",
+    apple: "/apple-touch-icon.png",
     other: [
       {
         rel: "mask-icon",
