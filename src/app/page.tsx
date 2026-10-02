@@ -1,3 +1,4 @@
+import Image from "next/image";
 import PageContainer from "@/components/PageContainer";
 import BrutalCard from "@/components/BrutalCard";
 import BrutalButton from "@/components/ui/BrutalButton";
@@ -90,15 +91,22 @@ export default async function HomePage() {
   return (
     <>
       {/* ---------- Hero ---------- */}
-      <section
-        className="relative flex min-h-[560px] flex-col justify-center border-b-[3px] border-ink text-white"
-        style={{
-          backgroundImage:
-            "linear-gradient(to bottom, rgba(11, 15, 46, 0.55), rgba(11, 15, 46, 0.35) 55%, rgba(11, 15, 46, 0.92)), url('/hero/home-hero.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      <section className="relative isolate flex min-h-[560px] flex-col justify-center overflow-hidden border-b-[3px] border-ink bg-navy text-white">
+        {/* The Milky Way photo, served by next/image as a resized modern
+            format (WebP/AVIF) instead of the 2.6 MB original PNG. */}
+        <Image
+          src="/hero/home-hero.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="-z-20 object-cover"
+        />
+        {/* Darkening gradient so the white text stays readable. */}
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,rgba(11,15,46,0.55),rgba(11,15,46,0.35)_55%,rgba(11,15,46,0.92))]"
+        />
         <PageContainer>
           {/* Each line arrives a beat after the previous one. This is the
               one choreographed moment on the site. */}
