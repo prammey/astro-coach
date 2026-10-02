@@ -85,7 +85,7 @@ export const BADGES: BadgeDefinition[] = [
   {
     id: "ignition",
     name: "Ignition",
-    description: "Practise 3 days in a row.",
+    description: "Practice 3 days in a row.",
     image: "/badges/ignition.svg",
     target: 3,
     unit: "days in a row",
@@ -94,7 +94,7 @@ export const BADGES: BadgeDefinition[] = [
   {
     id: "perfect-week",
     name: "Perfect Week",
-    description: "Practise on all 7 days of one week, Monday to Sunday.",
+    description: "Practice on all 7 days of one week, Monday to Sunday.",
     image: "/badges/perfect-week.svg",
     target: 7,
     unit: "days this week",
@@ -104,7 +104,7 @@ export const BADGES: BadgeDefinition[] = [
   {
     id: "lunar-cycle",
     name: "Lunar Cycle",
-    description: "Practise 30 days in a row — one full cycle of the Moon.",
+    description: "Practice 30 days in a row — one full cycle of the Moon.",
     image: "/badges/lunar-cycle.svg",
     target: 30,
     unit: "days in a row",
@@ -194,7 +194,7 @@ export const BADGES: BadgeDefinition[] = [
   {
     id: "globetrotter",
     name: "Olympiad Globetrotter",
-    description: "Practise questions from USAAAO, IAAC and BAAO.",
+    description: "Practice questions from USAAAO, IAAC and BAAO.",
     image: "/badges/globetrotter.svg",
     target: 3,
     unit: "competitions",
@@ -203,7 +203,7 @@ export const BADGES: BadgeDefinition[] = [
   {
     id: "time-traveller",
     name: "Time Traveller",
-    description: "Practise questions from 10 different exam years.",
+    description: "Practice questions from 10 different exam years.",
     image: "/badges/time-traveller.svg",
     target: 10,
     unit: "exam years",
@@ -212,7 +212,7 @@ export const BADGES: BadgeDefinition[] = [
   {
     id: "stargazer",
     name: "Stargazer",
-    description: "Practise at night, between 10 pm and 4 am — prime observing hours.",
+    description: "Practice at night, between 10 pm and 4 am — prime observing hours.",
     image: "/badges/stargazer.svg",
     target: 1,
     unit: "night session",
@@ -221,7 +221,7 @@ export const BADGES: BadgeDefinition[] = [
   {
     id: "early-bird",
     name: "Early Bird",
-    description: "Practise at sunrise, between 5 am and 8 am.",
+    description: "Practice at sunrise, between 5 am and 8 am.",
     image: "/badges/early-bird.svg",
     target: 1,
     unit: "morning session",

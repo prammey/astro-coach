@@ -71,7 +71,7 @@ export default function StrengthsPanel({
           )}
           {topicToPractiseNext && (
             <span className="rounded-full border-2 border-ink bg-yellow px-3 py-1">
-              Practise next: {topicToPractiseNext}
+              Practice next: {topicToPractiseNext}
             </span>
           )}
         </div>

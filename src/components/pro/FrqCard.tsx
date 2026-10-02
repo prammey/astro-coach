@@ -62,7 +62,7 @@ export default function FrqCard({
         {locked ? (
           <p className="flex items-center gap-2 font-bold text-purple">
             <LockIcon />
-            {signedIn ? "Unlock with Astro Coach Pro" : "Sign in to practise"}
+            {signedIn ? "Unlock with Astro Coach Pro" : "Sign in to practice"}
           </p>
         ) : question.quickCheck && question.bestScore !== null ? (
           <p className="font-semibold text-navy">
