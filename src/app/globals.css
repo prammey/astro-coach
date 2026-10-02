@@ -154,6 +154,10 @@
      reduced-motion rule at the bottom of this file turns it off. */
   html {
     scroll-behavior: smooth;
+    /* Stop the "rubber band" stretch past the top and bottom of the page,
+       which showed a strip of cream above the navy navbar and below the
+       footer. Turning the stretch off fixes every page at once. */
+    overscroll-behavior-y: none;
   }
 
   /* Highlighted text picks up the brand, not the browser default. */
