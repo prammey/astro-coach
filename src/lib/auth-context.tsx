@@ -30,7 +30,10 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
-  const [loading] = useState(false);
+  // True until the saved session has been read from storage. Pages that
+  // need a signed-in user wait for this before deciding to redirect, so a
+  // refresh of /profile/settings does not bounce through /login first.
+  const [loading, setLoading] = useState(true);
   // The owner's chosen view, read from its cookie. On the server there is
   // no document, but that is fine: the view only matters once the signed-in
   // user has loaded in the browser.
@@ -58,6 +61,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (mounted) {
           console.error('Auth init error:', error);
         }
+      } finally {
+        // Even if the check failed, stop waiting so no page spins forever.
+        if (mounted) setLoading(false);
       }
     };
 
@@ -66,6 +72,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (mounted) {
         setSession(session);
         setUser(session?.user ?? null);
+        setLoading(false);
       }
     });
 

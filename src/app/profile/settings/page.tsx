@@ -26,7 +26,7 @@ export default function ProfileSettingsPage() {
   // Redirect if not authenticated
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/login');
+      router.push('/login?next=/profile/settings');
     }
   }, [user, loading, router]);
 
