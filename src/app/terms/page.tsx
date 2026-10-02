@@ -1,6 +1,7 @@
 import PageContainer from "@/components/PageContainer";
 import BrutalCard from "@/components/BrutalCard";
 import Link from "next/link";
+import { PUBLIC_PRO_CONFIG } from "@/lib/pro/public-config";
 
 export const metadata = {
   title: "Terms of Service",
@@ -15,15 +16,16 @@ export default function TermsPage() {
       <h1 className="text-3xl font-extrabold text-navy sm:text-4xl">
         Terms of Service
       </h1>
-      <p className="mt-2 text-sm text-navy/60">Last updated: 4 September 2026</p>
+      <p className="mt-2 text-sm text-navy/60">Last updated: 1 October 2026</p>
 
       <div className="mt-8 space-y-6">
         <BrutalCard tone="cream">
           <h2 className="text-xl font-bold text-purple">What this is</h2>
           <p className="mt-2 text-navy">
-            Astro Coach is a free, independent educational project that helps
-            students prepare for astronomy olympiads. By creating an account or
-            using the site, you agree to these terms.
+            Astro Coach is an independent educational project that helps
+            students prepare for astronomy olympiads. It is free to use, with an
+            optional paid plan, Astro Coach Pro. By creating an account or using
+            the site, you agree to these terms.
           </p>
         </BrutalCard>
 
@@ -56,7 +58,7 @@ export default function TermsPage() {
             <Link href="/about" className="font-bold text-electric underline">
               About page
             </Link>{" "}
-            for the full source policy.
+            for more on where questions come from.
           </p>
         </BrutalCard>
 
@@ -69,6 +71,44 @@ export default function TermsPage() {
             contain mistakes. Astro Coach is a study aid, not an authoritative
             source. Always check the original competition paper before relying on
             anything here, and never treat a result on this site as an official one.
+          </p>
+        </BrutalCard>
+
+        <BrutalCard className="bg-white">
+          <h2 className="text-xl font-bold text-purple">Astro Coach Pro</h2>
+          <ul className="mt-2 list-disc space-y-1 pl-6 text-navy">
+            <li>
+              Pro is a monthly subscription, billed through Stripe. The price is
+              shown before you pay. A founding price stays the same for as long as
+              that subscription stays active.
+            </li>
+            <li>
+              You can cancel any time from your dashboard. Pro then continues
+              until the end of the month you already paid for, and you are not
+              charged again. Partial months are not refunded.
+            </li>
+            <li>
+              Pro includes {PUBLIC_PRO_CONFIG.proPeriodGrades} AI grades each
+              billing month. Unused monthly grades do not carry over.
+            </li>
+            <li>
+              Extra grading credits are a one-time purchase. They do not expire and
+              stay on your account if you cancel Pro.
+            </li>
+            <li>
+              Deleting your account cancels Pro immediately, without a refund for
+              the rest of the month, and removes any unused credits.
+            </li>
+            <li>Billing problems or questions: email the address below.</li>
+          </ul>
+        </BrutalCard>
+
+        <BrutalCard className="bg-white">
+          <h2 className="text-xl font-bold text-purple">AI grading</h2>
+          <p className="mt-2 text-navy">
+            Free-response answers are graded by an AI model against the
+            competition&apos;s marking scheme. It can make mistakes. Grades and
+            feedback are for practice only and are never an official result.
           </p>
         </BrutalCard>
 
@@ -94,7 +134,7 @@ export default function TermsPage() {
             Availability and changes
           </h2>
           <p className="mt-2 text-navy">
-            Astro Coach is offered free and as-is, with no guarantee of uptime,
+            Astro Coach is offered as-is, with no guarantee of uptime,
             and it is under active development. Features, questions, and these terms
             may change, and the site may be unavailable at times. To the extent the
             law allows, the project and its maintainer are not liable for any loss
