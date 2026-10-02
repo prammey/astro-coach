@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/auth';
+import LoadingStar from '@/components/ui/LoadingStar';
 
 export default function ProfileSettingsPage() {
   const router = useRouter();
@@ -21,6 +22,8 @@ export default function ProfileSettingsPage() {
   const [deactivatePassword, setDeactivatePassword] = useState('');
   const [deactivateConfirmed, setDeactivateConfirmed] = useState(false);
   const [isDeactivating, setIsDeactivating] = useState(false);
+  // "Change password": idle → sending → sent (a reset link was emailed).
+  const [passwordEmailState, setPasswordEmailState] = useState<'idle' | 'sending' | 'sent'>('idle');
   const initRef = useRef(false);
 
   // Redirect if not authenticated
@@ -208,10 +211,36 @@ export default function ProfileSettingsPage() {
     }
   };
 
+  // Emails the student a link to /reset-password, where they choose a new
+  // password. Same flow as "Forgot password?", so it also works for
+  // accounts that signed up with Google and never had a password.
+  const sendPasswordEmail = async () => {
+    if (!user?.email) return;
+    setError('');
+    setPasswordEmailState('sending');
+
+    const { error: resetError } = await supabase.auth.resetPasswordForEmail(user.email, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+
+    if (resetError) {
+      console.error('Password email failed:', resetError);
+      setError(
+        resetError.status === 429
+          ? 'Too many requests — please wait a minute and try again.'
+          : 'Could not send the password email. Please try again.',
+      );
+      setPasswordEmailState('idle');
+      return;
+    }
+
+    setPasswordEmailState('sent');
+  };
+
   if (loading || !user) {
     return (
       <div className="starfield-dark min-h-screen bg-navy flex items-center justify-center">
-        <p className="text-white">Loading...</p>
+        <LoadingStar tone="light" />
       </div>
     );
   }
@@ -358,13 +387,45 @@ export default function ProfileSettingsPage() {
           </form>
         </div>
 
-        {/* Deactivate Account Button */}
-        <button
-          onClick={() => setShowDeactivateModal(true)}
-          className="w-full mt-6 rounded-lg border-[3px] border-ink bg-danger px-6 py-3 font-bold text-white shadow-[4px_4px_0_0_rgba(220,38,38,0.6)] transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
-        >
-          Deactivate Account
-        </button>
+        {/* Password: emailed reset link */}
+        <div className="mt-6 rounded-xl border-[3px] border-ink bg-white p-6 shadow-brutal">
+          <h2 className="text-lg font-extrabold text-navy">Password</h2>
+          {passwordEmailState === 'sent' ? (
+            <p className="mt-2 text-sm font-semibold text-success">
+              Check {user.email} — we sent a link to choose a new password.
+            </p>
+          ) : (
+            <>
+              <p className="mt-1 text-sm text-navy/70">
+                We&apos;ll email you a link to choose a new password.
+              </p>
+              <button
+                type="button"
+                onClick={sendPasswordEmail}
+                disabled={passwordEmailState === 'sending'}
+                className="mt-4 rounded-lg border-[3px] border-ink bg-white px-4 py-2 text-sm font-bold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:opacity-60"
+              >
+                {passwordEmailState === 'sending' ? 'Sending…' : 'Email me a reset link'}
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Danger zone: kept small and separate so it is never hit by accident */}
+        <div className="mt-6 rounded-xl border-[3px] border-danger bg-white p-6">
+          <h2 className="text-lg font-extrabold text-danger">Danger zone</h2>
+          <p className="mt-1 text-sm text-navy/70">
+            Permanently delete your account and everything saved in it. Want to stop paying
+            but keep your progress? Cancel Pro from your dashboard instead.
+          </p>
+          <button
+            type="button"
+            onClick={() => setShowDeactivateModal(true)}
+            className="mt-4 rounded-lg border-[3px] border-ink bg-danger px-4 py-2 text-sm font-bold text-white shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+          >
+            Delete my account…
+          </button>
+        </div>
       </div>
 
       {/* Deactivate Account Modal */}
