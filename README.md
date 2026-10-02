@@ -54,37 +54,36 @@ This project intentionally avoids unnecessary complexity. No Docker, Kubernetes,
 
 **Live at [astrocoach.vercel.app](https://astrocoach.vercel.app)**
 
-**730 practice items** drawn from 736 real competition questions (USAAAO,
-IAAC, BAAO), with 99 figures. Six pairs of questions are joined into
-multi-part items, which is why the item count is lower than the question
-count — see "Multi-part questions" below.
+**About 900 real competition questions**: roughly 734 multiple-choice
+questions (USAAAO, IAAC, BAAO; multi-part questions are joined into one
+practice item, so the bank shows ~724 items) and 165 free-response
+questions (USAAAO, IAAC). Check the home page for the live count.
 
 Done:
 
-1. ✅ Static website shell (homepage, navbar, footer)
-2. ✅ Training question bank with search and filters
-3. ✅ Individual question pages with MCQ checking and explanations
-4. ✅ Olympiad guide
-5. ✅ Prisma schema, Supabase Postgres, migrations
-6. ✅ Supabase Auth (email/password signup & login)
-7. ✅ User profiles (names, username, profile pictures via Supabase Storage)
-8. ✅ Dashboard with progress tracking and attempt history
-9. ✅ Account deletion ("Deactivate Account") that really deletes
-10. ✅ Bookmarks, with All / Bookmarked / Incorrect tabs on the dashboard
-11. ✅ Question figures rendering, for both questions and solutions
-12. ✅ Multi-part questions, for questions that build on a previous one
-13. ✅ Report a problem, with an admin review page and email notifications
-14. ✅ Pricing, Privacy Policy and Terms of Service pages
-15. ✅ Google sign-in built (switched off pending a custom domain)
-16. ✅ Deployed to Vercel
+1. ✅ Website shell: home, olympiad guide, about, pricing, privacy, terms,
+   404 and error pages, link previews (Open Graph), sitemap and robots.txt
+2. ✅ Multiple-choice bank with search, filters, explanations and figures
+3. ✅ Training runs through a filtered set, multi-part questions
+4. ✅ Supabase Auth: signup, login, forgot/reset password by email
+5. ✅ Dashboard: progress, attempt history, bookmarks, badges
+6. ✅ Report a problem, with an admin review page
+7. ✅ Astro Coach Pro (Stripe, test mode): subscribe, cancel/resume,
+   billing portal, extra grading credits
+8. ✅ Free-response bank with AI grading (Gemini), uploads, instant checks
+9. ✅ Pro analytics: activity calendar, streaks, topic strengths, insights
+10. ✅ Account deletion that removes all data and cancels billing
+11. ✅ Google sign-in built (hidden until a custom domain exists)
+12. ✅ Deployed to Vercel
+
+Before a public launch, see `NEXT_STEPS.md` (email sending, Stripe live
+mode, analytics env var).
 
 Next up:
 
-17. A custom domain, which unblocks Google sign-in
-18. Gamification (XP, streaks, badges)
-19. Admin question management interface
-20. Design polish & responsive improvements
-21. Leaderboards, advanced search, discussion
+13. A custom domain, which unblocks Google sign-in and branded email
+14. Admin question management interface
+15. Leaderboards, advanced search, discussion
 
 ---
 

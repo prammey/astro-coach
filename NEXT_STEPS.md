@@ -5,6 +5,33 @@ fully work. Newest first. Tick items off (or delete them) as they're done.
 
 ---
 
+## Launch blockers (found in the 2026-10-01 full-site check)
+
+- [ ] **New students can't finish signing up.** Supabase → Authentication →
+      Sign In / Providers → **"Confirm email" is ON**, but there is no email
+      sender yet (Supabase's built-in one only emails your own team). Fix it
+      with the Gmail SMTP steps below. Turning "Confirm email" off would
+      also work, but then anyone could sign up with an email they don't own.
+- [ ] **BAAO questions have no recorded permission.** Every question file
+      still says `permissionStatus: "needs-review"`. USAAAO and IAAC
+      permission was confirmed on 2026-09-24, so update those files, and get
+      (or decide on) permission for the ~60 BAAO questions before launching.
+- [ ] **Stripe is still in test mode.** No real payments until you switch
+      to live keys, which means new Vercel env vars and a live webhook.
+- [ ] **OAAO has no verified official website**, so its Olympiad Guide card
+      has no link. Add the URL in `src/data/olympiads.ts` if you have one,
+      or consider dropping the card.
+
+## Assets that would make the site look better (optional)
+
+- [ ] **Constants sheet PDF**: put it at
+      `public/resources/astro-coach-constants-sheet.pdf` and the Training
+      page shows a download button (it shows practice tips until then).
+- [ ] **A photo or short "who made this" blurb** for the About page, if you
+      want it to feel more personal.
+- [ ] **A custom domain** (e.g. astrocoach.org): unlocks Google sign-in,
+      branded email, and looks more trustworthy than *.vercel.app.
+
 ## Emails for password reset (added 2026-10-01)
 
 **Why:** Password reset is built (`/forgot-password` → email → `/reset-password`),
