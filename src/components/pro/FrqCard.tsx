@@ -87,7 +87,7 @@ export default function FrqCard({
   if (locked) {
     return (
       <Link
-        href={signedIn ? "/pricing" : "/login"}
+        href={signedIn ? "/pricing" : "/login?next=/training/frq"}
         className="block rounded-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-electric"
         aria-label={`${question.competition} ${question.year} question ${question.questionNumber} — locked. ${signedIn ? "Upgrade to Astro Coach Pro" : "Sign in"}`}
       >

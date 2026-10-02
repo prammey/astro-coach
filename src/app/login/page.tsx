@@ -7,6 +7,14 @@ import { useAuth } from '@/lib/auth-context';
 import GoogleSignInButton from '@/components/GoogleSignInButton';
 import BrutalButton from '@/components/ui/BrutalButton';
 import LoadingStar from '@/components/ui/LoadingStar';
+import { safeNextPath } from '@/lib/safe-redirect';
+
+/// Where to go after logging in: ?next=… if it is a path on this site
+/// (e.g. back to /pricing), otherwise the dashboard.
+function afterLoginPath(): string {
+  if (typeof window === 'undefined') return safeNextPath(null);
+  return safeNextPath(new URLSearchParams(window.location.search).get('next'));
+}
 
 export default function LoginPage() {
   const router = useRouter();
@@ -16,11 +24,11 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Redirect to the dashboard if already logged in. This runs after render
-  // (in an effect) because navigating during render is not allowed.
+  // Redirect away if already logged in. This runs after render (in an
+  // effect) because navigating during render is not allowed.
   useEffect(() => {
     if (!loading && user) {
-      router.push('/dashboard');
+      router.push(afterLoginPath());
     }
   }, [loading, user, router]);
 
@@ -31,7 +39,7 @@ export default function LoginPage() {
 
     try {
       await signIn(email, password);
-      router.push('/dashboard');
+      router.push(afterLoginPath());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
     } finally {

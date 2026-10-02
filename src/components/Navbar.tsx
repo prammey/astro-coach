@@ -192,9 +192,16 @@ function NavLink({
   );
 }
 
+// Brings the student back to the page they were on after logging in
+// (the home page and the auth pages themselves just go to the dashboard).
 function LoginButton({ fullWidth = false }: { fullWidth?: boolean }) {
+  const pathname = usePathname();
+  const comeBack =
+    pathname && pathname !== "/" && !/^\/(login|signup|forgot-password|reset-password)/.test(pathname);
+  const href = comeBack ? `/login?next=${encodeURIComponent(pathname)}` : "/login";
+
   return (
-    <BrutalButton href="/login" variant="accent" size="sm" className={fullWidth ? "w-full" : ""}>
+    <BrutalButton href={href} variant="accent" size="sm" className={fullWidth ? "w-full" : ""}>
       Log in
     </BrutalButton>
   );
