@@ -44,7 +44,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const initAuth = async () => {
       try {
-        console.log('Checking session...');
         const { data, error } = await supabase.auth.getSession();
 
         if (!mounted) return;
@@ -52,7 +51,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (error) {
           console.error('Session check error:', error);
         } else {
-          console.log('Session checked:', data?.session ? 'authenticated' : 'not authenticated');
           setSession(data?.session ?? null);
           setUser(data?.session?.user ?? null);
         }
@@ -64,9 +62,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     // Setup auth state listener first (synchronous)
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       if (mounted) {
-        console.log('Auth state:', event, session ? 'logged in' : 'logged out');
         setSession(session);
         setUser(session?.user ?? null);
       }

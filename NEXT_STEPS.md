@@ -75,9 +75,8 @@ The tag is in the code but only loads when its env var is set.
 
 ## Push and deploy
 
-- [ ] The password reset, Cancel Pro and Gmail privacy commits are only on
-      your computer. Ask Claude to push and deploy when ready. Password reset
-      works best after the Gmail setup above.
+- [x] Password reset, Cancel Pro and the Gmail privacy line pushed and
+      deployed on 2026-10-01.
 
 ## Check Supabase health
 
