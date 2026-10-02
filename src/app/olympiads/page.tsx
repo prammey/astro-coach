@@ -1,5 +1,9 @@
 import PageContainer from "@/components/PageContainer";
-import OlympiadCard, { OlympiadCardData } from "@/components/OlympiadCard";
+import OlympiadCard, {
+  OlympiadCardData,
+  TIER_COLORS,
+  type DifficultyTier,
+} from "@/components/OlympiadCard";
 import Reveal from "@/components/ui/Reveal";
 
 export const metadata = {
@@ -16,6 +20,8 @@ const OLYMPIADS: OlympiadCardData[] = [
     difficultyLabel: "Beginner",
     blurb:
       "A very beginner-friendly online multiple-choice competition. Great for students who are brand new to astronomy contests and just want to start with basic facts and observational concepts.",
+    officialUrl: "https://iaac.space",
+    practice: { href: "/training?competition=IAAC", label: "Practice IAAC questions" },
   },
   {
     name: "OAAO (Online Astronomy and Astrophysics Olympiad)",
@@ -30,6 +36,7 @@ const OLYMPIADS: OlympiadCardData[] = [
     difficultyLabel: "Beginner-Intermediate",
     blurb:
       "A team event with multiple-choice and short-answer questions, run as part of Science Olympiad. Study the current year's rules manual and practice with past tests.",
+    officialUrl: "https://www.soinc.org",
   },
   {
     name: "INAO (Indian National Astronomy Olympiad)",
@@ -37,6 +44,7 @@ const OLYMPIADS: OlympiadCardData[] = [
     difficultyLabel: "Intermediate",
     blurb:
       "A national qualifying olympiad that builds toward international astronomy competitions. Expect a step up in physics and math rigor compared to beginner contests.",
+    officialUrl: "https://olympiads.hbcse.tifr.res.in",
   },
   {
     name: "USAAAO First Round",
@@ -44,6 +52,8 @@ const OLYMPIADS: OlympiadCardData[] = [
     difficultyLabel: "Intermediate",
     blurb:
       "An online multiple-choice exam for high school students aiming for the USAAAO National round. Review astrophysics fundamentals and practice timed multiple-choice sets.",
+    officialUrl: "https://usaaao.org",
+    practice: { href: "/training?competition=USAAAO", label: "Practice USAAAO questions" },
   },
   {
     name: "BAAO (British Astronomy and Astrophysics Olympiad)",
@@ -51,6 +61,8 @@ const OLYMPIADS: OlympiadCardData[] = [
     difficultyLabel: "Intermediate-Advanced",
     blurb:
       "A challenging written exam with long-form problems covering astrophysics theory and calculation. Best suited for students with solid physics and math backgrounds.",
+    officialUrl: "https://www.bpho.org.uk/baao/",
+    practice: { href: "/training?competition=BAAO", label: "Practice BAAO questions" },
   },
   {
     name: "USAAAO NAC (National Astronomy Competition)",
@@ -58,6 +70,8 @@ const OLYMPIADS: OlympiadCardData[] = [
     difficultyLabel: "Intermediate-Advanced",
     blurb:
       "An in-depth exam covering theory and data analysis for students who placed well in the USAAAO First Round. Practice data analysis problems and deeper astrophysics theory.",
+    officialUrl: "https://usaaao.org",
+    practice: { href: "/training/frq", label: "Practice free-response problems" },
   },
   {
     name: "IOAA (International Olympiad on Astronomy and Astrophysics)",
@@ -65,6 +79,7 @@ const OLYMPIADS: OlympiadCardData[] = [
     difficultyLabel: "Advanced",
     blurb:
       "Theory, data analysis, and observation rounds for top students representing their country internationally. Build strong physics and math foundations alongside astronomy knowledge.",
+    officialUrl: "https://ioaastrophysics.org",
   },
   {
     name: "IAO (International Astronomy Olympiad)",
@@ -72,6 +87,7 @@ const OLYMPIADS: OlympiadCardData[] = [
     difficultyLabel: "Advanced / International",
     blurb:
       "An international theoretical and practical astronomy exam for experienced competitors seeking the highest level of challenge. Practice past international rounds and focus on observational astronomy.",
+    officialUrl: "http://www.issp.ac.ru/iao/",
   },
 ];
 
@@ -85,6 +101,21 @@ export default function OlympiadsPage() {
         Competitions are stacked from easiest (green) at the top to hardest
         (dark red) at the bottom, so you know where to start.
       </p>
+
+      {/* The difficulty ladder as a colour legend. */}
+      <div className="mt-4 flex max-w-md items-center gap-3 text-xs font-bold text-navy/70">
+        <span>Easier</span>
+        <div className="flex h-3 flex-1 overflow-hidden rounded-full border-2 border-ink">
+          {([1, 2, 3, 4, 5, 6] as DifficultyTier[]).map((tier) => (
+            <span
+              key={tier}
+              className="flex-1"
+              style={{ backgroundColor: TIER_COLORS[tier].background }}
+            />
+          ))}
+        </div>
+        <span>Harder</span>
+      </div>
 
       <div className="mt-8 flex flex-col gap-5">
         {OLYMPIADS.map((olympiad, index) => (

@@ -28,10 +28,14 @@ async function constantsSheetExists(): Promise<boolean> {
 
 // Server Component: builds the safe (no answer keys) question list once
 // on the server, then hands it to the client-side search/filter UI.
-export default async function TrainingPage() {
+export default async function TrainingPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ competition?: string }>;
+}) {
   const pdfExists = await constantsSheetExists();
   const { publicItems: publicQuestionCatalog } = await getMcqCatalog();
-  const pdfPath = "public/resources/astro-coach-constants-sheet.pdf";
+  const { competition } = await searchParams;
 
   return (
     <PageContainer>
@@ -47,7 +51,9 @@ export default async function TrainingPage() {
       <div className="mt-6 grid gap-5 md:grid-cols-2">
         {/* Reference sheet */}
         <BrutalCard tone="cream" className="flex flex-col">
-          <h2 className="text-lg font-extrabold text-navy">Reference sheet</h2>
+          <h2 className="text-lg font-extrabold text-navy">
+            {pdfExists ? "Reference sheet" : "How to practice"}
+          </h2>
           {pdfExists ? (
             <>
               <p className="mt-1 flex-1 text-sm text-navy/80">
@@ -65,13 +71,13 @@ export default async function TrainingPage() {
               </BrutalButton>
             </>
           ) : (
-            <div className="mt-1 space-y-2">
-              <p className="text-sm text-navy/80">Constants sheet coming soon.</p>
-              <p className="text-xs text-navy/60">
-                Place your PDF at:{" "}
-                <code className="rounded bg-navy/10 px-2 py-1">{pdfPath}</code>
-              </p>
-            </div>
+            // Until the constants sheet PDF is added, give useful tips
+            // instead of a "coming soon" placeholder.
+            <ul className="mt-2 flex-1 list-disc space-y-1 pl-5 text-sm text-navy/80">
+              <li>Filter by one topic and do ten questions in a row.</li>
+              <li>Press &quot;Start training&quot; to work through your filtered set in order.</li>
+              <li>Read the explanation for every miss, then retry it later.</li>
+            </ul>
           )}
         </BrutalCard>
 
@@ -90,7 +96,7 @@ export default async function TrainingPage() {
         </BrutalCard>
       </div>
 
-      <TrainingBrowser questions={publicQuestionCatalog} />
+      <TrainingBrowser questions={publicQuestionCatalog} initialCompetition={competition} />
     </PageContainer>
   );
 }

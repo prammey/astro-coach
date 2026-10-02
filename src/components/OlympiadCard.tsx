@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 // One competition's info card on the Olympiad Guide page.
 // "tier" places it on the green (easy) → red (hard) difficulty gradient.
 export type DifficultyTier = 1 | 2 | 3 | 4 | 5 | 6;
@@ -7,11 +9,15 @@ export type OlympiadCardData = {
   tier: DifficultyTier;
   difficultyLabel: string;
   blurb: string;
+  /// The competition's own website. Left out when we have not verified one.
+  officialUrl?: string;
+  /// Where to practise it on Astro Coach, if we have its questions.
+  practice?: { href: string; label: string };
 };
 
 // Color gradient from beginner-friendly green up to advanced dark red.
 // Tier 1 = easiest, tier 6 = hardest.
-const TIER_COLORS: Record<DifficultyTier, { background: string; text: string }> = {
+export const TIER_COLORS: Record<DifficultyTier, { background: string; text: string }> = {
   1: { background: "#22c55e", text: "#0b0f2e" }, // green
   2: { background: "#84cc16", text: "#0b0f2e" }, // yellow-green
   3: { background: "#eab308", text: "#0b0f2e" }, // yellow
@@ -19,6 +25,15 @@ const TIER_COLORS: Record<DifficultyTier, { background: string; text: string }> 
   5: { background: "#dc2626", text: "#ffffff" }, // red
   6: { background: "#7f1d1d", text: "#ffffff" }, // dark red
 };
+
+/// "usaaao.org" from "https://usaaao.org/..." — a short label for the link.
+function displayDomain(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
 
 export default function OlympiadCard({ data }: { data: OlympiadCardData }) {
   const colors = TIER_COLORS[data.tier];
@@ -29,7 +44,7 @@ export default function OlympiadCard({ data }: { data: OlympiadCardData }) {
       style={{ backgroundColor: colors.background, color: colors.text }}
     >
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h3 className="text-2xl font-extrabold">{data.name}</h3>
+        <h2 className="text-xl font-extrabold sm:text-2xl">{data.name}</h2>
         <span
           className="rounded-full border-2 border-ink px-3 py-1 text-xs font-bold"
           style={{ backgroundColor: colors.text, color: colors.background }}
@@ -40,9 +55,29 @@ export default function OlympiadCard({ data }: { data: OlympiadCardData }) {
 
       <p className="mt-3 text-sm leading-relaxed">{data.blurb}</p>
 
-      <p className="mt-4 text-xs italic opacity-70">
-        Source link placeholder — review source later
-      </p>
+      {/* Links: practise here, and the competition's own site. */}
+      {(data.practice || data.officialUrl) && (
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          {data.practice && (
+            <Link
+              href={data.practice.href}
+              className="rounded-lg border-[3px] border-ink bg-white px-3 py-1.5 text-sm font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+            >
+              {data.practice.label} →
+            </Link>
+          )}
+          {data.officialUrl && (
+            <a
+              href={data.officialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-bold underline decoration-2 underline-offset-4 opacity-90 hover:opacity-100"
+            >
+              Official site: {displayDomain(data.officialUrl)} ↗
+            </a>
+          )}
+        </div>
+      )}
     </div>
   );
 }

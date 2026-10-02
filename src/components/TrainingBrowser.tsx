@@ -15,7 +15,15 @@ import { supabase } from "@/lib/auth";
 // Client Component that owns the search/filter state for the Training
 // page. The question list itself comes from the server as a prop, so
 // no answer keys or explanations ever reach the browser here.
-export default function TrainingBrowser({ questions }: { questions: PublicQuestion[] }) {
+export default function TrainingBrowser({
+  questions,
+  initialCompetition,
+}: {
+  questions: PublicQuestion[];
+  /// From /training?competition=…, e.g. a link on the Olympiad Guide.
+  /// Starts the list filtered to that competition (if it exists).
+  initialCompetition?: string;
+}) {
   const [search, setSearch] = useState("");
   const [answeredQuestionIds, setAnsweredQuestionIds] = useState<Set<string>>(new Set());
   const [bookmarkedQuestionIds, setBookmarkedQuestionIds] = useState<Set<string>>(new Set());
@@ -71,9 +79,13 @@ export default function TrainingBrowser({ questions }: { questions: PublicQuesti
     return Array.from(new Set(questions.map((q) => q.competition))).sort();
   }, [questions]);
 
-  // Initialize filters with all competitions, topics, and difficulties selected
+  // Initialize filters with all competitions, topics, and difficulties
+  // selected, or just one competition when the URL asked for it.
   const [filters, setFilters] = useState<FilterState>(() => ({
-    competitions: new Set(initialCompetitions),
+    competitions:
+      initialCompetition && initialCompetitions.includes(initialCompetition)
+        ? new Set([initialCompetition])
+        : new Set(initialCompetitions),
     curriculumTopics: new Set(CURRICULUM_TOPICS),
     difficulty: new Set(["Beginner", "Intermediate", "Advanced"]),
     yearMin: initialYearRange.min,
