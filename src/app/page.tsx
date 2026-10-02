@@ -62,17 +62,20 @@ function previewText(text: string, maxLength: number) {
   return `${text.slice(0, maxLength).trim()}...`;
 }
 
-// Picks one short beginner question to show as a live preview of the bank.
-// The catalog order is fixed, so the same question shows every time.
-function pickSampleQuestion(publicQuestionCatalog: PublicQuestion[]) {
-  return (
-    publicQuestionCatalog.find(
-      (question) =>
-        question.difficulty === "Beginner" &&
-        !question.parts?.length &&
-        question.questionText.length <= 90,
-    ) ?? publicQuestionCatalog[0]
+// Picks the "Question of the day": one short beginner question, changing
+// at midnight UTC. Everyone sees the same one on the same day, and the
+// pick cycles through every short beginner question in the bank.
+function pickQuestionOfTheDay(publicQuestionCatalog: PublicQuestion[], now = new Date()) {
+  const candidates = publicQuestionCatalog.filter(
+    (question) =>
+      question.difficulty === "Beginner" &&
+      !question.parts?.length &&
+      question.questionText.length <= 120,
   );
+  if (candidates.length === 0) return publicQuestionCatalog[0];
+
+  const dayNumber = Math.floor(now.getTime() / (24 * 60 * 60 * 1000));
+  return candidates[dayNumber % candidates.length];
 }
 
 export default async function HomePage() {
@@ -86,7 +89,7 @@ export default async function HomePage() {
   const questionCount = mcqCount + frqCount;
   const competitionCount = new Set(publicQuestionCatalog.map((q) => q.competition)).size;
   const topicCount = CURRICULUM_TOPICS.length;
-  const sampleQuestion = pickSampleQuestion(publicQuestionCatalog);
+  const sampleQuestion = pickQuestionOfTheDay(publicQuestionCatalog);
 
   return (
     <>
@@ -196,12 +199,15 @@ export default async function HomePage() {
                 A question bank you can actually search
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-navy/80">
-                {mcqCount} past multiple-choice questions with source attribution, filterable
-                by competition, year, topic and difficulty. Here is one:
+                {mcqCount}{" "}past multiple-choice questions with source attribution, filterable
+                by competition, year, topic and difficulty. Try today&apos;s:
               </p>
 
               {/* A miniature of the real question card from the Training page. */}
               <div className="mt-5 rounded-lg border-[3px] border-ink bg-cream p-4">
+                <p className="mb-3 text-xs font-extrabold uppercase tracking-widest text-purple">
+                  ★ Question of the day
+                </p>
                 <div className="flex flex-wrap gap-2">
                   <Chip tone="type">{sampleQuestion.type}</Chip>
                   <Chip tone="difficulty">{sampleQuestion.difficulty}</Chip>
