@@ -40,7 +40,7 @@ function starPoints(spikes: number, outerRadius: number, innerRadius: number): s
 export default function FoundingPriceBadge() {
   return (
     <div
-      className="pointer-events-none absolute -right-3 -top-6 h-32 w-32 sm:-right-10 sm:-top-12 sm:h-40 sm:w-40"
+      className="pointer-events-none absolute -right-3 -top-6 h-24 w-24 sm:-right-8 sm:-top-10 sm:h-28 sm:w-28"
       aria-hidden="true"
     >
       <svg viewBox="0 0 100 100" className="h-full w-full">
