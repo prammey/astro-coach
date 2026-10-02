@@ -3,17 +3,31 @@ import BrutalCard from "@/components/BrutalCard";
 import BrutalButton from "@/components/ui/BrutalButton";
 import Chip from "@/components/ui/Chip";
 import Reveal from "@/components/ui/Reveal";
+import CountUp from "@/components/ui/CountUp";
 import { getMcqCatalog } from "@/data/mcq/catalog.server";
 import type { PublicQuestion } from "@/data/mcq/types";
+import { CURRICULUM_TOPICS } from "@/data/mcq/topicTaxonomy";
+import { OLYMPIADS } from "@/data/olympiads";
+import { BADGES } from "@/lib/progress/badges";
+import { getPrisma } from "@/lib/prisma";
+import { questionNumberLabel } from "@/lib/question-label";
 
 // Rendered per request (from the cached catalog) rather than at build
 // time, so building the site never needs a database connection.
-export const dynamic = "force-dynamic";
-
 // The home page uses the site-wide default title and description from the
 // root layout ("Astro Coach — Astronomy Olympiad Training").
-import { CURRICULUM_TOPICS } from "@/data/mcq/topicTaxonomy";
-import { questionNumberLabel } from "@/lib/question-label";
+export const dynamic = "force-dynamic";
+
+/// How many free-response questions are published. If the database is
+/// unreachable the home page still loads — the stat just counts 0.
+async function countPublishedFrqs(): Promise<number> {
+  try {
+    return await getPrisma().frqQuestion.count({ where: { status: "PUBLISHED" } });
+  } catch (error) {
+    console.error("Could not count free-response questions:", error);
+    return 0;
+  }
+}
 
 // The three steps a new student takes. This is a real sequence, which is
 // why the cards are numbered.
@@ -21,7 +35,7 @@ const STEPS = [
   {
     title: "Pick your competition",
     description:
-      "Eleven olympiads, ranked from beginner-friendly to international. Find the one that fits where you are now.",
+      `${OLYMPIADS.length} olympiads, ranked from beginner-friendly to international. Find the one that fits where you are now.`,
     href: "/olympiads",
     linkLabel: "See the olympiad guide",
   },
@@ -62,7 +76,13 @@ function pickSampleQuestion(publicQuestionCatalog: PublicQuestion[]) {
 
 export default async function HomePage() {
   const { publicItems: publicQuestionCatalog } = await getMcqCatalog();
-  const questionCount = publicQuestionCatalog.length;
+  // Count real exam questions: a multi-part item is several questions.
+  const mcqCount = publicQuestionCatalog.reduce(
+    (total, question) => total + (question.parts?.length || 1),
+    0,
+  );
+  const frqCount = await countPublishedFrqs();
+  const questionCount = mcqCount + frqCount;
   const competitionCount = new Set(publicQuestionCatalog.map((q) => q.competition)).size;
   const topicCount = CURRICULUM_TOPICS.length;
   const sampleQuestion = pickSampleQuestion(publicQuestionCatalog);
@@ -168,7 +188,7 @@ export default async function HomePage() {
                 A question bank you can actually search
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-navy/80">
-                {questionCount} past questions with source attribution, filterable
+                {mcqCount} past multiple-choice questions with source attribution, filterable
                 by competition, year, topic and difficulty. Here is one:
               </p>
 
@@ -239,11 +259,17 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Honest about what is not built yet. */}
+        {/* Badges and streaks: the daily-habit part of the site. */}
         <Reveal delay={240}>
-          <div className="mt-6 flex flex-wrap items-center gap-3 rounded-lg border-[3px] border-dashed border-navy/40 px-5 py-4 text-sm text-navy/75">
-            <Chip tone="neutral">Coming soon</Chip>
-            <span>XP, streaks and badges for a daily practice habit.</span>
+          <div className="mt-6 flex flex-wrap items-center gap-3 rounded-lg border-[3px] border-ink bg-yellow px-5 py-4 text-sm font-semibold text-navy shadow-brutal-sm">
+            <span aria-hidden className="text-xl">★</span>
+            <span className="flex-1">
+              Earn {BADGES.length} badges as you practice — streaks, night-owl sessions,
+              every competition and more.
+            </span>
+            <BrutalButton href="/signup" variant="dark" size="sm">
+              Start collecting
+            </BrutalButton>
           </div>
         </Reveal>
       </PageContainer>
@@ -278,7 +304,7 @@ function HeroStat({ value, label }: { value: number; label: string }) {
     <div>
       <dt className="sr-only">{label}</dt>
       <dd className="flex items-baseline gap-2">
-        <span className="text-3xl font-extrabold text-yellow">{value}</span>
+        <CountUp value={value} className="text-3xl font-extrabold text-yellow" />
         <span className="text-sm font-semibold text-white/80">{label}</span>
       </dd>
     </div>

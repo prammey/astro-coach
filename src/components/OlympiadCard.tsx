@@ -1,19 +1,9 @@
 import Link from "next/link";
+import type { DifficultyTier, OlympiadCardData } from "@/data/olympiads";
 
 // One competition's info card on the Olympiad Guide page.
 // "tier" places it on the green (easy) → red (hard) difficulty gradient.
-export type DifficultyTier = 1 | 2 | 3 | 4 | 5 | 6;
-
-export type OlympiadCardData = {
-  name: string;
-  tier: DifficultyTier;
-  difficultyLabel: string;
-  blurb: string;
-  /// The competition's own website. Left out when we have not verified one.
-  officialUrl?: string;
-  /// Where to practise it on Astro Coach, if we have its questions.
-  practice?: { href: string; label: string };
-};
+// The competitions themselves live in src/data/olympiads.ts.
 
 // Color gradient from beginner-friendly green up to advanced dark red.
 // Tier 1 = easiest, tier 6 = hardest.
