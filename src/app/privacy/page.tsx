@@ -2,7 +2,7 @@ import PageContainer from "@/components/PageContainer";
 import BrutalCard from "@/components/BrutalCard";
 
 export const metadata = {
-  title: "Privacy Policy — Astro Coach",
+  title: "Privacy Policy",
   description: "What Astro Coach stores about you, why, and how to delete it.",
 };
 

@@ -2,7 +2,9 @@ import PageContainer from "@/components/PageContainer";
 import FrqBrowser from "@/components/pro/FrqBrowser";
 
 export const metadata = {
-  title: "Free-response practice — Astro Coach",
+  title: "Free-response practice",
+  description:
+    "Real olympiad free-response problems with step-by-step AI grading against the official marking scheme.",
 };
 
 // Browsing is entirely client-side because which questions a given student

@@ -9,6 +9,9 @@ import type { PublicQuestion } from "@/data/mcq/types";
 // Rendered per request (from the cached catalog) rather than at build
 // time, so building the site never needs a database connection.
 export const dynamic = "force-dynamic";
+
+// The home page uses the site-wide default title and description from the
+// root layout ("Astro Coach — Astronomy Olympiad Training").
 import { CURRICULUM_TOPICS } from "@/data/mcq/topicTaxonomy";
 import { questionNumberLabel } from "@/lib/question-label";
 

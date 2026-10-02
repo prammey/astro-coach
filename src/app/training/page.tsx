@@ -10,6 +10,12 @@ import { getMcqCatalog } from "@/data/mcq/catalog.server";
 // time, so building the site never needs a database connection.
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+  title: "Question bank",
+  description:
+    "Search and filter hundreds of real astronomy olympiad multiple-choice questions by competition, year, topic and difficulty.",
+};
+
 // Check if the constants sheet PDF exists
 async function constantsSheetExists(): Promise<boolean> {
   try {

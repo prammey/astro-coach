@@ -2,6 +2,12 @@ import PageContainer from "@/components/PageContainer";
 import OlympiadCard, { OlympiadCardData } from "@/components/OlympiadCard";
 import Reveal from "@/components/ui/Reveal";
 
+export const metadata = {
+  title: "Astronomy olympiads guide",
+  description:
+    "Every major astronomy olympiad, from beginner online contests to the IOAA, ordered by difficulty — with what each one is like and how to prepare.",
+};
+
 // Competitions ordered from easiest (tier 1, green) to hardest (tier 6, dark red).
 const OLYMPIADS: OlympiadCardData[] = [
   {

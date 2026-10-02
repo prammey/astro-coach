@@ -9,6 +9,7 @@ import { ViewAsPill } from "@/components/ViewAsSwitcher";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/lib/auth-context";
 import { TrainingModeProvider } from "@/lib/training-mode-context";
+import { SITE_DESCRIPTION, SITE_NAME, siteBaseUrl } from "@/lib/site";
 
 // The body typeface, self-hosted by Next.js at build time. It sets a CSS
 // variable on <html>; globals.css maps it to the `font-sans` class.
@@ -20,10 +21,30 @@ const bodyFont = Instrument_Sans({
   display: "swap",
 });
 
+// Site-wide defaults. Each page sets its own short `title` ("Pricing"), and
+// the template turns it into "Pricing · Astro Coach". `metadataBase` lets
+// link previews (Open Graph) use full URLs; the preview image itself is
+// src/app/opengraph-image.tsx.
 export const metadata: Metadata = {
-  title: "Astro Coach",
-  description:
-    "Astro Coach is an independent training platform for astronomy olympiad students.",
+  metadataBase: new URL(siteBaseUrl()),
+  title: {
+    default: `${SITE_NAME} — Astronomy Olympiad Training`,
+    template: `%s · ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} — Astronomy Olympiad Training`,
+    description: SITE_DESCRIPTION,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} — Astronomy Olympiad Training`,
+    description: SITE_DESCRIPTION,
+  },
   icons: {
     icon: "/star-icon.png",
     apple: "/star-icon.png",

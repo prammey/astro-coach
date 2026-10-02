@@ -1,6 +1,13 @@
 import PageContainer from "@/components/PageContainer";
 import FrqDetailView from "@/components/pro/FrqDetailView";
 
+// Deliberately generic: the question text is gated per student, so even
+// its title stays out of the page's HTML.
+export const metadata = {
+  title: "Free-response question",
+  robots: { index: false },
+};
+
 // The question itself is fetched client-side from /api/frq/[id], which
 // decides what this particular student is allowed to receive. Nothing about
 // the question is rendered into the page's HTML here, so a locked question

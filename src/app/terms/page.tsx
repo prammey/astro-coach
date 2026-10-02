@@ -3,7 +3,7 @@ import BrutalCard from "@/components/BrutalCard";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Terms of Service — Astro Coach",
+  title: "Terms of Service",
   description: "The terms for using Astro Coach, and its source and attribution policy.",
 };
 
