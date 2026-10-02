@@ -134,6 +134,7 @@ product either loses money or misleads a student.
 - Never expose Supabase service-role keys to the browser
 - Never add real (non-placeholder) olympiad questions without source metadata
 - Ask before modifying: Prisma schema, `.github/workflows/`, build config, `package.json`, question bank data/seed files
+- Don't record a claim about an outside service (Supabase, Stripe, Gmail) as a blocker until it's checked against real data — the Users page, logs, or dashboard. (A 2026-10-01 note wrongly said Supabase's built-in sender only emails team members; real sign-ups proved otherwise.)
 
 ---
 

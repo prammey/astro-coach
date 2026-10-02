@@ -7,11 +7,6 @@ fully work. Newest first. Tick items off (or delete them) as they're done.
 
 ## Launch blockers (found in the 2026-10-01 full-site check)
 
-- [ ] **New students can't finish signing up.** Supabase → Authentication →
-      Sign In / Providers → **"Confirm email" is ON**, but there is no email
-      sender yet (Supabase's built-in one only emails your own team). Fix it
-      with the Gmail SMTP steps below. Turning "Confirm email" off would
-      also work, but then anyone could sign up with an email they don't own.
 - [ ] **BAAO questions have no recorded permission.** Every question file
       still says `permissionStatus: "needs-review"`. USAAAO and IAAC
       permission was confirmed on 2026-09-24, so update those files, and get
@@ -32,37 +27,34 @@ fully work. Newest first. Tick items off (or delete them) as they're done.
 - [ ] **A custom domain** (e.g. astrocoach.org): unlocks Google sign-in,
       branded email, and looks more trustworthy than *.vercel.app.
 
-## Emails for password reset (added 2026-10-01)
+## Auth emails: fine for now, real sender before a big launch (updated 2026-10-02)
 
-**Why:** Password reset is built (`/forgot-password` → email → `/reset-password`),
-but Supabase's built-in email service only sends to members of your Supabase
-team, a few per hour. Real students won't get the reset email until a real
-sender is connected.
+**Status:** Supabase's built-in sender *does* reach real students. Friends'
+accounts show "Confirmed at", and they couldn't log in until they clicked
+the link. Keep **"Confirm email" ON**: it stops fake accounts from farming
+the 3 free AI grades.
+
+**The catch:** the built-in sender allows only a few emails per hour. That's
+fine for friends, but if many students sign up in the same hour (after
+posting the site somewhere), most won't get their confirmation or reset
+email.
 
 **Already done:**
 - [x] Supabase redirect URLs added: `https://astrocoach.vercel.app/reset-password`
       and `http://localhost:3000/reset-password`
 - [x] Supabase "Password changed" security email turned on
+- [x] Tried Gmail SMTP with an app password (2026-10-02): Google wouldn't
+      allow it. Dropped.
 
-**To do (about 5 minutes):**
-- [ ] **Gmail:** go to myaccount.google.com → Security, turn on
-      **2-Step Verification**.
-- [ ] **Gmail:** on the same page, search **"App passwords"**, create one named
-      "Astro Coach", and copy the 16-character code. Never put it in the code
-      or in git.
-- [ ] **Supabase** → astro coach → Authentication → Emails → **SMTP Settings**,
-      turn on custom SMTP:
-  - Sender email: your Gmail address
-  - Sender name: `Astro Coach`
-  - Host: `smtp.gmail.com`
-  - Port: `465`
-  - Username: your Gmail address
-  - Password: the 16-character app password
-- [ ] **Supabase** → Authentication → **Rate Limits**: raise "emails sent per
-      hour" to about 30.
-- [ ] **Test it:** ask Claude to run the full reset flow with your email
-      (request link → email arrives → set new password → log in →
-      "password changed" email arrives).
+**To do:**
+- [ ] **Test password reset once** with your own email (request link →
+      email arrives → set new password → log in).
+- [ ] **Before a big launch:** connect a real sender. Brevo's free plan
+      (300 emails/day) needs no Google app password: verify your Gmail as
+      the sender, then paste Brevo's SMTP host, login and key into Supabase
+      → Authentication → Emails → **SMTP Settings**. Then raise Supabase →
+      Authentication → **Rate Limits** → "emails sent per hour" to about 30.
+      Never put the SMTP key in the code or in git.
 
 ## "Pro cancelled" confirmation email (decision needed)
 
@@ -71,11 +63,11 @@ goes out. Stripe's settings (Billing → Subscriptions and emails) have **no**
 cancellation email — only trial, renewal, expiring-card and failed-payment
 emails.
 
-**Suggested fix:** the cancel route sends its own email from your Gmail
-("Your Pro ends on Oct 30") the moment the student clicks Cancel.
+**Suggested fix:** the cancel route sends its own email ("Your Pro ends on
+Oct 30") the moment the student clicks Cancel.
 - [ ] Approve installing one package: `nodemailer`
-- [ ] Add two Vercel env vars: your Gmail address and the same app password
-      as above (needs the Gmail steps first)
+- [ ] Add Vercel env vars for the SMTP login of whichever real sender you
+      set up above (e.g. Brevo). Needs that sender first.
 - [ ] Ask Claude to build and test it
 
 ## Test Cancel Pro / Resume Pro for real
