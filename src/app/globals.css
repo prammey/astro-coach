@@ -154,10 +154,16 @@
      reduced-motion rule at the bottom of this file turns it off. */
   html {
     scroll-behavior: smooth;
-    /* Stop the "rubber band" stretch past the top and bottom of the page,
-       which showed a strip of cream above the navy navbar and below the
-       footer. Turning the stretch off fixes every page at once. */
-    overscroll-behavior-y: none;
+    /* The color shown when you bounce past the top of the page: navy,
+       like the navbar. The body's cream background still covers the
+       page itself. */
+    background-color: var(--color-navy);
+  }
+
+  /* While you scroll down, OverscrollColor.tsx sets this attribute so a
+     bounce past the bottom shows the footer's color (bg-space). */
+  html[data-overscroll="bottom"] {
+    background-color: var(--color-space);
   }
 
   /* Highlighted text picks up the brand, not the browser default. */

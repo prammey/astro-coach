@@ -7,6 +7,7 @@ import "katex/dist/katex.min.css";
 import Navbar from "@/components/Navbar";
 import { ViewAsPill } from "@/components/ViewAsSwitcher";
 import Footer from "@/components/Footer";
+import OverscrollColor from "@/components/OverscrollColor";
 import { AuthProvider } from "@/lib/auth-context";
 import { TrainingModeProvider } from "@/lib/training-mode-context";
 import { SITE_DESCRIPTION, SITE_NAME, siteBaseUrl } from "@/lib/site";
@@ -84,6 +85,8 @@ export default function RootLayout({
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
+            {/* Matches the bounce-past-the-edge color to the navbar/footer. */}
+            <OverscrollColor />
             {/* Owner only: floating reminder while a simulated view is on. */}
             <ViewAsPill />
           </TrainingModeProvider>
