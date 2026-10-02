@@ -7,11 +7,9 @@ fully work. Newest first. Tick items off (or delete them) as they're done.
 
 ## Launch blockers (found in the 2026-10-01 full-site check)
 
-- [ ] **BAAO questions have no recorded permission.** USAAAO and IAAC
-      questions are now marked `permissionStatus: "permission-granted"`
-      (permission confirmed 2026-09-24; files updated 2026-10-02). The 90
-      BAAO questions in `src/data/mcq/baao_mcqs.ts` still say
-      `"needs-review"`: get (or decide on) permission before launching.
+- [x] **Question permissions recorded.** All 734 MCQs are marked
+      `permissionStatus: "permission-granted"` (USAAAO and IAAC confirmed
+      2026-09-24, BAAO confirmed by the owner 2026-10-02).
 - [ ] **Re-run `npm run seed:mcq`** so the database copy of those
       permission values matches the files (nothing on the site reads them).
 - [ ] **Stripe is still in test mode.** No real payments until you switch

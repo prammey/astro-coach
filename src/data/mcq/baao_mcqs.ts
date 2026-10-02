@@ -48,7 +48,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2016.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics A2 Challenge 2016. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -93,7 +93,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2016.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics A2 Challenge 2016. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -138,7 +138,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2016.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics A2 Challenge 2016. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -183,7 +183,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2016.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics A2 Challenge 2016. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     questionMedia: {
       status: "complete",
       assets: ["/mcq-images/baao-images/2016-baao-astro-challenge-images/baao-2016-astro-challenge-q4.png"]
@@ -232,7 +232,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2016.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics A2 Challenge 2016. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -277,7 +277,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2016.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics A2 Challenge 2016. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -322,7 +322,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2016.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics A2 Challenge 2016. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -367,7 +367,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2016.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics A2 Challenge 2016. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -412,7 +412,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2016.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics A2 Challenge 2016. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -457,7 +457,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2016.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics A2 Challenge 2016. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -502,7 +502,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2017.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2017. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -547,7 +547,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2017.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2017. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -592,7 +592,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2017.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2017. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -637,7 +637,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2017.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2017. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -682,7 +682,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2017.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2017. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -727,7 +727,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2017.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2017. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -772,7 +772,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2017.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2017. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -817,7 +817,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2017.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2017. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -862,7 +862,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2017.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2017. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -908,7 +908,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2017.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2017. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -953,7 +953,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2018.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2018. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     questionMedia: {
       status: "complete",
       assets: ["/mcq-images/baao-images/2018-baao-astro-challenge-images/baao-2018-astro-challenge-q1.png"]
@@ -1002,7 +1002,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2018.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2018. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1047,7 +1047,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2018.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2018. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1092,7 +1092,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2018.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2018. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1137,7 +1137,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2018.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2018. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     questionMedia: {
       status: "complete",
       assets: ["/mcq-images/baao-images/2018-baao-astro-challenge-images/baao-2018-astro-challenge-q5.png"]
@@ -1186,7 +1186,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2018.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2018. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1232,7 +1232,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2018.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2018. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1277,7 +1277,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2018.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2018. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1322,7 +1322,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2018.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2018. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     questionMedia: {
       status: "complete",
       assets: ["/mcq-images/baao-images/2018-baao-astro-challenge-images/baao-2018-astro-challenge-q9.png"]
@@ -1371,7 +1371,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2018.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2018. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     questionMedia: {
       status: "complete",
       assets: ["/mcq-images/baao-images/2018-baao-astro-challenge-images/baao-2018-astro-challenge-q10.png"]
@@ -1424,7 +1424,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2019.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2019. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     questionMedia: {
       status: "complete",
       assets: ["/mcq-images/baao-images/2019-baao-astro-challenge-images/baao-2019-astro-challenge-q1.png"]
@@ -1473,7 +1473,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2019.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2019. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1518,7 +1518,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2019.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2019. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1563,7 +1563,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2019.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2019. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1608,7 +1608,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2019.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2019. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1653,7 +1653,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2019.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2019. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1698,7 +1698,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2019.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2019. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1743,7 +1743,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2019.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2019. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     solutionMedia: {
       status: "complete",
       assets: ["/mcq-images/baao-images/2019-baao-astro-challenge-images/baao-2019-astro-challenge-q8--solution.png"]
@@ -1792,7 +1792,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2019.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2019. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1837,7 +1837,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2019.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2019. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1882,7 +1882,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2020.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2020. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     questionMedia: {
       status: "complete",
       assets: ["/mcq-images/baao-images/2020-baao-astro-challenge-images/baao-2020-astro-challenge-q1.png"]
@@ -1931,7 +1931,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2020.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2020. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -1976,7 +1976,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2020.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2020. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -2021,7 +2021,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2020.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2020. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     solutionMedia: {
       status: "complete",
       assets: ["/mcq-images/baao-images/2020-baao-astro-challenge-images/baao-2020-astro-challenge-q4--solution.png"]
@@ -2070,7 +2070,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2020.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2020. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -2115,7 +2115,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2020.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2020. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -2160,7 +2160,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2020.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2020. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     solutionMedia: {
       status: "complete",
       assets: ["/mcq-images/baao-images/2020-baao-astro-challenge-images/baao-2020-astro-challenge-q7--solution.png"]
@@ -2209,7 +2209,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2020.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2020. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -2254,7 +2254,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2020.pdf",
     answerKeyPageNumber: 3,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2020. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -2299,7 +2299,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2020.pdf",
     answerKeyPageNumber: 3,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2020. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     solutionMedia: {
       status: "complete",
       assets: ["/mcq-images/baao-images/2020-baao-astro-challenge-images/baao-2020-astro-challenge-q10--solution.png"]
@@ -2348,7 +2348,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2021.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2021. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     questionMedia: {
       status: "complete",
       assets: ["/mcq-images/baao-images/2021-baao-astro-challenge-images/baao-2021-astro-challenge-q1.png"]
@@ -2397,7 +2397,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2021.pdf",
     answerKeyPageNumber: 1,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2021. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -2442,7 +2442,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2021.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2021. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -2487,7 +2487,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2021.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2021. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     solutionMedia: {
       status: "complete",
       assets: ["/mcq-images/baao-images/2021-baao-astro-challenge-images/baao-2021-astro-challenge-q4--solution.jpg"]
@@ -2536,7 +2536,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2021.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2021. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -2581,7 +2581,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2021.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2021. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -2626,7 +2626,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2021.pdf",
     answerKeyPageNumber: 2,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2021. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -2671,7 +2671,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2021.pdf",
     answerKeyPageNumber: 3,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2021. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -2716,7 +2716,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2021.pdf",
     answerKeyPageNumber: 3,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2021. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -2761,7 +2761,7 @@ export const baaoMcqs = [{
     answerKeyUrl: "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2021.pdf",
     answerKeyPageNumber: 3,
     attributionText: "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2021. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    permissionStatus: "needs-review",
+    permissionStatus: "permission-granted",
     status: "draft"
   },
   {
@@ -2806,7 +2806,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2022.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2022. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "questionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2022-baao-astro-challenge-images/baao-2022-astro-challenge-q1.png"],
@@ -2855,7 +2855,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2022.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2022. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -2900,7 +2900,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2022.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2022. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -2945,7 +2945,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2022.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2022. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -2990,7 +2990,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2022.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2022. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3035,7 +3035,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2022.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2022. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3080,7 +3080,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2022.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2022. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "solutionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2022-baao-astro-challenge-images/baao-2022-astro-challenge-q7--solution.png"],
@@ -3129,7 +3129,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2022.pdf",
     "answerKeyPageNumber": 3,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2022. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "solutionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2022-baao-astro-challenge-images/baao-2022-astro-challenge-q8--solution.png"],
@@ -3178,7 +3178,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2022.pdf",
     "answerKeyPageNumber": 3,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2022. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3223,7 +3223,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2022.pdf",
     "answerKeyPageNumber": 3,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2022. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3268,7 +3268,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2023.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2023. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3313,7 +3313,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2023.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2023. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3358,7 +3358,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2023.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2023. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "questionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2023-baao-astro-challenge-images/baao-2023-astro-challenge-q3.jpg"],
@@ -3407,7 +3407,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2023.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2023. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3452,7 +3452,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2023.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2023. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "solutionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2023-baao-astro-challenge-images/baao-2023-astro-challenge-q5--solution.png"],
@@ -3501,7 +3501,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2023.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2023. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "questionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2023-baao-astro-challenge-images/baao-2023-astro-challenge-q6.png"],
@@ -3550,7 +3550,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2023.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2023. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3595,7 +3595,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2023.pdf",
     "answerKeyPageNumber": 3,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2023. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "questionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2023-baao-astro-challenge-images/baao-2023-astro-challenge-q8.png"],
@@ -3644,7 +3644,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2023.pdf",
     "answerKeyPageNumber": 3,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2023. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "solutionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2023-baao-astro-challenge-images/baao-2023-astro-challenge-q9--solution.png"],
@@ -3693,7 +3693,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2023.pdf",
     "answerKeyPageNumber": 4,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2023. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3738,7 +3738,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2024.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2024. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "questionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2024-baao-astro-challenge-images/baao-2024-astro-challenge-q1.png"],
@@ -3787,7 +3787,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2024.pdf",
     "answerKeyPageNumber": 1,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2024. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "solutionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2024-baao-astro-challenge-images/baao-2024-astro-challenge-q2--solution.png"],
@@ -3836,7 +3836,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2024.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2024. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3881,7 +3881,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2024.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2024. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3926,7 +3926,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2024.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2024. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -3971,7 +3971,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2024.pdf",
     "answerKeyPageNumber": 2,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2024. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "solutionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2024-baao-astro-challenge-images/baao-2024-astro-challenge-q6--solution.jpg"],
@@ -4020,7 +4020,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2024.pdf",
     "answerKeyPageNumber": 3,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2024. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "solutionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2024-baao-astro-challenge-images/baao-2024-astro-challenge-q7--solution.png"],
@@ -4069,7 +4069,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2024.pdf",
     "answerKeyPageNumber": 3,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2024. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "status": "draft"
   },
   {
@@ -4114,7 +4114,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2024.pdf",
     "answerKeyPageNumber": 3,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2024. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "solutionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2024-baao-astro-challenge-images/baao-2024-astro-challenge-q9--solution.jpg"],
@@ -4164,7 +4164,7 @@ export const baaoMcqs = [{
     "answerKeyUrl": "https://www.bpho.org.uk/baao/Papers/AC/Astro_Challenge_solutions_2024.pdf",
     "answerKeyPageNumber": 4,
     "attributionText": "Source: British Astronomy and Astrophysics Olympiad (BAAO), Astronomy & Astrophysics Challenge 2024. Question text, answer-choice text, and answer were transcribed from the official BAAO paper and solutions PDFs; the explanation and metadata are original.",
-    "permissionStatus": "needs-review",
+    "permissionStatus": "permission-granted",
     "solutionMedia": {
       status: "complete",
       assets: ["/mcq-images/baao-images/2024-baao-astro-challenge-images/baao-2024-astro-challenge-q10--solution.jpg"],
