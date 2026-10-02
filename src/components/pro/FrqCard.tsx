@@ -31,7 +31,7 @@ export default function FrqCard({
 
   const card = (
     <div
-      className={`h-full rounded-xl border-[3px] border-ink p-5 shadow-brutal ${
+      className={`flex h-full flex-col rounded-xl border-[3px] border-ink p-5 shadow-brutal ${
         locked ? LOCKED_CLASSES : UNLOCKED_CLASSES
       }`}
     >
@@ -51,14 +51,19 @@ export default function FrqCard({
         <p className="mt-2 text-sm font-semibold text-navy">{question.title}</p>
       )}
 
-      <div className="mt-3 flex flex-wrap gap-2">
+      <div className="mb-4 mt-3 flex flex-wrap gap-2">
         <Chip tone="neutral">{question.primaryCurriculumTopic}</Chip>
-        {question.partCount > 0 && <Chip tone="neutral">{question.partCount} parts</Chip>}
+        {question.partCount > 0 && (
+          <Chip tone="neutral">
+            {question.partCount} {question.partCount === 1 ? "part" : "parts"}
+          </Chip>
+        )}
         {question.quickCheck && <Chip tone="neutral">Free instant check</Chip>}
         {question.difficulty && <Chip tone="neutral">{question.difficulty}</Chip>}
       </div>
 
-      <div className="mt-4 border-t-2 border-navy/10 pt-3 text-sm">
+      {/* Pinned to the bottom so every card in a row lines up. */}
+      <div className="mt-auto border-t-2 border-navy/10 pt-3 text-sm">
         {locked ? (
           <p className="flex items-center gap-2 font-bold text-purple">
             <LockIcon />
@@ -88,7 +93,7 @@ export default function FrqCard({
     return (
       <Link
         href={signedIn ? "/pricing" : "/login?next=/training/frq"}
-        className="block rounded-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-electric"
+        className="block h-full rounded-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-electric"
         aria-label={`${question.competition} ${question.year} question ${question.questionNumber} — locked. ${signedIn ? "Upgrade to Astro Coach Pro" : "Sign in"}`}
       >
         {card}
@@ -99,7 +104,7 @@ export default function FrqCard({
   return (
     <Link
       href={`/training/frq/${question.id}`}
-      className="block rounded-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-electric"
+      className="block h-full rounded-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-electric"
     >
       {card}
     </Link>
