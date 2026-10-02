@@ -150,6 +150,12 @@
     outline-offset: 2px;
   }
 
+  /* In-page links (e.g. "#buy-credits") glide instead of jumping. The
+     reduced-motion rule at the bottom of this file turns it off. */
+  html {
+    scroll-behavior: smooth;
+  }
+
   /* Highlighted text picks up the brand, not the browser default. */
   ::selection {
     background-color: var(--color-yellow);

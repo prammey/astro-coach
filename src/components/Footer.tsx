@@ -14,6 +14,7 @@ const SITE_LINKS = [
 const POLICY_LINKS = [
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms of Service" },
+  { href: "mailto:prameet.guha@gmail.com", label: "Contact us" },
 ];
 
 // Bottom footer shown on every page. Includes the independence disclaimer
@@ -28,7 +29,7 @@ export default function Footer() {
             <p className="text-xl font-extrabold text-yellow">Astro Coach</p>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-white/70">
               An independent educational project. Not affiliated with USAAAO,
-              IAAC, IOAA, IAO, Science Olympiad, or any official organization.
+              IAAC, BAAO, IOAA, IAO, Science Olympiad, or any official organization.
             </p>
           </div>
 
@@ -37,7 +38,7 @@ export default function Footer() {
         </div>
 
         <p className="mt-10 border-t border-white/10 pt-6 text-xs text-white/50">
-          © 2026 Astro Coach. All rights reserved.
+          © {new Date().getFullYear()} Astro Coach. All rights reserved.
         </p>
       </div>
     </footer>
