@@ -75,7 +75,7 @@ export default async function TrainingPage({
             // instead of a "coming soon" placeholder.
             <ul className="mt-2 flex-1 list-disc space-y-1 pl-5 text-sm text-navy/80">
               <li>Filter by one topic and do ten questions in a row.</li>
-              <li>Press &quot;Start training&quot; to work through your filtered set in order.</li>
+              <li>Press &quot;Start training&quot; to work through your filtered set in random order.</li>
               <li>Read the explanation for every miss, then retry it later.</li>
             </ul>
           )}

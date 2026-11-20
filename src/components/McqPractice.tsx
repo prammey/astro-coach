@@ -249,13 +249,21 @@ export default function McqPractice({
 
                   return (
                     <div key={choice.label}>
+                      {/* aria-pressed and the hidden "(correct)" /
+                          "(incorrect)" text tell screen-reader users what
+                          the colours show everyone else. */}
                       <button
                         type="button"
+                        aria-pressed={isSelected}
                         disabled={isLocked}
                         onClick={() => selectAnswer(part.id, choice.label)}
                         className={`block w-full rounded-lg border-[3px] border-ink px-4 py-3 text-left font-medium transition-[translate,box-shadow,background-color,color] duration-200 ease-snappy disabled:cursor-default ${tone}`}
                       >
                         <span className="font-bold">{choice.label}.</span> {choice.text}
+                        {isCorrectAnswer && <span className="sr-only"> (correct)</span>}
+                        {!isCorrectAnswer && triedReason && (
+                          <span className="sr-only"> (incorrect)</span>
+                        )}
                       </button>
 
                       {/* The reason this choice is wrong, shown directly

@@ -14,18 +14,23 @@ import BrutalButton from './ui/BrutalButton';
 //
 // Skip and Next are the same move; which one shows depends on whether the
 // learner has answered yet, so the button always describes what it does.
+//
+// `inTrainingRun` comes from the /training/mode page only, so a question
+// opened directly always steps through the bank even if an old run is
+// still held in memory.
 export default function QuestionNavigation({
   isAnswered,
   previousQuestionId,
   nextQuestionId,
+  inTrainingRun = false,
 }: {
   isAnswered: boolean;
   previousQuestionId?: string | null;
   nextQuestionId?: string | null;
+  inTrainingRun?: boolean;
 }) {
   const router = useRouter();
   const {
-    isInTrainingMode,
     currentIndex,
     getProgress,
     nextQuestion,
@@ -36,11 +41,11 @@ export default function QuestionNavigation({
 
   const progress = getProgress();
 
-  const atStart = isInTrainingMode ? currentIndex === 0 : !previousQuestionId;
-  const atEnd = isInTrainingMode ? false : !nextQuestionId;
+  const atStart = inTrainingRun ? currentIndex === 0 : !previousQuestionId;
+  const atEnd = inTrainingRun ? false : !nextQuestionId;
 
   function goPrevious() {
-    if (isInTrainingMode) {
+    if (inTrainingRun) {
       if (previousQuestion()) router.refresh();
       return;
     }
@@ -49,7 +54,7 @@ export default function QuestionNavigation({
 
   // Skip and Next differ only in label; both advance.
   function advance() {
-    if (isInTrainingMode) {
+    if (inTrainingRun) {
       const moved = isAnswered ? nextQuestion() : skipQuestion();
       if (!moved) {
         exitTrainingMode();
@@ -64,7 +69,7 @@ export default function QuestionNavigation({
 
   return (
     <div className="mt-8">
-      {isInTrainingMode && (
+      {inTrainingRun && (
         <p className="mb-3 text-center text-sm font-bold text-navy/70">
           Question {progress.current} of {progress.total}
         </p>

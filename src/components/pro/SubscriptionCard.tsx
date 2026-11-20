@@ -21,7 +21,7 @@ import {
   startProCheckout,
   type EntitlementsResponse,
 } from "@/lib/pro/client";
-import { PUBLIC_PRO_CONFIG } from "@/lib/pro/public-config";
+import { PUBLIC_PRO_CONFIG, advertisedMonthlyPriceUsd } from "@/lib/pro/public-config";
 
 export default function SubscriptionCard({ className = "" }: { className?: string }) {
   const [entitlements, setEntitlements] = useState<EntitlementsResponse | null>(null);
@@ -160,7 +160,7 @@ export default function SubscriptionCard({ className = "" }: { className?: strin
               disabled={busy}
               className="rounded-lg border-[3px] border-ink bg-yellow px-5 py-2 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-60"
             >
-              {busy ? "Opening…" : `Unlock Pro — $${PUBLIC_PRO_CONFIG.foundingPriceUsd}/mo`}
+              {busy ? "Opening…" : `Unlock Pro — $${advertisedMonthlyPriceUsd()}/mo`}
             </button>
             <Link
               href="/pricing"

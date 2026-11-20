@@ -20,16 +20,23 @@ import Chip from './ui/Chip';
 // This exists because the two routes previously had their own copies of
 // this markup and quietly drifted: one gained a bookmark button, the other
 // gained working navigation. Anything added here now shows up in both.
+//
+// `inTrainingRun` is passed only by the /training/mode page. We do not read
+// the shared training flag here, because a run stays "on" in memory after
+// the student leaves it through the navbar or the back button, and a
+// directly-opened question must never show the run's controls.
 export default function QuestionView({
   question,
   previousQuestionId,
   nextQuestionId,
+  inTrainingRun = false,
 }: {
   question: PublicQuestion;
   previousQuestionId?: string | null;
   nextQuestionId?: string | null;
+  inTrainingRun?: boolean;
 }) {
-  const { isInTrainingMode, exitTrainingMode } = useTrainingMode();
+  const { exitTrainingMode } = useTrainingMode();
   const [isAnswered, setIsAnswered] = useState(false);
   const isMultiPart = Boolean(question.parts?.length);
 
@@ -37,10 +44,10 @@ export default function QuestionView({
     <>
       <Link
         href="/training"
-        onClick={() => isInTrainingMode && exitTrainingMode()}
+        onClick={() => inTrainingRun && exitTrainingMode()}
         className="inline-flex items-center gap-1 font-bold text-purple transition-colors duration-200 hover:text-navy hover:underline"
       >
-        {isInTrainingMode ? '← Exit Training' : '← Back to Training'}
+        {inTrainingRun ? '← Exit Training' : '← Back to Training'}
       </Link>
 
       <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -91,6 +98,7 @@ export default function QuestionView({
         isAnswered={isAnswered}
         previousQuestionId={previousQuestionId}
         nextQuestionId={nextQuestionId}
+        inTrainingRun={inTrainingRun}
       />
 
       <div className="mt-6 flex justify-center">

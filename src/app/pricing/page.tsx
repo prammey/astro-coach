@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import PricingSection from "@/components/PricingSection";
+import { isFoundingPriceOpen } from "@/lib/pro/public-config";
 
 export const metadata: Metadata = {
   title: "Pricing",
   description:
     "Practice astronomy olympiad multiple choice free. Go Pro for the full free-response bank and AI grading of your written work.",
 };
+
+// This page is built ahead of time and cached. Without this line it would
+// be built once at deploy time, so the founding-price check below would be
+// frozen on the build date. Rebuilding at most once a minute means the
+// founding-price copy disappears within about a minute of the deadline,
+// matching the regular price that checkout starts charging then.
+export const revalidate = 60;
 
 // Standalone pricing page, reachable from the navbar. Compact enough that
 // the header and all three plans fit on one laptop screen.
@@ -18,7 +26,9 @@ export default function PricingPage() {
           Start free. Upgrade when you&apos;re ready for free-response practice.
         </p>
       </div>
-      <PricingSection />
+      {/* Worked out here on the server and passed down as a prop, so the
+          server's HTML and the browser's first render always agree. */}
+      <PricingSection foundingPriceOpen={isFoundingPriceOpen()} />
     </div>
   );
 }

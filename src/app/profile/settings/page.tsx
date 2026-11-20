@@ -202,7 +202,9 @@ export default function ProfileSettingsPage() {
       // account that no longer exists.
       await supabase.auth.signOut();
 
-      // Redirect to home page after successful deletion
+      // Redirect to home page after successful deletion. A full page load
+      // on purpose, so nothing of the deleted account stays in memory.
+      // eslint-disable-next-line @next/next/no-location-assign-relative-destination
       window.location.href = '/';
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to deactivate account');

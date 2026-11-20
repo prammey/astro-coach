@@ -72,7 +72,10 @@ function FeatureLine({
   );
 }
 
-export default function PricingSection() {
+// `foundingPriceOpen` comes from the server (see app/pricing/page.tsx).
+// Once the founding deadline has passed it is false, and the card shows
+// only the regular price with no founding badge or deadline copy.
+export default function PricingSection({ foundingPriceOpen }: { foundingPriceOpen: boolean }) {
   const { user } = useAuth();
   const [entitlements, setEntitlements] = useState<EntitlementsResponse | null>(null);
   const [busy, setBusy] = useState(false);
@@ -190,29 +193,40 @@ export default function PricingSection() {
         {/* Right column: Pro (larger, premium) */}
         <div className="lg:col-span-2">
           <div className="relative flex h-full flex-col rounded-lg border-[3px] border-ink bg-purple p-6 shadow-brutal-lg">
-            <FoundingPriceBadge />
+            {/* The founding badge and tag, only while that price is offered. */}
+            {foundingPriceOpen && (
+              <>
+                <FoundingPriceBadge />
 
-            <div className="absolute -top-4 left-6 rounded border-[3px] border-ink bg-yellow px-3 py-0.5 text-xs font-extrabold text-navy">
-              FOUNDING PRICE
-            </div>
+                <div className="absolute -top-4 left-6 rounded border-[3px] border-ink bg-yellow px-3 py-0.5 text-xs font-extrabold text-navy">
+                  FOUNDING PRICE
+                </div>
+              </>
+            )}
 
             <h2 className="mt-1 text-3xl font-extrabold text-white">Go Pro</h2>
             <p className="mt-1 max-w-md text-white/90">
               Everything in Free, plus free-response practice with AI grading.
             </p>
 
-            <p className="sr-only">
-              Price goes up after {PUBLIC_PRO_CONFIG.foundingDeadlineShort}.
-            </p>
+            {foundingPriceOpen && (
+              <p className="sr-only">
+                Price goes up after {PUBLIC_PRO_CONFIG.foundingDeadlineShort}.
+              </p>
+            )}
 
+            {/* The price: founding price with the regular one crossed out
+                while the offer lasts, then just the regular price. */}
             <div className="mt-3 flex flex-wrap items-baseline gap-2">
               <span className="text-4xl font-extrabold text-yellow">
-                ${PUBLIC_PRO_CONFIG.foundingPriceUsd}
+                ${foundingPriceOpen ? PUBLIC_PRO_CONFIG.foundingPriceUsd : PUBLIC_PRO_CONFIG.regularPriceUsd}
               </span>
               <span className="text-lg font-bold text-white">/month</span>
-              <span className="text-sm text-white/60 line-through">
-                ${PUBLIC_PRO_CONFIG.regularPriceUsd}
-              </span>
+              {foundingPriceOpen && (
+                <span className="text-sm text-white/60 line-through">
+                  ${PUBLIC_PRO_CONFIG.regularPriceUsd}
+                </span>
+              )}
             </div>
 
             <div className="mt-5 grid flex-1 grid-cols-1 gap-5 sm:grid-cols-2">
@@ -279,8 +293,9 @@ export default function PricingSection() {
 
             <p className="mt-3 text-xs text-white/70">
               Cancel any time from your dashboard — you keep Pro until the end of the month
-              you paid for. Founding price for anyone who joins by{' '}
-              {PUBLIC_PRO_CONFIG.foundingDeadlineLabel}.
+              you paid for.
+              {foundingPriceOpen &&
+                ` Founding price for anyone who joins by ${PUBLIC_PRO_CONFIG.foundingDeadlineLabel}.`}
             </p>
           </div>
         </div>

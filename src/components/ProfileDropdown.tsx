@@ -35,6 +35,9 @@ export default function ProfileDropdown() {
     try {
       await signOut();
       setIsOpen(false);
+      // A full page load on purpose: it wipes every piece of the signed-out
+      // user's data still held in memory, which router.push would keep.
+      // eslint-disable-next-line @next/next/no-location-assign-relative-destination
       window.location.href = '/';
     } catch (error) {
       console.error('Logout failed:', error);

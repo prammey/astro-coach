@@ -8,6 +8,7 @@
 
 import Link from "next/link";
 import type { ProAnalytics } from "@/lib/pro/analytics";
+import { PUBLIC_PRO_CONFIG } from "@/lib/pro/public-config";
 
 export type McqStats = {
   totalAttempted: number;
@@ -93,10 +94,10 @@ export default function OverviewStats({
             You&apos;re out of AI grades.
             {isPro && credits?.resetsAt && (
               <span className="font-semibold text-navy/80">
-                {" "}Your 50 reset on {new Date(credits.resetsAt).toLocaleDateString()}.
+                {" "}Your {PUBLIC_PRO_CONFIG.proPeriodGrades} reset on {new Date(credits.resetsAt).toLocaleDateString()}.
               </span>
             )}
-            {!isPro && <span className="font-semibold text-navy/80"> Pro gives you 50 every month.</span>}
+            {!isPro && <span className="font-semibold text-navy/80"> Pro gives you {PUBLIC_PRO_CONFIG.proPeriodGrades} every month.</span>}
           </p>
           {isPro ? (
             <a

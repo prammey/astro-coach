@@ -260,22 +260,13 @@ export default function CollapsibleFilterPanel({
     });
   };
 
-  // Count active filters (excluding defaults)
+  // Count active filters (excluding defaults). A group with nothing ticked
+  // counts as active too, because it hides every question.
   const activeFilterCount = useMemo(() => {
     let count = 0;
-    if (
-      filters.competitions.size > 0 &&
-      filters.competitions.size < competitions.length
-    ) {
-      count++;
-    }
-    if (
-      filters.curriculumTopics.size > 0 &&
-      filters.curriculumTopics.size < CURRICULUM_TOPICS.length
-    ) {
-      count++;
-    }
-    if (filters.difficulty.size > 0 && filters.difficulty.size < difficultyLevels.length) count++;
+    if (filters.competitions.size < competitions.length) count++;
+    if (filters.curriculumTopics.size < CURRICULUM_TOPICS.length) count++;
+    if (filters.difficulty.size < difficultyLevels.length) count++;
     if (
       filters.yearMin !== yearRange.min ||
       filters.yearMax !== yearRange.max ||

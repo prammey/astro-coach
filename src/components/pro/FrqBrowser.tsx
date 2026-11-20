@@ -8,6 +8,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { apiGet } from "@/lib/pro/client";
+import { PUBLIC_PRO_CONFIG } from "@/lib/pro/public-config";
 import type { FrqCard as FrqCardData } from "@/lib/pro/frq-service";
 import FrqCard from "./FrqCard";
 import BrutalCard from "../BrutalCard";
@@ -141,10 +142,13 @@ export default function FrqBrowser() {
 
       {data.signedIn && data.plan === "FREE" && data.creditsRemaining === 0 && (
         <BrutalCard tone="purple" className="mt-4">
-          <p className="font-extrabold">You have used your 3 free AI grades</p>
+          <p className="font-extrabold">
+            You have used your {PUBLIC_PRO_CONFIG.freeLifetimeGrades} free AI grades
+          </p>
           <p className="mt-1 text-sm text-white/90">
             Everything you have already worked on stays yours. Astro Coach Pro
-            opens the rest of the free-response bank and 50 AI grades a month.
+            opens the rest of the free-response bank and {PUBLIC_PRO_CONFIG.proPeriodGrades} AI
+            grades a month.
           </p>
           <BrutalButton href="/pricing" variant="accent" size="sm" className="mt-3">
             Unlock Astro Coach Pro

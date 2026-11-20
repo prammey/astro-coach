@@ -59,6 +59,9 @@ export default function DashboardTabs() {
   // Which lists hit the server's row limit (very rare), so we can say so.
   const [truncated, setTruncated] = useState<Record<TabType, boolean>>({ all: false, bookmarked: false, incorrect: false });
   const [isLoading, setIsLoading] = useState(true);
+  // Which lists failed to load, so we show an error instead of pretending
+  // the student has no attempts.
+  const [failed, setFailed] = useState<Record<TabType, boolean>>({ all: false, bookmarked: false, incorrect: false });
 
   useEffect(() => {
     if (!user) return;
@@ -68,7 +71,10 @@ export default function DashboardTabs() {
       try {
         const session = await supabase.auth.getSession();
         const token = session.data.session?.access_token;
-        if (!token) return;
+        if (!token) {
+          setFailed({ all: true, bookmarked: true, incorrect: true });
+          return;
+        }
 
         const headers = { Authorization: `Bearer ${token}` };
 
@@ -89,8 +95,12 @@ export default function DashboardTabs() {
           bookmarked: Boolean(bookmarked?.truncated),
           incorrect: Boolean(incorrect?.truncated),
         });
+        // A list that came back empty-handed (not ok) counts as failed.
+        setFailed({ all: !all, bookmarked: !bookmarked, incorrect: !incorrect });
       } catch (error) {
+        // Network error: none of the lists loaded.
         console.error('Error fetching dashboard data:', error);
+        setFailed({ all: true, bookmarked: true, incorrect: true });
       } finally {
         setIsLoading(false);
       }
@@ -168,7 +178,15 @@ export default function DashboardTabs() {
                 <th className="px-6 py-3 text-left text-sm font-semibold text-white">When</th>
               </tr>
             </thead>
-            {currentRows.length > 0 ? (
+            {failed[activeTab] ? (
+              <tbody>
+                <tr>
+                  <td colSpan={4} role="alert" className="px-6 py-8 text-center font-semibold text-danger">
+                    Couldn&apos;t load this list. Refresh the page to try again.
+                  </td>
+                </tr>
+              </tbody>
+            ) : currentRows.length > 0 ? (
             <tbody className="divide-y-2 divide-ink">
               {currentRows.map((row) => (
                 <tr key={row.id} className="hover:bg-electric/10">

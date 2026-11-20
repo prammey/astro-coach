@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/auth';
 
@@ -14,6 +14,17 @@ const REASONS = [
   { value: 'other', label: 'Something else', hint: 'Tell us below' },
 ] as const;
 
+// Everything inside the dialog that Tab can land on (same list as
+// ConfirmDialog), used to keep keyboard focus inside the dialog.
+const FOCUSABLE_SELECTOR =
+  'button:not([disabled]), [href], input, textarea, select, [tabindex]:not([tabindex="-1"])';
+
+// A "Report a problem" button that opens an accessible dialog.
+//
+// Accessibility (mirrors ConfirmDialog): focus moves into the dialog when it
+// opens and returns to the button when it closes, Tab stays inside, and
+// Escape closes it. The dialog scrolls on small phones so the Send button
+// is always reachable.
 export default function ReportProblemButton({ questionId }: { questionId: string }) {
   const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +33,26 @@ export default function ReportProblemButton({ questionId }: { questionId: string
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState('');
   const [sent, setSent] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeAfterSentRef = useRef<HTMLButtonElement>(null);
+  const previouslyFocused = useRef<HTMLElement | null>(null);
+
+  // When the dialog opens: remember what had focus, then move focus to the
+  // first option inside. When it closes: put focus back where it was.
+  useEffect(() => {
+    if (!isOpen) return;
+
+    previouslyFocused.current = document.activeElement as HTMLElement | null;
+    dialogRef.current?.querySelector<HTMLElement>(FOCUSABLE_SELECTOR)?.focus();
+
+    return () => previouslyFocused.current?.focus();
+  }, [isOpen]);
+
+  // Once the report is sent, the form (and its Send button) disappears, so
+  // move focus to the new Close button instead of losing it.
+  useEffect(() => {
+    if (sent) closeAfterSentRef.current?.focus();
+  }, [sent]);
 
   // "Other" is only meaningful with an explanation; everything else is
   // optional detail.
@@ -37,6 +68,32 @@ export default function ReportProblemButton({ questionId }: { questionId: string
       setDetails('');
       setSent(false);
     }, 200);
+  }
+
+  // Keyboard handling for the dialog: Escape closes it (unless a report is
+  // mid-send), and Tab / Shift+Tab wrap around inside it.
+  function handleDialogKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Escape' && !isSending) {
+      event.preventDefault();
+      close();
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    const focusable = dialogRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
+    if (!focusable || focusable.length === 0) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 
   async function handleSubmit() {
@@ -87,19 +144,31 @@ export default function ReportProblemButton({ questionId }: { questionId: string
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
-          <div className="w-full max-w-lg rounded-xl border-[3px] border-ink bg-white p-6 shadow-brutal-lg">
+        // The overlay and the panel both scroll, so on a short phone screen
+        // the whole form (including Send) can still be reached.
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/60 p-4"
+          onKeyDown={handleDialogKeyDown}
+        >
+          <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="report-dialog-title"
+            className="max-h-full w-full max-w-lg overflow-y-auto rounded-xl border-[3px] border-ink bg-white p-6 shadow-brutal-lg"
+          >
             {sent ? (
               // Confirmation, so the learner knows it actually went somewhere.
               <div className="text-center">
                 <p className="text-2xl">✅</p>
-                <h2 className="mt-2 text-xl font-extrabold text-navy">
+                <h2 id="report-dialog-title" className="mt-2 text-xl font-extrabold text-navy">
                   Thanks — report sent
                 </h2>
                 <p className="mt-2 text-sm text-navy/70">
                   We&apos;ll take a look at this question and fix it if something is wrong.
                 </p>
                 <button
+                  ref={closeAfterSentRef}
                   type="button"
                   onClick={close}
                   className="mt-5 w-full rounded-lg border-[3px] border-ink bg-electric px-6 py-2 font-bold text-white shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
@@ -109,7 +178,7 @@ export default function ReportProblemButton({ questionId }: { questionId: string
               </div>
             ) : (
               <>
-                <h2 className="text-xl font-extrabold text-navy">
+                <h2 id="report-dialog-title" className="text-xl font-extrabold text-navy">
                   Report a problem
                 </h2>
                 <p className="mt-1 text-sm text-navy/70">
@@ -123,6 +192,7 @@ export default function ReportProblemButton({ questionId }: { questionId: string
                       <button
                         key={option.value}
                         type="button"
+                        aria-pressed={selected}
                         onClick={() => setReason(option.value)}
                         className={`block w-full rounded-lg border-2 px-4 py-2.5 text-left transition ${
                           selected

@@ -1,36 +1,47 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/auth';
 
 interface BookmarkButtonProps {
   questionId: string;
   isBookmarked: boolean;
-  onBookmarkChange?: (isBookmarked: boolean) => void;
+  onBookmarkChange: (isBookmarked: boolean) => void;
   className?: string;
 }
 
+// A star that saves or un-saves a question.
+//
+// This is a "controlled" button: the parent owns whether the question is
+// bookmarked and passes it in as `isBookmarked`. That way, when the parent
+// finishes loading the student's saved questions, the star updates too.
+// The button reports every change back through `onBookmarkChange`.
 export default function BookmarkButton({
   questionId,
-  isBookmarked: initialIsBookmarked,
+  isBookmarked,
   onBookmarkChange,
   className = '',
 }: BookmarkButtonProps) {
   const { user } = useAuth();
-  const [isBookmarked, setIsBookmarked] = useState(initialIsBookmarked);
+  const pathname = usePathname();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
+  // Saves or removes the bookmark on the server. The star flips straight
+  // away (so it feels instant) and flips back if the server says no.
   const handleBookmarkClick = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (!user) {
-      // Redirect to login if not authenticated
-      window.location.href = '/login';
+      // Send signed-out visitors to log in, then bring them back here.
+      router.push(`/login?next=${encodeURIComponent(pathname ?? '/training')}`);
       return;
     }
 
+    const wasBookmarked = isBookmarked;
     setIsLoading(true);
     try {
       const session = await supabase.auth.getSession();
@@ -41,7 +52,10 @@ export default function BookmarkButton({
         return;
       }
 
-      const action = isBookmarked ? 'remove' : 'add';
+      // Optimistic update: show the new state before the server replies.
+      onBookmarkChange(!wasBookmarked);
+
+      const action = wasBookmarked ? 'remove' : 'add';
       const response = await fetch('/api/bookmarks', {
         method: 'POST',
         headers: {
@@ -51,15 +65,15 @@ export default function BookmarkButton({
         body: JSON.stringify({ questionId, action }),
       });
 
-      if (response.ok) {
-        const newState = !isBookmarked;
-        setIsBookmarked(newState);
-        onBookmarkChange?.(newState);
-      } else {
+      if (!response.ok) {
+        // The save failed, so put the star back how it was.
         console.error('Failed to update bookmark');
+        onBookmarkChange(wasBookmarked);
       }
     } catch (error) {
+      // Network error: also put the star back how it was.
       console.error('Error updating bookmark:', error);
+      onBookmarkChange(wasBookmarked);
     } finally {
       setIsLoading(false);
     }

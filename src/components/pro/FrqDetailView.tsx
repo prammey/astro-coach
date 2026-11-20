@@ -10,6 +10,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { ApiError, apiGet, apiPost, uploadSolutionFiles } from "@/lib/pro/client";
+import { PUBLIC_PRO_CONFIG } from "@/lib/pro/public-config";
 import type { FrqDetail, SignedFigure } from "@/lib/pro/frq-service";
 import ConfirmDialog from "./ConfirmDialog";
 import GradeResult, { type Feedback, type PartScore } from "./GradeResult";
@@ -493,7 +494,7 @@ function LockedQuestionPreview() {
           </span>
           <h2 className="mt-3 text-xl font-extrabold">You&apos;re out of AI grades</h2>
           <p className="mt-1 text-sm text-navy/75">
-            Astro Coach Pro opens every free-response question with 50 AI grades a month. Questions you&apos;ve
+            Astro Coach Pro opens every free-response question with {PUBLIC_PRO_CONFIG.proPeriodGrades} AI grades a month. Questions you&apos;ve
             already worked on — and every instant-check question — stay open for free.
           </p>
           <div className="mt-4 flex flex-wrap justify-center gap-2">
@@ -524,8 +525,8 @@ function OutOfCreditsNotice({ isPro, resetsAt }: { isPro: boolean; resetsAt: str
           You&apos;re out of AI grades.
           <span className="font-semibold text-navy/80">
             {isPro
-              ? ` ${resetsAt ? `Your 50 reset on ${new Date(resetsAt).toLocaleDateString()}. ` : ""}You can buy extra credits from your dashboard.`
-              : " Upgrade to Pro for 50 AI grades a month."}
+              ? ` ${resetsAt ? `Your ${PUBLIC_PRO_CONFIG.proPeriodGrades} reset on ${new Date(resetsAt).toLocaleDateString()}. ` : ""}You can buy extra credits from your dashboard.`
+              : ` Upgrade to Pro for ${PUBLIC_PRO_CONFIG.proPeriodGrades} AI grades a month.`}
           </span>
         </span>
       </p>
@@ -542,7 +543,7 @@ function OutOfCreditsNotice({ isPro, resetsAt }: { isPro: boolean; resetsAt: str
 function disabledExplanation(reason: string | null): string {
   switch (reason) {
     case "ATTEMPTS_EXHAUSTED":
-      return "You have used all 3 graded attempts at this question. The official solution is below.";
+      return `You have used all ${PUBLIC_PRO_CONFIG.maxAttemptsPerFrq} graded attempts at this question. The official solution is below.`;
     case "SOLUTION_ALREADY_UNLOCKED":
       return "The official solution is unlocked, so there is nothing left to grade here.";
     case "NO_CREDITS":

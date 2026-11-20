@@ -12,6 +12,11 @@ import { useAuth } from "@/lib/auth-context";
 import { useTrainingMode } from "@/lib/training-mode-context";
 import { supabase } from "@/lib/auth";
 
+/// How many question cards to show at first, and how many more each
+/// "Show more" click adds. Rendering all ~700 at once made the page slow
+/// to load and scroll, especially on phones.
+const PAGE_SIZE = 24;
+
 // Client Component that owns the search/filter state for the Training
 // page. The question list itself comes from the server as a prop, so
 // no answer keys or explanations ever reach the browser here.
@@ -25,6 +30,8 @@ export default function TrainingBrowser({
   initialCompetition?: string;
 }) {
   const [search, setSearch] = useState("");
+  // How many of the matching questions are currently shown.
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [answeredQuestionIds, setAnsweredQuestionIds] = useState<Set<string>>(new Set());
   const [bookmarkedQuestionIds, setBookmarkedQuestionIds] = useState<Set<string>>(new Set());
   const { user } = useAuth();
@@ -67,6 +74,20 @@ export default function TrainingBrowser({
 
     fetchUserData();
   }, [user]);
+
+  // Called when a bookmark star is toggled: add or remove that question
+  // from our set of saved questions. A new Set is made so React re-renders.
+  function handleBookmarkChange(questionId: string, isBookmarked: boolean) {
+    setBookmarkedQuestionIds((previous) => {
+      const next = new Set(previous);
+      if (isBookmarked) {
+        next.add(questionId);
+      } else {
+        next.delete(questionId);
+      }
+      return next;
+    });
+  }
 
   // Calculate initial year range and competitions from questions
   const initialYearRange = useMemo(() => {
@@ -117,19 +138,17 @@ export default function TrainingBrowser({
         question.curriculumTopics.some((topic) => topic.toLowerCase().includes(lowerSearch)) ||
         question.tags.some((tag) => tag.toLowerCase().includes(lowerSearch));
 
-      // Competition filter: OR logic (match any selected competition)
-      const matchesCompetition =
-        filters.competitions.size === 0 ||
-        filters.competitions.has(question.competition);
+      // Competition filter: OR logic (match any selected competition).
+      // Unticking every box means nothing is selected, so nothing matches.
+      const matchesCompetition = filters.competitions.has(question.competition);
 
       // Curriculum topic filter: OR logic (match if any selected topic is in question's topics)
-      const matchesTopics =
-        filters.curriculumTopics.size === 0 ||
-        question.curriculumTopics.some((topic) => filters.curriculumTopics.has(topic));
+      const matchesTopics = question.curriculumTopics.some((topic) =>
+        filters.curriculumTopics.has(topic)
+      );
 
       // Difficulty filter: OR logic (match any selected difficulty)
-      const matchesDifficulty =
-        filters.difficulty.size === 0 || filters.difficulty.has(question.difficulty);
+      const matchesDifficulty = filters.difficulty.has(question.difficulty);
 
       // Year filter
       const matchesYear = filters.includeAllEarlierYears
@@ -147,14 +166,28 @@ export default function TrainingBrowser({
     });
   }, [questions, search, filters]);
 
+  // A new search or filter starts the list from the top again.
+  function handleSearchChange(value: string) {
+    setSearch(value);
+    setVisibleCount(PAGE_SIZE);
+  }
+  function handleFiltersChange(value: FilterState) {
+    setFilters(value);
+    setVisibleCount(PAGE_SIZE);
+  }
+
+  // Only the first `visibleCount` matches are drawn; "Show more" adds more.
+  const visibleQuestions = filteredQuestions.slice(0, visibleCount);
+  const hiddenCount = filteredQuestions.length - visibleQuestions.length;
+
   return (
     <>
       <div className="mt-6 space-y-4">
-        <SearchInput value={search} onChange={setSearch} />
+        <SearchInput value={search} onChange={handleSearchChange} />
         <CollapsibleFilterPanel
           questions={questions}
           filters={filters}
-          onFiltersChange={setFilters}
+          onFiltersChange={handleFiltersChange}
         />
       </div>
 
@@ -180,15 +213,31 @@ export default function TrainingBrowser({
       </p>
 
       <div className="mt-4 grid gap-6 sm:grid-cols-2">
-        {filteredQuestions.map((question) => (
+        {visibleQuestions.map((question) => (
           <QuestionCard
             key={question.id}
             question={question}
             isAnswered={answeredQuestionIds.has(question.id)}
             isBookmarked={bookmarkedQuestionIds.has(question.id)}
+            onBookmarkChange={handleBookmarkChange}
           />
         ))}
       </div>
+
+      {hiddenCount > 0 && (
+        <div className="mt-8 flex flex-col items-center gap-2">
+          <BrutalButton
+            variant="dark"
+            size="md"
+            onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
+          >
+            Show {Math.min(PAGE_SIZE, hiddenCount)} more
+          </BrutalButton>
+          <p className="text-sm text-navy/70">
+            Showing {visibleQuestions.length} of {filteredQuestions.length}
+          </p>
+        </div>
+      )}
 
       {filteredQuestions.length === 0 && (
         <div className="mt-8 rounded-xl border-[3px] border-dashed border-navy/40 p-8 text-center">

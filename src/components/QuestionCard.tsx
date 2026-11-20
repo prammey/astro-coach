@@ -12,14 +12,18 @@ function previewText(text: string, maxLength: number) {
 }
 
 // One question's summary card on the Training page.
+// `onBookmarkChange` tells the parent list when the star is toggled, so
+// the list's record of saved questions stays in step with the stars.
 export default function QuestionCard({
   question,
   isAnswered = false,
   isBookmarked = false,
+  onBookmarkChange,
 }: {
   question: PublicQuestion;
   isAnswered?: boolean;
   isBookmarked?: boolean;
+  onBookmarkChange: (questionId: string, isBookmarked: boolean) => void;
 }) {
   // Show primary topic and up to 1 additional topic, with a +N indicator for more
   const displayTopics = question.curriculumTopics.slice(0, 2);
@@ -29,7 +33,11 @@ export default function QuestionCard({
     <BrutalCard tone="cream" hover className="relative flex flex-col">
       {/* Bookmark star and "already answered" eye, top right. */}
       <div className="absolute top-3 right-3 flex items-center gap-2">
-        <BookmarkButton questionId={question.id} isBookmarked={isBookmarked} />
+        <BookmarkButton
+          questionId={question.id}
+          isBookmarked={isBookmarked}
+          onBookmarkChange={(nowBookmarked) => onBookmarkChange(question.id, nowBookmarked)}
+        />
         {isAnswered && <AnsweredEye />}
       </div>
 

@@ -28,20 +28,31 @@ export default function TrainingModePage() {
       return;
     }
 
+    // `active` goes false when the student moves to another question before
+    // this one finishes loading, so a slow answer for an earlier question
+    // can never be shown under a later one.
+    let active = true;
+
     const fetchQuestion = async () => {
       try {
         setLoading(true);
         const response = await fetch(`/api/questions/${currentQuestionId}`);
-        setQuestion(response.ok ? await response.json() : null);
+        const data = response.ok ? await response.json() : null;
+        if (active) setQuestion(data);
       } catch (error) {
         console.error('Error fetching question:', error);
-        setQuestion(null);
+        if (active) setQuestion(null);
       } finally {
-        setLoading(false);
+        if (active) setLoading(false);
       }
     };
 
     fetchQuestion();
+
+    // Cleanup: ignore this request's result once the question changes.
+    return () => {
+      active = false;
+    };
   }, [currentQuestionId, isInTrainingMode, router]);
 
   if (loading) {
@@ -63,7 +74,9 @@ export default function TrainingModePage() {
       {question ? (
         // `key` remounts the view on each question, so the answered state
         // and any selected choices reset between questions.
-        <QuestionView key={currentQuestionId} question={question} />
+        // `inTrainingRun` turns on the run's own controls (Exit Training,
+        // "Question 3 of 40", stepping through the queue).
+        <QuestionView key={currentQuestionId} question={question} inTrainingRun />
       ) : (
         <BrutalCard tone="yellow">
           <p className="font-bold">Question not found</p>

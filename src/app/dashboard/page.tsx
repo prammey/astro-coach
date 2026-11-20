@@ -46,16 +46,19 @@ export default function DashboardPage() {
   const [credits, setCredits] = useState<Credits | null>(null);
   // Pro analytics (strengths, free-response insights), loaded once.
   const [analytics, setAnalytics] = useState<ProAnalytics | null>(null);
+  // True if the Pro analytics failed to load. This never changes whether
+  // the account counts as Pro; it only shows a small error in their place.
+  const [analyticsFailed, setAnalyticsFailed] = useState(false);
   // True when the student has just come back from buying credits. (The
   // first render is a loading screen, so reading the URL here is safe.)
   const [creditsJustBought] = useState(
     () => typeof window !== 'undefined' && window.location.search.includes('credits=success'),
   );
 
-  // Send signed-out visitors to the login page.
+  // Send signed-out visitors to the login page, then back here afterwards.
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/login');
+      router.push(`/login?next=${encodeURIComponent('/dashboard')}`);
     }
   }, [user, loading, router]);
 
@@ -96,21 +99,40 @@ export default function DashboardPage() {
   }, [user]);
 
   // The plan and credits, then (for Pro) the analytics.
+  //
+  // The two requests fail separately on purpose: if only the analytics
+  // fail, a paying Pro student still sees the Pro layout (with an error
+  // where the analytics go), not the Free upsell.
   useEffect(() => {
     if (!user) return;
     let active = true;
 
-    fetchEntitlements()
-      .then(async (entitlements) => {
+    // Step 2: load the Pro analytics. A failure here only marks the
+    // analytics as failed.
+    const loadAnalytics = async () => {
+      try {
+        const response = await apiGet<ProAnalyticsResponse>('/api/dashboard/pro-analytics');
+        if (active && !response.locked) setAnalytics(response.analytics);
+      } catch {
+        if (active) setAnalyticsFailed(true);
+      }
+    };
+
+    // Step 1: load the plan and credits. Only a failure here falls back
+    // to the Free layout.
+    const loadPlan = async () => {
+      try {
+        const entitlements = await fetchEntitlements();
         if (!active) return;
         setIsPro(entitlements.isPro);
         setCredits(entitlements.credits);
-        if (!entitlements.isPro) return;
+        if (entitlements.isPro) await loadAnalytics();
+      } catch {
+        if (active) setIsPro(false);
+      }
+    };
 
-        const response = await apiGet<ProAnalyticsResponse>('/api/dashboard/pro-analytics');
-        if (active && !response.locked) setAnalytics(response.analytics);
-      })
-      .catch(() => active && setIsPro(false));
+    loadPlan();
 
     return () => {
       active = false;
@@ -216,6 +238,13 @@ export default function DashboardPage() {
                     strongestTopic={analytics.strongestTopic}
                     topicToPractiseNext={analytics.topicToPractiseNext}
                   />
+                ) : analyticsFailed ? (
+                  <p
+                    role="alert"
+                    className="rounded-lg border-[3px] border-danger bg-white p-4 font-semibold text-danger"
+                  >
+                    Couldn&apos;t load your strengths and insights. Refresh the page to try again.
+                  </p>
                 ) : (
                   <LoadingStar tone="light" label="Loading your strengths…" />
                 ))}

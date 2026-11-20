@@ -8,7 +8,7 @@
 // This component only draws what it is given, so the same code shows a
 // student's real activity and the blurred example on the Free dashboard.
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { activityLevel, calendarDays, type ActivityDay, type Streaks } from "@/lib/progress/activity";
 import HoverTip from "./HoverTip";
 
@@ -22,6 +22,15 @@ const WEEKDAY_LABELS = ["", "Mon", "", "Wed", "", "Fri", ""];
 
 /// Below this width the squares stop shrinking and the calendar scrolls.
 const MIN_GRID_WIDTH = 640;
+
+/// How far each arrow key moves through the days. A column is one week, so
+/// up/down is one day and left/right is a whole week.
+const ARROW_KEY_STEPS: Record<string, number> = {
+  ArrowUp: -1,
+  ArrowDown: 1,
+  ArrowLeft: -7,
+  ArrowRight: 7,
+};
 
 /// "Wed, Sep 24, 2026" for a "2026-09-24" day key.
 function formatDay(day: string): string {
@@ -62,6 +71,7 @@ export default function ActivityCalendar({
   interactive?: boolean;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const countsByDay = useMemo(() => new Map(days.map((day) => [day.date, day])), [days]);
   const allDays = useMemo(() => calendarDays(today, WEEKS), [today]);
@@ -75,6 +85,23 @@ export default function ActivityCalendar({
     for (let index = 0; index < allDays.length; index += 7) columns.push(allDays.slice(index, index + 7));
     return columns;
   }, [allDays]);
+
+  // "Roving tabindex": only one day square is in the Tab order at a time
+  // (today, until the student moves), so Tab jumps past the calendar in one
+  // press instead of ~370. Arrow keys move between days inside it.
+  const [activeDayIndex, setActiveDayIndex] = useState<number | null>(null);
+  const tabbableDayIndex = Math.min(activeDayIndex ?? allDays.length - 1, allDays.length - 1);
+
+  // Arrow keys: move to the neighbouring day (or week) and focus it.
+  function handleDayKeyDown(event: React.KeyboardEvent, dayIndex: number) {
+    const step = ARROW_KEY_STEPS[event.key];
+    if (step === undefined) return;
+    event.preventDefault();
+
+    const nextIndex = Math.max(0, Math.min(allDays.length - 1, dayIndex + step));
+    setActiveDayIndex(nextIndex);
+    gridRef.current?.querySelector<HTMLButtonElement>(`[data-day-index="${nextIndex}"]`)?.focus();
+  }
 
   // On narrow screens the calendar scrolls sideways; start at the newest week.
   useEffect(() => {
@@ -97,6 +124,9 @@ export default function ActivityCalendar({
               stops shrinking and scrolls sideways instead. */}
           <div ref={scrollRef} className="mt-3 overflow-x-auto pb-2">
             <div
+              ref={gridRef}
+              role={interactive ? "group" : undefined}
+              aria-label={interactive ? "Activity by day. Use the arrow keys to move between days." : undefined}
               className="grid gap-[3px]"
               style={{
                 gridTemplateColumns: `28px repeat(${weeks.length}, minmax(0, 1fr))`,
@@ -151,6 +181,8 @@ export default function ActivityCalendar({
                     );
                   }
                   const text = describeDay(day, counts);
+                  // Position of this day in the full list (weeks are runs of 7).
+                  const flatIndex = weekIndex * 7 + dayIndex;
                   return (
                     <span key={day} style={place}>
                       <HoverTip
@@ -164,6 +196,10 @@ export default function ActivityCalendar({
                       >
                         <button
                           type="button"
+                          data-day-index={flatIndex}
+                          tabIndex={flatIndex === tabbableDayIndex ? 0 : -1}
+                          onFocus={() => setActiveDayIndex(flatIndex)}
+                          onKeyDown={(event) => handleDayKeyDown(event, flatIndex)}
                           aria-label={`${text.title}, ${text.detail}`}
                           className="block w-full rounded-[3px] focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow"
                         >
