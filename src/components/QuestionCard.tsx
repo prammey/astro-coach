@@ -1,7 +1,8 @@
+import Link from "next/link";
 import BrutalCard from "./BrutalCard";
 import BookmarkButton from "./BookmarkButton";
-import BrutalButton from "./ui/BrutalButton";
 import Chip from "./ui/Chip";
+import ScientificText from "./ScientificText";
 import { PublicQuestion } from "@/data/mcq/types";
 import { questionNumberLabel } from "@/lib/question-label";
 
@@ -11,7 +12,18 @@ function previewText(text: string, maxLength: number) {
   return `${text.slice(0, maxLength).trim()}...`;
 }
 
+// "Q12" for one question, "Questions 3–4" for a joined multi-part item.
+function shortNumberLabel(question: PublicQuestion) {
+  return questionNumberLabel(question).replace(/^Question (\d)/, "Q$1");
+}
+
 // One question's summary card on the Training page.
+//
+// The whole card opens the question: the title link stretches over the
+// card (its ::after covers it), so there is one big target instead of a
+// separate button on every card. The bookmark star sits above that layer
+// so it can still be clicked on its own.
+//
 // `onBookmarkChange` tells the parent list when the star is toggled, so
 // the list's record of saved questions stays in step with the stars.
 export default function QuestionCard({
@@ -30,9 +42,10 @@ export default function QuestionCard({
   const moreTopicsCount = Math.max(0, question.curriculumTopics.length - 2);
 
   return (
-    <BrutalCard tone="cream" hover className="relative flex flex-col">
-      {/* Bookmark star and "already answered" eye, top right. */}
-      <div className="absolute top-3 right-3 flex items-center gap-2">
+    <BrutalCard tone="white" hover className="relative flex flex-col p-5">
+      {/* Bookmark star and "already answered" eye, top right, above the
+          card-wide link so they stay clickable. */}
+      <div className="absolute right-3 top-3 z-10 flex items-center gap-2">
         <BookmarkButton
           questionId={question.id}
           isBookmarked={isBookmarked}
@@ -41,8 +54,23 @@ export default function QuestionCard({
         {isAnswered && <AnsweredEye />}
       </div>
 
-      <div className="flex flex-wrap items-center gap-2 pr-14">
-        <Chip tone="type">{question.type}</Chip>
+      {/* Competition, year and number: what students scan for first. */}
+      <h3 className="pr-16 text-lg font-extrabold leading-snug text-navy">
+        <Link
+          href={`/training/${question.id}`}
+          className="after:absolute after:inset-0 after:rounded-xl after:content-[''] focus:outline-none focus-visible:after:ring-4 focus-visible:after:ring-electric/40"
+        >
+          {question.competition} {question.year} · {shortNumberLabel(question)}
+        </Link>
+      </h3>
+      <p className="text-sm text-navy/60">{question.examName}</p>
+
+      <p className="mt-3 flex-1 leading-relaxed text-navy">
+        <ScientificText text={previewText(question.questionText, 140)} />
+      </p>
+
+      {/* Difficulty and topics, then a quiet "open" cue. */}
+      <div className="mt-4 flex flex-wrap items-center gap-2">
         <Chip tone="difficulty">{question.difficulty}</Chip>
         {displayTopics.map((topic) => (
           <Chip key={topic} tone="topic">
@@ -51,25 +79,10 @@ export default function QuestionCard({
         ))}
         {moreTopicsCount > 0 && <Chip tone="topic">+{moreTopicsCount}</Chip>}
         {question.parts?.length ? <Chip tone="parts">{question.parts.length} parts</Chip> : null}
+        <span aria-hidden className="ml-auto text-sm font-bold text-purple">
+          Open →
+        </span>
       </div>
-
-      <h3 className="mt-3 text-lg font-extrabold leading-snug text-navy">
-        {question.competition} — {question.year} {question.examName}
-      </h3>
-      <p className="text-sm text-navy/60">{questionNumberLabel(question)}</p>
-
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-navy">
-        {previewText(question.questionText, 120)}
-      </p>
-
-      <BrutalButton
-        href={`/training/${question.id}`}
-        variant="dark"
-        size="sm"
-        className="mt-4 self-start"
-      >
-        Open question
-      </BrutalButton>
     </BrutalCard>
   );
 }

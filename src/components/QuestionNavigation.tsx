@@ -67,28 +67,37 @@ export default function QuestionNavigation({
     if (nextQuestionId) router.push(`/training/${nextQuestionId}`);
   }
 
+  // A compact group (counter, Previous, Next/Skip) that sits at the right
+  // end of the question's control row.
   return (
-    <div className="mt-8">
+    // On a phone the group takes the full width and the two buttons share
+    // it equally; on wider screens it shrinks to fit at the row's end.
+    <div className="flex w-full flex-wrap items-center gap-3 sm:w-auto">
       {inTrainingRun && (
-        <p className="mb-3 text-center text-sm font-bold text-navy/70">
+        <p className="w-full text-sm font-bold text-navy/70 sm:w-auto">
           Question {progress.current} of {progress.total}
         </p>
       )}
 
-      <div className="flex flex-wrap justify-center gap-4">
-        <BrutalButton variant="dark" onClick={goPrevious} disabled={atStart}>
-          ← Previous
-        </BrutalButton>
+      <BrutalButton
+        variant="ghost"
+        className="flex-1 sm:flex-none"
+        onClick={goPrevious}
+        disabled={atStart}
+      >
+        ← Previous
+      </BrutalButton>
 
-        {/* Blue once answered (move on), yellow before (skip for now). */}
-        <BrutalButton
-          variant={isAnswered ? 'primary' : 'accent'}
-          onClick={advance}
-          disabled={atEnd}
-        >
-          {isAnswered ? 'Next →' : 'Skip →'}
-        </BrutalButton>
-      </div>
+      {/* Blue once answered (move on), white before (skip for now), so the
+          yellow Check button stays the one obvious next step. */}
+      <BrutalButton
+        variant={isAnswered ? 'primary' : 'ghost'}
+        className="flex-1 sm:flex-none"
+        onClick={advance}
+        disabled={atEnd}
+      >
+        {isAnswered ? 'Next →' : 'Skip →'}
+      </BrutalButton>
     </div>
   );
 }

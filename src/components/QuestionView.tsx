@@ -13,6 +13,7 @@ import { questionNumberLabel } from '@/lib/question-label';
 import { useTrainingMode } from '@/lib/training-mode-context';
 import type { PublicQuestion } from '@/data/mcq/types';
 import Chip from './ui/Chip';
+import ScientificText from './ScientificText';
 
 // The single rendering of a question, used both when a question is opened
 // directly and when it comes up inside a training run.
@@ -50,23 +51,30 @@ export default function QuestionView({
         {inTrainingRun ? '← Exit Training' : '← Back to Training'}
       </Link>
 
-      <div className="mt-4 flex flex-wrap items-center gap-2">
-        <Chip tone="type">{question.type}</Chip>
-        <Chip tone="difficulty">{question.difficulty}</Chip>
-        <Chip tone="topic">{question.topic}</Chip>
-        {isMultiPart && <Chip tone="parts">{question.parts!.length} parts</Chip>}
-      </div>
-
-      <div className="flex items-center gap-2">
-        <h1 className="mt-3 text-2xl font-extrabold text-navy sm:text-3xl">
-          {question.competition} — {question.year} {question.examName}
-        </h1>
-        <div className="flex gap-1">
+      {/* Same title format and topic tags as the question bank's cards, so
+          a question looks like the same thing in both places. */}
+      <div className="mt-4 flex items-start justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-extrabold text-navy sm:text-3xl">
+            {question.competition} {question.year} · {questionNumberLabel(question)}
+          </h1>
+          <p className="mt-1 text-navy/60">{question.examName}</p>
+        </div>
+        <div className="flex shrink-0 gap-1 pt-1">
           <QuestionAnsweredIndicator questionId={question.id} />
           <BookmarkButtonWrapper questionId={question.id} />
         </div>
       </div>
-      <p className="text-sm text-black/60">{questionNumberLabel(question)}</p>
+
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <Chip tone="difficulty">{question.difficulty}</Chip>
+        {question.curriculumTopics.map((topic) => (
+          <Chip key={topic} tone="topic">
+            {topic}
+          </Chip>
+        ))}
+        {isMultiPart && <Chip tone="parts">{question.parts!.length} parts</Chip>}
+      </div>
 
       {question.questionMediaMissing && (
         <div className="mt-4 rounded-lg border-[3px] border-ink bg-yellow p-3 text-sm font-bold text-navy">
@@ -84,7 +92,9 @@ export default function QuestionView({
         </div>
       ) : (
         <BrutalCard tone="cream" className="mt-6">
-          <p className="text-lg text-navy">{question.questionText}</p>
+          <p className="text-lg text-navy">
+            <ScientificText text={question.questionText} />
+          </p>
           <QuestionFigure
             assets={question.questionMedia?.assets as readonly string[] | undefined}
             alt={`Figure for ${question.competition} ${question.year} question ${question.questionNumber}`}
@@ -92,25 +102,32 @@ export default function QuestionView({
         </BrutalCard>
       )}
 
-      <McqPractice question={question} onAnswerSubmitted={() => setIsAnswered(true)} />
-
-      <QuestionNavigation
-        isAnswered={isAnswered}
-        previousQuestionId={previousQuestionId}
-        nextQuestionId={nextQuestionId}
-        inTrainingRun={inTrainingRun}
+      <McqPractice
+        question={question}
+        onAnswerSubmitted={() => setIsAnswered(true)}
+        actions={
+          <QuestionNavigation
+            isAnswered={isAnswered}
+            previousQuestionId={previousQuestionId}
+            nextQuestionId={nextQuestionId}
+            inTrainingRun={inTrainingRun}
+          />
+        }
       />
 
-      <div className="mt-6 flex justify-center">
-        <ReportProblemButton questionId={question.id} />
-      </div>
-
-      {/* Where this question came from. The permission status stays in the
-          data for our own records; it is not something students need. */}
-      <BrutalCard tone="white" className="mt-8">
-        <h2 className="font-bold text-purple">Source</h2>
+      {/* Where this question came from, and the place to flag a problem
+          with it. The permission status stays in the data for our own
+          records; it is not something students need. */}
+      <BrutalCard tone="white" className="mt-10">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="font-bold text-purple">Source</h2>
+          <ReportProblemButton questionId={question.id} />
+        </div>
         {question.attributionText && (
-          <p className="mt-2 text-sm text-navy">{question.attributionText}</p>
+          <p className="mt-2 text-sm text-navy">
+            {/* The heading already says "Source", so drop the repeat. */}
+            {question.attributionText.replace(/^Source:\s*/, '')}
+          </p>
         )}
         <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
           {question.pdfUrl && (

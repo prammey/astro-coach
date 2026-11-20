@@ -6,6 +6,7 @@ import SearchInput from "@/components/SearchInput";
 import CollapsibleFilterPanel, { type FilterState } from "@/components/CollapsibleFilterPanel";
 import QuestionCard from "@/components/QuestionCard";
 import BrutalButton from "@/components/ui/BrutalButton";
+import ShowMore from "@/components/ui/ShowMore";
 import { PublicQuestion } from "@/data/mcq/types";
 import { CURRICULUM_TOPICS } from "@/data/mcq/topicTaxonomy";
 import { useAuth } from "@/lib/auth-context";
@@ -178,7 +179,6 @@ export default function TrainingBrowser({
 
   // Only the first `visibleCount` matches are drawn; "Show more" adds more.
   const visibleQuestions = filteredQuestions.slice(0, visibleCount);
-  const hiddenCount = filteredQuestions.length - visibleQuestions.length;
 
   return (
     <>
@@ -191,28 +191,33 @@ export default function TrainingBrowser({
         />
       </div>
 
-      {filteredQuestions.length > 0 && (
-        <div className="mt-6">
+      {/* Results bar: how many match, and the button that turns them into
+          a practice run. One row on wider screens. */}
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="text-lg font-extrabold text-navy">
+            {filteredQuestions.length} question{filteredQuestions.length === 1 ? "" : "s"}
+          </p>
+          <p className="text-sm text-navy/70">
+            Tip: filter to one topic, do ten in a row, and read every explanation you miss.
+          </p>
+        </div>
+        {filteredQuestions.length > 0 && (
           <BrutalButton
             variant="primary"
-            size="lg"
-            className="w-full"
+            className="w-full sm:w-auto"
             onClick={() => {
               const questionIds = filteredQuestions.map((q) => q.id);
               startTrainingMode(questionIds);
               router.push(`/training/mode`);
             }}
           >
-            Start training with these {filteredQuestions.length} questions
+            Start training ({filteredQuestions.length}) →
           </BrutalButton>
-        </div>
-      )}
+        )}
+      </div>
 
-      <p className="mt-6 text-sm font-bold text-navy/70">
-        {filteredQuestions.length} question{filteredQuestions.length === 1 ? "" : "s"} found
-      </p>
-
-      <div className="mt-4 grid gap-6 sm:grid-cols-2">
+      <div className="mt-5 grid gap-5 sm:grid-cols-2">
         {visibleQuestions.map((question) => (
           <QuestionCard
             key={question.id}
@@ -224,20 +229,12 @@ export default function TrainingBrowser({
         ))}
       </div>
 
-      {hiddenCount > 0 && (
-        <div className="mt-8 flex flex-col items-center gap-2">
-          <BrutalButton
-            variant="dark"
-            size="md"
-            onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
-          >
-            Show {Math.min(PAGE_SIZE, hiddenCount)} more
-          </BrutalButton>
-          <p className="text-sm text-navy/70">
-            Showing {visibleQuestions.length} of {filteredQuestions.length}
-          </p>
-        </div>
-      )}
+      <ShowMore
+        shown={visibleQuestions.length}
+        total={filteredQuestions.length}
+        pageSize={PAGE_SIZE}
+        onShowMore={() => setVisibleCount((count) => count + PAGE_SIZE)}
+      />
 
       {filteredQuestions.length === 0 && (
         <div className="mt-8 rounded-xl border-[3px] border-dashed border-navy/40 p-8 text-center">

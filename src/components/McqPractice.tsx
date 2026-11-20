@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PublicQuestion } from "@/data/mcq/types";
 import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/lib/auth";
 import MathText from "./MathText";
+import ScientificText from "./ScientificText";
 import QuestionFigure from "./QuestionFigure";
 import BrutalButton from "./ui/BrutalButton";
 import Chip from "./ui/Chip";
@@ -51,12 +52,16 @@ type PartProgress = {
 
 const EMPTY_PROGRESS: PartProgress = { wrongTries: {} };
 
+// `actions` (e.g. Previous / Skip) is drawn on the same row as the Check
+// button, so all the controls for this question line up in one place.
 export default function McqPractice({
   question,
   onAnswerSubmitted,
+  actions,
 }: {
   question: PublicQuestion;
   onAnswerSubmitted?: () => void;
+  actions?: ReactNode;
 }) {
   const { user } = useAuth();
   // Signing in from here comes back to this exact question.
@@ -190,6 +195,20 @@ export default function McqPractice({
       : `${solvedCount} of ${parts.length} parts right so far. Fix the part marked in red and try again.`;
   }
 
+  // The "Correct!" / "Not quite" banner for the most recent check. Shown
+  // right under the choices (before the solution), where the student is
+  // already looking, so "read the solution below" is literally true.
+  const resultBanner = lastResult && (
+    <div
+      role="status"
+      className={`mt-4 animate-pop-in rounded-lg border-[3px] border-ink p-4 font-bold shadow-brutal-sm ${
+        lastResult.isCorrect ? "bg-success text-white" : "bg-danger text-white"
+      }`}
+    >
+      {statusMessage(lastResult)}
+    </div>
+  );
+
   return (
     <div className="mt-6">
       <div className="space-y-8">
@@ -213,7 +232,9 @@ export default function McqPractice({
                       </span>
                     )}
                   </div>
-                  <p className="mt-2 text-lg text-navy">{part.questionText}</p>
+                  <p className="mt-2 text-lg text-navy">
+                    <ScientificText text={part.questionText} />
+                  </p>
                   <QuestionFigure
                     assets={part.questionMedia?.assets as readonly string[] | undefined}
                     alt={`Figure for question ${part.questionNumber}`}
@@ -259,7 +280,8 @@ export default function McqPractice({
                         onClick={() => selectAnswer(part.id, choice.label)}
                         className={`block w-full rounded-lg border-[3px] border-ink px-4 py-3 text-left font-medium transition-[translate,box-shadow,background-color,color] duration-200 ease-snappy disabled:cursor-default ${tone}`}
                       >
-                        <span className="font-bold">{choice.label}.</span> {choice.text}
+                        <span className="font-bold">{choice.label}.</span>{" "}
+                        <ScientificText text={choice.text} />
                         {isCorrectAnswer && <span className="sr-only"> (correct)</span>}
                         {!isCorrectAnswer && triedReason && (
                           <span className="sr-only"> (incorrect)</span>
@@ -279,6 +301,10 @@ export default function McqPractice({
                 })}
               </div>
 
+              {/* A single question shows its result right here, between
+                  the choices and the solution. */}
+              {!isMultiPart && resultBanner}
+
               {solution && (
                 <SolutionCard
                   solution={solution}
@@ -290,6 +316,9 @@ export default function McqPractice({
           );
         })}
       </div>
+
+      {/* A multi-part item has one result for all its parts, after them. */}
+      {isMultiPart && resultBanner}
 
       {!user && (
         <p className="mt-4 text-sm font-bold text-purple">
@@ -305,38 +334,35 @@ export default function McqPractice({
 
       {checkError && <p className="mt-3 text-sm font-bold text-danger">{checkError}</p>}
 
-      {!allSolved && (
-        <BrutalButton
-          variant="accent"
-          className="mt-4"
-          disabled={!allAnswered || checking}
-          onClick={handleCheckAnswer}
-        >
-          {checking
-            ? "Checking..."
-            : hasTriedBefore
-              ? "Try again"
-              : isMultiPart
-                ? "Check both parts"
-                : "Check answer"}
-        </BrutalButton>
-      )}
+      {/* One row of controls: Check on the left, moving on (`actions`) on
+          the right. On a phone they wrap onto two lines. */}
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+        {!allSolved ? (
+          <BrutalButton
+            variant="accent"
+            className="w-full sm:w-auto"
+            disabled={!allAnswered || checking}
+            onClick={handleCheckAnswer}
+          >
+            {checking
+              ? "Checking..."
+              : hasTriedBefore
+                ? "Try again"
+                : isMultiPart
+                  ? "Check both parts"
+                  : "Check answer"}
+          </BrutalButton>
+        ) : (
+          // Keeps `actions` on the right once the Check button is gone.
+          <span aria-hidden />
+        )}
+        {actions}
+      </div>
 
       {isMultiPart && !allAnswered && !lastResult && (
         <p className="mt-2 text-sm font-bold text-navy/60">
           Answer both parts to check. Both must be correct to count as correct.
         </p>
-      )}
-
-      {lastResult && (
-        <div
-          role="status"
-          className={`mt-4 animate-pop-in rounded-lg border-[3px] border-ink p-4 font-bold shadow-brutal-sm ${
-            lastResult.isCorrect ? "bg-success text-white" : "bg-danger text-white"
-          }`}
-        >
-          {statusMessage(lastResult)}
-        </div>
       )}
     </div>
   );

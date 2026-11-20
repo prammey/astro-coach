@@ -1,7 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
 import PageContainer from "@/components/PageContainer";
-import BrutalCard from "@/components/BrutalCard";
 import BrutalButton from "@/components/ui/BrutalButton";
 import TrainingBrowser from "@/components/TrainingBrowser";
 import { getMcqCatalog } from "@/data/mcq/catalog.server";
@@ -39,61 +38,35 @@ export default async function TrainingPage({
 
   return (
     <PageContainer>
-      <h1 className="text-3xl font-extrabold text-navy sm:text-4xl">
-        Training
-      </h1>
-      <p className="mt-2 max-w-2xl text-navy/80">
-        Browse real competition questions from USAAAO, IAAC, and BAAO.
-        Search by keyword or filter by competition, topic, difficulty, and
-        question type.
-      </p>
-
-      <div className="mt-6 grid gap-5 md:grid-cols-2">
-        {/* Reference sheet */}
-        <BrutalCard tone="cream" className="flex flex-col">
-          <h2 className="text-lg font-extrabold text-navy">
-            {pdfExists ? "Reference sheet" : "How to practice"}
-          </h2>
-          {pdfExists ? (
-            <>
-              <p className="mt-1 flex-1 text-sm text-navy/80">
-                The constants and formulas you are allowed in the exam, on one page.
-              </p>
-              <BrutalButton
-                href="/resources/astro-coach-constants-sheet.pdf"
-                variant="dark"
-                size="sm"
-                className="mt-4 self-start"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open constants sheet (PDF)
-              </BrutalButton>
-            </>
-          ) : (
-            // Until the constants sheet PDF is added, give useful tips
-            // instead of a "coming soon" placeholder.
-            <ul className="mt-2 flex-1 list-disc space-y-1 pl-5 text-sm text-navy/80">
-              <li>Filter by one topic and do ten questions in a row.</li>
-              <li>Press &quot;Start training&quot; to work through your filtered set in random order.</li>
-              <li>Read the explanation for every miss, then retry it later.</li>
-            </ul>
-          )}
-        </BrutalCard>
-
-        {/* Free-response practice lives on its own page: those questions come
-            from the database and depend on the signed-in student's plan, so
-            they cannot be part of this pre-rendered MCQ catalog. */}
-        <BrutalCard tone="purple" hover className="flex flex-col">
-          <h2 className="text-lg font-extrabold">Free-response practice</h2>
-          <p className="mt-1 flex-1 text-sm text-white/90">
-            Write full solutions to real olympiad free-response problems and get
-            rubric-based, part-by-part AI feedback.
+      {/* Title on the left; the two "elsewhere" links on the right, kept
+          small so the questions themselves start near the top. */}
+      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h1 className="text-3xl font-extrabold text-navy sm:text-4xl">Training</h1>
+          <p className="mt-2 max-w-2xl text-navy/80">
+            {publicQuestionCatalog.length} real multiple-choice questions from USAAAO, IAAC and
+            BAAO. Search, filter, and practice.
           </p>
-          <BrutalButton href="/training/frq" variant="accent" size="sm" className="mt-4 self-start">
-            Open free-response practice
+        </div>
+
+        <div className="flex flex-wrap gap-3">
+          {pdfExists && (
+            <BrutalButton
+              href="/resources/astro-coach-constants-sheet.pdf"
+              variant="ghost"
+              size="sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Constants sheet (PDF)
+            </BrutalButton>
+          )}
+          {/* Free-response practice lives on its own page: those questions
+              come from the database and depend on the student's plan. */}
+          <BrutalButton href="/training/frq" variant="dark" size="sm">
+            Free-response practice →
           </BrutalButton>
-        </BrutalCard>
+        </div>
       </div>
 
       <TrainingBrowser questions={publicQuestionCatalog} initialCompetition={competition} />

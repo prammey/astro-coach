@@ -13,6 +13,7 @@ import type { FrqCard as FrqCardData } from "@/lib/pro/frq-service";
 import FrqCard from "./FrqCard";
 import BrutalCard from "../BrutalCard";
 import BrutalButton from "../ui/BrutalButton";
+import ShowMore from "../ui/ShowMore";
 import LoadingStar from "../ui/LoadingStar";
 import Reveal from "../ui/Reveal";
 
@@ -30,6 +31,10 @@ const QUICK_CHECK = "Free instant check";
 const AI_GRADED = "AI graded";
 const DIFFICULTY_ORDER = ["Beginner", "Intermediate", "Advanced"];
 
+/// How many cards to show at first, and how many more each "Show more"
+/// click adds (the same as the multiple-choice bank).
+const PAGE_SIZE = 24;
+
 export default function FrqBrowser() {
   const [data, setData] = useState<FrqListResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -39,6 +44,16 @@ export default function FrqBrowser() {
   const [year, setYear] = useState(ALL);
   const [difficulty, setDifficulty] = useState(ALL);
   const [answerType, setAnswerType] = useState(ALL);
+  // How many of the matching questions are currently shown.
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  // Wraps a filter's setter so changing it also starts the list from the top.
+  function resetsPaging(setter: (value: string) => void) {
+    return (value: string) => {
+      setter(value);
+      setVisibleCount(PAGE_SIZE);
+    };
+  }
 
   useEffect(() => {
     let active = true;
@@ -116,25 +131,37 @@ export default function FrqBrowser() {
 
   return (
     <div className="mt-6">
-      <div className="flex flex-wrap items-end gap-4">
-        <Filter label="Topic" value={topic} options={topics} onChange={setTopic} />
+      {/* Filters: a tidy two-column grid on phones, one row on wider screens. */}
+      <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-end sm:gap-4">
+        <Filter
+          label="Topic"
+          value={topic}
+          options={topics}
+          onChange={resetsPaging(setTopic)}
+          className="col-span-2"
+        />
         <Filter
           label="Competition"
           value={competition}
           options={competitions}
-          onChange={setCompetition}
+          onChange={resetsPaging(setCompetition)}
         />
-        <Filter label="Year" value={year} options={years} onChange={setYear} />
-        <Filter label="Difficulty" value={difficulty} options={difficulties} onChange={setDifficulty} />
+        <Filter label="Year" value={year} options={years} onChange={resetsPaging(setYear)} />
+        <Filter
+          label="Difficulty"
+          value={difficulty}
+          options={difficulties}
+          onChange={resetsPaging(setDifficulty)}
+        />
         <Filter
           label="Answer type"
           value={answerType}
           options={[ALL, QUICK_CHECK, AI_GRADED]}
-          onChange={setAnswerType}
+          onChange={resetsPaging(setAnswerType)}
         />
 
         {data.signedIn && data.creditsRemaining !== null && (
-          <p className="ml-auto text-sm font-bold text-navy">
+          <p className="col-span-2 text-sm font-bold text-navy sm:ml-auto">
             {data.creditsRemaining} AI grade{data.creditsRemaining === 1 ? "" : "s"} left
           </p>
         )}
@@ -161,12 +188,19 @@ export default function FrqBrowser() {
       </p>
 
       <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {visible.map((question, index) => (
+        {visible.slice(0, visibleCount).map((question, index) => (
           <Reveal key={question.id} delay={Math.min(index, 5) * 50} className="h-full">
             <FrqCard question={question} signedIn={data.signedIn} />
           </Reveal>
         ))}
       </div>
+
+      <ShowMore
+        shown={Math.min(visibleCount, visible.length)}
+        total={visible.length}
+        pageSize={PAGE_SIZE}
+        onShowMore={() => setVisibleCount((count) => count + PAGE_SIZE)}
+      />
     </div>
   );
 }
@@ -176,19 +210,22 @@ function Filter({
   value,
   options,
   onChange,
+  className = "",
 }: {
   label: string;
   value: string;
   options: string[];
   onChange: (value: string) => void;
+  /// Extra layout classes, e.g. to span both columns on phones.
+  className?: string;
 }) {
   return (
-    <label className="block text-sm font-bold text-navy">
+    <label className={`block text-sm font-bold text-navy ${className}`}>
       {label}
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-1 block rounded-lg border-[3px] border-ink bg-white px-3 py-2 font-semibold text-navy shadow-brutal-sm focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+        className="mt-1 block w-full rounded-lg border-[3px] border-ink bg-white px-3 py-2 font-semibold text-navy shadow-brutal-sm focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
       >
         {options.map((option) => (
           <option key={option} value={option}>

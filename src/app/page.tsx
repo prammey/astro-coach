@@ -130,17 +130,19 @@ export default async function HomePage() {
             className="mt-8 flex flex-wrap gap-4 animate-rise-in"
             style={{ animationDelay: "180ms" }}
           >
-            <BrutalButton href="/training" variant="primary" size="lg">
+            {/* Full width (and so equal) on phones, side by side above. */}
+            <BrutalButton href="/training" variant="primary" size="lg" className="w-full sm:w-auto">
               Start training
             </BrutalButton>
-            <BrutalButton href="/olympiads" variant="accent" size="lg">
+            <BrutalButton href="/olympiads" variant="accent" size="lg" className="w-full sm:w-auto">
               Explore olympiads
             </BrutalButton>
           </div>
 
-          {/* What is actually in the bank, counted from the data. */}
+          {/* What is actually in the bank, counted from the data. Three
+              even columns on phones so no number ends up alone on a line. */}
           <dl
-            className="mt-12 flex flex-wrap gap-x-10 gap-y-4 animate-rise-in"
+            className="mt-12 grid grid-cols-3 gap-4 animate-rise-in sm:flex sm:flex-wrap sm:gap-x-10 sm:gap-y-4"
             style={{ animationDelay: "270ms" }}
           >
             <HeroStat value={questionCount} label="past questions" />
@@ -275,13 +277,17 @@ export default async function HomePage() {
 
         {/* Badges and streaks: the daily-habit part of the site. */}
         <Reveal delay={240}>
-          <div className="mt-6 flex flex-wrap items-center gap-3 rounded-lg border-[3px] border-ink bg-yellow px-5 py-4 text-sm font-semibold text-navy shadow-brutal-sm">
-            <span aria-hidden className="text-xl">★</span>
-            <span className="flex-1">
-              Earn {BADGES.length} badges as you practice — streaks, night-owl sessions,
-              every competition and more.
-            </span>
-            <BrutalButton href="/signup" variant="dark" size="sm">
+          {/* Stacks on phones (text, then a full-width button) so the text
+              is not squeezed into a narrow column beside the button. */}
+          <div className="mt-6 flex flex-col gap-3 rounded-lg border-[3px] border-ink bg-yellow px-5 py-4 text-sm font-semibold text-navy shadow-brutal-sm sm:flex-row sm:items-center">
+            <p className="flex flex-1 items-start gap-3">
+              <span aria-hidden className="text-xl leading-none">★</span>
+              <span>
+                Earn {BADGES.length} badges as you practice — streaks, night-owl sessions,
+                every competition and more.
+              </span>
+            </p>
+            <BrutalButton href="/signup" variant="dark" size="sm" className="w-full sm:w-auto">
               Start collecting
             </BrutalButton>
           </div>
@@ -312,12 +318,13 @@ export default async function HomePage() {
   );
 }
 
-// One number in the hero: a big figure with a small label under it.
+// One number in the hero: a big figure with a small label under it on
+// phones, or beside it on wider screens.
 function HeroStat({ value, label }: { value: number; label: string }) {
   return (
     <div>
       <dt className="sr-only">{label}</dt>
-      <dd className="flex items-baseline gap-2">
+      <dd className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
         <CountUp value={value} className="text-3xl font-extrabold text-yellow" />
         <span className="text-sm font-semibold text-white/80">{label}</span>
       </dd>

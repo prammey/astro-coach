@@ -36,8 +36,9 @@ const BASE_CLASSES =
   "shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy " +
   "hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none " +
   "active:translate-x-[4px] active:translate-y-[4px] " +
-  "disabled:cursor-not-allowed disabled:opacity-60 " +
-  "disabled:hover:translate-x-0 disabled:hover:translate-y-0 disabled:hover:shadow-brutal-sm";
+  // Disabled: flat (no shadow) and faded, so it never looks pressable.
+  "disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none " +
+  "disabled:hover:translate-x-0 disabled:hover:translate-y-0 disabled:hover:shadow-none";
 
 type CommonProps = {
   variant?: Variant;

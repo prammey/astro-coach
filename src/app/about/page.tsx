@@ -45,6 +45,16 @@ const FAQS = [
     answer: `High school students preparing for astronomy olympiads — from a first online contest to national rounds. The olympiad guide ranks ${OLYMPIADS.length} competitions by difficulty to help you choose.`,
   },
   {
+    question: "Do I need an account?",
+    answer:
+      "No. You can answer any multiple-choice question straight away. A free account saves your progress, bookmarks and badges across devices.",
+  },
+  {
+    question: "Can I cancel Pro?",
+    answer:
+      "Yes, any time from your dashboard. You keep Pro until the end of the month you paid for, and nothing renews after that.",
+  },
+  {
     question: "Is the AI grading reliable?",
     answer:
       "It grades against the competition's own marking scheme, one part at a time, and explains each score. Treat it like a strict study partner, not an official result.",
@@ -76,6 +86,18 @@ export default function AboutPage() {
             there&apos;s no easy way to see which topics you&apos;re weak in. Astro Coach puts real
             questions, real explanations and your progress in one place.
           </p>
+          {/* A next step right away, instead of only at the bottom. */}
+          <div
+            className="mt-8 flex animate-rise-in flex-wrap gap-4"
+            style={{ animationDelay: "240ms" }}
+          >
+            <BrutalButton href="/training" variant="accent" className="w-full sm:w-auto">
+              Start practicing
+            </BrutalButton>
+            <BrutalButton href="/olympiads" variant="ghost" className="w-full sm:w-auto">
+              Find your olympiad
+            </BrutalButton>
+          </div>
         </PageContainer>
       </section>
 
@@ -157,13 +179,15 @@ export default function AboutPage() {
               competition and want something credited differently or removed? Email us and
               we&apos;ll act on it promptly.
             </p>
-            <div className="mt-5 flex flex-wrap gap-3">
+            {/* A short button, with the address shown as text beside it so
+                it can be read or copied without opening a mail app. */}
+            <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3">
               <BrutalButton href={`mailto:${CONTACT_EMAIL}`} variant="accent" size="sm">
-                Email {CONTACT_EMAIL}
+                Email us
               </BrutalButton>
-              <BrutalButton href="/training" variant="ghost" size="sm">
-                Start practicing
-              </BrutalButton>
+              <span className="select-all text-sm font-semibold text-white/90">
+                {CONTACT_EMAIL}
+              </span>
             </div>
           </BrutalCard>
         </Reveal>

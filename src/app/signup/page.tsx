@@ -7,7 +7,7 @@ import { useAuth } from '@/lib/auth-context';
 import GoogleSignInButton from '@/components/GoogleSignInButton';
 import BrutalButton from '@/components/ui/BrutalButton';
 import LoadingStar from '@/components/ui/LoadingStar';
-import { validateNewPassword } from '@/lib/password';
+import { MIN_PASSWORD_LENGTH, validateNewPassword } from '@/lib/password';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -167,7 +167,7 @@ export default function SignupPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
-                placeholder="••••••••"
+                placeholder={`At least ${MIN_PASSWORD_LENGTH} characters`}
                 disabled={isSubmitting}
               />
             </div>
@@ -183,7 +183,7 @@ export default function SignupPage() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
                 className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
-                placeholder="••••••••"
+                placeholder="Type it again"
                 disabled={isSubmitting}
               />
             </div>
