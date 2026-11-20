@@ -60,6 +60,12 @@ describe("short-answer checking", () => {
     expect(checkPart(blanks, all, 5, 1).awardedPoints).toBe(5);
   });
 
+  it("never gives full marks to a part with no blanks to check", () => {
+    // Bad data (answers that all failed to parse) must not mean "0 of 0
+    // correct = full marks", which would unlock the solution for anything.
+    expect(checkPart([], {}, 5, 1).awardedPoints).toBe(0);
+  });
+
   it("never sends the accepted answers to the browser", () => {
     const pub = toPublicBlanks([{ label: "1", prompt: "planet", accept: ["Jupiter"], numeric: { value: 1, tolerance: 0 } }]);
     expect(JSON.stringify(pub)).not.toContain("Jupiter");

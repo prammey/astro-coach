@@ -54,6 +54,14 @@ export const MAX_GRADED_ATTEMPTS_PER_FRQ = 3;
 /// blocking the student's credit forever.
 export const GRADING_RESERVATION_TTL_MS = 5 * 60 * 1000; // 5 minutes
 
+/// How many free "the AI ran but could not grade it" results one student
+/// may get per day (unreadable photos, or a reply we could not use). These
+/// cost the student nothing but cost us a real AI call each, so without a
+/// cap one student could resend blurry photos forever. Outages on our side
+/// or the provider's never count towards it.
+export const MAX_FREE_UNGRADED_RUNS_PER_DAY = 10;
+export const FREE_UNGRADED_RUN_WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
+
 // --- Uploads ---------------------------------------------------------------
 
 /// Total pages of handwritten/PDF work allowed in one grading submission.

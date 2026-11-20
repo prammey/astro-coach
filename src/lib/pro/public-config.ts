@@ -25,3 +25,16 @@ export const PUBLIC_PRO_CONFIG = {
   minCreditPurchase: 5,
   maxCreditPurchase: 50,
 } as const;
+
+/// Whether the founding price is still on offer, for pricing copy only.
+/// Checkout decides the real price on the server from its own clock.
+export function isFoundingPriceOpen(now: number = Date.now()): boolean {
+  return now < Date.parse(PUBLIC_PRO_CONFIG.foundingCutoffIso);
+}
+
+/// The monthly price to advertise right now, for pricing copy only.
+export function advertisedMonthlyPriceUsd(now: number = Date.now()): number {
+  return isFoundingPriceOpen(now)
+    ? PUBLIC_PRO_CONFIG.foundingPriceUsd
+    : PUBLIC_PRO_CONFIG.regularPriceUsd;
+}

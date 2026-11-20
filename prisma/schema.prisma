@@ -504,7 +504,9 @@ model CreditGrant {
   userId    String
   source    CreditSource @default(PURCHASED)
   amount    Int
-  reason    String?
+  /// Unique, so one Stripe checkout ("stripe-checkout:<session id>") can
+  /// only ever grant credits once.
+  reason    String?      @unique
   grantedAt DateTime     @default(now())
   expiresAt DateTime?
 

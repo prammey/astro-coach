@@ -32,6 +32,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    // The settings page re-checks the password just before calling this
+    // route, which counts as a fresh sign-in. Requiring that here, on the
+    // server, means a stolen or left-behind token alone cannot delete an
+    // account.
+    if (!signedInRecently(user.last_sign_in_at)) {
+      return NextResponse.json(
+        { error: 'For your security, please re-enter your password and try again.' },
+        { status: 401 },
+      );
+    }
+
     let admin;
     try {
       admin = createAdminClient();
@@ -70,10 +81,11 @@ export async function POST(request: NextRequest) {
     const { error: deleteError } = await admin.auth.admin.deleteUser(userId);
 
     if (deleteError) {
+      // Details stay in the server log; the student gets a plain message.
       console.error('Delete user error:', deleteError);
       return NextResponse.json(
-        { error: `Could not delete the account: ${deleteError.message}` },
-        { status: 400 },
+        { error: 'Could not delete the account. Please try again.' },
+        { status: 500 },
       );
     }
 
@@ -83,7 +95,19 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error('Deactivate account error:', error);
-    const message = error instanceof Error ? error.message : 'Internal server error';
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Could not delete the account. Please try again.' },
+      { status: 500 },
+    );
   }
+}
+
+/// How recently the user must have typed their password to delete the account.
+const RECENT_SIGN_IN_MS = 10 * 60 * 1000;
+
+/// Whether the user's last password sign-in was within RECENT_SIGN_IN_MS.
+function signedInRecently(lastSignInAt: string | undefined): boolean {
+  if (!lastSignInAt) return false;
+  const signedInAt = new Date(lastSignInAt).getTime();
+  return Number.isFinite(signedInAt) && Date.now() - signedInAt <= RECENT_SIGN_IN_MS;
 }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/auth';
 import { getPrisma } from '@/lib/prisma';
+import { isUniqueConstraintError } from '@/lib/prisma-errors';
 import { findCatalogQuestionById } from '@/data/mcq/catalog.server';
 import type { CatalogQuestion } from '@/data/mcq/types';
 
@@ -66,6 +67,11 @@ function buildSolution(question: CatalogQuestion): RevealedSolution {
   };
 }
 
+// Whether `answer` is one of this question's choice labels ("A", "B", …).
+function isChoiceLabel(question: CatalogQuestion, answer: unknown): boolean {
+  return typeof answer === 'string' && question.choices.some((choice) => choice.label === answer);
+}
+
 // Grades one question against the catalog and collects exactly what the
 // browser is allowed to see for that outcome — and nothing more.
 function gradePart(question: CatalogQuestion, submittedAnswer: string): GradedPart {
@@ -97,7 +103,12 @@ function gradePart(question: CatalogQuestion, submittedAnswer: string): GradedPa
 // between, a wrong try just refreshes lastAttemptAt, and the eventual
 // correct answer flips isCorrect without touching the counters — that
 // sitting was already counted, as a miss, on its first try.
-async function recordProgress(userId: string, questionId: string, isCorrect: boolean) {
+async function recordProgress(
+  userId: string,
+  questionId: string,
+  isCorrect: boolean,
+  isRetry = false,
+) {
   const prisma = getPrisma();
   const now = new Date();
   const where = { userId_questionId: { userId, questionId } };
@@ -105,17 +116,24 @@ async function recordProgress(userId: string, questionId: string, isCorrect: boo
   const existing = await prisma.userQuestionProgress.findUnique({ where });
 
   if (!existing) {
-    await prisma.userQuestionProgress.create({
-      data: {
-        userId,
-        questionId,
-        isCorrect,
-        firstCorrectAt: isCorrect ? now : null,
-        lastAttemptAt: now,
-        attemptCount: 1,
-        correctAttemptCount: isCorrect ? 1 : 0,
-      },
-    });
+    try {
+      await prisma.userQuestionProgress.create({
+        data: {
+          userId,
+          questionId,
+          isCorrect,
+          firstCorrectAt: isCorrect ? now : null,
+          lastAttemptAt: now,
+          attemptCount: 1,
+          correctAttemptCount: isCorrect ? 1 : 0,
+        },
+      });
+    } catch (error) {
+      // A double-click sent two first tries at once and the other one
+      // created the row a moment ago. Treat this one as a retry instead.
+      if (!isUniqueConstraintError(error) || isRetry) throw error;
+      await recordProgress(userId, questionId, isCorrect, true);
+    }
     return;
   }
 
@@ -179,6 +197,17 @@ export async function POST(request: NextRequest) {
         { error: 'Missing: submittedAnswer' },
         { status: 400 }
       );
+    }
+
+    // Every answer must be one of the question's own choice letters. This
+    // keeps junk (or megabytes of text) out of the attempt history.
+    const invalidAnswer = isMultiPart
+      ? question.parts!.some(
+          (part) => answers[part.id] !== undefined && !isChoiceLabel(part, answers[part.id]),
+        )
+      : !isChoiceLabel(question, submittedAnswer);
+    if (invalidAnswer) {
+      return NextResponse.json({ error: 'That is not one of the choices.' }, { status: 400 });
     }
 
     const graded: GradedPart[] = isMultiPart

@@ -157,8 +157,16 @@ export async function getQuestionHistory(
     prisma.frqSubmission.count({
       where: { userId, frqQuestionId, creditConsumed: true },
     }),
+    // "Has tried this question" means a real, charged grade or a free
+    // short-answer check. Free failures (unreadable photo, provider outage)
+    // do not count, or junk sent to every question while a credit was left
+    // would keep those questions open forever after credits ran out.
     prisma.frqSubmission.findFirst({
-      where: { userId, frqQuestionId },
+      where: {
+        userId,
+        frqQuestionId,
+        OR: [{ creditConsumed: true }, { gradingMethod: "EXACT" }],
+      },
       select: { id: true },
     }),
     prisma.frqSolutionUnlock.findUnique({

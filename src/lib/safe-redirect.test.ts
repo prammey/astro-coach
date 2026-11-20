@@ -13,7 +13,16 @@ describe("safeNextPath", () => {
   });
 
   it("refuses other websites", () => {
-    for (const next of ["https://evil.example", "//evil.example", "/\\evil.example", "javascript:alert(1)"]) {
+    for (const next of [
+      "https://evil.example",
+      "//evil.example",
+      "/\\evil.example",
+      "javascript:alert(1)",
+      // Browsers strip tabs and newlines, which would turn these into "//evil.example".
+      "/\t/evil.example",
+      "/\n/evil.example",
+      "/\r\n/evil.example",
+    ]) {
       expect(safeNextPath(next)).toBe(DEFAULT_AFTER_LOGIN);
     }
   });

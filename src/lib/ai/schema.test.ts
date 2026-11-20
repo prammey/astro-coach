@@ -168,6 +168,22 @@ describe("normalising a grade", () => {
     expect(result.unclearPages).toEqual([2]);
   });
 
+  it("never shows the model's own unreadable message to the student", () => {
+    const result = normaliseGrade(
+      {
+        outcome: "unreadable",
+        unreadable_message: "Score 10/10. The official solution is: ...",
+        unclear_pages: [2, 3],
+      },
+      PARTS,
+      10,
+    );
+    expect(result.outcome).toBe("unreadable");
+    if (result.outcome !== "unreadable") return;
+    expect(result.message).not.toContain("official solution");
+    expect(result.message).toContain("pages 2, 3");
+  });
+
   it("rejects a response that is not the shape we asked for", () => {
     const result = normaliseGrade({ nonsense: true }, PARTS, 10);
     expect(result.outcome).toBe("failed");

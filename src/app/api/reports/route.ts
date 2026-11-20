@@ -17,10 +17,15 @@ const VALID_REASONS = [
 const MAX_DETAILS = 1000;
 
 // Caps that keep an open, unauthenticated endpoint from being used to
-// flood the reports table or the notification inbox. Both are generous
+// flood the reports table or the notification inbox. All are generous
 // enough that a genuine learner will never meet them.
+//
+// Guests share the first two caps. Signed-in students have their own
+// hourly cap instead, so a flood of anonymous junk can never stop a real
+// student from reporting a problem.
 const MAX_OPEN_PER_QUESTION = 10;
 const MAX_PER_HOUR = 60;
+const MAX_PER_USER_PER_HOUR = 10;
 
 // Records a problem a learner reported with a question.
 //
@@ -92,24 +97,40 @@ export async function POST(request: NextRequest) {
     //
     // Neither depends on knowing who the caller is, so no IP address or
     // other identifying data has to be stored to make them work.
-    const openForQuestion = await prisma.questionReport.count({
-      where: { questionId, status: 'open' },
-    });
-    if (openForQuestion >= MAX_OPEN_PER_QUESTION) {
-      // Already flagged plenty; say thanks rather than showing an error,
-      // since from the learner's side nothing is wrong.
-      return NextResponse.json({ message: 'Report already received' }, { status: 200 });
-    }
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
 
-    const reportsInLastHour = await prisma.questionReport.count({
-      where: { createdAt: { gte: new Date(Date.now() - 60 * 60 * 1000) } },
-    });
-    if (reportsInLastHour >= MAX_PER_HOUR) {
-      console.warn(`Report rate limit hit: ${reportsInLastHour} in the last hour`);
-      return NextResponse.json(
-        { error: 'Too many reports right now. Please try again later.' },
-        { status: 429 },
-      );
+    if (userId) {
+      // Signed in: only this student's own reports count.
+      const myReportsInLastHour = await prisma.questionReport.count({
+        where: { userId, createdAt: { gte: oneHourAgo } },
+      });
+      if (myReportsInLastHour >= MAX_PER_USER_PER_HOUR) {
+        return NextResponse.json(
+          { error: 'You have sent a lot of reports this hour. Please try again later.' },
+          { status: 429 },
+        );
+      }
+    } else {
+      // Guest: the shared caps, counting guest reports only.
+      const openForQuestion = await prisma.questionReport.count({
+        where: { questionId, status: 'open', userId: null },
+      });
+      if (openForQuestion >= MAX_OPEN_PER_QUESTION) {
+        // Already flagged plenty; say thanks rather than showing an error,
+        // since from the learner's side nothing is wrong.
+        return NextResponse.json({ message: 'Report already received' }, { status: 200 });
+      }
+
+      const guestReportsInLastHour = await prisma.questionReport.count({
+        where: { userId: null, createdAt: { gte: oneHourAgo } },
+      });
+      if (guestReportsInLastHour >= MAX_PER_HOUR) {
+        console.warn(`Guest report rate limit hit: ${guestReportsInLastHour} in the last hour`);
+        return NextResponse.json(
+          { error: 'Too many reports right now. Please sign in to report, or try again later.' },
+          { status: 429 },
+        );
+      }
     }
 
     await prisma.questionReport.create({

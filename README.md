@@ -228,7 +228,7 @@ Includes:
 * Reason, question link, reporter email, and the reported detail
 * Mark resolved / Reopen
 
-Access is controlled by `ADMIN_EMAILS`. See "Reporting problems" below.
+Access is controlled by `ADMIN_USER_IDS`, the same list as the rest of `/admin`.
 
 ---
 
@@ -436,7 +436,7 @@ SUPABASE_SERVICE_ROLE_KEY=""      # Supabase → Settings → API → service_ro
 **Required for the admin page:**
 
 ```bash
-ADMIN_EMAILS=""                   # comma-separated emails allowed at /admin/reports
+ADMIN_USER_IDS=""                 # comma-separated Supabase user UUIDs allowed into /admin
 ```
 
 **Optional — report notification emails:**
@@ -455,8 +455,8 @@ Notes:
   administer accounts. It is read only in `src/lib/supabase/admin.ts`,
   which is imported only from route handlers. Without it, "Deactivate
   Account" fails with a clear configuration error.
-* With `ADMIN_EMAILS` unset, **nobody** is an admin — a missing value locks
-  `/admin/reports` rather than opening it.
+* With `ADMIN_USER_IDS` unset, **nobody** is an admin — a missing value locks
+  `/admin` (including `/admin/reports`) rather than opening it.
 * Without `RESEND_API_KEY`, reports are still saved and readable at
   `/admin/reports`; you simply are not emailed.
 * **Set these in Vercel too** (Project → Settings → Environment Variables),
@@ -1020,8 +1020,9 @@ time, so an existing deployment will not pick them up.
 
 ### `/admin/reports` says you do not have access
 
-`ADMIN_EMAILS` does not contain the email you are signed in with. It must
-match exactly, and must be set in Vercel for the live site.
+`ADMIN_USER_IDS` does not contain your Supabase user UUID. It must match
+your "User UID" in Supabase → Authentication → Users, and must be set in
+Vercel for the live site.
 
 ### Create-next-app complains about a non-empty folder
 
@@ -1413,8 +1414,7 @@ and a clean production build contains no reference to it.
    Non-admins get a 404 from `/admin`, not a 403 — the area's existence is
    not confirmed to a stranger.
 
-   This is separate from the older `ADMIN_EMAILS`, which still controls
-   `/admin/reports`.
+   The same list also controls `/admin/reports`.
 
 Then add every new variable to the Vercel project as well, before deploying.
 

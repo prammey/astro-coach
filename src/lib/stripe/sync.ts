@@ -14,6 +14,7 @@ if (typeof window !== "undefined") {
 import type Stripe from "stripe";
 import type { PrismaClient } from "@/generated/prisma/client";
 import { getPrisma } from "@/lib/prisma";
+import { isUniqueConstraintError } from "@/lib/prisma-errors";
 
 /// The flat shape we mirror into the Subscription table.
 export type SubscriptionFields = {
@@ -138,6 +139,23 @@ export function readSupabaseUserId(
   return null;
 }
 
+/// Whether an incoming subscription should overwrite the one we already
+/// store for this user.
+///
+/// There is one row per user. If a student resubscribes, a late or retried
+/// event about their OLD, cancelled subscription must not overwrite the
+/// row for their NEW, active one — that would take away Pro they are
+/// paying for. So a different subscription that does not grant Pro never
+/// replaces one that does.
+export function shouldReplaceStoredSubscription(
+  stored: { stripeSubscriptionId: string | null; plan: string } | null,
+  incoming: SubscriptionFields,
+): boolean {
+  if (!stored || !stored.stripeSubscriptionId) return true;
+  if (stored.stripeSubscriptionId === incoming.stripeSubscriptionId) return true;
+  return !(stored.plan === "PRO" && incoming.plan !== "PRO");
+}
+
 /// Writes the mirrored subscription for a user. One row per user, so a
 /// resubscription updates in place rather than leaving a stale record.
 export async function upsertSubscription(
@@ -145,6 +163,18 @@ export async function upsertSubscription(
   fields: SubscriptionFields,
   prisma: PrismaClient = getPrisma(),
 ): Promise<void> {
+  const stored = await prisma.subscription.findUnique({
+    where: { userId },
+    select: { stripeSubscriptionId: true, plan: true },
+  });
+  if (!shouldReplaceStoredSubscription(stored, fields)) {
+    console.warn(
+      `Ignoring stale event for ${fields.stripeSubscriptionId}: ` +
+        `user ${userId} has a different active subscription.`,
+    );
+    return;
+  }
+
   await prisma.subscription.upsert({
     where: { userId },
     create: { userId, ...fields },
@@ -182,9 +212,13 @@ export async function claimWebhookEvent(
       data: { id: eventId, type: eventType },
     });
     return true;
-  } catch {
+  } catch (error) {
     // Unique violation on the primary key: already handled.
-    return false;
+    if (isUniqueConstraintError(error)) return false;
+    // Anything else (database briefly down) is NOT "already handled".
+    // Re-throwing makes the webhook answer 500, so Stripe retries later
+    // instead of the purchase or Pro grant being silently dropped.
+    throw error;
   }
 }
 

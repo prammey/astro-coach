@@ -169,7 +169,13 @@ export function checkPart(
 
   const blankCount = blanks.length;
   const step = pointStep > 0 ? pointStep : 1;
-  const raw = blankCount > 0 ? (maxPoints * correctCount) / blankCount : 0;
+  // A part with no usable blanks (bad data) can never be "all correct":
+  // without this, 0 right out of 0 would award full marks and unlock the
+  // solution for any answer at all.
+  if (blankCount === 0) {
+    return { results, correctCount, blankCount, awardedPoints: 0 };
+  }
+  const raw = (maxPoints * correctCount) / blankCount;
   const awardedPoints =
     correctCount === blankCount ? maxPoints : Math.floor(raw / step + 1e-9) * step;
 

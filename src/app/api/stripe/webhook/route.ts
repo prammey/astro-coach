@@ -99,7 +99,15 @@ export async function POST(request: Request) {
 
   // Idempotency gate. Claiming the event before doing the work means a
   // retried delivery is a no-op rather than a second state change.
-  const claimed = await claimWebhookEvent(event.id, event.type, getPrisma());
+  let claimed: boolean;
+  try {
+    claimed = await claimWebhookEvent(event.id, event.type, getPrisma());
+  } catch (error) {
+    // Could not record the event (database unavailable). Answer 500 so
+    // Stripe delivers it again later, rather than losing it.
+    console.error(`Stripe webhook ${event.type} (${event.id}) could not be claimed:`, error);
+    return NextResponse.json({ error: "Webhook handling failed" }, { status: 500 });
+  }
   if (!claimed) {
     return NextResponse.json({ received: true, duplicate: true });
   }

@@ -60,6 +60,10 @@ export async function POST(request: Request) {
     const session = await getStripe().checkout.sessions.create({
       mode: "payment",
       customer: customerId,
+      // Cards (including Apple Pay and Google Pay) are paid the moment
+      // checkout completes. Slower methods such as bank debits arrive as
+      // "unpaid" and the webhook would never grant their credits.
+      payment_method_types: ["card"],
       line_items: [
         {
           quantity: purchase.quantity,

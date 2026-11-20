@@ -13,6 +13,7 @@ if (typeof window !== "undefined") {
 import type Stripe from "stripe";
 import type { PrismaClient } from "@/generated/prisma/client";
 import { CREDIT_PRICE_CENTS, MAX_CREDIT_PURCHASE, MIN_CREDIT_PURCHASE } from "@/lib/pro/config";
+import { isUniqueConstraintError } from "@/lib/prisma-errors";
 
 /// Marks a checkout as a credit purchase (set in its metadata when the
 /// checkout is created), so the webhook can tell it apart from a
@@ -60,8 +61,15 @@ export async function grantPurchasedCredits(
   const already = await prisma.creditGrant.findFirst({ where: { reason }, select: { id: true } });
   if (already) return { granted: false, reason: "ALREADY_GRANTED" };
 
-  await prisma.creditGrant.create({
-    data: { userId, amount: credits, source: "PURCHASED", reason },
-  });
+  try {
+    await prisma.creditGrant.create({
+      data: { userId, amount: credits, source: "PURCHASED", reason },
+    });
+  } catch (error) {
+    // The unique index on `reason` caught a second grant for the same
+    // checkout that slipped past the check above at the same instant.
+    if (isUniqueConstraintError(error)) return { granted: false, reason: "ALREADY_GRANTED" };
+    throw error;
+  }
   return { granted: true, userId, credits };
 }

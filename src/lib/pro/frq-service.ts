@@ -23,9 +23,12 @@ if (typeof window !== "undefined") {
 
 import type { PrismaClient } from "@/generated/prisma/client";
 import { getPrisma } from "@/lib/prisma";
+import { isUniqueConstraintError } from "@/lib/prisma-errors";
 import {
   estimateAiCostUsd as estimateAiCostUsdRef,
+  FREE_UNGRADED_RUN_WINDOW_MS,
   GRADING_RESERVATION_TTL_MS,
+  MAX_FREE_UNGRADED_RUNS_PER_DAY,
   MAX_GRADED_ATTEMPTS_PER_FRQ,
   MAX_GRADING_REFERENCE_FIGURE_BYTES,
   MAX_GRADING_REFERENCE_FIGURES,
@@ -68,6 +71,30 @@ class ReservationRefused extends Error {
   constructor(readonly reason: GradeBlockedReason) {
     super(reason);
   }
+}
+
+/// Thrown inside the reservation transaction when this same question is
+/// already being graded for this user (a double-click, a second tab, or a
+/// script firing several submits at once).
+class AlreadyGrading extends Error {}
+
+/// Thrown inside the reservation transaction when the student has used up
+/// today's allowance of free "could not grade it" results.
+class TooManyUngradedRuns extends Error {}
+
+/// Free results that still cost us an AI call: the model ran and answered,
+/// but there was nothing to grade. Provider errors, timeouts and our own
+/// storage problems are deliberately left out — those are not the
+/// student's doing.
+function ungradedRunsWhere(userId: string) {
+  return {
+    userId,
+    createdAt: { gt: new Date(Date.now() - FREE_UNGRADED_RUN_WINDOW_MS) },
+    OR: [
+      { status: "UNREADABLE" as const },
+      { status: "FAILED" as const, errorCode: "INVALID_RESPONSE" },
+    ],
+  };
 }
 
 // --- Browsing --------------------------------------------------------------
@@ -181,7 +208,9 @@ export async function listFrqCards(
       const attempts = attemptsByQuestion.get(question.id);
       const history: QuestionHistorySnapshot = {
         gradedAttempts: attempts?.count ?? 0,
-        hasSubmitted: (attempts?.count ?? 0) > 0,
+        // Tried = a charged grade or a free short-answer check, the same
+        // rule the question page uses (getQuestionHistory).
+        hasSubmitted: attempts !== undefined,
         unlockReason: unlockedIds.has(question.id) ? "GIVE_UP" : null,
       };
 
@@ -582,6 +611,7 @@ export type SubmitResult =
         | "ATTEMPTS_EXHAUSTED"
         | "SOLUTION_ALREADY_UNLOCKED"
         | "DUPLICATE_SUBMISSION"
+        | "TOO_MANY_UNGRADED_RUNS"
         | "UNREADABLE_WORK"
         | "GRADING_UNAVAILABLE"
         | "USE_QUICK_CHECK";
@@ -598,8 +628,9 @@ export type SubmitResult =
 ///   2. Is this user allowed another graded attempt at it?
 ///   3. Do the uploaded files exist, and do they belong to this user?
 ///   4. Do they fit the page limit, and is there any work at all?
-///   5. Reserve a submission row — the unique constraint rejects a
-///      double-click here rather than after paying for it twice.
+///   5. Reserve a submission row under a per-user lock. A second submit
+///      for the same question while one is still grading is turned away
+///      here, rather than graded (and paid for) twice.
 ///   6. Grade. Only a real grade sets creditConsumed.
 export async function submitGradedAttempt(
   userId: string,
@@ -664,6 +695,7 @@ export async function submitGradedAttempt(
   // running. The GRADING row created below IS the reservation — once it
   // exists, a concurrent request sees it and is turned away.
   let submissionId: string;
+  let reservedAttemptNumber = decision.attemptNumber;
   try {
     submissionId = await prisma.$transaction(async (tx) => {
       // Serialises this block per user. Released automatically when the
@@ -672,13 +704,30 @@ export async function submitGradedAttempt(
 
       // Submissions still being graded, ignoring any left orphaned by a
       // crash so a dead row cannot block a student permanently.
-      const inFlightGrades = await tx.frqSubmission.count({
-        where: {
-          userId,
-          status: "GRADING",
-          createdAt: { gt: new Date(Date.now() - GRADING_RESERVATION_TTL_MS) },
-        },
+      const inFlightWhere = {
+        userId,
+        status: "GRADING" as const,
+        createdAt: { gt: new Date(Date.now() - GRADING_RESERVATION_TTL_MS) },
+      };
+
+      // Only one grade per question may run at a time. Without this, three
+      // submits sent together would all pass the attempt limit (none of
+      // them is charged yet) and all be graded and charged.
+      const inFlightForThisQuestion = await tx.frqSubmission.count({
+        where: { ...inFlightWhere, frqQuestionId: questionId },
       });
+      if (inFlightForThisQuestion > 0) {
+        throw new AlreadyGrading();
+      }
+
+      const ungradedRunsToday = await tx.frqSubmission.count({
+        where: ungradedRunsWhere(userId),
+      });
+      if (ungradedRunsToday >= MAX_FREE_UNGRADED_RUNS_PER_DAY) {
+        throw new TooManyUngradedRuns();
+      }
+
+      const inFlightGrades = await tx.frqSubmission.count({ where: inFlightWhere });
 
       const [lockedEntitlements, lockedHistory] = await Promise.all([
         getUserEntitlements(userId, tx as PrismaClient),
@@ -693,6 +742,8 @@ export async function submitGradedAttempt(
       if (!lockedDecision.allowed) {
         throw new ReservationRefused(lockedDecision.reason);
       }
+      // The fresh answer, not the one read before the lock.
+      reservedAttemptNumber = lockedDecision.attemptNumber;
 
       const previous = await tx.frqSubmission.aggregate({
         where: { userId, frqQuestionId: questionId },
@@ -730,12 +781,27 @@ export async function submitGradedAttempt(
     if (error instanceof ReservationRefused) {
       return { ok: false, code: error.reason, message: blockedMessage(error.reason) };
     }
-    // Unique violation on (userId, questionId, sequenceNumber).
-    return {
-      ok: false,
-      code: "DUPLICATE_SUBMISSION",
-      message: "That submission is already being graded.",
-    };
+    // Another grade for this question is still running, or (rarely) two
+    // requests raced for the same sequence number.
+    if (error instanceof AlreadyGrading || isUniqueConstraintError(error)) {
+      return {
+        ok: false,
+        code: "DUPLICATE_SUBMISSION",
+        message: "That submission is already being graded.",
+      };
+    }
+    if (error instanceof TooManyUngradedRuns) {
+      return {
+        ok: false,
+        code: "TOO_MANY_UNGRADED_RUNS",
+        message:
+          "Several of today's submissions couldn't be graded, so grading is paused until " +
+          "tomorrow. You have not been charged. Tip: take photos in good light, flat and in focus.",
+      };
+    }
+    // Anything else (database down, timeout) is a real error: let the route
+    // log it and answer 500, rather than pretending it was a duplicate.
+    throw error;
   }
 
   // 6. Grade.
@@ -786,7 +852,7 @@ export async function submitGradedAttempt(
       parts: gradingParts,
       student: { typedResponse: input.typedResponse, attachments },
       referenceFigures: await loadReferenceFigures(question.media, question.parts),
-      attemptNumber: decision.attemptNumber,
+      attemptNumber: reservedAttemptNumber,
       maxAttempts: MAX_GRADED_ATTEMPTS_PER_FRQ,
       previousFeedback: await previousFeedbackFor(userId, questionId, prisma),
       solutionAlreadyVisible: history.unlockReason !== null,
@@ -794,7 +860,20 @@ export async function submitGradedAttempt(
     { userId, prisma },
   );
 
-  const { outcome, usage } = result;
+  const { usage } = result;
+
+  // "Unreadable" only makes sense for uploaded pages. Typed-only work is
+  // always legible, so an "unreadable" verdict on it means the model was
+  // confused (or talked into it by the typed text) — treat it as a free
+  // failure, never as a message to show the student.
+  const outcome =
+    result.outcome.outcome === "unreadable" && counted.value.length === 0
+      ? {
+          outcome: "failed" as const,
+          errorCode: "INVALID_RESPONSE" as const,
+          message: "Grading could not be completed. You have not been charged. Please try again.",
+        }
+      : result.outcome;
 
   // An unreadable upload or a provider failure keeps the row for the audit
   // trail but leaves attemptNumber and creditConsumed alone — so it costs
@@ -829,20 +908,38 @@ export async function submitGradedAttempt(
 
   // A real grade — the only outcome creditChargeForOutcome charges for,
   // and the only place creditConsumed becomes true.
-  const unlockReason = unlockReasonAfterGrade(
-    decision.attemptNumber,
-    outcome.awardedPoints,
-    outcome.maximumPoints,
-  );
+  //
+  // Which credit pool pays, and which attempt number this is, are decided
+  // HERE, under the same per-user lock, from what has actually been charged
+  // so far. Deciding them before grading would let several grades that
+  // finish together all bill the same nearly-empty monthly pool.
+  const { attemptNumber, unlockReason } = await prisma.$transaction(async (tx) => {
+    await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${userId}))`;
 
-  await prisma.$transaction(async (tx) => {
+    const [chargeEntitlements, chargeHistory] = await Promise.all([
+      getUserEntitlements(userId, tx as PrismaClient),
+      getQuestionHistory(userId, questionId, tx as PrismaClient),
+    ]);
+    const chargedAttemptNumber = chargeHistory.gradedAttempts + 1;
+    // The reservation already proved a credit was free for this grade, so
+    // a pool is always available; the fallback only guards the types.
+    const creditSource =
+      chargeEntitlements.credits.nextSource ??
+      (decision.allowed ? decision.creditSource : "FREE_LIFETIME");
+
+    const chargedUnlockReason = unlockReasonAfterGrade(
+      chargedAttemptNumber,
+      outcome.awardedPoints,
+      outcome.maximumPoints,
+    );
+
     await tx.frqSubmission.update({
       where: { id: submissionId },
       data: {
         status: "GRADED",
-        attemptNumber: decision.attemptNumber,
+        attemptNumber: chargedAttemptNumber,
         creditConsumed: charge.chargeCredit,
-        creditSource: decision.creditSource,
+        creditSource,
         awardedPoints: outcome.awardedPoints,
         maximumPoints: outcome.maximumPoints,
         partScores: outcome.partScores,
@@ -858,15 +955,17 @@ export async function submitGradedAttempt(
       },
     });
 
-    if (unlockReason) {
+    if (chargedUnlockReason) {
       // Upsert rather than create: an unlock may already exist if two
       // paths raced, and unlocking twice is not an error.
       await tx.frqSolutionUnlock.upsert({
         where: { userId_frqQuestionId: { userId, frqQuestionId: questionId } },
-        create: { userId, frqQuestionId: questionId, reason: unlockReason },
+        create: { userId, frqQuestionId: questionId, reason: chargedUnlockReason },
         update: {},
       });
     }
+
+    return { attemptNumber: chargedAttemptNumber, unlockReason: chargedUnlockReason };
   });
 
   const after = await getUserEntitlements(userId, prisma);
@@ -874,7 +973,7 @@ export async function submitGradedAttempt(
   return {
     ok: true,
     submissionId,
-    attemptNumber: decision.attemptNumber,
+    attemptNumber,
     awardedPoints: outcome.awardedPoints,
     maximumPoints: outcome.maximumPoints,
     partScores: outcome.partScores,
@@ -1152,8 +1251,13 @@ export async function checkShortAnswers(
         });
       }
     });
-  } catch {
-    return { ok: false, code: "DUPLICATE_SUBMISSION", message: "That check is already running." };
+  } catch (error) {
+    // Two checks raced for the same sequence number: a genuine duplicate.
+    if (isUniqueConstraintError(error)) {
+      return { ok: false, code: "DUPLICATE_SUBMISSION", message: "That check is already running." };
+    }
+    // Any other database error is real; the route logs it and answers 500.
+    throw error;
   }
 
   return { ok: true, results, awardedPoints, maximumPoints, solutionUnlocked: allCorrect };

@@ -16,6 +16,13 @@ export function getPrisma(): PrismaClient {
 
     const pool = new Pool({
       connectionString: process.env.DATABASE_URL,
+      // Close connections that sit unused for 10 seconds, so a quiet
+      // serverless instance does not hold database slots it is not using.
+      idleTimeoutMillis: 10_000,
+      // Give up on reaching the database after 10 seconds. Without this a
+      // request waits forever when the database is down, instead of
+      // failing fast with a clear error.
+      connectionTimeoutMillis: 10_000,
     });
 
     const adapter = new PrismaPg(pool);

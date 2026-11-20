@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPrisma } from '@/lib/prisma';
-import { requireAdmin } from '@/lib/admin';
+import { requireAdminUser } from '@/lib/pro/auth-guard';
 import { getMcqCatalog } from '@/data/mcq/catalog.server';
 
 // Lists reported problems for the admin page, newest first, enriched with
 // enough question detail to triage without opening each one.
 export async function GET(request: NextRequest) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdminUser(request);
   if (!admin.ok) {
     return NextResponse.json({ error: admin.error }, { status: admin.status });
   }
@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
 
 // Marks a single report resolved or reopens it.
 export async function PATCH(request: NextRequest) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdminUser(request);
   if (!admin.ok) {
     return NextResponse.json({ error: admin.error }, { status: admin.status });
   }

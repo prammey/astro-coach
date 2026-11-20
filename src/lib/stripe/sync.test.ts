@@ -14,6 +14,8 @@ import {
   readInvoiceSubscriptionId,
   readSupabaseUserId,
   releaseWebhookEvent,
+  shouldReplaceStoredSubscription,
+  type SubscriptionFields,
 } from "./sync";
 
 const stripe = new Stripe("sk_test_offline_key_for_unit_tests");
@@ -99,7 +101,8 @@ describe("webhook idempotency", () => {
       client: {
         stripeWebhookEvent: {
           async create({ data }: { data: { id: string } }) {
-            if (seen.has(data.id)) throw new Error("duplicate key");
+            // Prisma reports a primary-key clash as error code P2002.
+            if (seen.has(data.id)) throw Object.assign(new Error("duplicate key"), { code: "P2002" });
             seen.add(data.id);
             return data;
           },
@@ -122,6 +125,19 @@ describe("webhook idempotency", () => {
     await claimWebhookEvent("evt_1", "invoice.payment_succeeded", client);
     expect(await claimWebhookEvent("evt_1", "invoice.payment_succeeded", client)).toBe(false);
     expect(await claimWebhookEvent("evt_1", "invoice.payment_succeeded", client)).toBe(false);
+  });
+
+  it("does not mistake a database outage for a duplicate", async () => {
+    const brokenClient = {
+      stripeWebhookEvent: {
+        async create() {
+          throw new Error("connection refused");
+        },
+      },
+    } as unknown as PrismaClient;
+    await expect(
+      claimWebhookEvent("evt_1", "checkout.session.completed", brokenClient),
+    ).rejects.toThrow("connection refused");
   });
 
   it("still lets a different event through", async () => {
@@ -271,5 +287,41 @@ describe("reading the subscription off a renewal invoice", () => {
     } as unknown as Stripe.Invoice;
 
     expect(readInvoiceSubscriptionId(invoice)).toBeNull();
+  });
+});
+
+describe("stale subscription events", () => {
+  // A subscription row as mapSubscription would produce it.
+  function incoming(id: string, plan: "FREE" | "PRO"): SubscriptionFields {
+    return {
+      plan,
+      stripeCustomerId: "cus_1",
+      stripeSubscriptionId: id,
+      stripePriceId: "price_1",
+      stripeStatus: plan === "PRO" ? "active" : "canceled",
+      currentPeriodStart: null,
+      currentPeriodEnd: null,
+      cancelAtPeriodEnd: false,
+      isFoundingPrice: false,
+    };
+  }
+
+  it("writes when nothing is stored yet", () => {
+    expect(shouldReplaceStoredSubscription(null, incoming("sub_A", "PRO"))).toBe(true);
+  });
+
+  it("always updates the same subscription", () => {
+    const stored = { stripeSubscriptionId: "sub_A", plan: "PRO" };
+    expect(shouldReplaceStoredSubscription(stored, incoming("sub_A", "FREE"))).toBe(true);
+  });
+
+  it("never lets an old cancelled subscription overwrite a new active one", () => {
+    const stored = { stripeSubscriptionId: "sub_B", plan: "PRO" };
+    expect(shouldReplaceStoredSubscription(stored, incoming("sub_A", "FREE"))).toBe(false);
+  });
+
+  it("lets a new active subscription replace an ended one", () => {
+    const stored = { stripeSubscriptionId: "sub_A", plan: "FREE" };
+    expect(shouldReplaceStoredSubscription(stored, incoming("sub_B", "PRO"))).toBe(true);
   });
 });

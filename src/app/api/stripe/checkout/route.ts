@@ -14,6 +14,21 @@ import { getStripe, isStripeConfigured } from "@/lib/stripe/client";
 import { ensureStripeCustomer } from "@/lib/stripe/customer";
 import { siteUrl, stripePriceIdForNewCheckout } from "@/lib/pro/config";
 
+/// Stripe statuses that mean the customer is already paying (or about to).
+const LIVE_SUBSCRIPTION_STATUSES = new Set(["active", "trialing", "past_due"]);
+
+/// Whether this Stripe customer already has a subscription that is live.
+async function hasLiveStripeSubscription(customerId: string): Promise<boolean> {
+  const subscriptions = await getStripe().subscriptions.list({
+    customer: customerId,
+    status: "all",
+    limit: 10,
+  });
+  return subscriptions.data.some((subscription) =>
+    LIVE_SUBSCRIPTION_STATUSES.has(subscription.status),
+  );
+}
+
 export async function POST(request: Request) {
   if (!isStripeConfigured()) {
     return NextResponse.json(
@@ -58,6 +73,16 @@ export async function POST(request: Request) {
     // Reuse the Stripe customer if we have one, so a resubscribing user
     // keeps a single billing history.
     const customerId = await ensureStripeCustomer(prisma, auth.user);
+
+    // Our database only learns about a subscription when its webhook
+    // arrives, so a student who opened checkout in two tabs could pay
+    // twice. Asking Stripe itself closes that gap.
+    if (await hasLiveStripeSubscription(customerId)) {
+      return NextResponse.json(
+        { error: "You already have an active subscription." },
+        { status: 409 },
+      );
+    }
 
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
