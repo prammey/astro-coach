@@ -5,12 +5,29 @@ fully work. Newest first. Tick items off (or delete them) as they're done.
 
 ---
 
+## After the 2026-11-20 launch review (branch `fix/launch-review`)
+
+- [ ] **Apply two database migrations** (Row Level Security on every table,
+      and one-grant-per-checkout for bought credits). The code works with
+      or without them, so there is no rush, but they close two safety gaps.
+      1. Supabase → SQL Editor, run:
+         `select tablename, tableowner from pg_tables where schemaname = 'public';`
+         Every owner should be `postgres`. If any is not, stop and ask Claude.
+      2. Then, in the project folder: `npx prisma migrate deploy`
+      3. Check the live site still loads the question bank and the dashboard.
+- [ ] **Vercel env vars:** make sure `ADMIN_USER_IDS` includes your Supabase
+      user UID. It now also guards `/admin/reports`. Then delete the old
+      `ADMIN_EMAILS` variable, which nothing reads any more.
+- [ ] **Pricing switches automatically on 2027-01-01** to $7.99 (the page
+      and dashboard now follow the founding deadline). Nothing to do, just
+      know it will happen.
+
 ## Launch blockers (found in the 2026-10-01 full-site check)
 
 - [x] **Question permissions recorded.** All 734 MCQs are marked
       `permissionStatus: "permission-granted"` (USAAAO and IAAC confirmed
       2026-09-24, BAAO confirmed by the owner 2026-10-02).
-- [ ] **Re-run `npm run seed:mcq`** so the database copy of those
+- [x] **Re-run `npm run seed:mcq`** (done 2026-10-02) so the database copy of those
       permission values matches the files (nothing on the site reads them).
 - [ ] **Stripe is still in test mode.** No real payments until you switch
       to live keys, which means new Vercel env vars and a live webhook.
