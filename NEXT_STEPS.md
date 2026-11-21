@@ -9,15 +9,16 @@ fully work. Newest first. Tick items off (or delete them) as they're done.
 
 - [ ] **Apply two database migrations** (Row Level Security on every table,
       and one-grant-per-checkout for bought credits). The code works with
-      or without them, so there is no rush, but they close two safety gaps.
-      1. Supabase → SQL Editor, run:
-         `select tablename, tableowner from pg_tables where schemaname = 'public';`
-         Every owner should be `postgres`. If any is not, stop and ask Claude.
-      2. Then, in the project folder: `npx prisma migrate deploy`
-      3. Check the live site still loads the question bank and the dashboard.
-- [ ] **Vercel env vars:** make sure `ADMIN_USER_IDS` includes your Supabase
-      user UID. It now also guards `/admin/reports`. Then delete the old
-      `ADMIN_EMAILS` variable, which nothing reads any more.
+      or without them. Claude checked on 2026-11-21: every table is owned by
+      `postgres`, the app connects as `postgres` (bypasses RLS), RLS is
+      already on for all 18 tables, and there are no duplicate credit
+      grants, so this is safe. Claude's safety check would not let it run
+      the command itself. In the project folder, run:
+      `npx prisma migrate deploy`
+      then check the live site still loads the question bank and dashboard.
+- [x] **Vercel env vars:** `ADMIN_USER_IDS` is set; the unused
+      `ADMIN_EMAILS` was deleted on 2026-11-21. (If /admin ever says you're
+      not an admin, add your Supabase user UID to `ADMIN_USER_IDS`.)
 - [ ] **Pricing switches automatically on 2027-01-01** to $7.99 (the page
       and dashboard now follow the founding deadline). Nothing to do, just
       know it will happen.
@@ -37,9 +38,9 @@ fully work. Newest first. Tick items off (or delete them) as they're done.
 
 ## Assets that would make the site look better (optional)
 
-- [ ] **Constants sheet PDF**: put it at
-      `public/resources/astro-coach-constants-sheet.pdf` and the Training
-      page shows a download button (it shows practice tips until then).
+- [x] **Constants sheet PDF**: added 2026-11-21 at
+      `public/resources/astro-coach-constants-sheet.pdf` (CODATA 2018 / IAU
+      2015 values); the Training page links to it.
 - [ ] **A custom domain** (e.g. astrocoach.org): unlocks Google sign-in,
       branded email, and looks more trustworthy than *.vercel.app.
 
@@ -105,8 +106,8 @@ Do this before switching Stripe to live mode.
 ## Turn on Google Analytics
 
 The tag is in the code but only loads when its env var is set.
-- [ ] Vercel → astro-coach → Settings → Environment Variables → add
-      `NEXT_PUBLIC_GA_ID` = `G-H7F6MQLK9T` (Production) → redeploy.
+- [x] `NEXT_PUBLIC_GA_ID` is set in Vercel and the tag is live (checked
+      2026-11-21).
 
 ## Push and deploy
 

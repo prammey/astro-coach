@@ -1,5 +1,3 @@
-import { promises as fs } from "fs";
-import path from "path";
 import PageContainer from "@/components/PageContainer";
 import BrutalButton from "@/components/ui/BrutalButton";
 import TrainingBrowser from "@/components/TrainingBrowser";
@@ -15,15 +13,9 @@ export const metadata = {
     "Search and filter hundreds of real astronomy olympiad multiple-choice questions by competition, year, topic and difficulty.",
 };
 
-// Check if the constants sheet PDF exists
-async function constantsSheetExists(): Promise<boolean> {
-  try {
-    await fs.access(path.join(process.cwd(), "public/resources/astro-coach-constants-sheet.pdf"));
-    return true;
-  } catch {
-    return false;
-  }
-}
+// The printable constants sheet, committed in public/resources. Linked
+// directly: a per-request file check cannot see public/ on Vercel.
+const CONSTANTS_SHEET_URL = "/resources/astro-coach-constants-sheet.pdf";
 
 // Server Component: builds the safe (no answer keys) question list once
 // on the server, then hands it to the client-side search/filter UI.
@@ -32,7 +24,6 @@ export default async function TrainingPage({
 }: {
   searchParams: Promise<{ competition?: string }>;
 }) {
-  const pdfExists = await constantsSheetExists();
   const { publicItems: publicQuestionCatalog } = await getMcqCatalog();
   const { competition } = await searchParams;
 
@@ -49,18 +40,16 @@ export default async function TrainingPage({
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-3">
-          {pdfExists && (
-            <BrutalButton
-              href="/resources/astro-coach-constants-sheet.pdf"
-              variant="ghost"
-              size="sm"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Constants sheet (PDF)
-            </BrutalButton>
-          )}
+        <div className="flex shrink-0 flex-wrap gap-3">
+          <BrutalButton
+            href={CONSTANTS_SHEET_URL}
+            variant="ghost"
+            size="sm"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Constants sheet (PDF)
+          </BrutalButton>
           {/* Free-response practice lives on its own page: those questions
               come from the database and depend on the student's plan. */}
           <BrutalButton href="/training/frq" variant="dark" size="sm">
