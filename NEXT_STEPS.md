@@ -40,8 +40,6 @@ fully work. Newest first. Tick items off (or delete them) as they're done.
 - [ ] **Constants sheet PDF**: put it at
       `public/resources/astro-coach-constants-sheet.pdf` and the Training
       page shows a download button (it shows practice tips until then).
-- [ ] **A photo or short "who made this" blurb** for the About page, if you
-      want it to feel more personal.
 - [ ] **A custom domain** (e.g. astrocoach.org): unlocks Google sign-in,
       branded email, and looks more trustworthy than *.vercel.app.
 
