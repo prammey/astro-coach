@@ -72,7 +72,7 @@ function TipBubble({ anchor, children }: { anchor: DOMRect; children: ReactNode 
         top: below ? anchor.bottom + 8 : anchor.top - 8,
         transform: below ? "translate(-50%, 0)" : "translate(-50%, -100%)",
       }}
-      className="pointer-events-none z-[100] w-max max-w-[240px] rounded-lg border-[3px] border-ink bg-white px-3 py-2 text-sm text-navy shadow-brutal-sm"
+      className="pointer-events-none z-[100] w-max max-w-[240px] border-[3px] border-ink bg-white px-3 py-2 text-sm text-navy shadow-brutal-sm"
     >
       {children}
     </div>

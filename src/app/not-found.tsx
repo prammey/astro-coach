@@ -9,7 +9,7 @@ export const metadata = {
 export default function NotFound() {
   return (
     <div className="starfield-dark flex min-h-[70vh] items-center justify-center bg-navy px-4 py-16">
-      <div className="animate-rise-in w-full max-w-md rounded-xl border-[3px] border-ink bg-cream p-8 text-center shadow-brutal-lg">
+      <div className="animate-rise-in w-full max-w-md border-[3px] border-ink bg-cream p-8 text-center shadow-brutal-lg">
         <p className="text-6xl font-extrabold text-purple">404</p>
         <h1 className="mt-2 text-2xl font-extrabold text-navy">Lost in space</h1>
         <p className="mt-3 text-navy/80">

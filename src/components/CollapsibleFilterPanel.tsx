@@ -278,11 +278,11 @@ export default function CollapsibleFilterPanel({
   }, [filters, competitions.length, difficultyLevels.length, yearRange]);
 
   return (
-    <div className="rounded-lg border-[3px] border-ink bg-white shadow-brutal-sm">
+    <div className="border-[3px] border-ink bg-white shadow-brutal-sm">
       {/* Header / Toggle */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between rounded-lg px-4 py-3 transition-colors duration-200 hover:bg-cream"
+        className="flex w-full items-center justify-between px-4 py-3 transition-colors duration-200 hover:bg-cream"
         aria-expanded={isOpen}
       >
         <div className="flex items-center gap-2">

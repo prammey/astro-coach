@@ -157,7 +157,7 @@ export default function DashboardTabs() {
       {/* About ten rows show at once and the rest scroll inside this box
           (it also scrolls sideways on narrow screens, so the page itself
           never grows wider than the phone). The header row stays put. */}
-      <div className="relative z-10 max-h-[560px] overflow-auto rounded-b-2xl rounded-t-md bg-cream shadow-[0_6px_16px_rgba(0,0,0,0.15)]">
+      <div className="relative z-10 max-h-[560px] overflow-auto bg-cream shadow-[0_6px_16px_rgba(0,0,0,0.15)]">
         {isLoading ? (
           <p className="p-6 text-navy/70">Loading...</p>
         ) : (

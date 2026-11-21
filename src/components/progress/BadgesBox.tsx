@@ -48,7 +48,7 @@ export function BadgesGrid({
 
   return (
     <section
-      className={`flex flex-col rounded-xl border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal ${
+      className={`flex flex-col border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal ${
         matchHeight ? "lg:h-0 lg:min-h-full" : ""
       }`}
     >

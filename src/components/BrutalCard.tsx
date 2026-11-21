@@ -35,7 +35,7 @@ export default function BrutalCard({
 }) {
   return (
     <div
-      className={`rounded-xl border-[3px] border-ink p-6 shadow-brutal ${TONE_CLASSES[tone]} ${
+      className={`border-[3px] border-ink p-6 shadow-brutal ${TONE_CLASSES[tone]} ${
         hover ? HOVER_CLASSES : ""
       } ${className}`}
     >

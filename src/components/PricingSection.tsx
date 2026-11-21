@@ -131,7 +131,7 @@ export default function PricingSection({ foundingPriceOpen }: { foundingPriceOpe
             column ends level with Pro. */}
         <div className="flex h-full flex-col gap-5">
           {/* Guest — what you get with no account at all. */}
-          <div className="flex flex-auto flex-col rounded-lg border-[3px] border-ink bg-gray-100 p-4 shadow-brutal-sm">
+          <div className="flex flex-auto flex-col border-[3px] border-ink bg-gray-100 p-4 shadow-brutal-sm">
             <div className="flex items-baseline justify-between">
               <h2 className="text-lg font-extrabold text-gray-800">Guest</h2>
               <span className="text-sm font-bold text-gray-600">Free · no account</span>
@@ -158,7 +158,7 @@ export default function PricingSection({ foundingPriceOpen }: { foundingPriceOpe
           </div>
 
           {/* Free — the account tier. */}
-          <div className="flex flex-auto flex-col rounded-lg border-[3px] border-ink bg-electric p-4 shadow-brutal-sm">
+          <div className="flex flex-auto flex-col border-[3px] border-ink bg-electric p-4 shadow-brutal-sm">
             <div className="flex items-baseline justify-between">
               <h2 className="text-lg font-extrabold text-white">Free</h2>
               <span className="text-sm font-bold text-white/85">$0 · with an account</span>
@@ -192,7 +192,7 @@ export default function PricingSection({ foundingPriceOpen }: { foundingPriceOpe
 
         {/* Right column: Pro (larger, premium) */}
         <div className="lg:col-span-2">
-          <div className="relative flex h-full flex-col rounded-lg border-[3px] border-ink bg-purple p-6 shadow-brutal-lg">
+          <div className="relative flex h-full flex-col border-[3px] border-ink bg-purple p-6 shadow-brutal-lg">
             {/* The founding badge and tag, only while that price is offered. */}
             {foundingPriceOpen && (
               <>

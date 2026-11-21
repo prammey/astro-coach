@@ -126,7 +126,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
   }
 
   if (loadError) {
-    return <p className="rounded-lg border-[3px] border-danger bg-white p-4">{loadError}</p>;
+    return <p className="border-[3px] border-danger bg-white p-4">{loadError}</p>;
   }
   if (!detail) {
     return <LoadingStar label="Loading question…" />;
@@ -172,7 +172,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
 
       {/* 2 & 3. The question itself, or the Pro wall in its place. */}
       {content ? (
-        <section className="rounded-xl border-[3px] border-ink bg-white p-6 shadow-brutal">
+        <section className="border-[3px] border-ink bg-white p-6 shadow-brutal">
           <FrqText
             text={content.questionText}
             figures={content.figures.filter((figure) => !figure.partId)}
@@ -189,7 +189,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
                 return (
                   <li key={part.id} className="space-y-3">
                     {part.leadIn && <FrqText text={part.leadIn} figures={leadInFigures} />}
-                    <div className="rounded-lg border-2 border-ink bg-cream p-4">
+                    <div className="border-2 border-ink bg-cream p-4">
                       <p className="flex flex-wrap items-center gap-2 font-extrabold text-navy">
                         <span>{part.label}</span>
                         <span className="font-normal">
@@ -210,7 +210,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
           )}
 
           {content.answerSheets.length > 0 && (
-            <div className="mt-6 rounded-lg border-2 border-ink bg-yellow/30 p-4">
+            <div className="mt-6 border-2 border-ink bg-yellow/30 p-4">
               <p className="font-extrabold text-navy">Answer sheets</p>
               <p className="mt-1 text-sm text-navy/80">
                 Print (or draw on screen), complete the drawing parts, then photograph
@@ -281,7 +281,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
           {submitError && (
             <p
               role="alert"
-              className="rounded-lg border-[3px] border-danger bg-white p-4 text-sm font-semibold text-navy"
+              className="border-[3px] border-danger bg-white p-4 text-sm font-semibold text-navy"
             >
               {submitError}
             </p>
@@ -290,7 +290,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
           {status && (
             <p
               role="status"
-              className="rounded-lg border-[3px] border-ink bg-yellow/40 p-4 text-sm font-bold text-navy"
+              className="border-[3px] border-ink bg-yellow/40 p-4 text-sm font-bold text-navy"
             >
               {status}
             </p>
@@ -337,7 +337,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
 
       {/* Model solutions for the parts already solved in full. */}
       {detail.earnedPartSolutions.length > 0 && (
-        <section className="rounded-xl border-[3px] border-ink bg-cream p-6 shadow-brutal">
+        <section className="border-[3px] border-ink bg-cream p-6 shadow-brutal">
           <h2 className="text-2xl font-extrabold text-navy">Parts you&apos;ve solved</h2>
           <p className="mt-1 text-sm text-navy/70">
             Full marks on these parts, so here is the model solution for each. Keep
@@ -345,7 +345,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
           </p>
           <ol className="mt-4 space-y-3">
             {detail.earnedPartSolutions.map((part) => (
-              <li key={part.label} className="rounded-lg border-2 border-ink bg-white p-4">
+              <li key={part.label} className="border-2 border-ink bg-white p-4">
                 <p className="font-extrabold text-navy">{part.label}</p>
                 <FrqText className="mt-1" text={part.officialSolution} figures={part.figures} />
               </li>
@@ -376,7 +376,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
 
       {/* 13. The official solution, only once it has genuinely been unlocked. */}
       {solution && (
-        <section className="rounded-xl border-[3px] border-ink bg-cream p-6 shadow-brutal">
+        <section className="border-[3px] border-ink bg-cream p-6 shadow-brutal">
           <h2 className="text-2xl font-extrabold text-navy">{solutionHeading(solution.source)}</h2>
           <p className="mt-1 text-sm text-navy/70">
             {unlockExplanation(solution.reason)} {solutionSourceNote(solution.source)}
@@ -395,7 +395,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
               {solution.parts
                 .filter((part) => part.officialSolution)
                 .map((part) => (
-                  <li key={part.label} className="rounded-lg border-2 border-ink bg-white p-4">
+                  <li key={part.label} className="border-2 border-ink bg-white p-4">
                     <p className="font-extrabold text-navy">{part.label}</p>
                     <FrqText
                       className="mt-1"
@@ -456,7 +456,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
 
 function AttemptState({ state }: { state: FrqDetail["state"] }) {
   return (
-    <div className="flex flex-wrap gap-4 rounded-lg border-[3px] border-ink bg-cream p-4 text-sm font-bold text-navy">
+    <div className="flex flex-wrap gap-4 border-[3px] border-ink bg-cream p-4 text-sm font-bold text-navy">
       <span>
         Graded attempts used: {state.attemptsUsed} of {state.maxAttempts}
       </span>
@@ -472,15 +472,15 @@ function AttemptState({ state }: { state: FrqDetail["state"] }) {
 /// — the server sent nothing real — so there is nothing to uncover.
 function LockedQuestionPreview() {
   return (
-    <section className="relative overflow-hidden rounded-xl border-[3px] border-ink bg-white shadow-brutal">
+    <section className="relative overflow-hidden border-[3px] border-ink bg-white shadow-brutal">
       <div aria-hidden className="pointer-events-none select-none space-y-4 p-6 blur-[7px]">
         <div className="h-5 w-3/4 rounded bg-navy/30" />
         <div className="h-4 w-full rounded bg-navy/20" />
         <div className="h-4 w-11/12 rounded bg-navy/20" />
         <div className="h-4 w-2/3 rounded bg-navy/20" />
-        <div className="mx-auto h-40 w-2/3 rounded-lg border-[3px] border-navy/30 bg-electric/15" />
+        <div className="mx-auto h-40 w-2/3 border-[3px] border-navy/30 bg-electric/15" />
         {["(a)", "(b)", "(c)"].map((label) => (
-          <div key={label} className="rounded-lg border-2 border-navy/20 bg-cream p-4">
+          <div key={label} className="border-2 border-navy/20 bg-cream p-4">
             <div className="h-4 w-16 rounded bg-navy/30" />
             <div className="mt-2 h-4 w-5/6 rounded bg-navy/20" />
           </div>
@@ -488,7 +488,7 @@ function LockedQuestionPreview() {
       </div>
 
       <div className="absolute inset-0 flex items-center justify-center bg-navy/30 p-4">
-        <div className="max-w-sm rounded-xl border-[3px] border-ink bg-white p-6 text-center text-navy shadow-brutal">
+        <div className="max-w-sm border-[3px] border-ink bg-white p-6 text-center text-navy shadow-brutal">
           <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-ink bg-yellow">
             <LockIcon />
           </span>
@@ -518,7 +518,7 @@ function LockedQuestionPreview() {
 /// grades left. They can still read the question and work on it.
 function OutOfCreditsNotice({ isPro, resetsAt }: { isPro: boolean; resetsAt: string | null }) {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border-2 border-danger bg-danger/10 px-4 py-3">
+    <div className="flex flex-wrap items-center justify-between gap-3 border-2 border-danger bg-danger/10 px-4 py-3">
       <p className="flex items-center gap-2 text-sm font-bold text-danger">
         <LockIcon size={18} />
         <span>

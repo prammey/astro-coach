@@ -54,7 +54,7 @@ export default function ForgotPasswordPage() {
   return (
     <div className="starfield-dark min-h-screen bg-navy flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <div className="animate-rise-in rounded-xl border-[3px] border-ink bg-white p-8 shadow-brutal-lg">
+        <div className="animate-rise-in border-[3px] border-ink bg-white p-8 shadow-brutal-lg">
           <h1 className="text-3xl font-extrabold text-navy mb-2">Reset your password</h1>
           <p className="text-sm text-navy/70 mb-6">
             Enter the email you signed up with and we&apos;ll send you a link to choose a new
@@ -62,7 +62,7 @@ export default function ForgotPasswordPage() {
           </p>
 
           {error && (
-            <div className="mb-4 p-4 rounded-lg border-[3px] border-danger bg-white font-semibold text-danger text-sm">
+            <div className="mb-4 p-4 border-[3px] border-danger bg-white font-semibold text-danger text-sm">
               {error}
             </div>
           )}
@@ -70,7 +70,7 @@ export default function ForgotPasswordPage() {
           {sent ? (
             // After sending: the neutral message, and a way to try again.
             <div className="space-y-4">
-              <div className="p-4 rounded-lg border-[3px] border-ink bg-cream font-semibold text-navy text-sm">
+              <div className="p-4 border-[3px] border-ink bg-cream font-semibold text-navy text-sm">
                 {SENT_MESSAGE}
               </div>
               <button

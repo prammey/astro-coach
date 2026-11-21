@@ -19,7 +19,7 @@ export default function ErrorPage({
 
   return (
     <div className="starfield-dark flex min-h-[70vh] items-center justify-center bg-navy px-4 py-16">
-      <div className="w-full max-w-md rounded-xl border-[3px] border-ink bg-cream p-8 text-center shadow-brutal-lg">
+      <div className="w-full max-w-md border-[3px] border-ink bg-cream p-8 text-center shadow-brutal-lg">
         <h1 className="text-2xl font-extrabold text-navy">Houston, we have a problem</h1>
         <p className="mt-3 text-navy/80">
           Something went wrong loading this page. Try again — if it keeps happening, it&apos;s

@@ -47,7 +47,7 @@ export default function GradeResult({
   const isFullMarks = maximumPoints > 0 && awardedPoints >= maximumPoints;
 
   return (
-    <div className="rounded-xl border-[3px] border-ink bg-white p-5 shadow-brutal">
+    <div className="border-[3px] border-ink bg-white p-5 shadow-brutal">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
         <h3 className="text-lg font-extrabold text-navy">
           {attemptNumber ? `Attempt ${attemptNumber} of ${maxAttempts}` : "Attempt"}
@@ -77,7 +77,7 @@ export default function GradeResult({
             {partScores.map((part) => (
               <li
                 key={part.partId}
-                className="rounded-lg border-2 border-ink bg-cream p-3"
+                className="border-2 border-ink bg-cream p-3"
               >
                 <p className="font-bold text-navy">
                   {part.label}: {part.awardedPoints} / {part.maxPoints}
@@ -96,7 +96,7 @@ export default function GradeResult({
           <p className="text-navy">{feedback.overall}</p>
 
           {feedback.legibilityNote && (
-            <p className="rounded-lg border-2 border-ink bg-yellow/40 p-3 text-sm text-navy">
+            <p className="border-2 border-ink bg-yellow/40 p-3 text-sm text-navy">
               <strong>On your uploaded work:</strong> {feedback.legibilityNote}
             </p>
           )}

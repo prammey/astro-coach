@@ -39,7 +39,7 @@ export default function OverviewStats({
   const outOfCredits = credits !== null && credits.remaining === 0;
 
   return (
-    <section className="rounded-xl border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
+    <section className="border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
       <div className="grid gap-5 md:grid-cols-2 md:divide-x-2 md:divide-ink/15">
         {/* Multiple choice */}
         <div>
@@ -89,7 +89,7 @@ export default function OverviewStats({
 
       {/* Out of AI grades: say so in red, and what to do next. */}
       {outOfCredits && (
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border-2 border-danger bg-danger/10 px-4 py-3">
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-2 border-danger bg-danger/10 px-4 py-3">
           <p className="text-sm font-bold text-danger">
             You&apos;re out of AI grades.
             {isPro && credits?.resetsAt && (

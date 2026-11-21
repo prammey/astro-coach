@@ -84,7 +84,7 @@ export default function SubscriptionCard({ className = "" }: { className?: strin
     : "the end of your billing period";
 
   return (
-    <div className={`rounded-xl border-[3px] border-ink bg-cream p-6 shadow-brutal ${className}`}>
+    <div className={`border-[3px] border-ink bg-cream p-6 shadow-brutal ${className}`}>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-sm text-navy">Your plan</p>

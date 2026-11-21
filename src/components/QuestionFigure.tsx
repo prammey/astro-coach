@@ -23,7 +23,7 @@ export default function QuestionFigure({
       {assets.map((src) => (
         <div
           key={src}
-          className="overflow-hidden rounded-lg border-[3px] border-ink bg-white p-3"
+          className="overflow-hidden border-[3px] border-ink bg-white p-3"
         >
           {/* width/height 0 + h-auto/w-auto: size comes from the image
               itself; `sizes` caps the version downloaded at card width. */}

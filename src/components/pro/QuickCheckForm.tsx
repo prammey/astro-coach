@@ -84,7 +84,7 @@ export default function QuickCheckForm({
       </div>
 
       {parts.map((part) => (
-        <div key={part.id} className="rounded-lg border-[3px] border-ink bg-white p-4 shadow-brutal-sm">
+        <div key={part.id} className="border-[3px] border-ink bg-white p-4 shadow-brutal-sm">
           {parts.length > 1 && <p className="mb-3 font-extrabold text-navy">{part.label}</p>}
           <div className="grid gap-3 sm:grid-cols-2">
             {part.blanks.map((blank) => {
@@ -121,13 +121,13 @@ export default function QuickCheckForm({
       ))}
 
       {error && (
-        <p role="alert" className="rounded-lg border-[3px] border-danger bg-white p-3 text-sm font-semibold text-navy">
+        <p role="alert" className="border-[3px] border-danger bg-white p-3 text-sm font-semibold text-navy">
           {error}
         </p>
       )}
 
       {score && !solutionUnlocked && (
-        <p role="status" className="rounded-lg border-[3px] border-ink bg-cream p-3 text-sm font-bold text-navy">
+        <p role="status" className="border-[3px] border-ink bg-cream p-3 text-sm font-bold text-navy">
           {score.awarded} / {score.max} points so far. Keep going — the solution unlocks when every blank is right.
         </p>
       )}

@@ -206,7 +206,7 @@ export default async function HomePage() {
               </p>
 
               {/* A miniature of the real question card from the Training page. */}
-              <div className="mt-5 rounded-lg border-[3px] border-ink bg-cream p-4">
+              <div className="mt-5 border-[3px] border-ink bg-cream p-4">
                 <p className="mb-3 text-xs font-extrabold uppercase tracking-widest text-purple">
                   ★ Question of the day
                 </p>
@@ -279,7 +279,7 @@ export default async function HomePage() {
         <Reveal delay={240}>
           {/* Stacks on phones (text, then a full-width button) so the text
               is not squeezed into a narrow column beside the button. */}
-          <div className="mt-6 flex flex-col gap-3 rounded-lg border-[3px] border-ink bg-yellow px-5 py-4 text-sm font-semibold text-navy shadow-brutal-sm sm:flex-row sm:items-center">
+          <div className="mt-6 flex flex-col gap-3 border-[3px] border-ink bg-yellow px-5 py-4 text-sm font-semibold text-navy shadow-brutal-sm sm:flex-row sm:items-center">
             <p className="flex flex-1 items-start gap-3">
               <span aria-hidden className="text-xl leading-none">★</span>
               <span>

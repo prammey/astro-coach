@@ -89,7 +89,7 @@ export default function ResetPasswordPage() {
   return (
     <div className="starfield-dark min-h-screen bg-navy flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <div className="animate-rise-in rounded-xl border-[3px] border-ink bg-white p-8 shadow-brutal-lg">
+        <div className="animate-rise-in border-[3px] border-ink bg-white p-8 shadow-brutal-lg">
           <h1 className="text-3xl font-extrabold text-navy mb-2">Choose a new password</h1>
 
           {/* Still reading the link. */}
@@ -102,7 +102,7 @@ export default function ResetPasswordPage() {
           {/* Expired, already used, or opened without a link. */}
           {stage === 'invalid' && (
             <div className="space-y-4">
-              <div className="mt-4 p-4 rounded-lg border-[3px] border-danger bg-white font-semibold text-danger text-sm">
+              <div className="mt-4 p-4 border-[3px] border-danger bg-white font-semibold text-danger text-sm">
                 This reset link has expired or has already been used.
               </div>
               <Link href="/forgot-password" className="inline-block font-semibold text-electric hover:underline">
@@ -115,7 +115,7 @@ export default function ResetPasswordPage() {
           {stage === 'form' && (
             <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               {error && (
-                <div className="p-4 rounded-lg border-[3px] border-danger bg-white font-semibold text-danger text-sm">
+                <div className="p-4 border-[3px] border-danger bg-white font-semibold text-danger text-sm">
                   {error}
                 </div>
               )}
@@ -162,7 +162,7 @@ export default function ResetPasswordPage() {
 
           {/* Saved. */}
           {stage === 'done' && (
-            <div className="mt-4 p-4 rounded-lg border-[3px] border-ink bg-cream font-semibold text-navy text-sm">
+            <div className="mt-4 p-4 border-[3px] border-ink bg-cream font-semibold text-navy text-sm">
               Password updated! Taking you to your dashboard…
             </div>
           )}

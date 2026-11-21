@@ -237,7 +237,7 @@ export default function TrainingBrowser({
       />
 
       {filteredQuestions.length === 0 && (
-        <div className="mt-8 rounded-xl border-[3px] border-dashed border-navy/40 p-8 text-center">
+        <div className="mt-8 border-[3px] border-dashed border-navy/40 p-8 text-center">
           <p className="font-bold text-navy">No questions match your search and filters.</p>
           <p className="mt-1 text-sm text-navy/70">
             Try fewer filters, or a shorter search term.

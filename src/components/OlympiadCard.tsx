@@ -30,7 +30,7 @@ export default function OlympiadCard({ data }: { data: OlympiadCardData }) {
 
   return (
     <div
-      className="rounded-xl border-[3px] border-ink p-6 shadow-brutal transition-[translate,box-shadow] duration-200 ease-snappy hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-brutal-lg"
+      className="border-[3px] border-ink p-6 shadow-brutal transition-[translate,box-shadow] duration-200 ease-snappy hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-brutal-lg"
       style={{ backgroundColor: colors.background, color: colors.text }}
     >
       <div className="flex flex-wrap items-baseline justify-between gap-2">

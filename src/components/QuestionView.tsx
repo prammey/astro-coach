@@ -77,7 +77,7 @@ export default function QuestionView({
       </div>
 
       {question.questionMediaMissing && (
-        <div className="mt-4 rounded-lg border-[3px] border-ink bg-yellow p-3 text-sm font-bold text-navy">
+        <div className="mt-4 border-[3px] border-ink bg-yellow p-3 text-sm font-bold text-navy">
           Question image coming soon. This question may be incomplete until its
           figure is added.
         </div>
@@ -86,7 +86,7 @@ export default function QuestionView({
       {isMultiPart ? (
         // Each part carries its own prompt, so they are rendered together
         // with their choices rather than as one shared prompt up here.
-        <div className="mt-6 rounded-lg border-[3px] border-ink bg-yellow p-3 text-sm font-bold text-navy">
+        <div className="mt-6 border-[3px] border-ink bg-yellow p-3 text-sm font-bold text-navy">
           This question has {question.parts!.length} parts that build on each
           other. Answer both — it only counts as correct if every part is right.
         </div>

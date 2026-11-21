@@ -110,7 +110,7 @@ export default function FrqBrowser() {
     return (
       <div
         role="alert"
-        className="mt-6 rounded-lg border-[3px] border-danger bg-white p-4 font-semibold text-danger"
+        className="mt-6 border-[3px] border-danger bg-white p-4 font-semibold text-danger"
       >
         {error}
       </div>

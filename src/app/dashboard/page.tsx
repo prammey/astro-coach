@@ -200,7 +200,7 @@ export default function DashboardPage() {
         </div>
 
         {error && (
-          <div className="mb-6 rounded-lg border-[3px] border-danger bg-white p-4 font-semibold text-danger">
+          <div className="mb-6 border-[3px] border-danger bg-white p-4 font-semibold text-danger">
             {error}
           </div>
         )}
@@ -213,7 +213,7 @@ export default function DashboardPage() {
           <div className="space-y-8">
             {/* A thank-you after buying credits. */}
             {creditsJustBought && (
-              <p role="status" className="rounded-lg border-[3px] border-ink bg-success px-4 py-3 font-bold text-white">
+              <p role="status" className="border-[3px] border-ink bg-success px-4 py-3 font-bold text-white">
                 {credits && credits.remaining > 0
                   ? `Payment received — you now have ${credits.remaining} AI grades. Happy solving!`
                   : 'Payment received — your credits will appear here in a moment.'}
@@ -241,7 +241,7 @@ export default function DashboardPage() {
                 ) : analyticsFailed ? (
                   <p
                     role="alert"
-                    className="rounded-lg border-[3px] border-danger bg-white p-4 font-semibold text-danger"
+                    className="border-[3px] border-danger bg-white p-4 font-semibold text-danger"
                   >
                     Couldn&apos;t load your strengths and insights. Refresh the page to try again.
                   </p>

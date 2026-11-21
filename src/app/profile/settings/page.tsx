@@ -259,18 +259,18 @@ export default function ProfileSettingsPage() {
         </Link>
 
         {/* Settings Card */}
-        <div className="rounded-xl border-[3px] border-ink bg-white p-8 shadow-brutal">
+        <div className="border-[3px] border-ink bg-white p-8 shadow-brutal">
           <h1 className="text-3xl font-extrabold text-navy mb-2">Profile Settings</h1>
           <p className="text-sm text-navy/70 mb-8">Customize your profile and account information</p>
 
           {error && (
-            <div className="mb-6 p-4 rounded-lg border-[3px] border-danger bg-white font-semibold text-danger text-sm">
+            <div className="mb-6 p-4 border-[3px] border-danger bg-white font-semibold text-danger text-sm">
               {error}
             </div>
           )}
 
           {success && (
-            <div className="mb-6 p-4 rounded-lg border-[3px] border-success bg-white font-semibold text-success text-sm">
+            <div className="mb-6 p-4 border-[3px] border-success bg-white font-semibold text-success text-sm">
               {success}
             </div>
           )}
@@ -390,7 +390,7 @@ export default function ProfileSettingsPage() {
         </div>
 
         {/* Password: emailed reset link */}
-        <div className="mt-6 rounded-xl border-[3px] border-ink bg-white p-6 shadow-brutal">
+        <div className="mt-6 border-[3px] border-ink bg-white p-6 shadow-brutal">
           <h2 className="text-lg font-extrabold text-navy">Password</h2>
           {passwordEmailState === 'sent' ? (
             <p className="mt-2 text-sm font-semibold text-success">
@@ -414,7 +414,7 @@ export default function ProfileSettingsPage() {
         </div>
 
         {/* Danger zone: kept small and separate so it is never hit by accident */}
-        <div className="mt-6 rounded-xl border-[3px] border-danger bg-white p-6">
+        <div className="mt-6 border-[3px] border-danger bg-white p-6">
           <h2 className="text-lg font-extrabold text-danger">Danger zone</h2>
           <p className="mt-1 text-sm text-navy/70">
             Permanently delete your account and everything saved in it. Want to stop paying
@@ -433,7 +433,7 @@ export default function ProfileSettingsPage() {
       {/* Deactivate Account Modal */}
       {showDeactivateModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="rounded-xl border-[3px] border-ink bg-white p-8 shadow-brutal-lg max-w-md w-full">
+          <div className="border-[3px] border-ink bg-white p-8 shadow-brutal-lg max-w-md w-full">
             <h2 className="text-2xl font-extrabold text-danger mb-4">Deactivate Account</h2>
 
             <div className="mb-6 space-y-3 text-sm text-navy">
@@ -455,7 +455,7 @@ export default function ProfileSettingsPage() {
             </div>
 
             {error && (
-              <div className="mb-4 p-3 rounded-lg border-[3px] border-danger bg-white font-semibold text-danger text-sm">
+              <div className="mb-4 p-3 border-[3px] border-danger bg-white font-semibold text-danger text-sm">
                 {error}
               </div>
             )}

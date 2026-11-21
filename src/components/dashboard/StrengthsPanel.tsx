@@ -35,7 +35,7 @@ export default function StrengthsPanel({
   );
 
   return (
-    <section className="flex h-full flex-col rounded-xl border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
+    <section className="flex h-full flex-col border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
       <h2 className="text-2xl font-extrabold">Strengths</h2>
       <p className="text-sm text-navy/60">Performance by topic</p>
 

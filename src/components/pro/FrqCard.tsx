@@ -31,7 +31,7 @@ export default function FrqCard({
 
   const card = (
     <div
-      className={`flex h-full flex-col rounded-xl border-[3px] border-ink p-5 shadow-brutal ${
+      className={`flex h-full flex-col border-[3px] border-ink p-5 shadow-brutal ${
         locked ? LOCKED_CLASSES : UNLOCKED_CLASSES
       }`}
     >
@@ -93,7 +93,7 @@ export default function FrqCard({
     return (
       <Link
         href={signedIn ? "/pricing" : "/login?next=/training/frq"}
-        className="block h-full rounded-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-electric"
+        className="block h-full focus:outline-none focus-visible:ring-4 focus-visible:ring-electric"
         aria-label={`${question.competition} ${question.year} question ${question.questionNumber} — locked. ${signedIn ? "Upgrade to Astro Coach Pro" : "Sign in"}`}
       >
         {card}
@@ -104,7 +104,7 @@ export default function FrqCard({
   return (
     <Link
       href={`/training/frq/${question.id}`}
-      className="block h-full rounded-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-electric"
+      className="block h-full focus:outline-none focus-visible:ring-4 focus-visible:ring-electric"
     >
       {card}
     </Link>

@@ -129,7 +129,7 @@ function Figure({ figure }: { figure: SignedFigure }) {
       <img
         src={figure.url}
         alt={figure.caption ?? "Figure"}
-        className="mx-auto max-h-[520px] w-auto max-w-full rounded-lg border-[3px] border-ink bg-white"
+        className="mx-auto max-h-[520px] w-auto max-w-full border-[3px] border-ink bg-white"
       />
       {figure.caption && (
         <figcaption className="mt-1 text-center text-xs text-navy/70">{figure.caption}</figcaption>

@@ -155,7 +155,7 @@ export default function ReportProblemButton({ questionId }: { questionId: string
             role="dialog"
             aria-modal="true"
             aria-labelledby="report-dialog-title"
-            className="max-h-full w-full max-w-lg overflow-y-auto rounded-xl border-[3px] border-ink bg-white p-6 shadow-brutal-lg"
+            className="max-h-full w-full max-w-lg overflow-y-auto border-[3px] border-ink bg-white p-6 shadow-brutal-lg"
           >
             {sent ? (
               // Confirmation, so the learner knows it actually went somewhere.
@@ -233,7 +233,7 @@ export default function ReportProblemButton({ questionId }: { questionId: string
                     blocks. The link opens in a new tab so a half-written
                     report is not lost by navigating away. */}
                 {!user && (
-                  <p className="mt-3 rounded border-2 border-yellow bg-yellow/20 px-3 py-2 text-xs text-navy">
+                  <p className="mt-3 border-2 border-yellow bg-yellow/20 px-3 py-2 text-xs text-navy">
                     You&apos;re reporting anonymously.{' '}
                     <a
                       href="/login"

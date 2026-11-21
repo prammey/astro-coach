@@ -154,7 +154,7 @@ export default function AboutPage() {
             // friendly with no JavaScript.
             <details
               key={faq.question}
-              className="group rounded-xl border-[3px] border-ink bg-white shadow-brutal-sm open:shadow-brutal"
+              className="group border-[3px] border-ink bg-white shadow-brutal-sm open:shadow-brutal"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-extrabold text-navy">
                 {faq.question}

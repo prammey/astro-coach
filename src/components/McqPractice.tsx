@@ -201,7 +201,7 @@ export default function McqPractice({
   const resultBanner = lastResult && (
     <div
       role="status"
-      className={`mt-4 animate-pop-in rounded-lg border-[3px] border-ink p-4 font-bold shadow-brutal-sm ${
+      className={`mt-4 animate-pop-in border-[3px] border-ink p-4 font-bold shadow-brutal-sm ${
         lastResult.isCorrect ? "bg-success text-white" : "bg-danger text-white"
       }`}
     >
@@ -291,7 +291,7 @@ export default function McqPractice({
                       {/* The reason this choice is wrong, shown directly
                           under it so the lesson sits next to the mistake. */}
                       {revealedReason && !isCorrectAnswer && (
-                        <div className="ml-4 animate-rise-in rounded-b-lg border-x-[3px] border-b-[3px] border-ink bg-white px-4 py-3 text-sm text-navy">
+                        <div className="ml-4 animate-rise-in border-x-[3px] border-b-[3px] border-ink bg-white px-4 py-3 text-sm text-navy">
                           <span className="font-bold text-danger">Why not {choice.label}? </span>
                           <MathText text={revealedReason} />
                         </div>
@@ -380,7 +380,7 @@ function SolutionCard({
   heading: string;
 }) {
   return (
-    <div className="mt-4 animate-rise-in rounded-lg border-[3px] border-ink bg-cream p-5 shadow-brutal-sm">
+    <div className="mt-4 animate-rise-in border-[3px] border-ink bg-cream p-5 shadow-brutal-sm">
       <div className="flex flex-wrap items-center gap-2">
         <h3 className="text-lg font-bold text-purple">{heading}</h3>
         <span className="rounded-md bg-success px-2 py-1 text-xs font-bold text-white">
@@ -405,7 +405,7 @@ function SolutionCard({
       )}
 
       {solution.takeaway && (
-        <div className="mt-4 rounded-lg border-[3px] border-ink bg-yellow px-4 py-3 text-navy">
+        <div className="mt-4 border-[3px] border-ink bg-yellow px-4 py-3 text-navy">
           <span className="font-bold">Key takeaway: </span>
           <MathText text={solution.takeaway} />
         </div>

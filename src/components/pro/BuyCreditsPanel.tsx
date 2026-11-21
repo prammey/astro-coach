@@ -39,7 +39,7 @@ export default function BuyCreditsPanel() {
   }
 
   return (
-    <section id="buy-credits" className="scroll-mt-24 rounded-xl border-[3px] border-ink bg-white p-5 text-navy shadow-brutal">
+    <section id="buy-credits" className="scroll-mt-24 border-[3px] border-ink bg-white p-5 text-navy shadow-brutal">
       <h2 className="text-xl font-extrabold">Buy extra AI grades</h2>
       <p className="mt-1 text-sm text-navy/70">
         {formatUsd(creditPriceCents)} per credit, {minCreditPurchase}–{maxCreditPurchase} at a time. Extra credits

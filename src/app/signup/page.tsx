@@ -86,18 +86,18 @@ export default function SignupPage() {
   return (
     <div className="starfield-dark min-h-screen bg-navy flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <div className="animate-rise-in rounded-xl border-[3px] border-ink bg-white p-8 shadow-brutal-lg">
+        <div className="animate-rise-in border-[3px] border-ink bg-white p-8 shadow-brutal-lg">
           <h1 className="text-3xl font-extrabold text-navy mb-2">Sign Up</h1>
           <p className="text-sm text-navy/70 mb-6">Create your Astro Coach account</p>
 
           {error && (
-            <div className="mb-4 p-4 rounded-lg border-[3px] border-danger bg-white font-semibold text-danger text-sm">
+            <div className="mb-4 p-4 border-[3px] border-danger bg-white font-semibold text-danger text-sm">
               {error}
             </div>
           )}
 
           {success && (
-            <div className="mb-4 p-4 rounded-lg border-[3px] border-success bg-white font-semibold text-success text-sm">
+            <div className="mb-4 p-4 border-[3px] border-success bg-white font-semibold text-success text-sm">
               {success}
             </div>
           )}

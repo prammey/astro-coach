@@ -58,7 +58,7 @@ export default function QuestionCard({
       <h3 className="pr-16 text-lg font-extrabold leading-snug text-navy">
         <Link
           href={`/training/${question.id}`}
-          className="after:absolute after:inset-0 after:rounded-xl after:content-[''] focus:outline-none focus-visible:after:ring-4 focus-visible:after:ring-electric/40"
+          className="after:absolute after:inset-0 after:content-[''] focus:outline-none focus-visible:after:ring-4 focus-visible:after:ring-electric/40"
         >
           {question.competition} {question.year} · {shortNumberLabel(question)}
         </Link>

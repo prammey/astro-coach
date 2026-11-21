@@ -13,7 +13,7 @@ export default function FrqInsights({ analytics }: { analytics: ProAnalytics }) 
 
   if (recentAttempts.length === 0) {
     return (
-      <section className="rounded-xl border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
+      <section className="border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
         <h2 className="text-2xl font-extrabold">Free response</h2>
         <p className="mt-1 text-sm text-navy/70">
           Your graded free-response attempts, score trend and common mistakes will appear here.{" "}
@@ -31,7 +31,7 @@ export default function FrqInsights({ analytics }: { analytics: ProAnalytics }) 
       <h2 className="mb-4 text-2xl font-extrabold text-white">Free response</h2>
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Recent work */}
-        <div className="flex flex-col rounded-xl border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
+        <div className="flex flex-col border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
           <h3 className="font-extrabold">Recent graded work</h3>
           <p className="text-xs text-navy/60">Reopening feedback never uses a grading credit.</p>
           <ul className="mt-3 max-h-[340px] space-y-2 overflow-y-auto pr-1">
@@ -39,7 +39,7 @@ export default function FrqInsights({ analytics }: { analytics: ProAnalytics }) 
               <li key={attempt.submissionId}>
                 <Link
                   href={`/training/frq/${attempt.frqQuestionId}`}
-                  className="flex items-center justify-between gap-3 rounded-lg border-2 border-ink bg-white px-3 py-2 text-sm transition hover:bg-yellow/30 focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                  className="flex items-center justify-between gap-3 border-2 border-ink bg-white px-3 py-2 text-sm transition hover:bg-yellow/30 focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 >
                   <span className="font-bold">
                     {attempt.competition} {attempt.year} · Q{attempt.questionNumber}
@@ -58,7 +58,7 @@ export default function FrqInsights({ analytics }: { analytics: ProAnalytics }) 
 
         <div className="flex flex-col gap-6">
           {/* Score trend */}
-          <div className="rounded-xl border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
+          <div className="border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
             <h3 className="font-extrabold">Score over time</h3>
             {trend.length > 1 ? (
               <TrendChart points={trend} />
@@ -68,7 +68,7 @@ export default function FrqInsights({ analytics }: { analytics: ProAnalytics }) 
           </div>
 
           {/* Common mistakes */}
-          <div className="rounded-xl border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
+          <div className="border-[3px] border-ink bg-cream p-5 text-navy shadow-brutal">
             <h3 className="font-extrabold">Common mistakes</h3>
             {commonMistakes.length > 0 ? (
               <ul className="mt-2 flex flex-wrap gap-2">

@@ -51,7 +51,7 @@ export default function SolutionUploader({
   }
 
   return (
-    <div className="rounded-lg border-[3px] border-ink bg-white p-4">
+    <div className="border-[3px] border-ink bg-white p-4">
       <h3 className="font-extrabold text-navy">Upload your working</h3>
 
       {/* Handwriting guidance, kept honest — no promise that recognition is
@@ -88,7 +88,7 @@ export default function SolutionUploader({
           {files.map((entry, index) => (
             <li
               key={`${entry.file.name}-${index}`}
-              className="flex items-center justify-between gap-3 rounded-lg border-2 border-ink bg-cream px-3 py-2"
+              className="flex items-center justify-between gap-3 border-2 border-ink bg-cream px-3 py-2"
             >
               <span className="min-w-0 flex-1 truncate text-sm font-semibold text-navy">
                 {entry.file.name}

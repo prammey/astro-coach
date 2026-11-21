@@ -56,7 +56,7 @@ const EXAMPLE_STRENGTHS: StrengthRow[] = [
 
 export default function ProLockedPreview() {
   return (
-    <section className="relative overflow-hidden rounded-xl border-[3px] border-ink shadow-brutal">
+    <section className="relative overflow-hidden border-[3px] border-ink shadow-brutal">
       {/* The blurred example. Hidden from screen readers and not clickable. */}
       <div aria-hidden className="pointer-events-none select-none space-y-4 bg-navy p-4 blur-[6px]">
         <ActivityCalendar days={exampleDays()} streaks={{ current: 12, longest: 31 }} today={EXAMPLE_TODAY} interactive={false} />
@@ -67,7 +67,7 @@ export default function ProLockedPreview() {
             topicToPractiseNext="Solar System"
             interactive={false}
           />
-          <div className="rounded-xl border-[3px] border-ink bg-cream p-5">
+          <div className="border-[3px] border-ink bg-cream p-5">
             <div className="h-6 w-40 rounded bg-navy/20" />
             <div className="mt-4 h-32 rounded bg-purple/30" />
             <div className="mt-4 h-20 rounded bg-electric/25" />
@@ -77,7 +77,7 @@ export default function ProLockedPreview() {
 
       {/* The lock */}
       <div className="absolute inset-0 flex items-center justify-center bg-navy/40 p-4">
-        <div className="max-w-sm rounded-xl border-[3px] border-ink bg-white p-6 text-center text-navy shadow-brutal">
+        <div className="max-w-sm border-[3px] border-ink bg-white p-6 text-center text-navy shadow-brutal">
           <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-ink bg-yellow">
             <LockIcon />
           </span>
