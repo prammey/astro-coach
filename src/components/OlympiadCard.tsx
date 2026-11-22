@@ -43,14 +43,14 @@ export default function OlympiadCard({ data }: { data: OlympiadCardData }) {
 
   return (
     <article className="flex flex-col border-[3px] border-ink bg-white text-navy shadow-brutal transition-[translate,box-shadow] duration-200 ease-snappy hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-brutal-lg sm:flex-row">
-      {/* The level block: the tier's color, its number and a meter. A strip
+      {/* The difficulty block: the tier's color, its number and a meter. A strip
           across the top on phones, a column on the left above that. */}
       <div
         className="flex shrink-0 items-center justify-between gap-4 border-b-[3px] border-ink px-5 py-3 sm:w-40 sm:flex-col sm:items-start sm:justify-start sm:border-b-0 sm:border-r-[3px] sm:py-5"
         style={{ backgroundColor: colors.background, color: colors.text }}
       >
         <div className="flex items-baseline gap-2 sm:flex-col sm:gap-0">
-          <span className="text-xs font-extrabold uppercase tracking-widest">Level</span>
+          <span className="text-xs font-extrabold uppercase tracking-widest">Difficulty</span>
           <span className="font-display text-3xl font-extrabold leading-none sm:text-5xl">
             {data.tier}
           </span>

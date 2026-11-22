@@ -64,7 +64,7 @@ export default function OlympiadsPage() {
             international stage. Start where you are, then climb.
           </p>
 
-          {/* The difficulty ladder as a color legend: six squares, one per level. */}
+          {/* The difficulty ladder as a color legend: six squares, one per difficulty step. */}
           <div
             className="mt-8 flex animate-rise-in items-center gap-3 text-xs font-extrabold uppercase tracking-widest text-white/80"
             style={{ animationDelay: "240ms" }}
@@ -110,7 +110,7 @@ export default function OlympiadsPage() {
               <section key={stage.title} className={stageIndex === 0 ? "" : "mt-12"}>
                 <div className="relative flex items-center gap-3">
                   {/* A plain colored square on the rail. No number, so it is
-                      not confused with the cards' "Level 1–6". */}
+                      not confused with the cards' "Difficulty 1–6". */}
                   <span
                     aria-hidden
                     className="h-11 w-11 shrink-0 border-[3px] border-ink shadow-brutal-sm sm:absolute sm:-left-16"
