@@ -3,6 +3,9 @@ import PricingSection from "@/components/PricingSection";
 import { isFoundingPriceOpen } from "@/lib/pro/public-config";
 
 export const metadata: Metadata = {
+  // The page's official address, so search engines never count a
+  // second copy (e.g. on the vercel.app address) as a duplicate.
+  alternates: { canonical: "/pricing" },
   title: "Pricing",
   description:
     "Practice astronomy olympiad multiple choice free. Go Pro for the full free-response bank and AI grading of your written work.",

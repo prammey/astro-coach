@@ -35,8 +35,42 @@ fully work. Newest first. Tick items off (or delete them) as they're done.
 - [x] **Constants sheet PDF**: added 2026-11-21 at
       `public/resources/astro-coach-constants-sheet.pdf` (CODATA 2018 / IAU
       2015 values); the Training page links to it.
-- [ ] **A custom domain** (e.g. astrocoach.org): unlocks Google sign-in,
-      branded email, and looks more trustworthy than *.vercel.app.
+- [ ] **A custom domain**: unlocks Google sign-in, branded email, and looks
+      more trustworthy than *.vercel.app. Checked 2026-11-21: astrocoach.com,
+      .org, .app and .net are taken; getastrocoach.com ($12.28/yr),
+      astrocoach.io, .dev, .study and .academy were free. See the checklist
+      below.
+
+## Domain day checklist (prepared 2026-11-22)
+
+The code needs **no changes**: every full web address comes from one
+setting, `NEXT_PUBLIC_SITE_URL`, or from the browser's own address. Every
+public page already names its official address (canonical link), and the
+sitemap lists all 724 question pages, so search engines move to the new
+domain cleanly.
+
+You do:
+- [ ] Buy the domain (Namecheap).
+
+Claude can then do (ask it):
+- [ ] Vercel → Settings → Domains: add the domain and `www`, and set
+      astrocoach.vercel.app to redirect to it.
+- [ ] Namecheap DNS: the records Vercel asks for (an A record for the bare
+      domain, a CNAME for `www`).
+- [ ] Vercel env var `NEXT_PUBLIC_SITE_URL=https://<domain>` (production),
+      then redeploy. Link previews, the sitemap and Stripe return pages
+      switch over.
+- [ ] Supabase → Authentication → URL Configuration: Site URL =
+      `https://<domain>`; add `https://<domain>/reset-password` and
+      `https://<domain>/auth/callback` to Redirect URLs (keep the old ones
+      until the switch is checked).
+- [ ] Stripe (test, and later live) → Webhooks: point the endpoint at
+      `https://<domain>/api/stripe/webhook`.
+- [ ] Email sender (Resend or Brevo): add its DNS records so sign-up and
+      reset emails come from `@<domain>`, then connect it in Supabase SMTP.
+- [ ] Google Search Console: verify the domain and submit
+      `https://<domain>/sitemap.xml`.
+- [ ] Google sign-in: needs the verified domain (see GoogleSignInButton).
 
 ## Auth emails: fine for now, real sender before a big launch (updated 2026-10-02)
 

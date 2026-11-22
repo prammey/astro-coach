@@ -2,6 +2,9 @@ import PageContainer from "@/components/PageContainer";
 import FrqBrowser from "@/components/pro/FrqBrowser";
 
 export const metadata = {
+  // The page's official address, so search engines never count a
+  // second copy (e.g. on the vercel.app address) as a duplicate.
+  alternates: { canonical: "/training/frq" },
   title: "Free-response practice",
   description:
     "Real olympiad free-response problems with step-by-step AI grading against the official marking scheme.",

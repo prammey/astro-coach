@@ -10,6 +10,9 @@ import { CONSTANTS_SHEET_URL } from "@/lib/constants-sheet";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
+  // The page's official address, so search engines never count a
+  // second copy (e.g. on the vercel.app address) as a duplicate.
+  alternates: { canonical: "/training" },
   title: "Question bank",
   description:
     "Search and filter hundreds of real astronomy olympiad multiple-choice questions by competition, year, topic and difficulty.",

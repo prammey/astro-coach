@@ -6,6 +6,9 @@ import { IconTile, type IconName } from "@/components/ui/Icon";
 import { OLYMPIADS } from "@/data/olympiads";
 
 export const metadata = {
+  // The page's official address, so search engines never count a
+  // second copy (e.g. on the vercel.app address) as a duplicate.
+  alternates: { canonical: "/about" },
   title: "About",
   description:
     "Astro Coach is an independent, student-built training platform for astronomy olympiads. Where the questions come from, how it works, and how to reach us.",

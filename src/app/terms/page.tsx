@@ -4,6 +4,9 @@ import Link from "next/link";
 import { PUBLIC_PRO_CONFIG } from "@/lib/pro/public-config";
 
 export const metadata = {
+  // The page's official address, so search engines never count a
+  // second copy (e.g. on the vercel.app address) as a duplicate.
+  alternates: { canonical: "/terms" },
   title: "Terms of Service",
   description: "The terms for using Astro Coach, and its source and attribution policy.",
 };

@@ -2,6 +2,9 @@ import PageContainer from "@/components/PageContainer";
 import BrutalCard from "@/components/BrutalCard";
 
 export const metadata = {
+  // The page's official address, so search engines never count a
+  // second copy (e.g. on the vercel.app address) as a duplicate.
+  alternates: { canonical: "/privacy" },
   title: "Privacy Policy",
   description: "What Astro Coach stores about you, why, and how to delete it.",
 };

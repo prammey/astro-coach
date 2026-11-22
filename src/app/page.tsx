@@ -20,6 +20,9 @@ import { questionNumberLabel } from "@/lib/question-label";
 // root layout ("Astro Coach — Astronomy Olympiad Training").
 export const dynamic = "force-dynamic";
 
+// The home page's official address (see the other pages for why).
+export const metadata = { alternates: { canonical: "/" } };
+
 /// How many free-response questions are published. If the database is
 /// unreachable the home page still loads — the stat just counts 0.
 async function countPublishedFrqs(): Promise<number> {

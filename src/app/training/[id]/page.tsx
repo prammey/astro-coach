@@ -36,6 +36,8 @@ export async function generateMetadata({
   return {
     title,
     description: previewText(firstText) || `Practice ${question.examName} on Astro Coach.`,
+    // This question's official address (see the other pages for why).
+    alternates: { canonical: `/training/${id}` },
   };
 }
 

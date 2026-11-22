@@ -5,6 +5,9 @@ import { OLYMPIADS, type DifficultyTier } from "@/data/olympiads";
 import Reveal from "@/components/ui/Reveal";
 
 export const metadata = {
+  // The page's official address, so search engines never count a
+  // second copy (e.g. on the vercel.app address) as a duplicate.
+  alternates: { canonical: "/olympiads" },
   title: "Astronomy olympiads guide",
   description:
     "Every major astronomy olympiad, from beginner online contests to the IOAA, ordered by difficulty — with what each one is like and how to prepare.",
