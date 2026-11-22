@@ -7,15 +7,10 @@ fully work. Newest first. Tick items off (or delete them) as they're done.
 
 ## After the 2026-11-20 launch review (branch `fix/launch-review`)
 
-- [ ] **Apply two database migrations** (Row Level Security on every table,
-      and one-grant-per-checkout for bought credits). The code works with
-      or without them. Claude checked on 2026-11-21: every table is owned by
-      `postgres`, the app connects as `postgres` (bypasses RLS), RLS is
-      already on for all 18 tables, and there are no duplicate credit
-      grants, so this is safe. Claude's safety check would not let it run
-      the command itself. In the project folder, run:
-      `npx prisma migrate deploy`
-      then check the live site still loads the question bank and dashboard.
+- [x] **Database migrations applied** on 2026-11-22 (Row Level Security on
+      every table, and one-grant-per-checkout for bought credits).
+      `prisma migrate status` reports the schema up to date, and the live
+      site still loads its questions.
 - [x] **Vercel env vars:** `ADMIN_USER_IDS` is set; the unused
       `ADMIN_EMAILS` was deleted on 2026-11-21. (If /admin ever says you're
       not an admin, add your Supabase user UID to `ADMIN_USER_IDS`.)
@@ -32,9 +27,8 @@ fully work. Newest first. Tick items off (or delete them) as they're done.
       permission values matches the files (nothing on the site reads them).
 - [ ] **Stripe is still in test mode.** No real payments until you switch
       to live keys, which means new Vercel env vars and a live webhook.
-- [ ] **OAAO has no verified official website**, so its Olympiad Guide card
-      has no link. Add the URL in `src/data/olympiads.ts` if you have one,
-      or consider dropping the card.
+- [x] **OAAO card removed** from the Olympiad Guide on 2026-11-22 (no
+      verified official website was found).
 
 ## Assets that would make the site look better (optional)
 

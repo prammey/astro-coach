@@ -27,13 +27,6 @@ export const OLYMPIADS: OlympiadCardData[] = [
     practice: { href: "/training?competition=IAAC", label: "Practice IAAC questions" },
   },
   {
-    name: "OAAO (Online Astronomy and Astrophysics Olympiad)",
-    tier: 1,
-    difficultyLabel: "Beginner",
-    blurb:
-      "An accessible online olympiad covering introductory astronomy topics. A good first competition for students testing the waters before committing to a harder track.",
-  },
-  {
     name: "Science Olympiad: Astronomy Event",
     tier: 2,
     difficultyLabel: "Beginner-Intermediate",
