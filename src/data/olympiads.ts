@@ -70,19 +70,19 @@ export const OLYMPIADS: OlympiadCardData[] = [
     practice: { href: "/training/frq", label: "Practice free-response problems" },
   },
   {
-    name: "IOAA (International Olympiad on Astronomy and Astrophysics)",
+    name: "IAO (International Astronomy Olympiad)",
     tier: 5,
     difficultyLabel: "Advanced",
     blurb:
-      "Theory, data analysis, and observation rounds for top students representing their country internationally. Build strong physics and math foundations alongside astronomy knowledge.",
-    officialUrl: "https://ioaastrophysics.org",
+      "An international theoretical and practical astronomy exam for experienced competitors, with separate junior and senior groups. Practice past international rounds and focus on observational astronomy.",
+    officialUrl: "http://www.issp.ac.ru/iao/",
   },
   {
-    name: "IAO (International Astronomy Olympiad)",
+    name: "IOAA (International Olympiad on Astronomy and Astrophysics)",
     tier: 6,
     difficultyLabel: "Advanced / International",
     blurb:
-      "An international theoretical and practical astronomy exam for experienced competitors seeking the highest level of challenge. Practice past international rounds and focus on observational astronomy.",
-    officialUrl: "http://www.issp.ac.ru/iao/",
+      "Theory, data analysis, and observation rounds for top students representing their country internationally. Build strong physics and math foundations alongside astronomy knowledge.",
+    officialUrl: "https://ioaastrophysics.org",
   },
 ];
