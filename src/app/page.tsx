@@ -5,6 +5,7 @@ import BrutalButton from "@/components/ui/BrutalButton";
 import Chip from "@/components/ui/Chip";
 import Reveal from "@/components/ui/Reveal";
 import CountUp from "@/components/ui/CountUp";
+import { IconTile, type IconName } from "@/components/ui/Icon";
 import { getMcqCatalog } from "@/data/mcq/catalog.server";
 import type { PublicQuestion } from "@/data/mcq/types";
 import { CURRICULUM_TOPICS } from "@/data/mcq/topicTaxonomy";
@@ -30,15 +31,26 @@ async function countPublishedFrqs(): Promise<number> {
   }
 }
 
-// The three steps a new student takes. This is a real sequence, which is
-// why the cards are numbered.
-const STEPS = [
+// The three steps a new student takes, in order. Each step has its own
+// color: the icon in the card's corner and the card's button share it.
+const STEPS: {
+  title: string;
+  description: string;
+  href: string;
+  linkLabel: string;
+  icon: IconName;
+  color: "yellow" | "electric" | "purple";
+  button: "accent" | "primary" | "purple";
+}[] = [
   {
     title: "Pick your competition",
     description:
       `${OLYMPIADS.length} olympiads, ranked from beginner-friendly to international. Find the one that fits where you are now.`,
     href: "/olympiads",
     linkLabel: "See the olympiad guide",
+    icon: "compass",
+    color: "yellow",
+    button: "accent",
   },
   {
     title: "Practice by topic",
@@ -46,6 +58,9 @@ const STEPS = [
       "Search past questions by competition, year, topic and difficulty. Bookmark the ones you want to revisit.",
     href: "/training",
     linkLabel: "Open the question bank",
+    icon: "search",
+    color: "electric",
+    button: "primary",
   },
   {
     title: "Get feedback that teaches",
@@ -53,7 +68,17 @@ const STEPS = [
       "Every multiple-choice answer comes with an explanation. Free-response work is graded part by part against the real marking scheme.",
     href: "/training/frq",
     linkLabel: "Try free-response practice",
+    icon: "check",
+    color: "purple",
+    button: "purple",
   },
+];
+
+// What a free account keeps track of, listed on the dashboard card.
+const DASHBOARD_POINTS = [
+  "Your accuracy across every question you answer",
+  "Bookmarks, and the questions you got wrong",
+  "Saved across your phone and laptop",
 ];
 
 // Shortens long question text so the preview stays one or two lines.
@@ -154,12 +179,9 @@ export default async function HomePage() {
 
       {/* ---------- How it works ---------- */}
       <PageContainer>
-        <h2 className="text-2xl font-extrabold text-navy sm:text-3xl">
-          How training works
-        </h2>
-        <p className="mt-2 max-w-2xl text-navy/75">
-          Three steps, in order. Most students start at step one and are
-          practicing within a few minutes.
+        <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">How it works</h2>
+        <p className="mt-2 max-w-2xl text-lg text-navy/75">
+          Three steps to your first practice set
         </p>
 
         <ol className="mt-8 grid gap-6 md:grid-cols-3">
@@ -167,17 +189,17 @@ export default async function HomePage() {
             <li key={step.title} className="flex">
               <Reveal delay={index * 80} className="flex w-full">
                 <BrutalCard tone="white" hover className="flex w-full flex-col">
-                  <span
-                    aria-hidden
-                    className="flex h-10 w-10 items-center justify-center rounded-full border-[3px] border-ink bg-navy text-lg font-extrabold text-yellow"
-                  >
-                    {index + 1}
-                  </span>
-                  <h3 className="mt-4 text-xl font-extrabold text-navy">{step.title}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/80">
+                  {/* Heading on the left, its matching icon in the right corner.
+                      Side by side, every heading gets room for two lines, so a
+                      one-line heading does not pull its text above the others. */}
+                  <div className="flex items-start justify-between gap-3 md:min-h-[3.75rem]">
+                    <h3 className="text-2xl font-extrabold leading-tight text-navy">{step.title}</h3>
+                    <IconTile name={step.icon} tone={step.color} />
+                  </div>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-navy/80">
                     {step.description}
                   </p>
-                  <BrutalButton href={step.href} variant="ghost" size="sm" className="mt-5 self-start">
+                  <BrutalButton href={step.href} variant={step.button} size="sm" className="mt-5 self-start">
                     {step.linkLabel}
                   </BrutalButton>
                 </BrutalCard>
@@ -187,112 +209,128 @@ export default async function HomePage() {
         </ol>
       </PageContainer>
 
-      {/* ---------- What is inside ---------- */}
-      <PageContainer>
-        <h2 className="text-2xl font-extrabold text-navy sm:text-3xl">
-          Built for olympiad prep
-        </h2>
+      {/* ---------- What is inside ----------
+          A purple band, so this section reads as its own block and the
+          white, yellow and navy cards stand out against it. */}
+      <section className="mt-6 border-t-[3px] border-ink bg-purple">
+        <PageContainer>
+          <SectionEyebrow>What&apos;s inside</SectionEyebrow>
+          <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
+            Built for olympiad prep
+          </h2>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-5">
-          {/* The question bank, with one real question as a live preview. */}
-          <Reveal className="lg:col-span-3">
-            <BrutalCard tone="white" className="h-full">
-              <h3 className="text-xl font-extrabold text-navy">
-                A question bank you can actually search
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-navy/80">
-                {mcqCount}{" "}past multiple-choice questions with source attribution, filterable
-                by competition, year, topic and difficulty. Try today&apos;s:
-              </p>
-
-              {/* A miniature of the real question card from the Training page. */}
-              <div className="mt-5 border-[3px] border-ink bg-cream p-4">
-                <p className="mb-3 text-xs font-extrabold uppercase tracking-widest text-purple">
-                  ★ Question of the day
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Chip tone="type">{sampleQuestion.type}</Chip>
-                  <Chip tone="difficulty">{sampleQuestion.difficulty}</Chip>
-                  <Chip tone="topic">{sampleQuestion.primaryCurriculumTopic}</Chip>
+          <div className="mt-8 grid gap-6 lg:grid-cols-5">
+            {/* The question bank, with one real question as a live preview. */}
+            <Reveal className="lg:col-span-3">
+              <BrutalCard tone="white" className="h-full">
+                <div className="flex items-center gap-3">
+                  <IconTile name="search" tone="electric" />
+                  <h3 className="text-xl font-extrabold text-navy">
+                    A question bank you can actually search
+                  </h3>
                 </div>
-                <p className="mt-3 text-sm font-bold text-navy">
-                  {sampleQuestion.competition} {sampleQuestion.year} · {questionNumberLabel(sampleQuestion)}
+                <p className="mt-4 text-sm leading-relaxed text-navy/80">
+                  {mcqCount}{" "}past multiple-choice questions with source attribution, filterable
+                  by competition, year, topic and difficulty. Try today&apos;s:
                 </p>
-                <p className="mt-1 text-sm text-navy/85">
-                  {previewText(sampleQuestion.questionText, 140)}
-                </p>
-                <BrutalButton
-                  href={`/training/${sampleQuestion.id}`}
-                  variant="dark"
-                  size="sm"
-                  className="mt-4"
-                >
-                  Try this question
-                </BrutalButton>
+
+                {/* A miniature of the real question card from the Training page. */}
+                <div className="mt-5 border-[3px] border-ink bg-cream p-4">
+                  <p className="mb-3 text-xs font-extrabold uppercase tracking-widest text-purple">
+                    ★ Question of the day
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Chip tone="type">{sampleQuestion.type}</Chip>
+                    <Chip tone="difficulty">{sampleQuestion.difficulty}</Chip>
+                    <Chip tone="topic">{sampleQuestion.primaryCurriculumTopic}</Chip>
+                  </div>
+                  <p className="mt-3 text-sm font-bold text-navy">
+                    {sampleQuestion.competition} {sampleQuestion.year} · {questionNumberLabel(sampleQuestion)}
+                  </p>
+                  <p className="mt-1 text-navy/85">
+                    {previewText(sampleQuestion.questionText, 140)}
+                  </p>
+                  <BrutalButton
+                    href={`/training/${sampleQuestion.id}`}
+                    variant="primary"
+                    size="sm"
+                    className="mt-4"
+                  >
+                    Try this question →
+                  </BrutalButton>
+                </div>
+
+                {/* The topics a student can filter by. */}
+                <p className="mt-6 text-sm font-bold text-navy">Every question is tagged by topic:</p>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {CURRICULUM_TOPICS.map((topic) => (
+                    <li key={topic}>
+                      <Chip tone="topic">{topic}</Chip>
+                    </li>
+                  ))}
+                </ul>
+              </BrutalCard>
+            </Reveal>
+
+            <div className="flex flex-col gap-6 lg:col-span-2">
+              {/* Free-response grading. */}
+              <Reveal delay={80} className="flex-1">
+                <BrutalCard tone="yellow" hover className="h-full">
+                  <div className="flex items-center gap-3">
+                    <IconTile name="pencil" tone="navy" />
+                    <h3 className="text-xl font-extrabold">Free-response, graded part by part</h3>
+                  </div>
+                  <p className="mt-4 text-sm leading-relaxed text-navy/85">
+                    Type it, photograph it or upload a PDF. Each part is scored on
+                    the competition&apos;s own point values, with the official
+                    solution unlocked as you work.
+                  </p>
+                  <BrutalButton href="/training/frq" variant="dark" size="sm" className="mt-5">
+                    See free-response questions
+                  </BrutalButton>
+                </BrutalCard>
+              </Reveal>
+
+              {/* Progress tracking. */}
+              <Reveal delay={160} className="flex-1">
+                <BrutalCard tone="navy" hover className="h-full">
+                  <div className="flex items-center gap-3">
+                    <IconTile name="chart" tone="yellow" />
+                    <h3 className="text-xl font-extrabold">Your progress, on one dashboard</h3>
+                  </div>
+                  {/* What a free account keeps track of. */}
+                  <ul className="mt-4 space-y-2 text-sm text-white/90">
+                    {DASHBOARD_POINTS.map((point) => (
+                      <li key={point} className="flex items-start gap-2">
+                        <span aria-hidden className="font-extrabold text-yellow">✓</span>
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                  <BrutalButton href="/signup" variant="accent" size="sm" className="mt-5">
+                    Create a free account
+                  </BrutalButton>
+                </BrutalCard>
+              </Reveal>
+            </div>
+          </div>
+
+          {/* Badges and streaks: the daily-habit part of the site. */}
+          <Reveal delay={240}>
+            {/* Stacks on phones: text, then a full-width button. */}
+            {/* Only as wide as its words and button on wider screens. */}
+            <div className="mt-6 flex flex-col gap-4 border-[3px] border-ink bg-cream px-5 py-4 text-navy shadow-brutal sm:w-fit sm:flex-row sm:items-center sm:gap-6">
+              <div className="flex items-center gap-4">
+                <IconTile name="trophy" tone="yellow" />
+                <p className="font-semibold">Earn {BADGES.length} badges as you practice</p>
               </div>
-
-              {/* The topics a student can filter by. */}
-              <p className="mt-6 text-sm font-bold text-navy">Every question is tagged by topic:</p>
-              <ul className="mt-3 flex flex-wrap gap-2">
-                {CURRICULUM_TOPICS.map((topic) => (
-                  <li key={topic}>
-                    <Chip tone="topic">{topic}</Chip>
-                  </li>
-                ))}
-              </ul>
-            </BrutalCard>
+              <BrutalButton href="/signup" variant="dark" size="sm" className="w-full sm:w-auto">
+                Start collecting
+              </BrutalButton>
+            </div>
           </Reveal>
-
-          <div className="flex flex-col gap-6 lg:col-span-2">
-            {/* Free-response grading. */}
-            <Reveal delay={80} className="flex-1">
-              <BrutalCard tone="purple" hover className="h-full">
-                <h3 className="text-xl font-extrabold">Free-response, graded part by part</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/85">
-                  Type it, photograph it or upload a PDF. Each part is scored on
-                  the competition&apos;s own point values, with the official
-                  solution unlocked as you work.
-                </p>
-                <BrutalButton href="/training/frq" variant="accent" size="sm" className="mt-5">
-                  See free-response questions
-                </BrutalButton>
-              </BrutalCard>
-            </Reveal>
-
-            {/* Progress tracking. */}
-            <Reveal delay={160} className="flex-1">
-              <BrutalCard tone="navy" hover className="h-full">
-                <h3 className="text-xl font-extrabold">Your progress, on one dashboard</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/85">
-                  Accuracy, bookmarks and the questions you got wrong, so you
-                  always know what to practice next.
-                </p>
-                <BrutalButton href="/signup" variant="accent" size="sm" className="mt-5">
-                  Create a free account
-                </BrutalButton>
-              </BrutalCard>
-            </Reveal>
-          </div>
-        </div>
-
-        {/* Badges and streaks: the daily-habit part of the site. */}
-        <Reveal delay={240}>
-          {/* Stacks on phones (text, then a full-width button) so the text
-              is not squeezed into a narrow column beside the button. */}
-          <div className="mt-6 flex flex-col gap-3 border-[3px] border-ink bg-yellow px-5 py-4 text-sm font-semibold text-navy shadow-brutal-sm sm:flex-row sm:items-center">
-            <p className="flex flex-1 items-start gap-3">
-              <span aria-hidden className="text-xl leading-none">★</span>
-              <span>
-                Earn {BADGES.length} badges as you practice — streaks, night-owl sessions,
-                every competition and more.
-              </span>
-            </p>
-            <BrutalButton href="/signup" variant="dark" size="sm" className="w-full sm:w-auto">
-              Start collecting
-            </BrutalButton>
-          </div>
-        </Reveal>
-      </PageContainer>
+        </PageContainer>
+      </section>
 
       {/* ---------- Final call to action ---------- */}
       <section className="starfield-dark border-t-[3px] border-ink bg-navy py-16 text-white">
@@ -329,5 +367,15 @@ function HeroStat({ value, label }: { value: number; label: string }) {
         <span className="text-sm font-semibold text-white/80">{label}</span>
       </dd>
     </div>
+  );
+}
+
+// The small yellow label above the heading on the purple band
+// ("WHAT'S INSIDE").
+function SectionEyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.2em] text-yellow">
+      {children}
+    </p>
   );
 }

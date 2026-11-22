@@ -102,14 +102,14 @@ export default function OverviewStats({
           {isPro ? (
             <a
               href="#buy-credits"
-              className="rounded-lg border-2 border-ink bg-yellow px-4 py-1.5 text-sm font-extrabold shadow-brutal-sm"
+              className="border-2 border-ink bg-yellow px-4 py-1.5 text-sm font-extrabold shadow-brutal-sm"
             >
               Buy credits
             </a>
           ) : (
             <Link
               href="/pricing"
-              className="rounded-lg border-2 border-ink bg-yellow px-4 py-1.5 text-sm font-extrabold shadow-brutal-sm"
+              className="border-2 border-ink bg-yellow px-4 py-1.5 text-sm font-extrabold shadow-brutal-sm"
             >
               Upgrade to Pro
             </Link>

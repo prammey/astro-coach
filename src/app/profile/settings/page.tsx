@@ -305,7 +305,7 @@ export default function ProfileSettingsPage() {
                     accept="image/*"
                     onChange={handleProfileImageUpload}
                     disabled={isSaving || isUploadingImage}
-                    className="block w-full text-sm text-navy/70 border-2 border-ink rounded px-3 py-2 cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="block w-full text-sm text-navy/70 border-2 border-ink px-3 py-2 cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                   <p className="text-xs text-navy/70 mt-2">
                     {isUploadingImage ? 'Uploading...' : 'PNG, JPG, GIF, WebP up to 5MB'}
@@ -325,7 +325,7 @@ export default function ProfileSettingsPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value.slice(0, 25))}
                 maxLength={25}
-                className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                className="w-full px-4 py-2 border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 placeholder="Your username"
                 disabled={isSaving}
               />
@@ -342,7 +342,7 @@ export default function ProfileSettingsPage() {
                 type="text"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                className="w-full px-4 py-2 border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 placeholder="Your first name"
                 disabled={isSaving}
               />
@@ -358,7 +358,7 @@ export default function ProfileSettingsPage() {
                 type="text"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                className="w-full px-4 py-2 border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 placeholder="Your last name"
                 disabled={isSaving}
               />
@@ -373,7 +373,7 @@ export default function ProfileSettingsPage() {
                 type="email"
                 value={user.email || ''}
                 disabled
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded bg-navy/5 text-navy/70 cursor-not-allowed"
+                className="w-full px-4 py-2 border-2 border-gray-300 bg-navy/5 text-navy/70 cursor-not-allowed"
               />
               <p className="text-xs text-navy/70 mt-2">Your email cannot be changed here. Contact support if needed.</p>
             </div>
@@ -382,7 +382,7 @@ export default function ProfileSettingsPage() {
             <button
               type="submit"
               disabled={isSaving}
-              className="w-full mt-8 rounded-lg border-[3px] border-ink bg-electric px-6 py-3 font-bold text-white shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:opacity-50"
+              className="w-full mt-8 border-[3px] border-ink bg-electric px-6 py-3 font-bold text-white shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:opacity-50"
             >
               {isSaving ? 'Saving...' : 'Save Changes'}
             </button>
@@ -405,7 +405,7 @@ export default function ProfileSettingsPage() {
                 type="button"
                 onClick={sendPasswordEmail}
                 disabled={passwordEmailState === 'sending'}
-                className="mt-4 rounded-lg border-[3px] border-ink bg-white px-4 py-2 text-sm font-bold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:opacity-60"
+                className="mt-4 border-[3px] border-ink bg-white px-4 py-2 text-sm font-bold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:opacity-60"
               >
                 {passwordEmailState === 'sending' ? 'Sending…' : 'Email me a reset link'}
               </button>
@@ -423,7 +423,7 @@ export default function ProfileSettingsPage() {
           <button
             type="button"
             onClick={() => setShowDeactivateModal(true)}
-            className="mt-4 rounded-lg border-[3px] border-ink bg-danger px-4 py-2 text-sm font-bold text-white shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+            className="mt-4 border-[3px] border-ink bg-danger px-4 py-2 text-sm font-bold text-white shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
           >
             Delete my account…
           </button>
@@ -471,7 +471,7 @@ export default function ProfileSettingsPage() {
                 value={deactivatePassword}
                 onChange={(e) => setDeactivatePassword(e.target.value)}
                 disabled={isDeactivating}
-                className="w-full px-4 py-2 border-2 border-ink rounded focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full px-4 py-2 border-2 border-ink focus:outline-none focus:ring-2 focus:ring-red-500"
                 placeholder="••••••••"
               />
             </div>
@@ -502,14 +502,14 @@ export default function ProfileSettingsPage() {
                   setError('');
                 }}
                 disabled={isDeactivating}
-                className="flex-1 rounded-lg border-2 border-gray-300 px-4 py-2 font-semibold text-navy hover:bg-cream transition disabled:opacity-50"
+                className="flex-1 border-2 border-gray-300 px-4 py-2 font-semibold text-navy hover:bg-cream transition disabled:opacity-50"
               >
                 Cancel
               </button>
               <button
                 onClick={handleDeactivateAccount}
                 disabled={isDeactivating || !deactivatePassword.trim() || !deactivateConfirmed}
-                className="flex-1 rounded-lg border-2 border-red-600 bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 border-2 border-red-600 bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isDeactivating ? 'Deactivating...' : 'Deactivate'}
               </button>

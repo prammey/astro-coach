@@ -118,7 +118,7 @@ export default function SignupPage() {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   required
-                  className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                  className="w-full px-4 py-2 border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                   placeholder="John"
                   disabled={isSubmitting}
                 />
@@ -133,7 +133,7 @@ export default function SignupPage() {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   required
-                  className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                  className="w-full px-4 py-2 border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                   placeholder="Doe"
                   disabled={isSubmitting}
                 />
@@ -150,7 +150,7 @@ export default function SignupPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                className="w-full px-4 py-2 border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 placeholder="your@email.com"
                 disabled={isSubmitting}
               />
@@ -166,7 +166,7 @@ export default function SignupPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                className="w-full px-4 py-2 border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 placeholder={`At least ${MIN_PASSWORD_LENGTH} characters`}
                 disabled={isSubmitting}
               />
@@ -182,7 +182,7 @@ export default function SignupPage() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                className="w-full px-4 py-2 border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 placeholder="Type it again"
                 disabled={isSubmitting}
               />

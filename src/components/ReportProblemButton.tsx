@@ -138,7 +138,7 @@ export default function ReportProblemButton({ questionId }: { questionId: string
         type="button"
         onClick={() => setIsOpen(true)}
         title="Report a problem with this question"
-        className="inline-flex items-center gap-1.5 rounded-lg border-2 border-navy/25 px-3 py-1.5 text-sm font-bold text-navy/70 transition hover:border-danger hover:bg-danger/10 hover:text-danger"
+        className="inline-flex items-center gap-1.5 border-2 border-navy/25 px-3 py-1.5 text-sm font-bold text-navy/70 transition hover:border-danger hover:bg-danger/10 hover:text-danger"
       >
         <span aria-hidden="true">⚑</span> Report a problem
       </button>
@@ -171,7 +171,7 @@ export default function ReportProblemButton({ questionId }: { questionId: string
                   ref={closeAfterSentRef}
                   type="button"
                   onClick={close}
-                  className="mt-5 w-full rounded-lg border-[3px] border-ink bg-electric px-6 py-2 font-bold text-white shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+                  className="mt-5 w-full border-[3px] border-ink bg-electric px-6 py-2 font-bold text-white shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
                 >
                   Close
                 </button>
@@ -194,7 +194,7 @@ export default function ReportProblemButton({ questionId }: { questionId: string
                         type="button"
                         aria-pressed={selected}
                         onClick={() => setReason(option.value)}
-                        className={`block w-full rounded-lg border-2 px-4 py-2.5 text-left transition ${
+                        className={`block w-full border-2 px-4 py-2.5 text-left transition ${
                           selected
                             ? 'border-ink bg-electric text-white'
                             : 'border-navy/20 bg-white text-navy hover:border-ink hover:bg-cream'
@@ -223,7 +223,7 @@ export default function ReportProblemButton({ questionId }: { questionId: string
                   onChange={(event) => setDetails(event.target.value.slice(0, 1000))}
                   rows={3}
                   placeholder="Add any detail that would help us fix it"
-                  className="mt-1 w-full rounded border-2 border-ink px-3 py-2 text-sm text-navy focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                  className="mt-1 w-full border-2 border-ink px-3 py-2 text-sm text-navy focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                 />
                 <p className="mt-1 text-right text-xs text-navy/50">
                   {details.length}/1000
@@ -254,7 +254,7 @@ export default function ReportProblemButton({ questionId }: { questionId: string
                   <button
                     type="button"
                     onClick={close}
-                    className="flex-1 rounded-lg border-2 border-ink bg-white px-4 py-2 font-bold text-navy transition hover:bg-cream"
+                    className="flex-1 border-2 border-ink bg-white px-4 py-2 font-bold text-navy transition hover:bg-cream"
                   >
                     Cancel
                   </button>
@@ -262,7 +262,7 @@ export default function ReportProblemButton({ questionId }: { questionId: string
                     type="button"
                     onClick={handleSubmit}
                     disabled={!canSubmit || isSending}
-                    className="flex-1 rounded-lg border-2 border-ink bg-electric px-4 py-2 font-bold text-white transition hover:bg-electric/90 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex-1 border-2 border-ink bg-electric px-4 py-2 font-bold text-white transition hover:bg-electric/90 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {isSending ? 'Sending...' : 'Send report'}
                   </button>

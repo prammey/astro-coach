@@ -61,7 +61,7 @@ export function ViewAsPill() {
   return (
     <div className="fixed bottom-4 right-4 z-[90]">
       {open && (
-        <div className="mb-2 w-56 rounded-lg border-2 border-ink bg-white shadow-brutal">
+        <div className="mb-2 w-56 border-2 border-ink bg-white shadow-brutal">
           <p className="border-b-2 border-ink px-4 py-2 text-xs font-bold uppercase text-navy/60">View as (admin)</p>
           <ViewAsOptions />
         </div>

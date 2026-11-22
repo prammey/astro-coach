@@ -120,7 +120,7 @@ export default function GradeResult({
           {mistakeTags.map((tag) => (
             <span
               key={tag}
-              className="rounded border-2 border-ink bg-cream px-2 py-0.5 text-xs font-semibold text-navy"
+              className="border-2 border-ink bg-cream px-2 py-0.5 text-xs font-semibold text-navy"
             >
               {labelForMistakeTag(tag)}
             </span>

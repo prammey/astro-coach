@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import SearchInput from "@/components/SearchInput";
 import CollapsibleFilterPanel, { type FilterState } from "@/components/CollapsibleFilterPanel";
 import QuestionCard from "@/components/QuestionCard";
 import BrutalButton from "@/components/ui/BrutalButton";
@@ -182,26 +181,21 @@ export default function TrainingBrowser({
 
   return (
     <>
-      <div className="mt-6 space-y-4">
-        <SearchInput value={search} onChange={handleSearchChange} />
-        <CollapsibleFilterPanel
-          questions={questions}
-          filters={filters}
-          onFiltersChange={handleFiltersChange}
-        />
-      </div>
+      {/* Search box, Filters button and the filter options. */}
+      <CollapsibleFilterPanel
+        questions={questions}
+        search={search}
+        onSearchChange={handleSearchChange}
+        filters={filters}
+        onFiltersChange={handleFiltersChange}
+      />
 
       {/* Results bar: how many match, and the button that turns them into
           a practice run. One row on wider screens. */}
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="text-lg font-extrabold text-navy">
-            {filteredQuestions.length} question{filteredQuestions.length === 1 ? "" : "s"}
-          </p>
-          <p className="text-sm text-navy/70">
-            Tip: filter to one topic, do ten in a row, and read every explanation you miss.
-          </p>
-        </div>
+        <p className="text-lg font-extrabold text-navy">
+          {filteredQuestions.length} question{filteredQuestions.length === 1 ? "" : "s"}
+        </p>
         {filteredQuestions.length > 0 && (
           <BrutalButton
             variant="primary"

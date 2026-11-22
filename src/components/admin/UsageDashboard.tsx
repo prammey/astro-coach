@@ -43,25 +43,25 @@ export default function UsageDashboard() {
     };
   }, []);
 
-  if (error) return <p className="mt-6 rounded-lg border-4 border-black bg-red-100 p-4">{error}</p>;
+  if (error) return <p className="mt-6 border-4 border-black bg-red-100 p-4">{error}</p>;
   if (!usage) return <p className="mt-6">Loading…</p>;
 
   return (
     <div className="mt-6 space-y-8">
       {/* Mock grading must never be mistaken for real grading. */}
       {usage.mockGrading && (
-        <p className="rounded-lg border-4 border-black bg-[var(--color-yellow)] p-4 font-extrabold text-[var(--color-navy)]">
+        <p className="border-4 border-black bg-[var(--color-yellow)] p-4 font-extrabold text-[var(--color-navy)]">
           Mock grading is active. Grades are simulated and cost nothing — set
           GEMINI_API_KEY to grade for real.
         </p>
       )}
       {usage.stripe.liveKey && (
-        <p className="rounded-lg border-4 border-black bg-red-200 p-4 font-extrabold">
+        <p className="border-4 border-black bg-red-200 p-4 font-extrabold">
           A LIVE Stripe key is configured. Real cards can be charged.
         </p>
       )}
       {!usage.stripe.configured && (
-        <p className="rounded-lg border-4 border-black bg-[var(--color-cream)] p-4 font-bold">
+        <p className="border-4 border-black bg-[var(--color-cream)] p-4 font-bold">
           Stripe is not configured — subscriptions are unavailable.
         </p>
       )}
@@ -118,7 +118,7 @@ function Group({ title, children }: { title: string; children: React.ReactNode }
 
 function Stat({ label, value }: { label: string; value: string | number }) {
   return (
-    <div className="rounded-lg border-4 border-black bg-[var(--color-cream)] p-4">
+    <div className="border-4 border-black bg-[var(--color-cream)] p-4">
       <p className="text-xs text-[var(--color-navy)]/70">{label}</p>
       <p className="mt-1 text-2xl font-extrabold text-[var(--color-navy)]">{value}</p>
     </div>

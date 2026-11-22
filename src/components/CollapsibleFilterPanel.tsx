@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import { CURRICULUM_TOPICS, type CurriculumTopic } from "@/data/mcq/topicTaxonomy";
 import { PublicQuestion } from "@/data/mcq/types";
-import BrutalButton from "./ui/BrutalButton";
-import Chip from "./ui/Chip";
+import SearchInput from "./SearchInput";
 
-// Filter state: competitions, topics, and difficulty are sets of selected values
+// Filter state: competitions, topics and difficulty are sets of the values
+// that are allowed. A full set means "no filter" for that group.
 export type FilterState = {
   competitions: Set<string>;
   curriculumTopics: Set<CurriculumTopic>;
@@ -16,392 +16,271 @@ export type FilterState = {
   includeAllEarlierYears: boolean;
 };
 
-function Checkbox({
+const DIFFICULTY_LEVELS = ["Beginner", "Intermediate", "Advanced"];
+
+/// Tapping an option. While every option in a group is allowed (no filter),
+/// a tap picks just that one. After that, taps add or remove options, and
+/// removing the last one goes back to "everything".
+function toggleInGroup<T>(current: Set<T>, all: readonly T[], value: T): Set<T> {
+  if (current.size === all.length) return new Set([value]);
+
+  const next = new Set(current);
+  if (next.has(value)) {
+    next.delete(value);
+  } else {
+    next.add(value);
+  }
+  return next.size === 0 ? new Set(all) : next;
+}
+
+// One option you can tap, e.g. "BAAO" or "Light & Spectra". Plain while
+// its group is unfiltered; navy once it is one of the picked options.
+function OptionChip({
   label,
-  checked,
-  indeterminate,
-  onChange,
+  selected,
+  onToggle,
 }: {
   label: string;
-  checked: boolean;
-  indeterminate?: boolean;
-  onChange: (checked: boolean) => void;
+  selected: boolean;
+  onToggle: () => void;
 }) {
   return (
-    <label className="flex items-center gap-2 cursor-pointer py-1">
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-        ref={(ref) => {
-          if (ref) {
-            ref.indeterminate = indeterminate || false;
-          }
-        }}
-        className="h-4 w-4 cursor-pointer rounded border-2 border-ink accent-electric"
-      />
-      <span className="text-sm text-navy">{label}</span>
-    </label>
+    <button
+      type="button"
+      aria-pressed={selected}
+      onClick={onToggle}
+      className={`shrink-0 whitespace-nowrap border-2 px-3 py-1 text-sm font-semibold transition-colors duration-150 focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 ${
+        selected
+          ? "border-ink bg-navy text-yellow"
+          : "border-navy/20 bg-white text-navy/80 hover:border-ink hover:text-navy"
+      }`}
+    >
+      {label}
+    </button>
   );
 }
 
-// Dual-handle range slider for years using overlapped HTML range inputs
-function DualRangeSlider({
-  min,
-  max,
-  value,
-  onChange,
-}: {
-  min: number;
-  max: number;
-  value: [number, number];
-  onChange: (value: [number, number]) => void;
-}) {
-  const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newMin = Math.min(parseInt(e.target.value), value[1]);
-    onChange([newMin, value[1]]);
-  };
-
-  const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newMax = Math.max(parseInt(e.target.value), value[0]);
-    onChange([value[0], newMax]);
-  };
-
-  // Calculate the percentage positions for visual feedback
-  const minPercent = ((value[0] - min) / (max - min)) * 100;
-  const maxPercent = ((value[1] - min) / (max - min)) * 100;
-
+// One labelled row of the filter panel: the label on the left on wider
+// screens, above the options on phones.
+function FilterRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="space-y-3">
-      {/* Range display */}
-      <div className="text-sm font-bold text-navy">
-        {value[0]} — {value[1]}
-      </div>
-
-      {/* Dual handle slider */}
-      <div className="relative h-8 flex items-center">
-        {/* Track background */}
-        <div className="absolute w-full h-2 rounded-full border-2 border-ink bg-navy/15"></div>
-
-        {/* Active range highlight */}
-        <div
-          className="absolute h-2 bg-electric rounded-full"
-          style={{
-            left: `${minPercent}%`,
-            right: `${100 - maxPercent}%`,
-          }}
-        ></div>
-
-        {/* Min handle */}
-        <input
-          type="range"
-          min={min}
-          max={max}
-          value={value[0]}
-          onChange={handleMinChange}
-          aria-label="Start year"
-          aria-valuemin={min}
-          aria-valuemax={max}
-          aria-valuenow={value[0]}
-          className="absolute w-full h-2 bg-transparent rounded-full appearance-none pointer-events-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-4 [&::-webkit-slider-thumb]:border-black [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:shadow-[2px_2px_0_#000] [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-4 [&::-moz-range-thumb]:border-black [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:pointer-events-auto [&:focus-visible]:[&::-webkit-slider-thumb]:outline [&:focus-visible]:[&::-webkit-slider-thumb]:outline-2 [&:focus-visible]:[&::-webkit-slider-thumb]:outline-offset-2 [&:focus-visible]:[&::-webkit-slider-thumb]:outline-electric"
-          style={{ zIndex: value[0] > max - (max - min) / 2 ? 5 : 3 }}
-        />
-
-        {/* Max handle */}
-        <input
-          type="range"
-          min={min}
-          max={max}
-          value={value[1]}
-          onChange={handleMaxChange}
-          aria-label="End year"
-          aria-valuemin={min}
-          aria-valuemax={max}
-          aria-valuenow={value[1]}
-          className="absolute w-full h-2 bg-transparent rounded-full appearance-none pointer-events-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-4 [&::-webkit-slider-thumb]:border-black [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:shadow-[2px_2px_0_#000] [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-4 [&::-moz-range-thumb]:border-black [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:pointer-events-auto [&:focus-visible]:[&::-webkit-slider-thumb]:outline [&:focus-visible]:[&::-webkit-slider-thumb]:outline-2 [&:focus-visible]:[&::-webkit-slider-thumb]:outline-offset-2 [&:focus-visible]:[&::-webkit-slider-thumb]:outline-electric"
-          style={{ zIndex: value[1] < max - (max - min) / 2 ? 5 : 3 }}
-        />
-      </div>
+    <div className="grid gap-2 sm:grid-cols-[7.5rem_minmax(0,1fr)] sm:items-start sm:gap-4">
+      <h3 className="text-xs font-bold uppercase tracking-widest text-navy/60 sm:pt-2">{label}</h3>
+      {children}
     </div>
   );
 }
 
-// Main collapsible filter panel component
+// A small year dropdown ("From 2014", "To 2026").
+function YearSelect({
+  label,
+  value,
+  years,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  years: number[];
+  onChange: (year: number) => void;
+}) {
+  return (
+    <label className="flex items-center gap-2 text-sm font-semibold text-navy/70">
+      {label}
+      <select
+        value={value}
+        onChange={(event) => onChange(Number(event.target.value))}
+        className="cursor-pointer border-2 border-navy/20 bg-white px-2 py-1 font-semibold text-navy hover:border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+      >
+        {years.map((year) => (
+          <option key={year} value={year}>
+            {year}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
+// The search tool on the Training page: the search box and a Filters
+// button on one row, and the filter options underneath (open on arrival).
 export default function CollapsibleFilterPanel({
   questions,
+  search,
+  onSearchChange,
   filters,
   onFiltersChange,
 }: {
   questions: PublicQuestion[];
+  search: string;
+  onSearchChange: (value: string) => void;
   filters: FilterState;
   onFiltersChange: (filters: FilterState) => void;
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  // Open on arrival, so students see every way to narrow the bank.
+  const [isOpen, setIsOpen] = useState(true);
 
-  // Calculate min/max years from the catalog
+  // The first and last year in the bank, and every year between.
   const yearRange = useMemo(() => {
     if (questions.length === 0) return { min: 2000, max: 2026 };
     const years = questions.map((q) => q.year);
     return { min: Math.min(...years), max: Math.max(...years) };
   }, [questions]);
+  const allYears = useMemo(
+    () => Array.from({ length: yearRange.max - yearRange.min + 1 }, (_, i) => yearRange.min + i),
+    [yearRange],
+  );
 
-  // Get unique competitions
-  const competitions = useMemo(() => {
-    return Array.from(new Set(questions.map((q) => q.competition))).sort();
-  }, [questions]);
+  const competitions = useMemo(
+    () => Array.from(new Set(questions.map((q) => q.competition))).sort(),
+    [questions],
+  );
 
-  // Handle "All competitions" toggle
-  const allCompetitionsSelected = competitions.every((c) => filters.competitions.has(c));
-  const someCompetitionsSelected = competitions.some((c) => filters.competitions.has(c));
+  // A group shows picked options only once it is actually filtered.
+  const competitionsFiltered = filters.competitions.size < competitions.length;
+  const difficultyFiltered = filters.difficulty.size < DIFFICULTY_LEVELS.length;
+  const topicsFiltered = filters.curriculumTopics.size < CURRICULUM_TOPICS.length;
+  const yearsFiltered = filters.yearMin !== yearRange.min || filters.yearMax !== yearRange.max;
 
-  const handleToggleAllCompetitions = (checked: boolean) => {
-    const newFilters = { ...filters };
-    if (checked) {
-      newFilters.competitions = new Set(competitions);
-    } else {
-      newFilters.competitions = new Set();
-    }
-    onFiltersChange(newFilters);
-  };
+  const activeFilterCount = [competitionsFiltered, difficultyFiltered, topicsFiltered, yearsFiltered]
+    .filter(Boolean).length;
 
-  const handleToggleCompetition = (comp: string) => {
-    const newFilters = { ...filters };
-    const newComps = new Set(newFilters.competitions);
-    if (newComps.has(comp)) {
-      newComps.delete(comp);
-    } else {
-      newComps.add(comp);
-    }
-    newFilters.competitions = newComps;
-    onFiltersChange(newFilters);
-  };
+  // A new "from" year later than the "to" year moves "to" along with it,
+  // and the other way round, so the range is never empty.
+  function changeYears(yearMin: number, yearMax: number) {
+    onFiltersChange({ ...filters, yearMin, yearMax, includeAllEarlierYears: false });
+  }
 
-  // Handle "All topics" toggle
-  const allTopicsSelected = CURRICULUM_TOPICS.every((t) => filters.curriculumTopics.has(t));
-  const someTopicsSelected = CURRICULUM_TOPICS.some((t) => filters.curriculumTopics.has(t));
-
-  const handleToggleAllTopics = (checked: boolean) => {
-    const newFilters = { ...filters };
-    if (checked) {
-      newFilters.curriculumTopics = new Set(CURRICULUM_TOPICS);
-    } else {
-      newFilters.curriculumTopics = new Set();
-    }
-    onFiltersChange(newFilters);
-  };
-
-  const handleToggleTopic = (topic: CurriculumTopic) => {
-    const newFilters = { ...filters };
-    const newTopics = new Set(newFilters.curriculumTopics);
-    if (newTopics.has(topic)) {
-      newTopics.delete(topic);
-    } else {
-      newTopics.add(topic);
-    }
-    newFilters.curriculumTopics = newTopics;
-    onFiltersChange(newFilters);
-  };
-
-  // Difficulty levels
-  const difficultyLevels = ["Beginner", "Intermediate", "Advanced"];
-
-  // Handle "All difficulties" toggle
-  const allDifficultiesSelected = difficultyLevels.every((d) => filters.difficulty.has(d));
-  const someDifficultiesSelected = difficultyLevels.some((d) => filters.difficulty.has(d));
-
-  const handleToggleAllDifficulties = (checked: boolean) => {
-    const newFilters = { ...filters };
-    if (checked) {
-      newFilters.difficulty = new Set(difficultyLevels);
-    } else {
-      newFilters.difficulty = new Set();
-    }
-    onFiltersChange(newFilters);
-  };
-
-  const handleToggleDifficulty = (difficulty: string) => {
-    const newFilters = { ...filters };
-    const newDifficulties = new Set(newFilters.difficulty);
-    if (newDifficulties.has(difficulty)) {
-      newDifficulties.delete(difficulty);
-    } else {
-      newDifficulties.add(difficulty);
-    }
-    newFilters.difficulty = newDifficulties;
-    onFiltersChange(newFilters);
-  };
-
-  // Handle year range changes
-  const handleYearRangeChange = (value: [number, number]) => {
-    const newFilters = { ...filters, yearMin: value[0], yearMax: value[1] };
-    if (filters.includeAllEarlierYears) {
-      newFilters.yearMin = yearRange.min;
-    }
-    onFiltersChange(newFilters);
-  };
-
-  const handleToggleIncludeAllEarlierYears = (checked: boolean) => {
-    const newFilters = { ...filters, includeAllEarlierYears: checked };
-    if (checked) {
-      newFilters.yearMin = yearRange.min;
-    }
-    onFiltersChange(newFilters);
-  };
-
-  // Reset filters
-  const handleResetFilters = () => {
+  function resetFilters() {
     onFiltersChange({
       competitions: new Set(competitions),
       curriculumTopics: new Set(CURRICULUM_TOPICS),
-      difficulty: new Set(difficultyLevels),
+      difficulty: new Set(DIFFICULTY_LEVELS),
       yearMin: yearRange.min,
       yearMax: yearRange.max,
       includeAllEarlierYears: false,
     });
-  };
-
-  // Count active filters (excluding defaults). A group with nothing ticked
-  // counts as active too, because it hides every question.
-  const activeFilterCount = useMemo(() => {
-    let count = 0;
-    if (filters.competitions.size < competitions.length) count++;
-    if (filters.curriculumTopics.size < CURRICULUM_TOPICS.length) count++;
-    if (filters.difficulty.size < difficultyLevels.length) count++;
-    if (
-      filters.yearMin !== yearRange.min ||
-      filters.yearMax !== yearRange.max ||
-      filters.includeAllEarlierYears
-    ) {
-      count++;
-    }
-    return count;
-  }, [filters, competitions.length, difficultyLevels.length, yearRange]);
+  }
 
   return (
-    <div className="border-[3px] border-ink bg-white shadow-brutal-sm">
-      {/* Header / Toggle */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between px-4 py-3 transition-colors duration-200 hover:bg-cream"
-        aria-expanded={isOpen}
-      >
-        <div className="flex items-center gap-2">
-          <span className="text-lg font-bold text-navy">Filters</span>
-          {activeFilterCount > 0 && <Chip tone="type">{activeFilterCount} active</Chip>}
+    <section aria-label="Search and filter" className="mt-6 border-[3px] border-ink bg-white shadow-brutal">
+      {/* Search box and the Filters button, side by side. */}
+      <div className="flex gap-3 p-3 sm:p-4">
+        <div className="min-w-0 flex-1">
+          <SearchInput value={search} onChange={onSearchChange} />
         </div>
-        {/* Chevron that flips when the panel is open. */}
-        <svg
-          className={`h-5 w-5 text-navy transition-transform duration-200 ease-snappy ${isOpen ? "rotate-180" : ""}`}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2.5}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          viewBox="0 0 24 24"
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          aria-controls="training-filters"
+          aria-label={activeFilterCount > 0 ? `Filters, ${activeFilterCount} active` : "Filters"}
+          className={`flex shrink-0 items-center gap-2 border-[3px] border-ink px-3 font-bold transition-colors duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 sm:px-4 ${
+            isOpen ? "bg-navy text-yellow" : "bg-white text-navy hover:bg-cream"
+          }`}
         >
-          <path d="M6 9l6 6 6-6" />
-        </svg>
-      </button>
+          {/* Three slider lines: the usual "filters" symbol. */}
+          <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round">
+            <path d="M4 7h16M7 12h10M10 17h4" />
+          </svg>
+          <span className="hidden sm:inline">Filters</span>
+          {activeFilterCount > 0 && (
+            <span className="bg-yellow px-1.5 text-sm text-navy">{activeFilterCount}</span>
+          )}
+        </button>
+      </div>
 
-      {/* Expanded content */}
       {isOpen && (
-        <div className="animate-rise-in space-y-6 border-t-[3px] border-ink px-4 py-4">
-          {/* Year Range - Full Width */}
-          <div>
-            <h3 className="text-sm font-bold text-navy mb-3">Year Range</h3>
-            <DualRangeSlider
-              min={yearRange.min}
-              max={yearRange.max}
-              value={[filters.yearMin, filters.yearMax]}
-              onChange={handleYearRangeChange}
-            />
-            <div className="mt-4">
-              <Checkbox
-                label="Include all years"
-                checked={filters.includeAllEarlierYears}
-                onChange={handleToggleIncludeAllEarlierYears}
+        <div
+          id="training-filters"
+          className="animate-rise-in space-y-4 border-t-2 border-navy/10 px-3 pb-4 pt-4 sm:px-4"
+        >
+          <FilterRow label="Competition">
+            <div className="flex flex-wrap gap-2">
+              {competitions.map((competition) => (
+                <OptionChip
+                  key={competition}
+                  label={competition}
+                  selected={competitionsFiltered && filters.competitions.has(competition)}
+                  onToggle={() =>
+                    onFiltersChange({
+                      ...filters,
+                      competitions: toggleInGroup(filters.competitions, competitions, competition),
+                    })
+                  }
+                />
+              ))}
+            </div>
+          </FilterRow>
+
+          <FilterRow label="Difficulty">
+            <div className="flex flex-wrap gap-2">
+              {DIFFICULTY_LEVELS.map((difficulty) => (
+                <OptionChip
+                  key={difficulty}
+                  label={difficulty}
+                  selected={difficultyFiltered && filters.difficulty.has(difficulty)}
+                  onToggle={() =>
+                    onFiltersChange({
+                      ...filters,
+                      difficulty: toggleInGroup(filters.difficulty, DIFFICULTY_LEVELS, difficulty),
+                    })
+                  }
+                />
+              ))}
+            </div>
+          </FilterRow>
+
+          <FilterRow label="Years">
+            <div className="flex flex-wrap items-center gap-4">
+              <YearSelect
+                label="From"
+                value={filters.yearMin}
+                years={allYears}
+                onChange={(year) => changeYears(year, Math.max(year, filters.yearMax))}
+              />
+              <YearSelect
+                label="to"
+                value={filters.yearMax}
+                years={allYears}
+                onChange={(year) => changeYears(Math.min(year, filters.yearMin), year)}
               />
             </div>
-          </div>
+          </FilterRow>
 
-          {/* Three-column filter groups (desktop) / stacked (mobile) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Competitions */}
-            <div>
-              <h3 className="text-sm font-bold text-navy mb-2">Competitions</h3>
-              <div className="space-y-1">
-                <Checkbox
-                  label="All competitions"
-                  checked={allCompetitionsSelected}
-                  indeterminate={someCompetitionsSelected && !allCompetitionsSelected}
-                  onChange={handleToggleAllCompetitions}
+          <FilterRow label="Topic">
+            {/* On phones the ten topics sit in one row you swipe sideways,
+                so the open panel does not push the questions far down. */}
+            <div className="-mr-3 flex gap-2 overflow-x-auto pb-1 pr-3 sm:mr-0 sm:flex-wrap sm:overflow-visible sm:pr-0">
+              {CURRICULUM_TOPICS.map((topic) => (
+                <OptionChip
+                  key={topic}
+                  label={topic}
+                  selected={topicsFiltered && filters.curriculumTopics.has(topic)}
+                  onToggle={() =>
+                    onFiltersChange({
+                      ...filters,
+                      curriculumTopics: toggleInGroup(filters.curriculumTopics, CURRICULUM_TOPICS, topic),
+                    })
+                  }
                 />
-                <div className="ml-4 space-y-1">
-                  {competitions.map((comp) => (
-                    <Checkbox
-                      key={comp}
-                      label={comp}
-                      checked={filters.competitions.has(comp)}
-                      onChange={() => handleToggleCompetition(comp)}
-                    />
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
+          </FilterRow>
 
-            {/* Topics */}
-            <div>
-              <h3 className="text-sm font-bold text-navy mb-2">Topics</h3>
-              <div className="space-y-1">
-                <Checkbox
-                  label="All topics"
-                  checked={allTopicsSelected}
-                  indeterminate={someTopicsSelected && !allTopicsSelected}
-                  onChange={handleToggleAllTopics}
-                />
-                <div className="ml-4 space-y-1 max-h-48 overflow-y-auto">
-                  {CURRICULUM_TOPICS.map((topic) => (
-                    <Checkbox
-                      key={topic}
-                      label={topic}
-                      checked={filters.curriculumTopics.has(topic)}
-                      onChange={() => handleToggleTopic(topic)}
-                    />
-                  ))}
-                </div>
-              </div>
+          {/* Reset only matters once something has been changed. */}
+          {activeFilterCount > 0 && (
+            <div className="sm:pl-[8.5rem]">
+              <button
+                type="button"
+                onClick={resetFilters}
+                className="text-sm font-bold text-purple underline decoration-2 underline-offset-4 hover:text-navy"
+              >
+                Reset filters
+              </button>
             </div>
-
-            {/* Difficulty */}
-            <div>
-              <h3 className="text-sm font-bold text-navy mb-2">Difficulty</h3>
-              <div className="space-y-1">
-                <Checkbox
-                  label="All difficulties"
-                  checked={allDifficultiesSelected}
-                  indeterminate={someDifficultiesSelected && !allDifficultiesSelected}
-                  onChange={handleToggleAllDifficulties}
-                />
-                <div className="ml-4 space-y-1">
-                  {difficultyLevels.map((difficulty) => (
-                    <Checkbox
-                      key={difficulty}
-                      label={difficulty}
-                      checked={filters.difficulty.has(difficulty)}
-                      onChange={() => handleToggleDifficulty(difficulty)}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Reset button */}
-          <BrutalButton variant="ghost" size="sm" onClick={handleResetFilters}>
-            Reset filters
-          </BrutalButton>
+          )}
         </div>
       )}
-    </div>
+    </section>
   );
 }

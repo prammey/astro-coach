@@ -169,7 +169,7 @@ export default function ActivityCalendar({
                   const place = { gridColumn: weekIndex + 2, gridRow: dayIndex + 2 };
                   const square = (
                     <span
-                      className="block aspect-square w-full rounded-[3px]"
+                      className="block aspect-square w-full"
                       style={{ backgroundColor: LEVEL_COLOURS[level] }}
                     />
                   );
@@ -201,7 +201,7 @@ export default function ActivityCalendar({
                           onFocus={() => setActiveDayIndex(flatIndex)}
                           onKeyDown={(event) => handleDayKeyDown(event, flatIndex)}
                           aria-label={`${text.title}, ${text.detail}`}
-                          className="block w-full rounded-[3px] focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow"
+                          className="block w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow"
                         >
                           {square}
                         </button>
@@ -217,7 +217,7 @@ export default function ActivityCalendar({
           <div className="mt-2 flex items-center justify-end gap-1 text-[10px] text-white/50">
             <span className="mr-1">Less</span>
             {LEVEL_COLOURS.map((colour) => (
-              <span key={colour} className="h-3 w-3 rounded-[3px]" style={{ backgroundColor: colour }} />
+              <span key={colour} className="h-3 w-3" style={{ backgroundColor: colour }} />
             ))}
             <span className="ml-1">More</span>
           </div>

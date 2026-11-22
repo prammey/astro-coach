@@ -8,17 +8,19 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 // Either way the look, hover "press" and focus ring are identical, so a
 // button on the dashboard matches a button on the home page.
 
-type Variant = "primary" | "accent" | "dark" | "ghost";
+type Variant = "primary" | "accent" | "purple" | "dark" | "ghost";
 type Size = "sm" | "md" | "lg";
 
 // Colors for each variant. Pick by meaning, not by color:
 //   primary = the main action on a page
 //   accent  = the eye-catching yellow call to action
+//   purple  = a Pro / free-response action, or a third colored option
 //   dark    = a secondary action on a light surface
 //   ghost   = a quiet action (cancel, back, manage)
 const VARIANT_CLASSES: Record<Variant, string> = {
   primary: "bg-electric text-white",
   accent: "bg-yellow text-navy",
+  purple: "bg-purple text-white",
   dark: "bg-navy text-white",
   ghost: "bg-white text-navy",
 };
@@ -32,7 +34,7 @@ const SIZE_CLASSES: Record<Size, string> = {
 // Shared by every button: the border, the offset shadow, and the hover
 // "press" where it moves down-right and its shadow disappears.
 const BASE_CLASSES =
-  "inline-flex items-center justify-center gap-2 rounded-lg border-[3px] border-ink font-bold " +
+  "inline-flex items-center justify-center gap-2 border-[3px] border-ink font-bold " +
   "shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy " +
   "hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none " +
   "active:translate-x-[4px] active:translate-y-[4px] " +

@@ -111,7 +111,7 @@ export default function QuickCheckForm({
                     placeholder={blank.prompt ?? "Your answer"}
                     disabled={busy || solutionUnlocked}
                     autoComplete="off"
-                    className={`mt-1 w-full rounded-lg border-[3px] p-2 font-normal text-navy focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-70 ${tone}`}
+                    className={`mt-1 w-full border-[3px] p-2 font-normal text-navy focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-70 ${tone}`}
                   />
                 </label>
               );
@@ -137,7 +137,7 @@ export default function QuickCheckForm({
           type="button"
           onClick={check}
           disabled={busy || filled === 0}
-          className="rounded-lg border-[3px] border-ink bg-yellow px-6 py-3 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
+          className="border-[3px] border-ink bg-yellow px-6 py-3 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
         >
           {busy ? "Checking…" : `Check answers (${filled}/${blankCount} filled)`}
         </button>

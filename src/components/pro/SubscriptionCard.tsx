@@ -91,7 +91,7 @@ export default function SubscriptionCard({ className = "" }: { className?: strin
           <p className="text-2xl font-extrabold text-navy">
             {isPro ? "Astro Coach Pro" : "Free"}
             {isPro && isFoundingPrice && (
-              <span className="ml-2 rounded border-2 border-ink bg-yellow px-2 py-0.5 align-middle text-xs font-extrabold">
+              <span className="ml-2 border-2 border-ink bg-yellow px-2 py-0.5 align-middle text-xs font-extrabold">
                 FOUNDING PRICE
               </span>
             )}
@@ -125,7 +125,7 @@ export default function SubscriptionCard({ className = "" }: { className?: strin
                 type="button"
                 onClick={() => changeSubscription(resumePro)}
                 disabled={busy || changing}
-                className="rounded-lg border-[3px] border-ink bg-yellow px-5 py-2 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-60"
+                className="border-[3px] border-ink bg-yellow px-5 py-2 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-60"
               >
                 {changing ? "Working…" : "Resume Pro"}
               </button>
@@ -135,7 +135,7 @@ export default function SubscriptionCard({ className = "" }: { className?: strin
               type="button"
               onClick={() => run(openBillingPortal)}
               disabled={busy || changing}
-              className="rounded-lg border-[3px] border-ink bg-white px-5 py-2 font-bold text-navy transition hover:bg-cream focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-60"
+              className="border-[3px] border-ink bg-white px-5 py-2 font-bold text-navy transition hover:bg-cream focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-60"
             >
               {busy ? "Opening…" : "Manage subscription"}
             </button>
@@ -146,7 +146,7 @@ export default function SubscriptionCard({ className = "" }: { className?: strin
                 type="button"
                 onClick={() => setConfirmCancelOpen(true)}
                 disabled={busy || changing}
-                className="rounded-lg px-3 py-2 text-sm font-bold text-navy/70 underline-offset-2 hover:text-danger hover:underline focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-60"
+                className="px-3 py-2 text-sm font-bold text-navy/70 underline-offset-2 hover:text-danger hover:underline focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-60"
               >
                 Cancel Pro
               </button>
@@ -158,13 +158,13 @@ export default function SubscriptionCard({ className = "" }: { className?: strin
               type="button"
               onClick={() => run(startProCheckout)}
               disabled={busy}
-              className="rounded-lg border-[3px] border-ink bg-yellow px-5 py-2 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-60"
+              className="border-[3px] border-ink bg-yellow px-5 py-2 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-60"
             >
               {busy ? "Opening…" : `Unlock Pro — $${advertisedMonthlyPriceUsd()}/mo`}
             </button>
             <Link
               href="/pricing"
-              className="rounded-lg border-[3px] border-ink bg-white px-5 py-2 font-bold text-navy transition hover:bg-cream"
+              className="border-[3px] border-ink bg-white px-5 py-2 font-bold text-navy transition hover:bg-cream"
             >
               See what Pro includes
             </Link>

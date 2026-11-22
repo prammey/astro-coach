@@ -140,22 +140,22 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
       {/* 1. Metadata — always visible, even when the question is locked. */}
       <header>
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded border-2 border-ink bg-purple px-2 py-0.5 text-xs font-extrabold uppercase text-white">
+          <span className="border-2 border-ink bg-purple px-2 py-0.5 text-xs font-extrabold uppercase text-white">
             FRQ
           </span>
-          <span className="rounded border-2 border-ink bg-yellow px-2 py-0.5 text-xs font-extrabold text-navy">
+          <span className="border-2 border-ink bg-yellow px-2 py-0.5 text-xs font-extrabold text-navy">
             {meta.totalPoints} points
           </span>
-          <span className="rounded border-2 border-ink bg-white px-2 py-0.5 text-xs font-semibold text-navy">
+          <span className="border-2 border-ink bg-white px-2 py-0.5 text-xs font-semibold text-navy">
             {meta.primaryCurriculumTopic}
           </span>
           {meta.section && (
-            <span className="rounded border-2 border-ink bg-white px-2 py-0.5 text-xs font-semibold text-navy">
+            <span className="border-2 border-ink bg-white px-2 py-0.5 text-xs font-semibold text-navy">
               {meta.section}
             </span>
           )}
           {meta.quickCheck && (
-            <span className="rounded border-2 border-ink bg-success px-2 py-0.5 text-xs font-extrabold text-white">
+            <span className="border-2 border-ink bg-success px-2 py-0.5 text-xs font-extrabold text-white">
               Free instant check
             </span>
           )}
@@ -196,7 +196,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
                           ({part.maxPoints} {part.maxPoints === 1 ? "point" : "points"})
                         </span>
                         {part.answerFormat === "DRAWING" && (
-                          <span className="rounded border-2 border-ink bg-white px-2 py-0.5 text-xs">
+                          <span className="border-2 border-ink bg-white px-2 py-0.5 text-xs">
                             Draw on the answer sheet
                           </span>
                         )}
@@ -224,7 +224,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
                       target="_blank"
                       rel="noreferrer"
                       download
-                      className="inline-block rounded-lg border-[3px] border-ink bg-white px-4 py-2 text-sm font-bold text-navy shadow-brutal-sm hover:bg-cream"
+                      className="inline-block border-[3px] border-ink bg-white px-4 py-2 text-sm font-bold text-navy shadow-brutal-sm hover:bg-cream"
                     >
                       Download {sheet.caption ?? `answer sheet ${index + 1}`}
                     </a>
@@ -266,7 +266,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
                   ? "Answer every part here, labelled (a), (b), (c)(i)… and show your working. You can also, or instead, upload photos of handwritten work."
                   : "Set out your reasoning here. You can also, or instead, upload photos of handwritten work."
               }
-              className="mt-2 w-full rounded-lg border-[3px] border-ink bg-white p-3 font-normal text-navy focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:bg-navy/5"
+              className="mt-2 w-full border-[3px] border-ink bg-white p-3 font-normal text-navy focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:bg-navy/5"
             />
           </label>
 
@@ -301,7 +301,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
               type="button"
               onClick={() => setDialog("submit")}
               disabled={!state.canSubmit || !hasWork || busy}
-              className="rounded-lg border-[3px] border-ink bg-yellow px-6 py-3 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+              className="border-[3px] border-ink bg-yellow px-6 py-3 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-x-0 disabled:hover:translate-y-0"
             >
               Submit for grading
             </button>
@@ -311,7 +311,7 @@ export default function FrqDetailView({ questionId }: { questionId: string }) {
                 type="button"
                 onClick={() => setDialog("giveUp")}
                 disabled={busy}
-                className="rounded-lg border-[3px] border-ink bg-white px-6 py-3 font-bold text-navy transition hover:bg-cream focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50"
+                className="border-[3px] border-ink bg-white px-6 py-3 font-bold text-navy transition hover:bg-cream focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50"
               >
                 Give up &amp; view solution
               </button>
@@ -474,15 +474,15 @@ function LockedQuestionPreview() {
   return (
     <section className="relative overflow-hidden border-[3px] border-ink bg-white shadow-brutal">
       <div aria-hidden className="pointer-events-none select-none space-y-4 p-6 blur-[7px]">
-        <div className="h-5 w-3/4 rounded bg-navy/30" />
-        <div className="h-4 w-full rounded bg-navy/20" />
-        <div className="h-4 w-11/12 rounded bg-navy/20" />
-        <div className="h-4 w-2/3 rounded bg-navy/20" />
+        <div className="h-5 w-3/4 bg-navy/30" />
+        <div className="h-4 w-full bg-navy/20" />
+        <div className="h-4 w-11/12 bg-navy/20" />
+        <div className="h-4 w-2/3 bg-navy/20" />
         <div className="mx-auto h-40 w-2/3 border-[3px] border-navy/30 bg-electric/15" />
         {["(a)", "(b)", "(c)"].map((label) => (
           <div key={label} className="border-2 border-navy/20 bg-cream p-4">
-            <div className="h-4 w-16 rounded bg-navy/30" />
-            <div className="mt-2 h-4 w-5/6 rounded bg-navy/20" />
+            <div className="h-4 w-16 bg-navy/30" />
+            <div className="mt-2 h-4 w-5/6 bg-navy/20" />
           </div>
         ))}
       </div>
@@ -500,11 +500,11 @@ function LockedQuestionPreview() {
           <div className="mt-4 flex flex-wrap justify-center gap-2">
             <Link
               href="/pricing"
-              className="rounded-lg border-[3px] border-ink bg-yellow px-4 py-2 font-extrabold shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+              className="border-[3px] border-ink bg-yellow px-4 py-2 font-extrabold shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
             >
               Upgrade to Pro
             </Link>
-            <Link href="/dashboard" className="rounded-lg border-[3px] border-ink bg-white px-4 py-2 font-bold hover:bg-cream">
+            <Link href="/dashboard" className="border-[3px] border-ink bg-white px-4 py-2 font-bold hover:bg-cream">
               Go to dashboard
             </Link>
           </div>
@@ -532,7 +532,7 @@ function OutOfCreditsNotice({ isPro, resetsAt }: { isPro: boolean; resetsAt: str
       </p>
       <Link
         href={isPro ? "/dashboard#buy-credits" : "/pricing"}
-        className="rounded-lg border-2 border-ink bg-yellow px-4 py-1.5 text-sm font-extrabold shadow-brutal-sm"
+        className="border-2 border-ink bg-yellow px-4 py-1.5 text-sm font-extrabold shadow-brutal-sm"
       >
         {isPro ? "Go to dashboard" : "Upgrade to Pro"}
       </Link>

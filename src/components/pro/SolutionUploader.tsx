@@ -73,7 +73,7 @@ export default function SolutionUploader({
         accept={ACCEPT}
         disabled={disabled}
         onChange={(event) => addFiles(event.target.files)}
-        className="mt-4 block w-full text-sm text-navy file:mr-3 file:rounded-lg file:border-[3px] file:border-ink file:bg-cream file:px-4 file:py-2 file:font-bold file:text-navy focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50"
+        className="mt-4 block w-full text-sm text-navy file:mr-3 file:border-[3px] file:border-ink file:bg-cream file:px-4 file:py-2 file:font-bold file:text-navy focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50"
         aria-describedby="upload-limits"
       />
 
@@ -102,7 +102,7 @@ export default function SolutionUploader({
                 type="button"
                 disabled={disabled}
                 onClick={() => onChange(files.filter((_, position) => position !== index))}
-                className="rounded border-2 border-ink bg-white px-2 py-1 text-xs font-bold text-navy hover:bg-danger/10 focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50"
+                className="border-2 border-ink bg-white px-2 py-1 text-xs font-bold text-navy hover:bg-danger/10 focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50"
                 aria-label={`Remove ${entry.file.name}`}
               >
                 Remove

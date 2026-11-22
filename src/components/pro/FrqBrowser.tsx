@@ -131,8 +131,9 @@ export default function FrqBrowser() {
 
   return (
     <div className="mt-6">
-      {/* Filters: a tidy two-column grid on phones, one row on wider screens. */}
-      <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-end sm:gap-4">
+      {/* Filters, framed like the Training page's search tool: a tidy
+          two-column grid on phones, one row on wider screens. */}
+      <div className="grid grid-cols-2 gap-3 border-[3px] border-ink bg-white p-4 shadow-brutal sm:flex sm:flex-wrap sm:items-end sm:gap-4 sm:p-5">
         <Filter
           label="Topic"
           value={topic}
@@ -220,12 +221,12 @@ function Filter({
   className?: string;
 }) {
   return (
-    <label className={`block text-sm font-bold text-navy ${className}`}>
+    <label className={`block text-xs font-extrabold uppercase tracking-widest text-navy ${className}`}>
       {label}
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-1 block w-full rounded-lg border-[3px] border-ink bg-white px-3 py-2 font-semibold text-navy shadow-brutal-sm focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+        className="mt-1.5 block w-full cursor-pointer border-[3px] border-ink bg-cream px-3 py-2 text-base font-semibold normal-case tracking-normal text-navy hover:bg-yellow/40 focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
       >
         {options.map((option) => (
           <option key={option} value={option}>

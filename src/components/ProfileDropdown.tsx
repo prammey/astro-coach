@@ -50,6 +50,8 @@ export default function ProfileDropdown() {
     <div ref={dropdownRef} className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
+        // Rounded on purpose: the profile button is the one rounded control
+        // in the navbar (owner's choice); everything else is square.
         className="group flex items-center gap-2 rounded-lg border-2 border-yellow px-3 py-2 transition-colors duration-200 hover:bg-yellow hover:text-navy"
       >
         {/* Profile Avatar */}

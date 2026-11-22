@@ -72,7 +72,7 @@ export default function GoogleSignInButton({ label = 'Continue with Google' }: {
         type="button"
         onClick={handleClick}
         disabled={isRedirecting}
-        className="flex w-full items-center justify-center gap-3 rounded-lg border-[3px] border-ink bg-white px-6 py-3 font-bold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:opacity-50"
+        className="flex w-full items-center justify-center gap-3 border-[3px] border-ink bg-white px-6 py-3 font-bold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:opacity-50"
       >
         <GoogleLogo />
         {isRedirecting ? 'Redirecting...' : label}

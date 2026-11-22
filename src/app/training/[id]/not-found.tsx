@@ -16,13 +16,13 @@ export default function NotFound() {
           <div className="mt-6 flex flex-col gap-3">
             <Link
               href="/training"
-              className="inline-block rounded border-2 border-navy bg-electric px-4 py-2 font-bold text-white hover:bg-purple transition-colors"
+              className="inline-block border-2 border-navy bg-electric px-4 py-2 font-bold text-white hover:bg-purple transition-colors"
             >
               Back to Training
             </Link>
             <Link
               href="/dashboard"
-              className="inline-block rounded border-2 border-navy bg-space px-4 py-2 font-bold text-white hover:bg-purple transition-colors"
+              className="inline-block border-2 border-navy bg-space px-4 py-2 font-bold text-white hover:bg-purple transition-colors"
             >
               Back to Dashboard
             </Link>

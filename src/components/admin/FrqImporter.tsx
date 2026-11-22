@@ -75,7 +75,7 @@ export default function FrqImporter() {
 
   if (stage === "done" && result) {
     return (
-      <div className="mt-6 rounded-xl border-4 border-black bg-[var(--color-cream)] p-6 shadow-[6px_6px_0_0_#000]">
+      <div className="mt-6 border-4 border-black bg-[var(--color-cream)] p-6 shadow-[6px_6px_0_0_#000]">
         <h2 className="text-xl font-extrabold text-[var(--color-navy)]">Extraction finished</h2>
         <p className="mt-2 text-[var(--color-navy)]">
           {result.extracted} question{result.extracted === 1 ? "" : "s"} found,{" "}
@@ -83,7 +83,7 @@ export default function FrqImporter() {
         </p>
         <Link
           href="/admin/frq-review"
-          className="mt-4 inline-block rounded-lg border-4 border-black bg-[var(--color-yellow)] px-5 py-2 font-extrabold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000]"
+          className="mt-4 inline-block border-4 border-black bg-[var(--color-yellow)] px-5 py-2 font-extrabold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000]"
         >
           Review the drafts
         </Link>
@@ -113,7 +113,7 @@ export default function FrqImporter() {
         <select
           value={rightsStatus}
           onChange={(event) => setRightsStatus(event.target.value)}
-          className="mt-1 block w-full rounded-lg border-4 border-black bg-white px-3 py-2 font-semibold text-[var(--color-navy)]"
+          className="mt-1 block w-full border-4 border-black bg-white px-3 py-2 font-semibold text-[var(--color-navy)]"
         >
           {RIGHTS_OPTIONS.map((option) => (
             <option key={option.value} value={option.value}>
@@ -133,7 +133,7 @@ export default function FrqImporter() {
           value={notes}
           onChange={(event) => setNotes(event.target.value)}
           rows={3}
-          className="mt-1 block w-full rounded-lg border-4 border-black bg-white p-3 font-normal text-[var(--color-navy)]"
+          className="mt-1 block w-full border-4 border-black bg-white p-3 font-normal text-[var(--color-navy)]"
         />
       </label>
 
@@ -143,13 +143,13 @@ export default function FrqImporter() {
       </div>
 
       {error && (
-        <p role="alert" className="rounded-lg border-4 border-black bg-red-100 p-4 font-semibold">
+        <p role="alert" className="border-4 border-black bg-red-100 p-4 font-semibold">
           {error}
         </p>
       )}
 
       {busy && (
-        <p role="status" className="rounded-lg border-4 border-black bg-[var(--color-yellow)]/40 p-4 font-bold">
+        <p role="status" className="border-4 border-black bg-[var(--color-yellow)]/40 p-4 font-bold">
           {stage === "uploading"
             ? "Uploading the PDFs…"
             : "Reading the papers. This can take a couple of minutes for a long exam."}
@@ -159,7 +159,7 @@ export default function FrqImporter() {
       <button
         type="submit"
         disabled={busy || !questionPdf || !competition || !examName}
-        className="rounded-lg border-4 border-black bg-[var(--color-yellow)] px-6 py-3 font-extrabold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
+        className="border-4 border-black bg-[var(--color-yellow)] px-6 py-3 font-extrabold text-[var(--color-navy)] shadow-[4px_4px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
       >
         Analyze PDFs
       </button>
@@ -198,7 +198,7 @@ function Field({
         value={value}
         required={required}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-1 block w-full rounded-lg border-4 border-black bg-white px-3 py-2 font-normal text-[var(--color-navy)]"
+        className="mt-1 block w-full border-4 border-black bg-white px-3 py-2 font-normal text-[var(--color-navy)]"
       />
     </label>
   );
@@ -224,7 +224,7 @@ function FileField({
         accept="application/pdf"
         required={required}
         onChange={(event) => onChange(event.target.files?.[0] ?? null)}
-        className="mt-1 block w-full text-sm file:mr-3 file:rounded-lg file:border-4 file:border-black file:bg-[var(--color-cream)] file:px-4 file:py-2 file:font-bold"
+        className="mt-1 block w-full text-sm file:mr-3 file:border-4 file:border-black file:bg-[var(--color-cream)] file:px-4 file:py-2 file:font-bold"
       />
       {file && (
         <span className="mt-1 block text-xs font-normal text-[var(--color-navy)]/70">

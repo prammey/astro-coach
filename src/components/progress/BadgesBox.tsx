@@ -71,7 +71,7 @@ export function BadgesGrid({
               <button
                 type="button"
                 aria-label={`${badge.name}: ${badge.earned ? "earned" : `${badge.current} of ${badge.target} ${badge.unit}`}`}
-                className="group flex w-full flex-col items-center rounded-lg p-2 transition-transform duration-200 ease-snappy hover:-translate-y-1 focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                className="group flex w-full flex-col items-center p-2 transition-transform duration-200 ease-snappy hover:-translate-y-1 focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
               >
                 <Image
                   src={badge.image}

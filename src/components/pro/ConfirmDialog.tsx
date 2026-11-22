@@ -112,7 +112,7 @@ export default function ConfirmDialog({
             type="button"
             onClick={onCancel}
             disabled={busy}
-            className="rounded-lg border-[3px] border-ink bg-white px-5 py-2 font-bold text-navy transition hover:bg-cream focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50"
+            className="border-[3px] border-ink bg-white px-5 py-2 font-bold text-navy transition hover:bg-cream focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:opacity-50"
           >
             {cancelLabel}
           </button>
@@ -122,7 +122,7 @@ export default function ConfirmDialog({
             type="button"
             onClick={onConfirm}
             disabled={busy}
-            className={`rounded-lg border-[3px] border-ink px-5 py-2 font-extrabold shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:cursor-wait disabled:opacity-70 ${confirmClasses}`}
+            className={`border-[3px] border-ink px-5 py-2 font-extrabold shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40 disabled:cursor-wait disabled:opacity-70 ${confirmClasses}`}
           >
             {busy ? "Working…" : confirmLabel}
           </button>

@@ -45,7 +45,7 @@ export default function AdminHomeScreen() {
           <Link
             key={area.href}
             href={area.href}
-            className="rounded-xl border-4 border-black bg-white p-5 shadow-[6px_6px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[3px_3px_0_0_#000] focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)]"
+            className="border-4 border-black bg-white p-5 shadow-[6px_6px_0_0_#000] transition hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[3px_3px_0_0_#000] focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)]"
           >
             <h2 className="font-extrabold text-[var(--color-navy)]">{area.title}</h2>
             <p className="mt-1 text-sm text-[var(--color-navy)]/70">{area.description}</p>

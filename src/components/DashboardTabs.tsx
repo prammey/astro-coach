@@ -214,12 +214,12 @@ export default function DashboardTabs() {
                   </td>
                   <td className="px-6 py-3">
                     {row.isCorrect === null ? (
-                      <span className="inline-block px-3 py-1 rounded font-semibold text-sm bg-navy/10 text-navy">
+                      <span className="inline-block px-3 py-1 font-semibold text-sm bg-navy/10 text-navy">
                         Not attempted
                       </span>
                     ) : (
                       <span
-                        className={`inline-block px-3 py-1 rounded font-semibold text-sm ${
+                        className={`inline-block px-3 py-1 font-semibold text-sm ${
                           row.isCorrect
                             ? 'bg-success text-white'
                             : 'bg-danger text-white'

@@ -32,7 +32,7 @@ export default function Chip({
 }) {
   return (
     <span
-      className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-bold leading-none ${TONE_CLASSES[tone]} ${className}`}
+      className={`inline-flex items-center px-2 py-1 text-xs font-bold leading-none ${TONE_CLASSES[tone]} ${className}`}
     >
       {children}
     </span>

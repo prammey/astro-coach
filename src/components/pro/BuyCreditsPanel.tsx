@@ -57,14 +57,14 @@ export default function BuyCreditsPanel() {
             step={1}
             value={quantityText}
             onChange={(event) => setQuantityText(event.target.value)}
-            className="mt-1 block w-28 rounded-lg border-[3px] border-ink px-3 py-2 text-lg font-extrabold focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+            className="mt-1 block w-28 border-[3px] border-ink px-3 py-2 text-lg font-extrabold focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
           />
         </label>
         <button
           type="button"
           onClick={buy}
           disabled={!valid || busy}
-          className="rounded-lg border-[3px] border-ink bg-yellow px-5 py-2.5 font-extrabold shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
+          className="border-[3px] border-ink bg-yellow px-5 py-2.5 font-extrabold shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
         >
           {busy ? "Opening checkout…" : valid ? `Buy ${quantity} for ${formatUsd(quantity * creditPriceCents)}` : "Buy credits"}
         </button>

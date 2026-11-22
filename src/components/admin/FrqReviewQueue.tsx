@@ -106,12 +106,12 @@ export default function FrqReviewQueue() {
   }
 
   if (error) {
-    return <p className="mt-6 rounded-lg border-4 border-black bg-red-100 p-4">{error}</p>;
+    return <p className="mt-6 border-4 border-black bg-red-100 p-4">{error}</p>;
   }
 
   if (rows.length === 0) {
     return (
-      <p className="mt-6 rounded-lg border-4 border-black bg-[var(--color-cream)] p-6 text-[var(--color-navy)]">
+      <p className="mt-6 border-4 border-black bg-[var(--color-cream)] p-6 text-[var(--color-navy)]">
         Nothing waiting for review.
       </p>
     );
@@ -127,13 +127,13 @@ export default function FrqReviewQueue() {
             <button
               type="button"
               onClick={() => setSelected(row.id)}
-              className="w-full rounded-lg border-4 border-black bg-white p-4 text-left shadow-[4px_4px_0_0_#000] transition hover:bg-[var(--color-cream)] focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)]"
+              className="w-full border-4 border-black bg-white p-4 text-left shadow-[4px_4px_0_0_#000] transition hover:bg-[var(--color-cream)] focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-electric-blue)]"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <span className="font-extrabold text-[var(--color-navy)]">
                   {row.competition} {row.year} — Q{row.questionNumber}
                 </span>
-                <span className="rounded border-2 border-black bg-[var(--color-cream)] px-2 py-0.5 text-xs font-bold">
+                <span className="border-2 border-black bg-[var(--color-cream)] px-2 py-0.5 text-xs font-bold">
                   {row.status}
                 </span>
               </div>
@@ -146,7 +146,7 @@ export default function FrqReviewQueue() {
                   {row.extractionFlags.map((flag) => (
                     <li
                       key={flag}
-                      className="rounded border-2 border-black bg-[var(--color-yellow)] px-2 py-0.5 text-xs font-bold text-[var(--color-navy)]"
+                      className="border-2 border-black bg-[var(--color-yellow)] px-2 py-0.5 text-xs font-bold text-[var(--color-navy)]"
                     >
                       {EXTRACTION_FLAG_LABELS[flag as ExtractionFlag] ?? flag}
                     </li>
@@ -163,7 +163,7 @@ export default function FrqReviewQueue() {
           type="button"
           disabled={page === 1}
           onClick={() => setPage((current) => current - 1)}
-          className="rounded-lg border-4 border-black bg-white px-4 py-2 font-bold disabled:opacity-40"
+          className="border-4 border-black bg-white px-4 py-2 font-bold disabled:opacity-40"
         >
           Previous
         </button>
@@ -171,7 +171,7 @@ export default function FrqReviewQueue() {
           type="button"
           disabled={page * 20 >= total}
           onClick={() => setPage((current) => current + 1)}
-          className="rounded-lg border-4 border-black bg-white px-4 py-2 font-bold disabled:opacity-40"
+          className="border-4 border-black bg-white px-4 py-2 font-bold disabled:opacity-40"
         >
           Next
         </button>
@@ -281,12 +281,12 @@ function ReviewOne({ questionId, onDone }: { questionId: string; onDone: () => v
       <button
         type="button"
         onClick={onDone}
-        className="rounded-lg border-4 border-black bg-white px-4 py-2 font-bold"
+        className="border-4 border-black bg-white px-4 py-2 font-bold"
       >
         ← Back to the queue
       </button>
 
-      <div className="rounded-xl border-4 border-black bg-white p-5 shadow-[6px_6px_0_0_#000]">
+      <div className="border-4 border-black bg-white p-5 shadow-[6px_6px_0_0_#000]">
         <h2 className="text-xl font-extrabold text-[var(--color-navy)]">
           {draft.competition} {draft.year} — Q{draft.questionNumber}
         </h2>
@@ -311,7 +311,7 @@ function ReviewOne({ questionId, onDone }: { questionId: string; onDone: () => v
         )}
 
         {draft.extractionFlags.length > 0 && (
-          <div className="mt-4 rounded-lg border-4 border-black bg-[var(--color-yellow)]/40 p-4">
+          <div className="mt-4 border-4 border-black bg-[var(--color-yellow)]/40 p-4">
             <p className="font-extrabold text-[var(--color-navy)]">
               Warnings — resolve these before publishing
             </p>
@@ -326,7 +326,7 @@ function ReviewOne({ questionId, onDone }: { questionId: string; onDone: () => v
                         extractionFlags: draft.extractionFlags.filter((f) => f !== flag),
                       })
                     }
-                    className="rounded border-2 border-black bg-white px-2 py-0.5 text-xs font-bold"
+                    className="border-2 border-black bg-white px-2 py-0.5 text-xs font-bold"
                   >
                     Resolved
                   </button>
@@ -361,7 +361,7 @@ function ReviewOne({ questionId, onDone }: { questionId: string; onDone: () => v
             onChange={(event) =>
               setDraft({ ...draft, totalPoints: Number(event.target.value) || 0 })
             }
-            className="mt-1 block w-full rounded-lg border-4 border-black bg-white px-3 py-2"
+            className="mt-1 block w-full border-4 border-black bg-white px-3 py-2"
           />
           {draft.parts.length > 0 && (
             <span
@@ -381,7 +381,7 @@ function ReviewOne({ questionId, onDone }: { questionId: string; onDone: () => v
             onChange={(event) =>
               setDraft({ ...draft, primaryCurriculumTopic: event.target.value })
             }
-            className="mt-1 block w-full rounded-lg border-4 border-black bg-white px-3 py-2"
+            className="mt-1 block w-full border-4 border-black bg-white px-3 py-2"
           >
             {CURRICULUM_TOPICS.map((topic) => (
               <option key={topic} value={topic}>
@@ -393,14 +393,14 @@ function ReviewOne({ questionId, onDone }: { questionId: string; onDone: () => v
       </div>
 
       {draft.parts.map((part, index) => (
-        <div key={part.id} className="rounded-lg border-4 border-black bg-[var(--color-cream)] p-4">
+        <div key={part.id} className="border-4 border-black bg-[var(--color-cream)] p-4">
           <div className="flex gap-3">
             <label className="text-sm font-bold text-[var(--color-navy)]">
               Label
               <input
                 value={part.label}
                 onChange={(event) => updatePart(index, { label: event.target.value })}
-                className="mt-1 block w-24 rounded border-2 border-black px-2 py-1"
+                className="mt-1 block w-24 border-2 border-black px-2 py-1"
               />
             </label>
             <label className="text-sm font-bold text-[var(--color-navy)]">
@@ -411,7 +411,7 @@ function ReviewOne({ questionId, onDone }: { questionId: string; onDone: () => v
                 onChange={(event) =>
                   updatePart(index, { maxPoints: Number(event.target.value) || 0 })
                 }
-                className="mt-1 block w-24 rounded border-2 border-black px-2 py-1"
+                className="mt-1 block w-24 border-2 border-black px-2 py-1"
               />
             </label>
           </div>
@@ -459,7 +459,7 @@ function ReviewOne({ questionId, onDone }: { questionId: string; onDone: () => v
         <select
           value={draft.rightsStatus}
           onChange={(event) => setDraft({ ...draft, rightsStatus: event.target.value })}
-          className="mt-1 block w-full rounded-lg border-4 border-black bg-white px-3 py-2"
+          className="mt-1 block w-full border-4 border-black bg-white px-3 py-2"
         >
           {[
             "UNREVIEWED",
@@ -484,7 +484,7 @@ function ReviewOne({ questionId, onDone }: { questionId: string; onDone: () => v
       />
 
       {publishCheck && !publishCheck.ok && (
-        <div className="rounded-lg border-4 border-black bg-red-100 p-4">
+        <div className="border-4 border-black bg-red-100 p-4">
           <p className="font-extrabold text-[var(--color-navy)]">Not publishable yet:</p>
           <ul className="mt-1 list-disc pl-5 text-sm">
             {publishCheck.reasons?.map((reason) => (
@@ -495,7 +495,7 @@ function ReviewOne({ questionId, onDone }: { questionId: string; onDone: () => v
       )}
 
       {message && (
-        <p role="status" className="rounded-lg border-4 border-black bg-[var(--color-cream)] p-4 font-bold">
+        <p role="status" className="border-4 border-black bg-[var(--color-cream)] p-4 font-bold">
           {message}
         </p>
       )}
@@ -505,7 +505,7 @@ function ReviewOne({ questionId, onDone }: { questionId: string; onDone: () => v
           type="button"
           onClick={save}
           disabled={busy}
-          className="rounded-lg border-4 border-black bg-white px-5 py-2 font-bold disabled:opacity-50"
+          className="border-4 border-black bg-white px-5 py-2 font-bold disabled:opacity-50"
         >
           Save changes
         </button>
@@ -513,7 +513,7 @@ function ReviewOne({ questionId, onDone }: { questionId: string; onDone: () => v
           type="button"
           onClick={() => act("approve")}
           disabled={busy}
-          className="rounded-lg border-4 border-black bg-[var(--color-yellow)] px-5 py-2 font-extrabold shadow-[4px_4px_0_0_#000] disabled:opacity-50"
+          className="border-4 border-black bg-[var(--color-yellow)] px-5 py-2 font-extrabold shadow-[4px_4px_0_0_#000] disabled:opacity-50"
         >
           Approve &amp; publish
         </button>
@@ -521,7 +521,7 @@ function ReviewOne({ questionId, onDone }: { questionId: string; onDone: () => v
           type="button"
           onClick={() => act("reject")}
           disabled={busy}
-          className="rounded-lg border-4 border-black bg-red-200 px-5 py-2 font-bold disabled:opacity-50"
+          className="border-4 border-black bg-red-200 px-5 py-2 font-bold disabled:opacity-50"
         >
           Reject
         </button>
@@ -556,7 +556,7 @@ function Editable({
         value={value}
         rows={rows}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-1 block w-full rounded-lg border-4 border-black bg-white p-3 font-normal text-[var(--color-navy)]"
+        className="mt-1 block w-full border-4 border-black bg-white p-3 font-normal text-[var(--color-navy)]"
       />
     </label>
   );

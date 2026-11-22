@@ -131,7 +131,7 @@ export default function ResetPasswordPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                  className="w-full px-4 py-2 border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                   placeholder="••••••••"
                   disabled={isSubmitting}
                 />
@@ -148,7 +148,7 @@ export default function ResetPasswordPage() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
-                  className="w-full px-4 py-2 rounded-lg border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                  className="w-full px-4 py-2 border-[3px] border-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                   placeholder="••••••••"
                   disabled={isSubmitting}
                 />

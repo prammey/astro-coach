@@ -99,10 +99,11 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
-        {/* Logo */}
+        {/* Logo, with a small "for Olympiads" line under the name so a
+            first-time visitor knows what the site is for. */}
         <Link
           href={logoHref}
-          className="flex shrink-0 items-center gap-2 whitespace-nowrap text-2xl font-extrabold tracking-tight text-yellow transition-opacity hover:opacity-80"
+          className="flex shrink-0 items-center gap-2 whitespace-nowrap transition-opacity hover:opacity-80"
         >
           <Image
             src="/star-icon.png"
@@ -112,7 +113,14 @@ export default function Navbar() {
             className="h-9 w-9"
             priority
           />
-          Astro Coach
+          <span className="flex flex-col">
+            <span className="text-2xl font-extrabold leading-none tracking-tight text-yellow">
+              Astro Coach
+            </span>
+            <span className="mt-1 text-xs font-bold leading-none tracking-wide text-white/85">
+              for Olympiads
+            </span>
+          </span>
         </Link>
 
         {/* Desktop links */}
@@ -134,7 +142,7 @@ export default function Navbar() {
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="flex h-11 w-11 items-center justify-center rounded-lg border-2 border-yellow text-yellow transition-colors hover:bg-yellow hover:text-navy lg:hidden"
+          className="flex h-11 w-11 items-center justify-center border-2 border-yellow text-yellow transition-colors hover:bg-yellow hover:text-navy lg:hidden"
         >
           <MenuIcon open={isMenuOpen} />
         </button>

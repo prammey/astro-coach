@@ -68,9 +68,9 @@ export default function ProLockedPreview() {
             interactive={false}
           />
           <div className="border-[3px] border-ink bg-cream p-5">
-            <div className="h-6 w-40 rounded bg-navy/20" />
-            <div className="mt-4 h-32 rounded bg-purple/30" />
-            <div className="mt-4 h-20 rounded bg-electric/25" />
+            <div className="h-6 w-40 bg-navy/20" />
+            <div className="mt-4 h-32 bg-purple/30" />
+            <div className="mt-4 h-20 bg-electric/25" />
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@ export default function ProLockedPreview() {
           </p>
           <Link
             href="/pricing"
-            className="mt-4 inline-block rounded-lg border-[3px] border-ink bg-yellow px-5 py-2 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+            className="mt-4 inline-block border-[3px] border-ink bg-yellow px-5 py-2 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
           >
             Unlock Astro Coach Pro
           </Link>

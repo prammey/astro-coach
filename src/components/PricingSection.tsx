@@ -146,12 +146,12 @@ export default function PricingSection({ foundingPriceOpen }: { foundingPriceOpe
             {!user ? (
               <Link
                 href="/training"
-                className="mt-4 block w-full rounded-lg border-[3px] border-ink bg-cream px-3 py-2 text-center text-sm font-bold text-navy transition-colors duration-200 hover:bg-white"
+                className="mt-4 block w-full border-[3px] border-ink bg-cream px-3 py-2 text-center text-sm font-bold text-navy transition-colors duration-200 hover:bg-white"
               >
                 Start practicing
               </Link>
             ) : (
-              <p className="mt-4 w-full rounded-lg border-[3px] border-ink bg-gray-300 px-3 py-2 text-center text-sm font-bold text-gray-700">
+              <p className="mt-4 w-full border-[3px] border-ink bg-gray-300 px-3 py-2 text-center text-sm font-bold text-gray-700">
                 You&apos;re signed in
               </p>
             )}
@@ -173,17 +173,17 @@ export default function PricingSection({ foundingPriceOpen }: { foundingPriceOpe
             {!user ? (
               <Link
                 href="/signup"
-                className="mt-4 block w-full rounded-lg border-[3px] border-ink bg-yellow px-3 py-2 text-center text-sm font-bold text-navy transition-colors duration-200 hover:bg-yellow/90"
+                className="mt-4 block w-full border-[3px] border-ink bg-yellow px-3 py-2 text-center text-sm font-bold text-navy transition-colors duration-200 hover:bg-yellow/90"
               >
                 Sign up free
               </Link>
             ) : isPro ? (
               // A Pro subscriber must not be told Free is their plan.
-              <p className="mt-4 w-full rounded-lg border-[3px] border-ink bg-white/20 px-3 py-2 text-center text-sm font-bold text-white">
+              <p className="mt-4 w-full border-[3px] border-ink bg-white/20 px-3 py-2 text-center text-sm font-bold text-white">
                 Included in your Pro plan
               </p>
             ) : (
-              <p className="mt-4 w-full rounded-lg border-[3px] border-ink bg-white/20 px-3 py-2 text-center text-sm font-bold text-white">
+              <p className="mt-4 w-full border-[3px] border-ink bg-white/20 px-3 py-2 text-center text-sm font-bold text-white">
                 Your current plan
               </p>
             )}
@@ -198,7 +198,7 @@ export default function PricingSection({ foundingPriceOpen }: { foundingPriceOpe
               <>
                 <FoundingPriceBadge />
 
-                <div className="absolute -top-4 left-6 rounded border-[3px] border-ink bg-yellow px-3 py-0.5 text-xs font-extrabold text-navy">
+                <div className="absolute -top-4 left-6 border-[3px] border-ink bg-yellow px-3 py-0.5 text-xs font-extrabold text-navy">
                   FOUNDING PRICE
                 </div>
               </>
@@ -260,13 +260,13 @@ export default function PricingSection({ foundingPriceOpen }: { foundingPriceOpe
                 // Signed out: authenticate first, then come back to subscribe.
                 <Link
                   href="/login?next=/pricing"
-                  className="block w-full rounded-lg border-[3px] border-ink bg-yellow px-5 py-2.5 text-center font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+                  className="block w-full border-[3px] border-ink bg-yellow px-5 py-2.5 text-center font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
                 >
                   Sign in to unlock Pro
                 </Link>
               ) : isPro ? (
                 <div className="flex flex-wrap items-center gap-3">
-                  <p className="rounded-lg border-[3px] border-ink bg-white/20 px-4 py-2 font-extrabold text-white">
+                  <p className="border-[3px] border-ink bg-white/20 px-4 py-2 font-extrabold text-white">
                     Current plan
                     {entitlements?.isFoundingPrice && ' · founding price'}
                   </p>
@@ -274,7 +274,7 @@ export default function PricingSection({ foundingPriceOpen }: { foundingPriceOpe
                     type="button"
                     onClick={manage}
                     disabled={busy}
-                    className="rounded-lg border-[3px] border-ink bg-white px-4 py-2 font-bold text-navy transition-colors duration-200 hover:bg-cream disabled:opacity-60"
+                    className="border-[3px] border-ink bg-white px-4 py-2 font-bold text-navy transition-colors duration-200 hover:bg-cream disabled:opacity-60"
                   >
                     {busy ? 'Opening…' : 'Manage subscription'}
                   </button>
@@ -284,7 +284,7 @@ export default function PricingSection({ foundingPriceOpen }: { foundingPriceOpe
                   type="button"
                   onClick={goPro}
                   disabled={busy}
-                  className="w-full rounded-lg border-[3px] border-ink bg-yellow px-5 py-2.5 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-white disabled:opacity-60"
+                  className="w-full border-[3px] border-ink bg-yellow px-5 py-2.5 font-extrabold text-navy shadow-brutal-sm transition-[translate,box-shadow] duration-200 ease-snappy hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-white disabled:opacity-60"
                 >
                   {busy ? 'Opening checkout…' : 'Unlock Astro Coach Pro'}
                 </button>

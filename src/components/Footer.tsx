@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 // The links a visitor might want from any page.
@@ -26,8 +27,17 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           {/* Brand and disclaimer */}
           <div>
-            <p className="text-xl font-extrabold text-yellow">Astro Coach</p>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-white/70">
+            {/* The same logo and tagline as the navbar. */}
+            <p className="flex items-center gap-2">
+              <Image src="/star-icon.png" alt="" width={100} height={100} className="h-8 w-8" />
+              <span className="flex flex-col">
+                <span className="text-xl font-extrabold leading-none text-yellow">Astro Coach</span>
+                <span className="mt-1 text-xs font-bold leading-none tracking-wide text-white/85">
+                  for Olympiads
+                </span>
+              </span>
+            </p>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-white/70">
               An independent educational project. Not affiliated with USAAAO,
               IAAC, BAAO, IOAA, IAO, Science Olympiad, or any official organization.
             </p>

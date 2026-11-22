@@ -13,6 +13,8 @@ import { questionNumberLabel } from '@/lib/question-label';
 import { useTrainingMode } from '@/lib/training-mode-context';
 import type { PublicQuestion } from '@/data/mcq/types';
 import Chip from './ui/Chip';
+import { Icon } from './ui/Icon';
+import { CONSTANTS_SHEET_URL } from '@/lib/constants-sheet';
 import ScientificText from './ScientificText';
 
 // The single rendering of a question, used both when a question is opened
@@ -43,13 +45,26 @@ export default function QuestionView({
 
   return (
     <>
-      <Link
-        href="/training"
-        onClick={() => inTrainingRun && exitTrainingMode()}
-        className="inline-flex items-center gap-1 font-bold text-purple transition-colors duration-200 hover:text-navy hover:underline"
-      >
-        {inTrainingRun ? '← Exit Training' : '← Back to Training'}
-      </Link>
+      {/* Back link on the left; the constants sheet on the right, so the
+          values are one click away while working a problem. */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Link
+          href="/training"
+          onClick={() => inTrainingRun && exitTrainingMode()}
+          className="inline-flex items-center gap-1 font-bold text-purple transition-colors duration-200 hover:text-navy hover:underline"
+        >
+          {inTrainingRun ? '← Exit Training' : '← Back to Training'}
+        </Link>
+        <a
+          href={CONSTANTS_SHEET_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 border-2 border-ink bg-yellow px-3 py-1 text-sm font-bold text-navy transition-colors duration-200 hover:bg-white"
+        >
+          <Icon name="document" className="h-4 w-4" />
+          Constants sheet
+        </a>
+      </div>
 
       {/* Same title format and topic tags as the question bank's cards, so
           a question looks like the same thing in both places. */}
@@ -91,8 +106,10 @@ export default function QuestionView({
           other. Answer both — it only counts as correct if every part is right.
         </div>
       ) : (
-        <BrutalCard tone="cream" className="mt-6">
-          <p className="text-lg text-navy">
+        // The prompt is the most important thing on the page: white, larger
+        // text. The source box below is quieter on purpose.
+        <BrutalCard tone="white" className="mt-6">
+          <p className="text-lg font-medium leading-relaxed text-navy sm:text-xl">
             <ScientificText text={question.questionText} />
           </p>
           <QuestionFigure
@@ -118,7 +135,7 @@ export default function QuestionView({
       {/* Where this question came from, and the place to flag a problem
           with it. The permission status stays in the data for our own
           records; it is not something students need. */}
-      <BrutalCard tone="white" className="mt-10">
+      <div className="mt-10 border-[3px] border-ink bg-cream p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="font-bold text-purple">Source</h2>
           <ReportProblemButton questionId={question.id} />
@@ -151,7 +168,7 @@ export default function QuestionView({
             </a>
           )}
         </div>
-      </BrutalCard>
+      </div>
     </>
   );
 }

@@ -49,7 +49,7 @@ export default function StrengthsPanel({
                   <div
                     tabIndex={0}
                     aria-label={`${row.topic}: ${row.strength.score}% strength`}
-                    className="rounded focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
+                    className="focus:outline-none focus-visible:ring-4 focus-visible:ring-electric/40"
                   >
                     {bar}
                   </div>

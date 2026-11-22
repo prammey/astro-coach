@@ -227,7 +227,7 @@ export default function McqPractice({
                       Question {part.questionNumber}
                     </span>
                     {solution && (
-                      <span className="animate-pop-in rounded-md bg-success px-2 py-1 text-xs font-bold text-white">
+                      <span className="animate-pop-in bg-success px-2 py-1 text-xs font-bold text-white">
                         ✓ Solved
                       </span>
                     )}
@@ -256,14 +256,19 @@ export default function McqPractice({
 
                   // Green once it is known to be right, red once it is known
                   // to be wrong, navy while merely selected, white otherwise.
+                  // `letterTone` colors the square that holds the letter.
                   let tone =
                     "bg-white text-navy hover:bg-cream hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-brutal-sm";
+                  let letterTone = "bg-yellow text-navy";
                   if (isCorrectAnswer) {
                     tone = "bg-success text-white";
+                    letterTone = "bg-white text-success";
                   } else if (triedReason) {
                     tone = "bg-danger text-white";
+                    letterTone = "bg-white text-danger";
                   } else if (solution) {
                     tone = "bg-white text-navy/50";
+                    letterTone = "bg-cream text-navy/50";
                   } else if (isSelected) {
                     tone = "bg-navy text-yellow shadow-brutal-sm";
                   }
@@ -278,20 +283,27 @@ export default function McqPractice({
                         aria-pressed={isSelected}
                         disabled={isLocked}
                         onClick={() => selectAnswer(part.id, choice.label)}
-                        className={`block w-full rounded-lg border-[3px] border-ink px-4 py-3 text-left font-medium transition-[translate,box-shadow,background-color,color] duration-200 ease-snappy disabled:cursor-default ${tone}`}
+                        className={`flex w-full items-stretch border-[3px] border-ink text-left font-medium transition-[translate,box-shadow,background-color,color] duration-200 ease-snappy disabled:cursor-default ${tone}`}
                       >
-                        <span className="font-bold">{choice.label}.</span>{" "}
-                        <ScientificText text={choice.text} />
-                        {isCorrectAnswer && <span className="sr-only"> (correct)</span>}
-                        {!isCorrectAnswer && triedReason && (
-                          <span className="sr-only"> (incorrect)</span>
-                        )}
+                        {/* The letter in its own square on the left. */}
+                        <span
+                          className={`flex w-12 shrink-0 items-center justify-center border-r-[3px] border-ink text-lg font-extrabold transition-colors duration-200 ${letterTone}`}
+                        >
+                          {choice.label}
+                        </span>
+                        <span className="flex-1 px-4 py-3">
+                          <ScientificText text={choice.text} />
+                          {isCorrectAnswer && <span className="sr-only"> (correct)</span>}
+                          {!isCorrectAnswer && triedReason && (
+                            <span className="sr-only"> (incorrect)</span>
+                          )}
+                        </span>
                       </button>
 
                       {/* The reason this choice is wrong, shown directly
                           under it so the lesson sits next to the mistake. */}
                       {revealedReason && !isCorrectAnswer && (
-                        <div className="ml-4 animate-rise-in border-x-[3px] border-b-[3px] border-ink bg-white px-4 py-3 text-sm text-navy">
+                        <div className="ml-12 animate-rise-in border-x-[3px] border-b-[3px] border-ink bg-white px-4 py-3 text-sm text-navy">
                           <span className="font-bold text-danger">Why not {choice.label}? </span>
                           <MathText text={revealedReason} />
                         </div>
@@ -383,7 +395,7 @@ function SolutionCard({
     <div className="mt-4 animate-rise-in border-[3px] border-ink bg-cream p-5 shadow-brutal-sm">
       <div className="flex flex-wrap items-center gap-2">
         <h3 className="text-lg font-bold text-purple">{heading}</h3>
-        <span className="rounded-md bg-success px-2 py-1 text-xs font-bold text-white">
+        <span className="bg-success px-2 py-1 text-xs font-bold text-white">
           {solution.correctAnswer} is right
         </span>
       </div>
