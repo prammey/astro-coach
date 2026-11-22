@@ -42,6 +42,8 @@ export default async function TrainingPage({
             size="sm"
             target="_blank"
             rel="noopener noreferrer"
+            // A PDF is not a page, so Next.js must not try to pre-load it.
+            prefetch={false}
             className="whitespace-nowrap"
           >
             <Icon name="document" className="h-5 w-5" />
